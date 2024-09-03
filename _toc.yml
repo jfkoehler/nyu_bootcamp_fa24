@@ -1,0 +1,37 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: syllabus
+parts:
+  - caption: Introduction to Python
+    chapters:
+    - file: python_fundamentals_one
+    - file: python_fundamentals_two
+#     - file: intro_to_numpy
+#     - file: intro_to_pandas
+#     - file: pandas_II
+#     - file: dates_intro_to_plotting
+#     - file: plotting_seaborn
+#     - file: data_apis
+#     - file: html_data
+#     - file: folium_exs-clean
+#     - file: intro_to_git_and_github       
+#   - caption: Introduction to Predictive Modeling
+#     chapters:
+#     - file: linear-regression-intro
+#     - file: practice_regression
+#     - file: polynomial_models
+#     - file: knn_classification
+#     - file: logistic_starter_code
+#     - file: transformers_pipelines_review
+#     - file: cross_val_and_grid_searching
+#     - file: intro_decision_tree        
+#   - caption: Advanced Models
+#     chapters:
+#     - file: advanced_models
+#     - file: nlp-starter
+#     - file: time_series_I
+#     - file: arima_models
+#     - file: intro_ann
+#     - file: cnn_intro_pytorch_clean
