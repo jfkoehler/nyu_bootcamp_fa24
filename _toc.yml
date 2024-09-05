@@ -35,3 +35,7 @@ parts:
 #     - file: arima_models
 #     - file: intro_ann
 #     - file: cnn_intro_pytorch_clean
+
+  - caption: Homework
+    chapters:
+    - file: homework/homework_I
