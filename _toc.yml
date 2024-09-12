@@ -8,6 +8,7 @@ parts:
     chapters:
     - file: python_fundamentals_one
     - file: python_fundamentals_two
+    - file: oop
 #     - file: intro_to_numpy
 #     - file: intro_to_pandas
 #     - file: pandas_II
