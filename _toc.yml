@@ -9,7 +9,7 @@ parts:
     - file: python_fundamentals_one
     - file: python_fundamentals_two
     - file: oop
-#     - file: intro_to_numpy
+    - file: intro_to_numpy
 #     - file: intro_to_pandas
 #     - file: pandas_II
 #     - file: dates_intro_to_plotting
@@ -40,3 +40,12 @@ parts:
   - caption: Homework
     chapters:
     - file: homework/homework_I
+    - file: homework/homework_II
+    
+  - caption: Extra Problems
+    chapters: 
+    - file: numpy-challenge-1
+    - file: numpy-challenge-2
+    - file: numpy-challenge-3
+    
+ 
