@@ -1,0 +1,831 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Climb the Ladder! &#8212; Stern Data Bootcamp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'numpy-challenge-3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Climb the Ladder!" href="numpy-challenge-2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="syllabus.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Stern Data Bootcamp - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Stern Data Bootcamp - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="syllabus.html">
+                    Data Bootcamp
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_fundamentals_one.html">Python Fundamentals 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_fundamentals_two.html">Python Fundamentals 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oop.html">Functions and Classes</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="intro_to_numpy.html">Intro to numpy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_I.html">Assignment 1</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-1.html">Climb the Ladder!</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-2.html">Climb the Ladder!</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Climb the Ladder!</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jfkoehler/nyu_bootcamp_fa24/blob/master/numpy-challenge-3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24/issues/new?title=Issue%20on%20page%20%2Fnumpy-challenge-3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/numpy-challenge-3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Climb the Ladder!</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Climb the Ladder!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#section-v-all-the-matrix-algebra-in-the-world">Section V: All the Matrix Algebra in the World</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-vector-norms">Part 1: Vector Norms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-linear-regression">Part 2: Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-mse">Part 3: MSE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-part-4-singular-value-decomposition-not-required">** Bonus: ** Part 4: Singular Value Decomposition ** Not Required **</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#still-so-what">Still… so what?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="climb-the-ladder">
+<h1>Climb the Ladder!<a class="headerlink" href="#climb-the-ladder" title="Permalink to this heading">#</a></h1>
+<p>Our class moves quickly! Sometimes, it feels like we make leaps in logic that are a bit too big. In this ladder challenge, we’ll learn some core math concepts, some linear algebra, and the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library. Problems in this notebook start out easy and progressively get harder, so that the next rung of the Python ladder is always within reach.</p>
+<p>Additionally, since not all of the topics discussed in this ladder challenge are explicitly taught in our course, these problems come with many more hints, tips, suggestions, and even sometimes a mini-lesson. You are encouraged to Google frequently throughout the lesson. In many ways, this ladder is meant to be a challenge as well as educational in its own right.</p>
+<p><strong>Remember our one rule: NO LOOPS! None of the exercises in this notebook require a loop. If you use a loop to solve any of these problems, you are solving the problem incorrectly.</strong></p>
+<ol class="arabic simple" start="0">
+<li><p>Import numpy in the usual way</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="section-v-all-the-matrix-algebra-in-the-world">
+<h1>Section V: All the Matrix Algebra in the World<a class="headerlink" href="#section-v-all-the-matrix-algebra-in-the-world" title="Permalink to this heading">#</a></h1>
+<p>This final section is going to be a little bit different. We are aware than many students come to DSI from a wide variety of backgrounds, and many students have very little experience with linear algebra. However, data science is an intensely mathematical subject, and most of that math is linear algebra.</p>
+<p>This section is going to teach you some of the linear algebra topics we need while also giving you hands-on examples of how it might be carried out in raw <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
+<section id="part-1-vector-norms">
+<h2>Part 1: Vector Norms<a class="headerlink" href="#part-1-vector-norms" title="Permalink to this heading">#</a></h2>
+<p>While vectors are often drawn as arrows, really they are simply points on a coordinate plane. They can be denoted many ways using mathematical notation, but which you use depends on what field of study you are in, or whichever is most convenient to your situation. That is, the following are all the same vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{v} = (3, 4) = 
+\begin{bmatrix}
+3 \\ 4
+\end{bmatrix} =
+\begin{bmatrix}
+3 &amp; 4
+\end{bmatrix}
+\end{split}\]</div>
+<p>Where the middle one (the “column vector”) is often the most convenient when doing matrix algebra, so that is what we will use.</p>
+<p>The <strong>norm</strong> of a vector is the distance from that vector to the <strong>origin</strong> (that is, <span class="math notranslate nohighlight">\((0, 0)\)</span>). It is denoted and computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\|\mathbf{v}\| =
+    \sqrt{\mathbf{v}^T\mathbf{v}} =
+    \sqrt{\mathbf{v} \cdot \mathbf{v}} =
+    \sqrt{\sum v_i^2}
+\]</div>
+<p>For the next few problems, we’ll use the following vectors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/v.npy&quot;</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/w.npy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="68">
+<li><p>Compute the vector norm of the vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> using the matrix algebra we’ve learned so far in <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p></li>
+</ol>
+<ol class="arabic simple" start="69">
+<li><p>Compute the vector norm of the vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> using a built-in <code class="docutils literal notranslate"><span class="pre">numpy</span></code> function.</p></li>
+</ol>
+<ul class="simple">
+<li><p><em>Hint:</em> <code class="docutils literal notranslate"><span class="pre">np.linalg.something()</span></code></p></li>
+</ul>
+<p><strong>The distance between two vectors</strong> is given by the norm of their difference. That is,</p>
+<div class="math notranslate nohighlight">
+\[d(\mathbf{v}, \mathbf{w}) = \|\mathbf{v} - \mathbf{w}\|\]</div>
+<ol class="arabic simple" start="70">
+<li><p>Compute the distance between <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span></p></li>
+</ol>
+<p>There are actually many kinds of distances. The one I’ve shown you so far is the most common, and it goes by many names, usually <strong>Euclidean distance</strong> or <strong><span class="math notranslate nohighlight">\(\mathcal{l}_2\)</span> distance</strong>. There is also an <strong><span class="math notranslate nohighlight">\(\mathcal{l}_1\)</span> distance</strong>, sometimes called <strong>Taxi cab distance</strong> or <strong>Manhattan distance</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\|\mathbf{v}\|_1 = \sum |v_i|\]</div>
+<p>Can you figure out why it gets these names?</p>
+<ol class="arabic simple" start="71">
+<li><p>Compute the Manhattan distance between <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>.</p></li>
+</ol>
+<ul class="simple">
+<li><p><em>Hint:</em> You can actually use the same function from numbers 69 and 70!</p></li>
+</ul>
+</section>
+<section id="part-2-linear-regression">
+<h2>Part 2: Linear Regression<a class="headerlink" href="#part-2-linear-regression" title="Permalink to this heading">#</a></h2>
+<p>The first type of machine learning model (aka “statistical model”) we’ll learn in our course is the <strong>ordinary least squares linear regression model</strong> (usually just <strong>linear regression</strong> or <strong>OLS</strong> for short).</p>
+<p>In linear regression, we believe that our (quantitative) <span class="math notranslate nohighlight">\(y\)</span> variable depends on some linear relationship of our <span class="math notranslate nohighlight">\(x\)</span> variables. That is, if we have 3 <span class="math notranslate nohighlight">\(x\)</span>s, for observation <span class="math notranslate nohighlight">\(i\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} + \beta_3x_{3i}\]</div>
+<p>We often like to incorporate <em>all</em> of our data into this equation by writing this formula in matrix notation, which is actually much more concise:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{y} = \mathbf{X}\beta\]</div>
+<p>Where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\mathbf{y} = 
+\begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_n
+\end{bmatrix}
+&amp; \text{, }
+\mathbf{\beta} = 
+\begin{bmatrix}
+\beta_0 \\ \beta_1 \\ \vdots \\ \beta_p
+\end{bmatrix}
+\end{align}
+\end{split}\]</div>
+<p>and the <strong>data matrix</strong> (or <strong>design matrix</strong>) is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{X} =
+\begin{bmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p} \\
+1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{np} \\
+\end{bmatrix}
+\end{split}\]</div>
+<ol class="arabic simple" start="72">
+<li><p>Using a paper and pencil, multiply out <span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{X}\beta\)</span> as denoted above. Verify to yourself that this makes sense, and that it matches the first equation above (for <span class="math notranslate nohighlight">\(p = 3\)</span>). Really, take the time to do this! Being comfortable with equations like these is an import concept in our course.</p></li>
+</ol>
+<ol class="arabic simple" start="73">
+<li><p>We load some data below. However, it doesn’t include that column of ones that corresponds to the <span class="math notranslate nohighlight">\(y\)</span>-intercept (<span class="math notranslate nohighlight">\(\beta_0\)</span>). Create a matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> by adding the column of ones.</p></li>
+</ol>
+<ul class="simple">
+<li><p><em>Hint:</em> Use <code class="docutils literal notranslate"><span class="pre">np.hstack()</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/X.npy&quot;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/y.npy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="74">
+<li><p>What are the dimensions of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>? How many observations are in this data set, and how many variables? What should be the size of <span class="math notranslate nohighlight">\(\beta\)</span>?</p></li>
+</ol>
+<p>The goal of OLS is to estimate <span class="math notranslate nohighlight">\(\beta\)</span>. When we estimate a value, we like to put a “hat” on it. The estimate of <span class="math notranslate nohighlight">\(\beta\)</span> is then <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>, and our predictions for our observations are <span class="math notranslate nohighlight">\(\hat{\mathbf{y}}\)</span>. OLS is one of the rare opportunities where we can computer <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> directly. It has the following formula:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\beta} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\]</div>
+<ol class="arabic simple" start="75">
+<li><p>Compute <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>. Save it as <code class="docutils literal notranslate"><span class="pre">beta_hat</span></code>.</p></li>
+</ol>
+<ol class="arabic simple" start="76">
+<li><p>Compute our predictions. That is, <span class="math notranslate nohighlight">\(\mathbf{\hat{y}} = \mathbf{X}\hat{\beta}\)</span>. Save this as <code class="docutils literal notranslate"><span class="pre">y_hat</span></code>.</p></li>
+</ol>
+<p>A variant on OLS is called <strong>ridge regression</strong>, where, for some number <span class="math notranslate nohighlight">\(\lambda\)</span>, we instead compute</p>
+<div class="math notranslate nohighlight">
+\[\hat{\beta}^\text{ridge} = (\mathbf{X}^T\mathbf{X} + \lambda I)^{-1}\mathbf{X}^Ty\]</div>
+<p>where <span class="math notranslate nohighlight">\(I\)</span> is the approprate identity matrix.</p>
+<ol class="arabic simple" start="77">
+<li><p>Compute <span class="math notranslate nohighlight">\(\hat{\beta}^\text{ridge}\)</span> for <span class="math notranslate nohighlight">\(\lambda = 50\)</span>. Call this <code class="docutils literal notranslate"><span class="pre">beta_hat_ridge</span></code>.</p></li>
+</ol>
+<ol class="arabic simple" start="78">
+<li><p>Compute the predictions for this model, <span class="math notranslate nohighlight">\(\hat{\mathbf{y}}^\text{ridge}\)</span>. Call this <code class="docutils literal notranslate"><span class="pre">y_hat_ridge</span></code>.</p></li>
+</ol>
+<ol class="arabic simple" start="79">
+<li><p>Compute <span class="math notranslate nohighlight">\(\|\hat{\beta}\|\)</span> and <span class="math notranslate nohighlight">\(\|\hat{\beta}^\text{ridge}\|\)</span>. Which is smaller?</p></li>
+</ol>
+</section>
+<section id="part-3-mse">
+<h2>Part 3: MSE<a class="headerlink" href="#part-3-mse" title="Permalink to this heading">#</a></h2>
+<p>Computing <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> involves minimizing the MSE. We can now also write the MSE in terms of matrix algebra:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+MSE &amp;= \frac{1}{n} \sum (y_i - \hat{y}_i)^2 \\
+    &amp;= \frac{1}{n} (\mathbf{y} - \hat{\mathbf{y}})^T(\mathbf{y} - \hat{\mathbf{y}}) \\
+    &amp;= \frac{1}{n} \|\mathbf{y} - \hat{\mathbf{y}}\|^2
+\end{align}
+\end{split}\]</div>
+<ol class="arabic simple" start="80">
+<li><p>Take a paper and pencil and verify that all three of these things are equivalent.</p></li>
+</ol>
+<ol class="arabic simple" start="81">
+<li><p>Compute the <span class="math notranslate nohighlight">\(MSE\)</span> using the first equation. (You already did this in an earlier exercise).</p></li>
+</ol>
+<ol class="arabic simple" start="82">
+<li><p>Compute the <span class="math notranslate nohighlight">\(MSE\)</span> using the second equation. That is, using matrix multiplication.</p></li>
+</ol>
+<ol class="arabic simple" start="83">
+<li><p>Compute the <span class="math notranslate nohighlight">\(MSE\)</span> using the third equation. That is, using <code class="docutils literal notranslate"><span class="pre">np.linalg.norm()</span></code>.</p></li>
+</ol>
+<ol class="arabic simple" start="84">
+<li><p>Write a function that takes in <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">y_hat</span></code> and computes the <span class="math notranslate nohighlight">\(MSE\)</span>.</p></li>
+</ol>
+<ol class="arabic simple" start="85">
+<li><p>Compute the <span class="math notranslate nohighlight">\(MSE\)</span> for both the OLS and ridge regression predictions in the previous part. Which model has a higher MSE?</p></li>
+</ol>
+</section>
+<section id="bonus-part-4-singular-value-decomposition-not-required">
+<h2>** Bonus: ** Part 4: Singular Value Decomposition ** Not Required **<a class="headerlink" href="#bonus-part-4-singular-value-decomposition-not-required" title="Permalink to this heading">#</a></h2>
+<p>There are many kinds of <strong>matrix decomposition</strong>. Matrix decomposition involves taking a matrix, and breaking it into the product of other matrices that are easier to work with. Any real-valued matrix <span class="math notranslate nohighlight">\(M\)</span> can be broken up into its <strong>singular value decomposition</strong>:</p>
+<div class="math notranslate nohighlight">
+\[M = USV^T\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are <strong>orthonormal matrices</strong> (more on this soon). The columns of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are referred to as the <strong>left</strong> and <strong>right singular vectors</strong>, respectively.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is a <strong>diagonal matrix</strong>, where the elements of the diagonal are the <strong>singular values</strong> in descending order.</p></li>
+</ul>
+<p>That is, <span class="math notranslate nohighlight">\(S\)</span> looks like:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+S = 
+\begin{bmatrix}
+\sigma_1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; \sigma_2 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; 0 &amp; \sigma_3 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; \sigma_m
+\end{bmatrix}
+\end{split}\]</div>
+<p>There are <em><strong>A LOT</strong></em> of confusing definitions here, so let’s dive into them individually.</p>
+<p>Below, we read in a matrix of pixel values that make up a pleasant image. We can use <code class="docutils literal notranslate"><span class="pre">plt.imshow()</span></code> to plot a matrix visually.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">doge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/doge.npy&quot;</span><span class="p">)[:,</span> <span class="mi">200</span><span class="p">:</span><span class="mi">740</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">doge</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">doge</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(540, 540)
+</pre></div>
+</div>
+<img alt="_images/24b8d4a7ef186eedc21bbdb63efca756421250df953dd8b54f0313b37944e885.png" src="_images/24b8d4a7ef186eedc21bbdb63efca756421250df953dd8b54f0313b37944e885.png" />
+</div>
+</div>
+<ol class="arabic simple" start="86">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">np.linalg.svd()</span></code> function to decompose our <code class="docutils literal notranslate"><span class="pre">doge</span></code> matrix. Please skim the documentation of this function! Note that it returns <span class="math notranslate nohighlight">\(V^T\)</span>, and not <span class="math notranslate nohighlight">\(V\)</span>. It also returns a vector of the singular values, not the full <span class="math notranslate nohighlight">\(S\)</span> matrix.</p></li>
+</ol>
+<p>The <strong>singular values</strong> are non-negative numbers in descending order. An easy way to think about them is that they represent how much <em>information</em> we can represent in our matrix using a linear transformation. In the special case of a square matrix <span class="math notranslate nohighlight">\(M\)</span>, the singular values are also <strong>eigenvalues</strong>. (Similarly, the left singular vectors are the corresponding <strong>eigenvectors</strong>).</p>
+<p>We recognize this still probably doesn’t make a whole lot of sense. By the end of this exercise, we can interpret them visually, and hopefully that will clear things up.</p>
+<ol class="arabic simple" start="87">
+<li><p>Use our vector of singular values to make an <code class="docutils literal notranslate"><span class="pre">smat</span></code> matrix corresponding to <span class="math notranslate nohighlight">\(S\)</span> as shown above.</p></li>
+</ol>
+<ul class="simple">
+<li><p><em>Hint:</em> Use <code class="docutils literal notranslate"><span class="pre">np.diag()</span></code>.</p></li>
+</ul>
+<p>The matrices <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are <strong>orthonormal</strong>. This means they have the following properties:</p>
+<div class="math notranslate nohighlight">
+\[UU^T = UU^{-1} = I\]</div>
+<div class="math notranslate nohighlight">
+\[VV^T = VV^{-1} = I\]</div>
+<ol class="arabic simple" start="88">
+<li><p>Verify the above using Python. Note that you might get precision errors (that is, <code class="docutils literal notranslate"><span class="pre">2.77e-17</span></code> instead of <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
+</ol>
+<p>Why do we do this at all?! For SVD, we seek to <em>approximate</em> large, complex matrices. To see what we mean, let’s see what happens when we remove singular values from our matrix.</p>
+<ol class="arabic simple" start="89">
+<li><p>Create a new matrix, <span class="math notranslate nohighlight">\(\tilde{S}\)</span>, that is the same as <span class="math notranslate nohighlight">\(S\)</span>, but with <em>all but the first 20</em> singular values turned into zeros. You may call this variable <code class="docutils literal notranslate"><span class="pre">smat2</span></code>.</p></li>
+</ol>
+<ol class="arabic simple" start="90">
+<li><p>Let’s approximate our original <code class="docutils literal notranslate"><span class="pre">doge</span></code> matrix. That is, recombine our decomposed matrix, but this time having removed most of our singular values:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\tilde{M} = U\tilde{S}V^T\]</div>
+<p>You can call the result <code class="docutils literal notranslate"><span class="pre">doge_approx</span></code>.</p>
+<ol class="arabic simple" start="91">
+<li><p>Visualize <code class="docutils literal notranslate"><span class="pre">doge_approx</span></code> using <code class="docutils literal notranslate"><span class="pre">plt.imshow()</span></code>. How has the image changed?</p></li>
+</ol>
+<ol class="arabic simple" start="92">
+<li><p>Try this again with values besides 20. Can you still tell what the original image was with only 10 singular values?</p></li>
+</ol>
+<section id="still-so-what">
+<h3>Still… so what?<a class="headerlink" href="#still-so-what" title="Permalink to this heading">#</a></h3>
+<p>SVD is at the heart of one of our most confusing topics - <strong>principal component analysis</strong>. PCA involves carrying out SVD on our data matrix in order to <strong>reduce its dimensionality</strong>. That is, can we still have all the information we need in a data set while having fewer variables?</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="numpy-challenge-2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Climb the Ladder!</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Climb the Ladder!</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#section-v-all-the-matrix-algebra-in-the-world">Section V: All the Matrix Algebra in the World</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-vector-norms">Part 1: Vector Norms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-linear-regression">Part 2: Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-mse">Part 3: MSE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus-part-4-singular-value-decomposition-not-required">** Bonus: ** Part 4: Singular Value Decomposition ** Not Required **</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#still-so-what">Still… so what?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lenny
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
