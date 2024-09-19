@@ -10,7 +10,7 @@ parts:
     - file: python_fundamentals_two
     - file: oop
     - file: intro_to_numpy
-#     - file: intro_to_pandas
+    - file: intro_to_pandas
 #     - file: pandas_II
 #     - file: dates_intro_to_plotting
 #     - file: plotting_seaborn
