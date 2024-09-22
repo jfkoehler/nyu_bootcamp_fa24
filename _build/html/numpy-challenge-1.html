@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Climb the Ladder!" href="numpy-challenge-2.html" />
-    <link rel="prev" title="Assignment 1" href="homework/homework_I.html" />
+    <link rel="prev" title="Homework 2: Introduction to numpy and pandas" href="homework/homework_II.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,10 +177,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="oop.html">Functions and Classes</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="intro_to_numpy.html">Intro to numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_pandas.html">Intro to pandas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="homework/homework_I.html">Assignment 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_II.html">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
 <ul class="current nav bd-sidenav">
@@ -599,6 +602,19 @@ $<span class="math notranslate nohighlight">\(\mathbf{w} = (2, 3, 4, 5, 6)\)</sp
 <ol class="arabic simple" start="25">
 <li><p>Below, the vector <code class="docutils literal notranslate"><span class="pre">y</span></code> represents the true outcomes of the event occuring. In this case, <code class="docutils literal notranslate"><span class="pre">p</span></code> was actually our predicted probabilities of an event occuring. What proportion of the time were our predictions correct? More simply put, what proportion of the time do our <code class="docutils literal notranslate"><span class="pre">predictions</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> vectors match up? Later in the course, this will be known as our <strong>prediction accuracy</strong>.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">.3</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 0, 0, 0, 1, 0, 0])
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="26">
 <li><p>Sometimes, we’ll want the <strong>log loss</strong> in a problem like this. While we’ll normally let this get calculated for us automatically, it’s good to do it once. Here’s the formula:</p></li>
 </ol>
@@ -650,12 +666,12 @@ $<span class="math notranslate nohighlight">\(\mathbf{w} = (2, 3, 4, 5, 6)\)</sp
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="homework/homework_I.html"
+       href="homework/homework_II.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Assignment 1</p>
+        <p class="prev-next-title">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></p>
       </div>
     </a>
     <a class="right-next"
