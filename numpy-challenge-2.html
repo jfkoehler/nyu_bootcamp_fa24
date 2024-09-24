@@ -177,10 +177,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="oop.html">Functions and Classes</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="intro_to_numpy.html">Intro to numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_pandas.html">Intro to pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_II.html">Reading Files and Split Apply Combine</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="homework/homework_I.html">Assignment 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_II.html">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
 <ul class="current nav bd-sidenav">
@@ -421,7 +425,10 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Climb the Ladder!</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#section-iii-simulation">Section III - Simulation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-the-next-few-problems-we-will-be-playing-rock-paper-scissors">For the next few problems, we will be playing Rock-Paper-Scissors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-the-next-few-problems-we-will-be-playing-rock-paper-scissors">For the next few problems, we will be playing Rock-Paper-Scissors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-simulation">Regression Simulation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#section-iv-matrices">Section IV: Matrices</a></li>
@@ -537,6 +544,12 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="regression-simulation">
+<h3>Regression Simulation<a class="headerlink" href="#regression-simulation" title="Permalink to this heading">#</a></h3>
+<p>Next, suppose we’re trying to simulate some fake data for a regression problem we wish to give to our students.  We wish to simulate data for the equation:</p>
+<div class="math notranslate nohighlight">
+\[y = 1000 + 200x + \epsilon\]</div>
+<p>Where <span class="math notranslate nohighlight">\( \epsilon ~ N(0, 20) \)</span> (that is <span class="math notranslate nohighlight">\(\epsilon\)</span> is normally distributed with mean 0 and standard deviation 20).</p>
 <ol class="arabic simple" start="41">
 <li><p>Generate 10 <span class="math notranslate nohighlight">\(x\)</span>s from the <span class="math notranslate nohighlight">\(N(50, 10)\)</span> distribution. (That is, the normal distribution with mean 50 and standard deviation 10).</p></li>
 </ol>
@@ -546,6 +559,7 @@ document.write(`
 <ol class="arabic simple" start="43">
 <li><p>Simulate the <span class="math notranslate nohighlight">\(y\)</span>s as described above using the two vectors you made in the previous two problems.</p></li>
 </ol>
+</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="section-iv-matrices">
@@ -759,7 +773,10 @@ C =
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Climb the Ladder!</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#section-iii-simulation">Section III - Simulation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-the-next-few-problems-we-will-be-playing-rock-paper-scissors">For the next few problems, we will be playing Rock-Paper-Scissors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-the-next-few-problems-we-will-be-playing-rock-paper-scissors">For the next few problems, we will be playing Rock-Paper-Scissors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-simulation">Regression Simulation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#section-iv-matrices">Section IV: Matrices</a></li>
