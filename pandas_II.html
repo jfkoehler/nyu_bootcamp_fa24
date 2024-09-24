@@ -503,11 +503,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/jacobkoehler/Desktop/fall_24/bootcamp_24&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -516,43 +511,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;intro_to_numpy.ipynb&#39;,
- &#39;exarr.npy&#39;,
- &#39;numpy-challenge-3.ipynb&#39;,
- &#39;requirements.txt&#39;,
- &#39;numpy-challenge-1.ipynb&#39;,
- &#39;images&#39;,
- &#39;references.bib&#39;,
- &#39;oop.ipynb&#39;,
- &#39;notebooks.ipynb&#39;,
- &#39;numpy-challenge-2.ipynb&#39;,
- &#39;python_fundamentals_one.ipynb&#39;,
- &#39;intro_to_pandas.ipynb&#39;,
- &#39;_toc.yml&#39;,
- &#39;logo.png&#39;,
- &#39;homework&#39;,
- &#39;_build&#39;,
- &#39;_config.yml&#39;,
- &#39;python_fundamentals_two.ipynb&#39;,
- &#39;.ipynb_checkpoints&#39;,
- &#39;syllabus.ipynb&#39;,
- &#39;.git&#39;,
- &#39;data&#39;,
- &#39;pandas_II.ipynb&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#what&#39;s in the data folder?</span>
 <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;doge.jpg&#39;, &#39;w.npy&#39;, &#39;v.npy&#39;, &#39;doge.npy&#39;, &#39;X.npy&#39;, &#39;y.npy&#39;]
 </pre></div>
 </div>
 </div>
@@ -572,66 +535,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#read in ufo data</span>
 <span class="n">ufo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ufo_path</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="mi">5</span><span class="n">f04307377ff</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#read in ufo data</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">ufo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ufo_path</span><span class="p">)</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.8/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>                 <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>                     <span class="n">kwargs</span><span class="p">[</span><span class="n">new_arg_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_arg_value</span>
-<span class="ne">--&gt; </span><span class="mi">211</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span> 
-<span class="g g-Whitespace">    </span><span class="mi">213</span>         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">wrapper</span><span class="p">)</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.8/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">329</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
-<span class="g g-Whitespace">    </span><span class="mi">330</span>                 <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">331</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span> 
-<span class="g g-Whitespace">    </span><span class="mi">333</span>         <span class="c1"># error: &quot;Callable[[VarArg(Any), KwArg(Any)], Any]&quot; has no</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.8/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">948</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">949</span> 
-<span class="ne">--&gt; </span><span class="mi">950</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">951</span> 
-<span class="g g-Whitespace">    </span><span class="mi">952</span> 
-
-<span class="nn">/opt/anaconda3/lib/python3.8/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">603</span> 
-<span class="g g-Whitespace">    </span><span class="mi">604</span>     <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">605</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">606</span> 
-<span class="g g-Whitespace">    </span><span class="mi">607</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.8/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1440</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1441</span>         <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1442</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1443</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1444</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.8/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1733</span>                 <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1734</span>                     <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1735</span>             <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1736</span>                 <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1737</span>                 <span class="n">mode</span><span class="p">,</span>
-
-<span class="nn">/opt/anaconda3/lib/python3.8/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">854</span>         <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">855</span>             <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">856</span>             <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">857</span>                 <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span>                 <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/ufo.csv&#39;
 </pre></div>
 </div>
 </div>
@@ -934,12 +837,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
-</pre></div>
-</div>
-<img alt="_images/bb49382c245ace9e3f2b3eb23173f6b3e3eda639e208472e722fa6379ed91130.png" src="_images/bb49382c245ace9e3f2b3eb23173f6b3e3eda639e208472e722fa6379ed91130.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -947,58 +844,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>index</th>
-      <th>value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1948 Jan</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1948 Feb</td>
-      <td>4.7</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1948 Mar</td>
-      <td>4.5</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1948 Apr</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1948 May</td>
-      <td>3.4</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1007,72 +852,10 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>value</th>
-    </tr>
-    <tr>
-      <th>index</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1948 Jan</th>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>1948 Feb</th>
-      <td>4.7</td>
-    </tr>
-    <tr>
-      <th>1948 Mar</th>
-      <td>4.5</td>
-    </tr>
-    <tr>
-      <th>1948 Apr</th>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>1948 May</th>
-      <td>3.4</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unemp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-Index: 827 entries, 1948 Jan to 2016 Nov
-Data columns (total 1 columns):
- #   Column  Non-Null Count  Dtype  
----  ------  --------------  -----  
- 0   value   827 non-null    float64
-dtypes: float64(1)
-memory usage: 12.9+ KB
 </pre></div>
 </div>
 </div>
@@ -1083,12 +866,6 @@ memory usage: 12.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;index&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/9e52f1e9b32b5c321ee38b1124d83b0ec5034a9ee7ec9251a1799bb33442c2d8.png" src="_images/9e52f1e9b32b5c321ee38b1124d83b0ec5034a9ee7ec9251a1799bb33442c2d8.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1096,24 +873,12 @@ memory usage: 12.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&lt;AxesSubplot: title={&#39;center&#39;: &#39;value&#39;}&gt;]], dtype=object)
-</pre></div>
-</div>
-<img alt="_images/f2bbf15956995f4004561cbab32df3068f20df5728d9e7ff7a7299b3b8d92977.png" src="_images/f2bbf15956995f4004561cbab32df3068f20df5728d9e7ff7a7299b3b8d92977.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unemp</span><span class="o">.</span><span class="n">boxplot</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
-</pre></div>
-</div>
-<img alt="_images/ddcfba79c1afc3e28cbb189574f6e6d30815729faf1537068b0814144f9ae5be.png" src="_images/ddcfba79c1afc3e28cbb189574f6e6d30815729faf1537068b0814144f9ae5be.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1130,12 +895,6 @@ memory usage: 12.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;index&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/fd2eea6f5d0e53bce172814a2281eca6f19310ab0779504d7a40c9de385614bc.png" src="_images/fd2eea6f5d0e53bce172814a2281eca6f19310ab0779504d7a40c9de385614bc.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1143,21 +902,12 @@ memory usage: 12.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;value&#39;, ylabel=&#39;shifted&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/fba2438ae52a0a6be26c2db23057f66a8d549345f8c307795a9f69f156e42f28.png" src="_images/fba2438ae52a0a6be26c2db23057f66a8d549345f8c307795a9f69f156e42f28.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unemp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;shifted&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Unemployment Data&#39;</span><span class="p">,</span> <span class="n">grid</span> <span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/5e7647dd9e8e3ed4fbbb1246cb89221e7eac0fc5ad97fe486408e7b41843b8b7.png" src="_images/5e7647dd9e8e3ed4fbbb1246cb89221e7eac0fc5ad97fe486408e7b41843b8b7.png" />
 </div>
 </div>
 <p>More with <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and plotting <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/visualization.html">here</a>.</p>
