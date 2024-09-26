@@ -500,6 +500,95 @@ document.write(`
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/refs/heads/main/data/AAPL.csv&#39;</span>
 
 <span class="c1">#read_csv</span>
+<span class="n">aapl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">aapl</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj Close</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2005-04-25</td>
+      <td>5.212857</td>
+      <td>5.288571</td>
+      <td>5.158571</td>
+      <td>5.282857</td>
+      <td>3.522625</td>
+      <td>186615100</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2005-04-26</td>
+      <td>5.254286</td>
+      <td>5.358572</td>
+      <td>5.160000</td>
+      <td>5.170000</td>
+      <td>3.447372</td>
+      <td>202626900</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2005-04-27</td>
+      <td>5.127143</td>
+      <td>5.194286</td>
+      <td>5.072857</td>
+      <td>5.135714</td>
+      <td>3.424510</td>
+      <td>153472200</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aapl</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3523 entries, 0 to 3522
+Data columns (total 7 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   Date       3523 non-null   object 
+ 1   Open       3523 non-null   float64
+ 2   High       3523 non-null   float64
+ 3   Low        3523 non-null   float64
+ 4   Close      3523 non-null   float64
+ 5   Adj Close  3523 non-null   float64
+ 6   Volume     3523 non-null   int64  
+dtypes: float64(5), int64(1), object(1)
+memory usage: 192.8+ KB
 </pre></div>
 </div>
 </div>
@@ -507,6 +596,26 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert to datetime</span>
+<span class="n">aapl</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">aapl</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">aapl</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3523 entries, 0 to 3522
+Data columns (total 7 columns):
+ #   Column     Non-Null Count  Dtype         
+---  ------     --------------  -----         
+ 0   Date       3523 non-null   datetime64[ns]
+ 1   Open       3523 non-null   float64       
+ 2   High       3523 non-null   float64       
+ 3   Low        3523 non-null   float64       
+ 4   Close      3523 non-null   float64       
+ 5   Adj Close  3523 non-null   float64       
+ 6   Volume     3523 non-null   int64         
+dtypes: datetime64[ns](1), float64(5), int64(1)
+memory usage: 192.8 KB
 </pre></div>
 </div>
 </div>
@@ -514,6 +623,23 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the month</span>
+<span class="n">aapl</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       4
+1       4
+2       4
+3       4
+4       4
+       ..
+3518    4
+3519    4
+3520    4
+3521    4
+3522    4
+Name: Date, Length: 3523, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -521,6 +647,23 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the day</span>
+<span class="n">aapl</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       25
+1       26
+2       27
+3       28
+4       29
+        ..
+3518    16
+3519    17
+3520    18
+3521    22
+3522    23
+Name: Date, Length: 3523, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -528,6 +671,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set date to be index of data</span>
+<span class="n">aapl</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -535,6 +679,31 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sort the index</span>
+<span class="n">aapl</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aapl</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 3523 entries, 2005-04-25 to 2019-04-23
+Data columns (total 6 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   Open       3523 non-null   float64
+ 1   High       3523 non-null   float64
+ 2   Low        3523 non-null   float64
+ 3   Close      3523 non-null   float64
+ 4   Adj Close  3523 non-null   float64
+ 5   Volume     3523 non-null   int64  
+dtypes: float64(5), int64(1)
+memory usage: 321.7 KB
 </pre></div>
 </div>
 </div>
@@ -542,13 +711,173 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select 2019</span>
+<span class="n">aapl</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2018&#39;</span><span class="p">:</span><span class="s1">&#39;2019&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj Close</th>
+      <th>Volume</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2018-01-02</th>
+      <td>170.160004</td>
+      <td>172.300003</td>
+      <td>169.259995</td>
+      <td>172.259995</td>
+      <td>168.987320</td>
+      <td>25555900</td>
+    </tr>
+    <tr>
+      <th>2018-01-03</th>
+      <td>172.529999</td>
+      <td>174.550003</td>
+      <td>171.960007</td>
+      <td>172.229996</td>
+      <td>168.957886</td>
+      <td>29517900</td>
+    </tr>
+    <tr>
+      <th>2018-01-04</th>
+      <td>172.539993</td>
+      <td>173.470001</td>
+      <td>172.080002</td>
+      <td>173.029999</td>
+      <td>169.742706</td>
+      <td>22434600</td>
+    </tr>
+    <tr>
+      <th>2018-01-05</th>
+      <td>173.440002</td>
+      <td>175.369995</td>
+      <td>173.050003</td>
+      <td>175.000000</td>
+      <td>171.675278</td>
+      <td>23660000</td>
+    </tr>
+    <tr>
+      <th>2018-01-08</th>
+      <td>174.350006</td>
+      <td>175.610001</td>
+      <td>173.929993</td>
+      <td>174.350006</td>
+      <td>171.037628</td>
+      <td>20567800</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2019-04-16</th>
+      <td>199.460007</td>
+      <td>201.369995</td>
+      <td>198.559998</td>
+      <td>199.250000</td>
+      <td>199.250000</td>
+      <td>25696400</td>
+    </tr>
+    <tr>
+      <th>2019-04-17</th>
+      <td>199.539993</td>
+      <td>203.380005</td>
+      <td>198.610001</td>
+      <td>203.130005</td>
+      <td>203.130005</td>
+      <td>28906800</td>
+    </tr>
+    <tr>
+      <th>2019-04-18</th>
+      <td>203.119995</td>
+      <td>204.149994</td>
+      <td>202.520004</td>
+      <td>203.860001</td>
+      <td>203.860001</td>
+      <td>24195800</td>
+    </tr>
+    <tr>
+      <th>2019-04-22</th>
+      <td>202.830002</td>
+      <td>204.940002</td>
+      <td>202.339996</td>
+      <td>204.529999</td>
+      <td>204.529999</td>
+      <td>19439500</td>
+    </tr>
+    <tr>
+      <th>2019-04-23</th>
+      <td>204.429993</td>
+      <td>207.750000</td>
+      <td>203.899994</td>
+      <td>207.479996</td>
+      <td>207.479996</td>
+      <td>23309000</td>
+    </tr>
+  </tbody>
+</table>
+<p>328 rows × 6 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read back in using parse_dates = True and index_col = 0</span>
+<span class="n">aapl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">aapl</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 3523 entries, 2005-04-25 to 2019-04-23
+Data columns (total 6 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   Open       3523 non-null   float64
+ 1   High       3523 non-null   float64
+ 2   Low        3523 non-null   float64
+ 3   Close      3523 non-null   float64
+ 4   Adj Close  3523 non-null   float64
+ 5   Volume     3523 non-null   int64  
+dtypes: float64(5), int64(1)
+memory usage: 192.7 KB
 </pre></div>
 </div>
 </div>
@@ -563,6 +892,13 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># what time is it?</span>
+<span class="n">then</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">then</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2024, 9, 26, 15, 51, 22, 322906)
 </pre></div>
 </div>
 </div>
@@ -570,6 +906,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># how much time has passed?</span>
+<span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">then</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.timedelta(seconds=110, microseconds=154544)
 </pre></div>
 </div>
 </div>
@@ -583,6 +925,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a pd.Timedelta</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s1">&#39;1W&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -590,6 +933,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shift a date by 3 months</span>
+<span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">delta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2024, 10, 3, 15, 55, 26, 749137)
 </pre></div>
 </div>
 </div>
@@ -606,15 +955,206 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Return to the ufo data and convert the Time column to a datetime object.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ufo_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="2">
 <li><p>Set the Time column as the index column of the data.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>Sort it</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">ufo</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 80543 entries, 1/1/1944 10:00 to 9/9/2013 9:51
+Data columns (total 4 columns):
+ #   Column           Non-Null Count  Dtype 
+---  ------           --------------  ----- 
+ 0   City             80496 non-null  object
+ 1   Colors Reported  17034 non-null  object
+ 2   Shape Reported   72141 non-null  object
+ 3   State            80543 non-null  object
+dtypes: object(4)
+memory usage: 3.1+ MB
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="4">
 <li><p>Create a new dataframe with ufo sightings since January 1, 1999</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 80543 entries, 1/1/1944 10:00 to 9/9/2013 9:51
+Data columns (total 4 columns):
+ #   Column           Non-Null Count  Dtype 
+---  ------           --------------  ----- 
+ 0   City             80496 non-null  object
+ 1   Colors Reported  17034 non-null  object
+ 2   Shape Reported   72141 non-null  object
+ 3   State            80543 non-null  object
+dtypes: object(4)
+memory usage: 5.1+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ufo</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;1999&#39;</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-47-4de6a5ec51ed&gt;:1: FutureWarning: Value based partial slicing on non-monotonic DatetimeIndexes with non-existing keys is deprecated and will raise a KeyError in a future Version.
+  ufo.loc[&#39;1999&#39;:]
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>Colors Reported</th>
+      <th>Shape Reported</th>
+      <th>State</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1999-01-01 14:00:00</th>
+      <td>Florence</td>
+      <td>NaN</td>
+      <td>CYLINDER</td>
+      <td>SC</td>
+    </tr>
+    <tr>
+      <th>1999-01-01 15:00:00</th>
+      <td>Lake Henshaw</td>
+      <td>NaN</td>
+      <td>CIGAR</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>1999-01-01 17:15:00</th>
+      <td>Wilmington Island</td>
+      <td>NaN</td>
+      <td>LIGHT</td>
+      <td>GA</td>
+    </tr>
+    <tr>
+      <th>1999-01-01 18:00:00</th>
+      <td>DeWitt</td>
+      <td>NaN</td>
+      <td>LIGHT</td>
+      <td>AR</td>
+    </tr>
+    <tr>
+      <th>1999-01-01 19:12:00</th>
+      <td>Bainbridge Island</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>WA</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2013-09-09 23:00:00</th>
+      <td>Starr</td>
+      <td>RED</td>
+      <td>DIAMOND</td>
+      <td>SC</td>
+    </tr>
+    <tr>
+      <th>2013-09-09 23:00:00</th>
+      <td>Edmond</td>
+      <td>RED</td>
+      <td>CIGAR</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <th>2013-09-09 23:30:00</th>
+      <td>Ft. Lauderdale</td>
+      <td>RED</td>
+      <td>OVAL</td>
+      <td>FL</td>
+    </tr>
+    <tr>
+      <th>2013-09-09 03:00:00</th>
+      <td>Struthers</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th>2013-09-09 09:51:00</th>
+      <td>San Diego</td>
+      <td>NaN</td>
+      <td>LIGHT</td>
+      <td>CA</td>
+    </tr>
+  </tbody>
+</table>
+<p>67711 rows × 4 columns</p>
+</div></div></div>
+</div>
 </section>
 </section>
 <section id="grouping-with-dates">
@@ -630,6 +1170,20 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#check the info</span>
+<span class="n">dow</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 649 entries, 0 to 648
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype         
+---  ------  --------------  -----         
+ 0   Date    649 non-null    datetime64[ns]
+ 1   Price   649 non-null    float64       
+dtypes: datetime64[ns](1), float64(1)
+memory usage: 10.3 KB
 </pre></div>
 </div>
 </div>
@@ -637,6 +1191,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#handle the index</span>
+<span class="n">dow</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -644,23 +1199,245 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#check that things changed</span>
+<span class="n">dow</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 649 entries, 1914-12-01 to 1968-12-01
+Data columns (total 1 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Price   649 non-null    float64
+dtypes: float64(1)
+memory usage: 10.1 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dow</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1914-12-01</th>
+      <td>55.00</td>
+    </tr>
+    <tr>
+      <th>1915-01-01</th>
+      <td>56.55</td>
+    </tr>
+    <tr>
+      <th>1915-02-01</th>
+      <td>56.00</td>
+    </tr>
+    <tr>
+      <th>1915-03-01</th>
+      <td>58.30</td>
+    </tr>
+    <tr>
+      <th>1915-04-01</th>
+      <td>66.45</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#average yearly price</span>
+<span class="n">dow</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1914-12-31</th>
+      <td>55.00</td>
+    </tr>
+    <tr>
+      <th>1915-01-31</th>
+      <td>56.55</td>
+    </tr>
+    <tr>
+      <th>1915-02-28</th>
+      <td>56.00</td>
+    </tr>
+    <tr>
+      <th>1915-03-31</th>
+      <td>58.30</td>
+    </tr>
+    <tr>
+      <th>1915-04-30</th>
+      <td>66.45</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1968-08-31</th>
+      <td>883.72</td>
+    </tr>
+    <tr>
+      <th>1968-09-30</th>
+      <td>922.80</td>
+    </tr>
+    <tr>
+      <th>1968-10-31</th>
+      <td>955.47</td>
+    </tr>
+    <tr>
+      <th>1968-11-30</th>
+      <td>964.12</td>
+    </tr>
+    <tr>
+      <th>1968-12-31</th>
+      <td>965.39</td>
+    </tr>
+  </tbody>
+</table>
+<p>649 rows × 1 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#quarterly maximum price</span>
+<span class="n">dow</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1914-12-31</th>
+      <td>55.00</td>
+    </tr>
+    <tr>
+      <th>1915-03-31</th>
+      <td>58.30</td>
+    </tr>
+    <tr>
+      <th>1915-06-30</th>
+      <td>68.40</td>
+    </tr>
+    <tr>
+      <th>1915-09-30</th>
+      <td>85.50</td>
+    </tr>
+    <tr>
+      <th>1915-12-31</th>
+      <td>97.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1967-12-31</th>
+      <td>907.54</td>
+    </tr>
+    <tr>
+      <th>1968-03-31</th>
+      <td>884.77</td>
+    </tr>
+    <tr>
+      <th>1968-06-30</th>
+      <td>906.82</td>
+    </tr>
+    <tr>
+      <th>1968-09-30</th>
+      <td>922.80</td>
+    </tr>
+    <tr>
+      <th>1968-12-31</th>
+      <td>965.39</td>
+    </tr>
+  </tbody>
+</table>
+<p>217 rows × 1 columns</p>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -691,6 +1468,24 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 344 entries, 0 to 343
+Data columns (total 7 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   species            344 non-null    object 
+ 1   island             344 non-null    object 
+ 2   bill_length_mm     342 non-null    float64
+ 3   bill_depth_mm      342 non-null    float64
+ 4   flipper_length_mm  342 non-null    float64
+ 5   body_mass_g        342 non-null    float64
+ 6   sex                333 non-null    object 
+dtypes: float64(4), object(3)
+memory usage: 18.9+ KB
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -707,6 +1502,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8a8e1f11f0&gt;]
+</pre></div>
+</div>
+<img alt="_images/606c8c45a64565295da1628ea5c0808aa2d2252a61d4e3906fc27b09a182a032.png" src="_images/606c8c45a64565295da1628ea5c0808aa2d2252a61d4e3906fc27b09a182a032.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -715,19 +1516,39 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="_images/606c8c45a64565295da1628ea5c0808aa2d2252a61d4e3906fc27b09a182a032.png" src="_images/606c8c45a64565295da1628ea5c0808aa2d2252a61d4e3906fc27b09a182a032.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot dow jones Price with matplotlib</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dow</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8a8d1856a0&gt;]
+</pre></div>
+</div>
+<img alt="_images/c1f7733604be9a47362731efdde09de7565224c2f07c4fea262df89d3b64d39f.png" src="_images/c1f7733604be9a47362731efdde09de7565224c2f07c4fea262df89d3b64d39f.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot dow jones data from series</span>
+<span class="n">dow</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/157cc77e756feeb2b721c0e73cad8225dbe4afb8c841bb48b4b094e17febcce9.png" src="_images/157cc77e756feeb2b721c0e73cad8225dbe4afb8c841bb48b4b094e17febcce9.png" />
 </div>
 </div>
 <section id="choosing-a-plot">
@@ -744,6 +1565,15 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 9., 40., 57., 48., 49., 55., 61., 16.,  5.,  2.]),
+ array([32.1 , 34.85, 37.6 , 40.35, 43.1 , 45.85, 48.6 , 51.35, 54.1 ,
+        56.85, 59.6 ]),
+ &lt;BarContainer object of 10 artists&gt;)
+</pre></div>
+</div>
+<img alt="_images/8cb82c7b6e398e2a607ac5af6bd680ce78760d94f7ad422dcb4aaf10293652aa.png" src="_images/8cb82c7b6e398e2a607ac5af6bd680ce78760d94f7ad422dcb4aaf10293652aa.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -751,6 +1581,12 @@ document.write(`
 <span class="n">bill_length</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="_images/5e81c27764d15f4ef82c1663ab7aa7a53d5b5c83eecc6c489c42b2a2729d39db.png" src="_images/5e81c27764d15f4ef82c1663ab7aa7a53d5b5c83eecc6c489c42b2a2729d39db.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -760,6 +1596,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/88c0bb7148b0ff4c8490ed3c80b5635cf0ebd0a5435ffdadaaff40038ae59333.png" src="_images/88c0bb7148b0ff4c8490ed3c80b5635cf0ebd0a5435ffdadaaff40038ae59333.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -768,9 +1607,37 @@ document.write(`
          <span class="n">edgecolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
          <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> 
          <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Bill Length (mm)&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 9., 40., 57., 48., 49., 55., 61., 16.,  5.,  2.]),
+ array([32.1 , 34.85, 37.6 , 40.35, 43.1 , 45.85, 48.6 , 51.35, 54.1 ,
+        56.85, 59.6 ]),
+ &lt;BarContainer object of 10 artists&gt;)
+</pre></div>
+</div>
+<img alt="_images/ba7b01b18a15ab34a8a97a6b788f52ad8694f4c443cd642141634ca3fc247e14.png" src="_images/ba7b01b18a15ab34a8a97a6b788f52ad8694f4c443cd642141634ca3fc247e14.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Bill Length (mm)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/29a6e163d66fb7f7c7c4d15d0dbf6bb186fc3dbd87479ed5deb172c72f58a399.png" src="_images/29a6e163d66fb7f7c7c4d15d0dbf6bb186fc3dbd87479ed5deb172c72f58a399.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penguins</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ed1fb19054a1c6bd0b6ac70ebd0977a9d92e6c49e35acfa92e746d2d078f5ac6.png" src="_images/ed1fb19054a1c6bd0b6ac70ebd0977a9d92e6c49e35acfa92e746d2d078f5ac6.png" />
 </div>
 </div>
 </section>
@@ -784,6 +1651,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/b0c4ef32d67edc3b73b628fb05c24b8681eb396e529b5b1323e170a453764020.png" src="_images/b0c4ef32d67edc3b73b628fb05c24b8681eb396e529b5b1323e170a453764020.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -792,6 +1662,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/b08425df25aa761d706036d9834d5856e54dee5d3d7df2d20e7c6b0f557e8e90.png" src="_images/b08425df25aa761d706036d9834d5856e54dee5d3d7df2d20e7c6b0f557e8e90.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -799,6 +1672,9 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">bill_length</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/38e7a087b163b30802db2e1f768fa052b1866809a618a89a0daed5d5c337736c.png" src="_images/38e7a087b163b30802db2e1f768fa052b1866809a618a89a0daed5d5c337736c.png" />
 </div>
 </div>
 </section>
@@ -812,6 +1688,14 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adelie       152
+Gentoo       124
+Chinstrap     68
+Name: species, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -819,6 +1703,12 @@ document.write(`
 <span class="n">penguins</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="_images/742fa610ad54431d49a7c296725f3b228e310e8a12d74e7d779237eff92b5874.png" src="_images/742fa610ad54431d49a7c296725f3b228e310e8a12d74e7d779237eff92b5874.png" />
 </div>
 </div>
 </section>
@@ -830,6 +1720,58 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.1</td>
+      <td>18.7</td>
+      <td>181.0</td>
+      <td>3750.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>Female</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="scatterplot">
@@ -851,6 +1793,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f8a8cf8b2e0&gt;
+</pre></div>
+</div>
+<img alt="_images/956d02d10b8e9ece533ef14336731ad9443bb09e48de88c8babf4f466d406671.png" src="_images/956d02d10b8e9ece533ef14336731ad9443bb09e48de88c8babf4f466d406671.png" />
+</div>
 </div>
 </section>
 <section id="pandas-plotting">
@@ -866,15 +1814,23 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### scatter matrix of penguin data</span>
+<span class="n">scatter_matrix</span><span class="p">(</span><span class="n">penguins</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ad6d011ab561b4ec02e310051f90ac05837ffc2149bdf87bcd6fc2633ca50e50.png" src="_images/ad6d011ab561b4ec02e310051f90ac05837ffc2149bdf87bcd6fc2633ca50e50.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### adding arguments and changing size</span>
+<span class="n">scatter_matrix</span><span class="p">(</span><span class="n">penguins</span><span class="p">,</span> <span class="n">diagonal</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b5d1f228c4e5b762a34eb6dab7e8f2b78ac45bdf02257de984fed551eba7584d.png" src="_images/b5d1f228c4e5b762a34eb6dab7e8f2b78ac45bdf02257de984fed551eba7584d.png" />
 </div>
 </div>
 <p><strong>PROBLEMS</strong></p>
@@ -891,16 +1847,108 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p><strong>Problem 1</strong>: Histogram of <code class="docutils literal notranslate"><span class="pre">petal_length</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;petal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="_images/611a622d77d129505d3a8dc853670227311e3b965035fe8c5ab49caf75c491e3.png" src="_images/611a622d77d129505d3a8dc853670227311e3b965035fe8c5ab49caf75c491e3.png" />
+</div>
+</div>
 <p><strong>Problem 2</strong>: Scatter plot of <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code> vs. <code class="docutils literal notranslate"><span class="pre">sepal_width</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sepal_length</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">sepal_width</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f8a92051a30&gt;
+</pre></div>
+</div>
+<img alt="_images/4817bff71355594decbfd87d9317972a1e4138706a929057cc44a036f44cffd9.png" src="_images/4817bff71355594decbfd87d9317972a1e4138706a929057cc44a036f44cffd9.png" />
+</div>
+</div>
 <p><strong>Problem 3</strong>: New column where</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setosa</span> <span class="o">-&gt;</span> <span class="n">blue</span>
 <span class="n">virginica</span> <span class="o">-&gt;</span> <span class="n">green</span>
 <span class="n">versicolor</span> <span class="o">-&gt;</span> <span class="n">orange</span>
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;colors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;setosa&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;versicolor&#39;</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>Problem 4</strong>: Scatterplot of <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code> vs <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> colored by species.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sepal_length</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">sepal_width</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f8a92b2c460&gt;
+</pre></div>
+</div>
+<img alt="_images/448de03a0f14ffede4ebdc035456ff4808ad009fa6a46e7e0fd575019ad7a656.png" src="_images/448de03a0f14ffede4ebdc035456ff4808ad009fa6a46e7e0fd575019ad7a656.png" />
+</div>
+</div>
 </section>
 <section id="subplots-and-axes">
 <h4>Subplots and Axes<a class="headerlink" href="#subplots-and-axes" title="Permalink to this heading">#</a></h4>
@@ -908,23 +1956,44 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### create a 1 row 2 column plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b93cf7fff3c5d68e3b8745856f6ada432bd6ea315ffc53cfb8e3deb270be80e2.png" src="_images/b93cf7fff3c5d68e3b8745856f6ada432bd6ea315ffc53cfb8e3deb270be80e2.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### add a plot to each axis</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bill_length</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">penguins</span><span class="p">[</span><span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Flipper Length&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Flipper Length&#39;)
+</pre></div>
+</div>
+<img alt="_images/3933f86769ec758ac9d4f738d441f7b54c53cd9798d7eed5bf6b74c07e0a631e.png" src="_images/3933f86769ec758ac9d4f738d441f7b54c53cd9798d7eed5bf6b74c07e0a631e.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### create a 2 x 2 grid of plots</span>
 <span class="c1">### add histogram to bottom right plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bill_length</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;2 x 2 grid of subplots&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;subplottin.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e52836bb4125d3784dff757f964e852073264ec3610a974aa48d68645b44c1c3.png" src="_images/e52836bb4125d3784dff757f964e852073264ec3610a974aa48d68645b44c1c3.png" />
 </div>
 </div>
 </section>
