@@ -497,7 +497,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in the AAPL data</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa23/main/data/AAPL.csv&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/refs/heads/main/data/AAPL.csv&#39;</span>
 
 <span class="c1">#read_csv</span>
 </pre></div>
@@ -598,7 +598,7 @@ document.write(`
 <h4>Problems<a class="headerlink" href="#problems" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo_url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa23/main/data/ufo.csv&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo_url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/refs/heads/main/data/ufo.csv&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -691,24 +691,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 344 entries, 0 to 343
-Data columns (total 7 columns):
- #   Column             Non-Null Count  Dtype  
----  ------             --------------  -----  
- 0   species            344 non-null    object 
- 1   island             344 non-null    object 
- 2   bill_length_mm     342 non-null    float64
- 3   bill_depth_mm      342 non-null    float64
- 4   flipper_length_mm  342 non-null    float64
- 5   body_mass_g        342 non-null    float64
- 6   sex                333 non-null    object 
-dtypes: float64(4), object(3)
-memory usage: 18.9+ KB
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -725,12 +707,6 @@ memory usage: 18.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fcc4b52c490&gt;]
-</pre></div>
-</div>
-<img alt="_images/606c8c45a64565295da1628ea5c0808aa2d2252a61d4e3906fc27b09a182a032.png" src="_images/606c8c45a64565295da1628ea5c0808aa2d2252a61d4e3906fc27b09a182a032.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -738,12 +714,6 @@ memory usage: 18.9+ KB
 <span class="n">bill_length</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
-</pre></div>
-</div>
-<img alt="_images/606c8c45a64565295da1628ea5c0808aa2d2252a61d4e3906fc27b09a182a032.png" src="_images/606c8c45a64565295da1628ea5c0808aa2d2252a61d4e3906fc27b09a182a032.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -774,15 +744,6 @@ memory usage: 18.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 9., 40., 57., 48., 49., 55., 61., 16.,  5.,  2.]),
- array([32.1 , 34.85, 37.6 , 40.35, 43.1 , 45.85, 48.6 , 51.35, 54.1 ,
-        56.85, 59.6 ]),
- &lt;BarContainer object of 10 artists&gt;)
-</pre></div>
-</div>
-<img alt="_images/8cb82c7b6e398e2a607ac5af6bd680ce78760d94f7ad422dcb4aaf10293652aa.png" src="_images/8cb82c7b6e398e2a607ac5af6bd680ce78760d94f7ad422dcb4aaf10293652aa.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -791,12 +752,6 @@ memory usage: 18.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
-</pre></div>
-</div>
-<img alt="_images/5e81c27764d15f4ef82c1663ab7aa7a53d5b5c83eecc6c489c42b2a2729d39db.png" src="_images/5e81c27764d15f4ef82c1663ab7aa7a53d5b5c83eecc6c489c42b2a2729d39db.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -804,9 +759,6 @@ memory usage: 18.9+ KB
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bill_length</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">100</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/88c0bb7148b0ff4c8490ed3c80b5635cf0ebd0a5435ffdadaaff40038ae59333.png" src="_images/88c0bb7148b0ff4c8490ed3c80b5635cf0ebd0a5435ffdadaaff40038ae59333.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -820,9 +772,6 @@ memory usage: 18.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/7ba0b869ade4acada535b67d60df109969a7a5853c205f1fe495440c79ad5b4b.png" src="_images/7ba0b869ade4acada535b67d60df109969a7a5853c205f1fe495440c79ad5b4b.png" />
-</div>
 </div>
 </section>
 <section id="boxplot">
@@ -835,9 +784,6 @@ memory usage: 18.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/b0c4ef32d67edc3b73b628fb05c24b8681eb396e529b5b1323e170a453764020.png" src="_images/b0c4ef32d67edc3b73b628fb05c24b8681eb396e529b5b1323e170a453764020.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -846,9 +792,6 @@ memory usage: 18.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/b08425df25aa761d706036d9834d5856e54dee5d3d7df2d20e7c6b0f557e8e90.png" src="_images/b08425df25aa761d706036d9834d5856e54dee5d3d7df2d20e7c6b0f557e8e90.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -856,9 +799,6 @@ memory usage: 18.9+ KB
 <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">bill_length</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">vert</span> <span class="o">=</span> <span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/38e7a087b163b30802db2e1f768fa052b1866809a618a89a0daed5d5c337736c.png" src="_images/38e7a087b163b30802db2e1f768fa052b1866809a618a89a0daed5d5c337736c.png" />
 </div>
 </div>
 </section>
@@ -872,14 +812,6 @@ memory usage: 18.9+ KB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adelie       152
-Gentoo       124
-Chinstrap     68
-Name: species, dtype: int64
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -887,12 +819,6 @@ Name: species, dtype: int64
 <span class="n">penguins</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
-</pre></div>
-</div>
-<img alt="_images/742fa610ad54431d49a7c296725f3b228e310e8a12d74e7d779237eff92b5874.png" src="_images/742fa610ad54431d49a7c296725f3b228e310e8a12d74e7d779237eff92b5874.png" />
 </div>
 </div>
 </section>
@@ -904,58 +830,6 @@ Name: species, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>species</th>
-      <th>island</th>
-      <th>bill_length_mm</th>
-      <th>bill_depth_mm</th>
-      <th>flipper_length_mm</th>
-      <th>body_mass_g</th>
-      <th>sex</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>39.1</td>
-      <td>18.7</td>
-      <td>181.0</td>
-      <td>3750.0</td>
-      <td>Male</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>39.5</td>
-      <td>17.4</td>
-      <td>186.0</td>
-      <td>3800.0</td>
-      <td>Female</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section id="scatterplot">
@@ -976,12 +850,6 @@ Name: species, dtype: int64
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7fcc46cc9f40&gt;
-</pre></div>
-</div>
-<img alt="_images/956d02d10b8e9ece533ef14336731ad9443bb09e48de88c8babf4f466d406671.png" src="_images/956d02d10b8e9ece533ef14336731ad9443bb09e48de88c8babf4f466d406671.png" />
 </div>
 </div>
 </section>
@@ -1023,52 +891,6 @@ Name: species, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal_length</th>
-      <th>sepal_width</th>
-      <th>petal_length</th>
-      <th>petal_width</th>
-      <th>species</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5.1</td>
-      <td>3.5</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4.9</td>
-      <td>3.0</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>setosa</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p><strong>Problem 1</strong>: Histogram of <code class="docutils literal notranslate"><span class="pre">petal_length</span></code></p>
 <p><strong>Problem 2</strong>: Scatter plot of <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code> vs. <code class="docutils literal notranslate"><span class="pre">sepal_width</span></code>.</p>
