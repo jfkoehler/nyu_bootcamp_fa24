@@ -48,5 +48,8 @@ parts:
     - file: numpy-challenge-1
     - file: numpy-challenge-2
     - file: numpy-challenge-3
+    - file: bonus/Bonus_plotting_with_bokeh
+    - file: bonus/Bonus_Plotly
+    - file: bonus/intro_ipywidgets
     
  
