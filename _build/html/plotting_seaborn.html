@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'plotting_seaborn';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Assignment 1" href="homework/homework_I.html" />
+    <link rel="next" title="Accessing Data with API’s" href="data_apis.html" />
     <link rel="prev" title="datetime, and matplotlib intro" href="intro_to_plotting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,6 +180,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="dates_intro_to_plotting.html">Reading Files and Split Apply Combine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro_to_plotting.html"><code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> intro</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_apis.html">Accessing Data with API’s</a></li>
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
@@ -426,17 +429,21 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subplots-and-axes">Subplots and Axes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plotting"><code class="docutils literal notranslate"><span class="pre">3D</span> <span class="pre">Plotting</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gridspec"><code class="docutils literal notranslate"><span class="pre">Gridspec</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-seaborn">Introduction to <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hue"><code class="docutils literal notranslate"><span class="pre">hue</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#displot"><code class="docutils literal notranslate"><span class="pre">displot</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relplot"><code class="docutils literal notranslate"><span class="pre">relplot</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-plots">Additional Plots</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-correlations">Plotting Correlations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review">Review</a></li>
 </ul>
 </li>
@@ -485,73 +492,6 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="subplots-and-axes">
-<h2>Subplots and Axes<a class="headerlink" href="#subplots-and-axes" title="Permalink to this heading">#</a></h2>
-<p><img alt="" src="https://matplotlib.org/stable/_images/users-explain-axes-index-1.2x.png" /></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### create a 1 row 2 column plot</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ax</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&lt;Axes: &gt;, &lt;Axes: &gt;], dtype=object)
-</pre></div>
-</div>
-<img alt="_images/e66eb1d7241126e9b1f96f66c68382fdf9fe9f5551b193355a5b62eaf188c9f0.png" src="_images/e66eb1d7241126e9b1f96f66c68382fdf9fe9f5551b193355a5b62eaf188c9f0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">appl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/AAPL.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### add a plot to each axis</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">appl</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]);</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;A Line&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/9956018580fe998eb7ecb623c00a3c087c2908bf1cd905051ce75549e26f3971.png" src="_images/9956018580fe998eb7ecb623c00a3c087c2908bf1cd905051ce75549e26f3971.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### create a 2 x 2 grid of plots</span>
-<span class="c1">### add histogram to bottom right plot</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-<span class="c1">#bottom right?</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">appl</span><span class="p">[</span><span class="s1">&#39;Adj Close&#39;</span><span class="p">]);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/af47a1b3114896a991b8ba1de091ef4fca95744fa44c32c32d73be99cc345ddd.png" src="_images/af47a1b3114896a991b8ba1de091ef4fca95744fa44c32c32d73be99cc345ddd.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### titles and labels</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histogram of Adjusted Close&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Histogram of Adjusted Close&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="d-plotting">
 <h2><code class="docutils literal notranslate"><span class="pre">3D</span> <span class="pre">Plotting</span></code><a class="headerlink" href="#d-plotting" title="Permalink to this heading">#</a></h2>
 <p>There are additional projections available including polar and three dimensional projections.  These can be accessed through the <code class="docutils literal notranslate"><span class="pre">projection</span></code> argument in the <code class="docutils literal notranslate"><span class="pre">axes</span></code> functions.</p>
@@ -577,9 +517,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/5300094244630d346822e37ae06f97e0ed4cdc81f1800e1918e2226209e116c2.png" src="_images/5300094244630d346822e37ae06f97e0ed4cdc81f1800e1918e2226209e116c2.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -590,9 +527,6 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Basic polar coordinate plot&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/84044bb27e866a427261c5562408dcf52071bd236c64fcbdcb719165b8b90387.png" src="_images/84044bb27e866a427261c5562408dcf52071bd236c64fcbdcb719165b8b90387.png" />
 </div>
 </div>
 </section>
@@ -633,9 +567,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/76236bc00320a46b9a345f4542e49433dd5a0d3024438a3f3c1a9eb4f4b0b0ae.png" src="_images/76236bc00320a46b9a345f4542e49433dd5a0d3024438a3f3c1a9eb4f4b0b0ae.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -658,205 +589,16 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/66b8b24a827d04c0d6e29a873beb00b296a70fa2444f241e89e3773091dc1137.png" src="_images/66b8b24a827d04c0d6e29a873beb00b296a70fa2444f241e89e3773091dc1137.png" />
 </div>
-</div>
-<section id="problems">
-<h2>Problems<a class="headerlink" href="#problems" title="Permalink to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Use the housing data to create a 1 x 2 array of plots with a scatterplot of <code class="docutils literal notranslate"><span class="pre">Latitude</span></code> vs. <code class="docutils literal notranslate"><span class="pre">Longitude</span></code> colored by <code class="docutils literal notranslate"><span class="pre">MedHouseVal</span></code> and a histogram of the <code class="docutils literal notranslate"><span class="pre">MedHouseVal</span></code>.</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">housing</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">frame</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">housing</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>MedInc</th>
-      <th>HouseAge</th>
-      <th>AveRooms</th>
-      <th>AveBedrms</th>
-      <th>Population</th>
-      <th>AveOccup</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>MedHouseVal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>8.3252</td>
-      <td>41.0</td>
-      <td>6.984127</td>
-      <td>1.023810</td>
-      <td>322.0</td>
-      <td>2.555556</td>
-      <td>37.88</td>
-      <td>-122.23</td>
-      <td>4.526</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>8.3014</td>
-      <td>21.0</td>
-      <td>6.238137</td>
-      <td>0.971880</td>
-      <td>2401.0</td>
-      <td>2.109842</td>
-      <td>37.86</td>
-      <td>-122.22</td>
-      <td>3.585</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>7.2574</td>
-      <td>52.0</td>
-      <td>8.288136</td>
-      <td>1.073446</td>
-      <td>496.0</td>
-      <td>2.802260</td>
-      <td>37.85</td>
-      <td>-122.24</td>
-      <td>3.521</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>5.6431</td>
-      <td>52.0</td>
-      <td>5.817352</td>
-      <td>1.073059</td>
-      <td>558.0</td>
-      <td>2.547945</td>
-      <td>37.85</td>
-      <td>-122.25</td>
-      <td>3.413</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>3.8462</td>
-      <td>52.0</td>
-      <td>6.281853</td>
-      <td>1.081081</td>
-      <td>565.0</td>
-      <td>2.181467</td>
-      <td>37.85</td>
-      <td>-122.25</td>
-      <td>3.422</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Use the documentation of the <code class="docutils literal notranslate"><span class="pre">fill_between</span></code> function to demonstrate its use by creating a line plot of the <code class="docutils literal notranslate"><span class="pre">dow</span></code> data filled underneath.  What does the <code class="docutils literal notranslate"><span class="pre">hatch</span></code> argument control?</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dow</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;dowjones&#39;</span><span class="p">)</span>
-<span class="n">dow</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1914-12-01</td>
-      <td>55.00</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1915-01-01</td>
-      <td>56.55</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1915-02-01</td>
-      <td>56.00</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1915-03-01</td>
-      <td>58.30</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1915-04-01</td>
-      <td>66.45</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plt.fill_between?</span>
-</pre></div>
-</div>
-</div>
-</div>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">GridSpec</span></code> to write a function that takes in a column from a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> (a <code class="docutils literal notranslate"><span class="pre">Series</span></code> object) and returns a 2 row 1 column plot where the bottom plot is a histogram and top is boxplot; similar to image below.</p>
+<p><img alt="" src="_images/example_histbox.png" /></p>
 </section>
 <section id="introduction-to-seaborn">
 <h2>Introduction to <code class="docutils literal notranslate"><span class="pre">seaborn</span></code><a class="headerlink" href="#introduction-to-seaborn" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> library is built on top of <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and offers high level visualization tools for plotting data.  Typically a call to the <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> library looks like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plottype</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">additional</span> <span class="n">arguments</span><span class="o">...</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">plottype</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">additional</span> <span class="n">arguments</span><span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -869,28 +611,31 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### boxplot of tips</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### boxplot of tips by day</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tips by Day&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/e4e2c28f979b3d69e037325e74e3d641cf952c43f783a02984e606bfd98c1260.png" src="_images/e4e2c28f979b3d69e037325e74e3d641cf952c43f783a02984e606bfd98c1260.png" />
 </div>
-</div>
+</section>
+<section id="hue">
+<h2><code class="docutils literal notranslate"><span class="pre">hue</span></code><a class="headerlink" href="#hue" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">hue</span></code> argument works like a grouping helper with <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>.  Plots that have this argument will break the data into groups from the passed column and add an appropriate legend.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### boxplot of tips by day by smoker</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;smoker&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span><span class="c1">#, hue = &#39;smoker&#39;)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;day&#39;, ylabel=&#39;tip&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/2e44e04f8cbc31b42f99734f3b6e17f876b4348920909301dbab9bad7950e4ce.png" src="_images/2e44e04f8cbc31b42f99734f3b6e17f876b4348920909301dbab9bad7950e4ce.png" />
 </div>
 </div>
 </section>
@@ -904,16 +649,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/site-packages/seaborn/axisgrid.py:123: UserWarning: The figure layout has changed to tight
-  self._figure.tight_layout(*args, **kwargs)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x12af27c90&gt;
-</pre></div>
-</div>
-<img alt="_images/25d192ddb399344ecdef412d2d794eaf30072849354b8df11045e7a918d9a19c.png" src="_images/25d192ddb399344ecdef412d2d794eaf30072849354b8df11045e7a918d9a19c.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -921,16 +656,6 @@ document.write(`
 <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/site-packages/seaborn/axisgrid.py:123: UserWarning: The figure layout has changed to tight
-  self._figure.tight_layout(*args, **kwargs)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x12a0ef310&gt;
-</pre></div>
-</div>
-<img alt="_images/2df8fdee9a0a84fa75e09954dfaf0415881c468c70517f9059f93930acad5588.png" src="_images/2df8fdee9a0a84fa75e09954dfaf0415881c468c70517f9059f93930acad5588.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -940,16 +665,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/site-packages/seaborn/axisgrid.py:123: UserWarning: The figure layout has changed to tight
-  self._figure.tight_layout(*args, **kwargs)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x12b165510&gt;
-</pre></div>
-</div>
-<img alt="_images/da7045433cbd945d49657e38a7089df3bf75cd26c39e92e753a87039e44ebe9d.png" src="_images/da7045433cbd945d49657e38a7089df3bf75cd26c39e92e753a87039e44ebe9d.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -958,30 +673,17 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/site-packages/seaborn/axisgrid.py:123: UserWarning: The figure layout has changed to tight
-  self._figure.tight_layout(*args, **kwargs)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x12b12fdd0&gt;
-</pre></div>
-</div>
-<img alt="_images/2e3a7991ff192ab3b0689932cd286ec9f9e8829acb96b59732b00c3f734e2a5a.png" src="_images/2e3a7991ff192ab3b0689932cd286ec9f9e8829acb96b59732b00c3f734e2a5a.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#draw a histogram and a boxplot using seaborn on two axes</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplots&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;This is a title for everything&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/b9f9991bfe505cebdb46b9455be9e83d0d8f4facad7e963b3a901187ca38c0e5.png" src="_images/b9f9991bfe505cebdb46b9455be9e83d0d8f4facad7e963b3a901187ca38c0e5.png" />
 </div>
 </div>
 </section>
@@ -995,16 +697,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/site-packages/seaborn/axisgrid.py:123: UserWarning: The figure layout has changed to tight
-  self._figure.tight_layout(*args, **kwargs)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x12d339090&gt;
-</pre></div>
-</div>
-<img alt="_images/867de8a9f56fcad6830f3f5e52671ef7ef7af96adffed1c56502d9b750cc1e08.png" src="_images/867de8a9f56fcad6830f3f5e52671ef7ef7af96adffed1c56502d9b750cc1e08.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1012,12 +704,6 @@ document.write(`
 <span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span><span class="s1">&#39;total_bill&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;total_bill&#39;, ylabel=&#39;tip&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/d2db8323f8531977312cd5203920883380f64c7b683cb054a6023cde9d444225.png" src="_images/d2db8323f8531977312cd5203920883380f64c7b683cb054a6023cde9d444225.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1027,12 +713,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;smoker&#39;, ylabel=&#39;tip&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/1f9f5ba2c285a55c36e3abaee1005f702d97eccb200b307099f163de138216cc.png" src="_images/1f9f5ba2c285a55c36e3abaee1005f702d97eccb200b307099f163de138216cc.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1041,12 +721,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;smoker&#39;, ylabel=&#39;tip&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/efd6d04ad4fa0576bec374aeac97c72414cf6b793228ff912b239c685ed8c95c.png" src="_images/efd6d04ad4fa0576bec374aeac97c72414cf6b793228ff912b239c685ed8c95c.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1054,9 +728,6 @@ document.write(`
 <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;smoker&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/bfc43d6ace2e31a289c09fb521ce43dbf9ab28b4651549bb59c9fe5e71d0fac5.png" src="_images/bfc43d6ace2e31a289c09fb521ce43dbf9ab28b4651549bb59c9fe5e71d0fac5.png" />
 </div>
 </div>
 <ol class="arabic simple">
@@ -1096,119 +767,21 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/site-packages/seaborn/axisgrid.py:123: UserWarning: The figure layout has changed to tight
-  self._figure.tight_layout(*args, **kwargs)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x12d3c12d0&gt;
-</pre></div>
-</div>
-<img alt="_images/6e1820df92b30abdcde43659ec54383e09027883c6f9a0aadff2abe04f98b0b1.png" src="_images/6e1820df92b30abdcde43659ec54383e09027883c6f9a0aadff2abe04f98b0b1.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### housing data</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+<span class="n">housing</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">(</span><span class="n">as_frame</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">frame</span>
 <span class="n">housing</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>MedInc</th>
-      <th>HouseAge</th>
-      <th>AveRooms</th>
-      <th>AveBedrms</th>
-      <th>Population</th>
-      <th>AveOccup</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>MedHouseVal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>8.3252</td>
-      <td>41.0</td>
-      <td>6.984127</td>
-      <td>1.023810</td>
-      <td>322.0</td>
-      <td>2.555556</td>
-      <td>37.88</td>
-      <td>-122.23</td>
-      <td>4.526</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>8.3014</td>
-      <td>21.0</td>
-      <td>6.238137</td>
-      <td>0.971880</td>
-      <td>2401.0</td>
-      <td>2.109842</td>
-      <td>37.86</td>
-      <td>-122.22</td>
-      <td>3.585</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>7.2574</td>
-      <td>52.0</td>
-      <td>8.288136</td>
-      <td>1.073446</td>
-      <td>496.0</td>
-      <td>2.802260</td>
-      <td>37.85</td>
-      <td>-122.24</td>
-      <td>3.521</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>5.6431</td>
-      <td>52.0</td>
-      <td>5.817352</td>
-      <td>1.073059</td>
-      <td>558.0</td>
-      <td>2.547945</td>
-      <td>37.85</td>
-      <td>-122.25</td>
-      <td>3.413</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>3.8462</td>
-      <td>52.0</td>
-      <td>6.281853</td>
-      <td>1.081081</td>
-      <td>565.0</td>
-      <td>2.181467</td>
-      <td>37.85</td>
-      <td>-122.25</td>
-      <td>3.422</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
+</section>
+<section id="plotting-correlations">
+<h2>Plotting Correlations<a class="headerlink" href="#plotting-correlations" title="Permalink to this heading">#</a></h2>
+<p>Correlation captures the strength of a linear relationship between features.  Often, this is easier to look at than a scatterplot of the data to establish relationships, however recall that this is only a detector for <em>linear</em> relationships!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### correlation in data</span>
@@ -1216,166 +789,19 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>MedInc</th>
-      <th>HouseAge</th>
-      <th>AveRooms</th>
-      <th>AveBedrms</th>
-      <th>Population</th>
-      <th>AveOccup</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>MedHouseVal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>MedInc</th>
-      <td>1.000000</td>
-      <td>-0.119034</td>
-      <td>0.326895</td>
-      <td>-0.062040</td>
-      <td>0.004834</td>
-      <td>0.018766</td>
-      <td>-0.079809</td>
-      <td>-0.015176</td>
-      <td>0.688075</td>
-    </tr>
-    <tr>
-      <th>HouseAge</th>
-      <td>-0.119034</td>
-      <td>1.000000</td>
-      <td>-0.153277</td>
-      <td>-0.077747</td>
-      <td>-0.296244</td>
-      <td>0.013191</td>
-      <td>0.011173</td>
-      <td>-0.108197</td>
-      <td>0.105623</td>
-    </tr>
-    <tr>
-      <th>AveRooms</th>
-      <td>0.326895</td>
-      <td>-0.153277</td>
-      <td>1.000000</td>
-      <td>0.847621</td>
-      <td>-0.072213</td>
-      <td>-0.004852</td>
-      <td>0.106389</td>
-      <td>-0.027540</td>
-      <td>0.151948</td>
-    </tr>
-    <tr>
-      <th>AveBedrms</th>
-      <td>-0.062040</td>
-      <td>-0.077747</td>
-      <td>0.847621</td>
-      <td>1.000000</td>
-      <td>-0.066197</td>
-      <td>-0.006181</td>
-      <td>0.069721</td>
-      <td>0.013344</td>
-      <td>-0.046701</td>
-    </tr>
-    <tr>
-      <th>Population</th>
-      <td>0.004834</td>
-      <td>-0.296244</td>
-      <td>-0.072213</td>
-      <td>-0.066197</td>
-      <td>1.000000</td>
-      <td>0.069863</td>
-      <td>-0.108785</td>
-      <td>0.099773</td>
-      <td>-0.024650</td>
-    </tr>
-    <tr>
-      <th>AveOccup</th>
-      <td>0.018766</td>
-      <td>0.013191</td>
-      <td>-0.004852</td>
-      <td>-0.006181</td>
-      <td>0.069863</td>
-      <td>1.000000</td>
-      <td>0.002366</td>
-      <td>0.002476</td>
-      <td>-0.023737</td>
-    </tr>
-    <tr>
-      <th>Latitude</th>
-      <td>-0.079809</td>
-      <td>0.011173</td>
-      <td>0.106389</td>
-      <td>0.069721</td>
-      <td>-0.108785</td>
-      <td>0.002366</td>
-      <td>1.000000</td>
-      <td>-0.924664</td>
-      <td>-0.144160</td>
-    </tr>
-    <tr>
-      <th>Longitude</th>
-      <td>-0.015176</td>
-      <td>-0.108197</td>
-      <td>-0.027540</td>
-      <td>0.013344</td>
-      <td>0.099773</td>
-      <td>0.002476</td>
-      <td>-0.924664</td>
-      <td>1.000000</td>
-      <td>-0.045967</td>
-    </tr>
-    <tr>
-      <th>MedHouseVal</th>
-      <td>0.688075</td>
-      <td>0.105623</td>
-      <td>0.151948</td>
-      <td>-0.046701</td>
-      <td>-0.024650</td>
-      <td>-0.023737</td>
-      <td>-0.144160</td>
-      <td>-0.045967</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### heatmap of correlations</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">housing</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="_images/2ec5845d6e40d09f4803394ae28187fb453835dc08e995f53932d388f82cb965.png" src="_images/2ec5845d6e40d09f4803394ae28187fb453835dc08e995f53932d388f82cb965.png" />
-</div>
 </div>
 </section>
-<section id="id1">
-<h2>Problems<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="problems">
+<h2>Problems<a class="headerlink" href="#problems" title="Permalink to this heading">#</a></h2>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">diabetes</span></code> data below loaded from OpenML (<a class="reference external" href="https://www.openml.org/search?type=data&amp;sort=runs&amp;status=active&amp;id=37">docs</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1390,12 +816,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/site-packages/sklearn/datasets/_openml.py:1022: FutureWarning: The default value of `parser` will change from `&#39;liac-arff&#39;` to `&#39;auto&#39;` in 1.4. You can set `parser=&#39;auto&#39;` to silence this warning. Therefore, an `ImportError` will be raised from 1.4 if the dataset is dense and pandas is not installed. Note that the pandas parser may return different data types. See the Notes Section in fetch_openml&#39;s API doc for details.
-  warn(
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1403,100 +823,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>preg</th>
-      <th>plas</th>
-      <th>pres</th>
-      <th>skin</th>
-      <th>insu</th>
-      <th>mass</th>
-      <th>pedi</th>
-      <th>age</th>
-      <th>class</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>6.0</td>
-      <td>148.0</td>
-      <td>72.0</td>
-      <td>35.0</td>
-      <td>0.0</td>
-      <td>33.6</td>
-      <td>0.627</td>
-      <td>50.0</td>
-      <td>tested_positive</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>85.0</td>
-      <td>66.0</td>
-      <td>29.0</td>
-      <td>0.0</td>
-      <td>26.6</td>
-      <td>0.351</td>
-      <td>31.0</td>
-      <td>tested_negative</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>8.0</td>
-      <td>183.0</td>
-      <td>64.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>23.3</td>
-      <td>0.672</td>
-      <td>32.0</td>
-      <td>tested_positive</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1.0</td>
-      <td>89.0</td>
-      <td>66.0</td>
-      <td>23.0</td>
-      <td>94.0</td>
-      <td>28.1</td>
-      <td>0.167</td>
-      <td>21.0</td>
-      <td>tested_negative</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.0</td>
-      <td>137.0</td>
-      <td>40.0</td>
-      <td>35.0</td>
-      <td>168.0</td>
-      <td>43.1</td>
-      <td>2.288</td>
-      <td>33.0</td>
-      <td>tested_positive</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <ol class="arabic simple">
 <li><p>Distribution of ages separated by class.</p></li>
@@ -1508,6 +834,9 @@ document.write(`
 <li><p><strong>CHALLENGE</strong>: 2 rows and 4 columns with histograms separated by class column.  Which feature has the most distinct difference between classes?</p></li>
 </ol>
 </section>
+</section>
+<section id="id1">
+<h1><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <section id="review">
 <h2>Review<a class="headerlink" href="#review" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -1571,11 +900,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="homework/homework_I.html"
+       href="data_apis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assignment 1</p>
+        <p class="prev-next-title">Accessing Data with API’s</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1595,17 +924,21 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subplots-and-axes">Subplots and Axes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-plotting"><code class="docutils literal notranslate"><span class="pre">3D</span> <span class="pre">Plotting</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gridspec"><code class="docutils literal notranslate"><span class="pre">Gridspec</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-seaborn">Introduction to <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hue"><code class="docutils literal notranslate"><span class="pre">hue</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#displot"><code class="docutils literal notranslate"><span class="pre">displot</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relplot"><code class="docutils literal notranslate"><span class="pre">relplot</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-plots">Additional Plots</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-correlations">Plotting Correlations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review">Review</a></li>
 </ul>
 </li>
