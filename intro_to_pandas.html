@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro_to_pandas';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Assignment 1" href="homework/homework_I.html" />
+    <link rel="next" title="Reading Files and Split Apply Combine" href="pandas_II.html" />
     <link rel="prev" title="Intro to numpy" href="intro_to_numpy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,6 +176,14 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="intro_to_numpy.html">Intro to numpy</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Intro to pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_II.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dates_intro_to_plotting.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_plotting.html"><code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting_seaborn.html">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_apis.html">Accessing Data with API’s</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
@@ -655,6 +663,7 @@ dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -662,6 +671,12 @@ dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check the type</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
 </pre></div>
 </div>
 </div>
@@ -669,13 +684,80 @@ dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># examine the frame</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GDP</th>
+      <th>CPI</th>
+      <th>Year</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5974.7</td>
+      <td>127.500</td>
+      <td>1990</td>
+      <td>US</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10031.0</td>
+      <td>169.300</td>
+      <td>2000</td>
+      <td>US</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14681.1</td>
+      <td>217.488</td>
+      <td>2010</td>
+      <td>US</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#general info</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3 entries, 0 to 2
+Data columns (total 4 columns):
+ #   Column   Non-Null Count  Dtype  
+---  ------   --------------  -----  
+ 0   GDP      3 non-null      float64
+ 1   CPI      3 non-null      float64
+ 2   Year     3 non-null      int64  
+ 3   Country  3 non-null      object 
+dtypes: float64(2), int64(1), object(1)
+memory usage: 228.0+ bytes
 </pre></div>
 </div>
 </div>
@@ -689,15 +771,55 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
-</pre></div>
-</div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GDP</th>
+      <th>CPI</th>
+      <th>Year</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5974.7</td>
+      <td>127.500</td>
+      <td>1990</td>
+      <td>US</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10031.0</td>
+      <td>169.300</td>
+      <td>2000</td>
+      <td>US</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14681.1</td>
+      <td>217.488</td>
+      <td>2010</td>
+      <td>US</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>This lays out the data in a very intuitive way, columns will be labeled as they are in the excel file.</p>
 </section>
@@ -718,6 +840,7 @@ Where as this could be very hard to do in the data variable above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#shape</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -730,6 +853,7 @@ Where as this could be very hard to do in the data variable above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
@@ -742,6 +866,7 @@ Where as this could be very hard to do in the data variable above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#index</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
 </div>
 </div>
@@ -754,6 +879,7 @@ Where as this could be very hard to do in the data variable above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#data types</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
 </div>
 </div>
@@ -789,10 +915,77 @@ it is recognized as a number (ii) if not, then it is just going to be an object.
 </div>
 </div>
 <p>a) What are the dimensions of pwt?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwt</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6, 4)
+</pre></div>
+</div>
+</div>
+</div>
 <p>b) What dtypes are the variables? What do they mean?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwt</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>countrycode     object
+pop            float64
+rgdpe          float64
+year             int64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#countrycode is string, population and rgdpe are decimal valued numbers and year is an integer number</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>c) What does pwt.columns.tolist() do? How does it compare to list(pwt)?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwt</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="nb">list</span><span class="p">(</span><span class="n">pwt</span><span class="p">)</span>  <span class="c1">#same thing!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&#39;countrycode&#39;, &#39;pop&#39;, &#39;rgdpe&#39;, &#39;year&#39;],
+ [&#39;countrycode&#39;, &#39;pop&#39;, &#39;rgdpe&#39;, &#39;year&#39;])
+</pre></div>
+</div>
+</div>
+</div>
 <p>d) Challenging. What is list(pwt)[0]? Why? What type is it?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">pwt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#first column</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;countrycode&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <p>e) Challenging. What would you say is the natural index? How would you set it?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#looks like the year would be</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <hr class="docutils" />
@@ -810,18 +1003,24 @@ it is recognized as a number (ii) if not, then it is just going to be an object.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;GDP&#39;, &#39;CPI&#39;, &#39;Year&#39;, &#39;Country&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#select a column</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;CPI&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     5974.7
-1    10031.0
-2    14681.1
-Name: GDP, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    127.500
+1    169.300
+2    217.488
+Name: CPI, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -834,14 +1033,15 @@ Name: GDP, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#dot notation</span>
+<span class="n">df</span><span class="o">.</span><span class="n">CPI</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     5974.7
-1    10031.0
-2    14681.1
-Name: GDP, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    127.500
+1    169.300
+2    217.488
+Name: CPI, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -849,14 +1049,15 @@ Name: GDP, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># .iloc -- numeric index row, column</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     5974.7
-1    10031.0
-2    14681.1
-Name: GDP, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    127.500
+1    169.300
+2    217.488
+Name: CPI, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -870,6 +1071,7 @@ Name: GDP, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select multiple columns</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;GDP&#39;</span><span class="p">,</span> <span class="s1">&#39;CPI&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -919,6 +1121,7 @@ Name: GDP, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can also do this with iloc.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -975,6 +1178,12 @@ Name: GDP, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#uppercase the names</span>
+<span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;GDP&#39;, &#39;CPI&#39;, &#39;YEAR&#39;, &#39;COUNTRY&#39;]
 </pre></div>
 </div>
 </div>
@@ -985,6 +1194,7 @@ the new one, but the saved df is the same…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rename method</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;gdp&quot;</span><span class="p">:</span> <span class="s1">&#39;GDP&#39;</span><span class="p">,</span> <span class="s1">&#39;cpi&#39;</span><span class="p">:</span> <span class="s2">&quot;CPI&quot;</span><span class="p">,</span> <span class="s2">&quot;Year&quot;</span><span class="p">:</span> <span class="s2">&quot;YEAR&quot;</span><span class="p">,</span> <span class="s2">&quot;Country&quot;</span><span class="p">:</span> <span class="s2">&quot;COUNTRY&quot;</span><span class="p">},</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1007,7 +1217,7 @@ the new one, but the saved df is the same…</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>gdp</th>
+      <th>GDP</th>
       <th>CPI</th>
       <th>YEAR</th>
       <th>COUNTRY</th>
@@ -1053,8 +1263,8 @@ the new one, but the saved df is the same…</p>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GDP        5974.7
 CPI         127.5
-YEAR         1990
-COUNTRY        US
+Year         1990
+Country        US
 Name: 0, dtype: object
 </pre></div>
 </div>
@@ -1071,8 +1281,8 @@ Name: 0, dtype: object
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GDP        10031.0
 CPI          169.3
-YEAR          2000
-COUNTRY         US
+Year          2000
+Country         US
 Name: 1, dtype: object
 </pre></div>
 </div>
@@ -1107,8 +1317,8 @@ Name: 1, dtype: object
       <th></th>
       <th>GDP</th>
       <th>CPI</th>
-      <th>YEAR</th>
-      <th>COUNTRY</th>
+      <th>Year</th>
+      <th>Country</th>
     </tr>
   </thead>
   <tbody>
@@ -1139,41 +1349,54 @@ Name: 1, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/core/indexes/base.py:3805,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3804</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3805</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3806</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">File index.pyx:167,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>GDP</th>
-      <th>CPI</th>
-      <th>YEAR</th>
-      <th>COUNTRY</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>10031.0</td>
-      <td>169.3</td>
-      <td>2000</td>
-      <td>US</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="nn">File index.pyx:196,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">File pandas/_libs/hashtable_class_helper.pxi:7081,</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="nn">File pandas/_libs/hashtable_class_helper.pxi:7089,</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="ne">KeyError</span>: &#39;YEAR&#39;
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># conditional with .loc</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;YEAR&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2000</span><span class="p">]</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/core/frame.py:4102,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4100</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4101</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">4102</span> <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4103</span> <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4104</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/pandas/core/indexes/base.py:3812,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3807</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3808</span>         <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3809</span>         <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3810</span>     <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3811</span>         <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3812</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">3813</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3814</span>     <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3815</span>     <span class="c1">#  InvalidIndexError. Otherwise we fall through and re-raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3816</span>     <span class="c1">#  the TypeError.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3817</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_indexing_error</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &#39;YEAR&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1240,6 +1463,7 @@ Name: 1, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set index to year</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1264,10 +1488,10 @@ Name: 1, dtype: object
       <th></th>
       <th>GDP</th>
       <th>CPI</th>
-      <th>COUNTRY</th>
+      <th>Country</th>
     </tr>
     <tr>
-      <th>YEAR</th>
+      <th>Year</th>
       <th></th>
       <th></th>
       <th></th>
@@ -1299,6 +1523,7 @@ Name: 1, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># did it change?</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -1323,8 +1548,8 @@ Name: 1, dtype: object
       <th></th>
       <th>GDP</th>
       <th>CPI</th>
-      <th>YEAR</th>
-      <th>COUNTRY</th>
+      <th>Year</th>
+      <th>Country</th>
     </tr>
   </thead>
   <tbody>
@@ -1358,6 +1583,7 @@ Name: 1, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># try with inplace</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1369,6 +1595,7 @@ Name: 1, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reset the index</span>
+<span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1391,10 +1618,10 @@ Name: 1, dtype: object
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>YEAR</th>
+      <th>Year</th>
       <th>GDP</th>
       <th>CPI</th>
-      <th>COUNTRY</th>
+      <th>Country</th>
     </tr>
   </thead>
   <tbody>
@@ -1427,6 +1654,7 @@ Name: 1, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use with .inplace</span>
+<span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1456,10 +1684,10 @@ Name: 1, dtype: object
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>YEAR</th>
+      <th>Year</th>
       <th>GDP</th>
       <th>CPI</th>
-      <th>COUNTRY</th>
+      <th>Country</th>
     </tr>
   </thead>
   <tbody>
@@ -1572,6 +1800,63 @@ Name: 1, dtype: object
 </div></div></div>
 </div>
 <p><strong>Exercise.</strong> How would you extract all rows for just one country, say “FRA”?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pwt</span><span class="p">[</span><span class="s1">&#39;countrycode&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;FRA&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>countrycode</th>
+      <th>pop</th>
+      <th>rgdpe</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>FRA</td>
+      <td>58.2</td>
+      <td>1.294</td>
+      <td>1990</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>FRA</td>
+      <td>60.8</td>
+      <td>1.753</td>
+      <td>2000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>FRA</td>
+      <td>64.7</td>
+      <td>2.032</td>
+      <td>2010</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 <p><strong>Exercise.</strong> How would you extract two rows which have the latest data for “FRA” and “CHN”?</p>
 <p><strong>Exercise (Challenging).</strong> How would you extract all rows after 1990?</p>
 </section>
@@ -2114,7 +2399,35 @@ dtype: float64
 <section id="id3">
 <h3>Time to practice<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p><strong>Exercise.</strong> Can you compute the mean of each column of df?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Year     2000.000000
+GDP     10228.933333
+CPI       171.429333
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>Exercise.</strong> Can you select the year 2010 and compute the row sum of df?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">numeric_only</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2    16908.588
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>Exercise (Challenging).</strong> Can you compute the mean of GDP where it is larger than 6000 of df?</p>
 </section>
 </section>
@@ -2513,11 +2826,11 @@ dtype: float64
       </div>
     </a>
     <a class="right-next"
-       href="homework/homework_I.html"
+       href="pandas_II.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assignment 1</p>
+        <p class="prev-next-title">Reading Files and Split Apply Combine</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
