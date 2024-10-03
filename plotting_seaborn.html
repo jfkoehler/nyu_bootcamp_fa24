@@ -202,6 +202,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="numpy-challenge-3.html">Climb the Ladder!</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotting_with_bokeh.html">Plotting with <code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotly.html">BONUS: <code class="docutils literal notranslate"><span class="pre">plotly</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/intro_ipywidgets.html">Using interactive widgets with the notebook</a></li>
 </ul>
 
     </div>
@@ -517,6 +520,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/d71d3c7ce9bd45849ce1a875139acbbf260f7c6f72cc2937d4b9421988b3e3c0.png" src="_images/d71d3c7ce9bd45849ce1a875139acbbf260f7c6f72cc2937d4b9421988b3e3c0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -527,6 +533,9 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Basic polar coordinate plot&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/156a749a9967b95275f9f256f4a1818cc8ab29d4fffb2f02adcb8f68c9a229e6.png" src="_images/156a749a9967b95275f9f256f4a1818cc8ab29d4fffb2f02adcb8f68c9a229e6.png" />
 </div>
 </div>
 </section>
@@ -567,6 +576,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/e0fc65215467500a5f7257ce811c2b8b4dae256247e0cdee5dee6eb99aff8098.png" src="_images/e0fc65215467500a5f7257ce811c2b8b4dae256247e0cdee5dee6eb99aff8098.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -589,6 +601,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/35b706131a79c2b3fc39b6f8e88ef2af288c403087d38b332062b91a576221da.png" src="_images/35b706131a79c2b3fc39b6f8e88ef2af288c403087d38b332062b91a576221da.png" />
+</div>
 </div>
 <section id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
@@ -605,9 +620,62 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### load a sample dataset on tips</span>
 <span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;tips&#39;</span><span class="p">)</span>
+<span class="n">tips</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_bill</th>
+      <th>tip</th>
+      <th>sex</th>
+      <th>smoker</th>
+      <th>day</th>
+      <th>time</th>
+      <th>size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16.99</td>
+      <td>1.01</td>
+      <td>Female</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10.34</td>
+      <td>1.66</td>
+      <td>Male</td>
+      <td>No</td>
+      <td>Sun</td>
+      <td>Dinner</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -615,6 +683,12 @@ document.write(`
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;tip&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/2b9dd48b318dc839bd60a3f49cc97423486ed40a55649dcfbee6606ee5ca6036.png" src="_images/2b9dd48b318dc839bd60a3f49cc97423486ed40a55649dcfbee6606ee5ca6036.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -625,6 +699,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/1b12e6371adc97dec4cec7c39363837897ce3c7decbf7507e0dcd37a1d932ca8.png" src="_images/1b12e6371adc97dec4cec7c39363837897ce3c7decbf7507e0dcd37a1d932ca8.png" />
+</div>
 </div>
 </section>
 <section id="hue">
@@ -633,9 +710,15 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### boxplot of tips by day by smoker</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span><span class="c1">#, hue = &#39;smoker&#39;)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;smoker&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;day&#39;, ylabel=&#39;tip&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/4489320ddc303ddbc7874d8ad581adfbdc64001e72b86ad93da20206b3738450.png" src="_images/4489320ddc303ddbc7874d8ad581adfbdc64001e72b86ad93da20206b3738450.png" />
 </div>
 </div>
 </section>
@@ -649,6 +732,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7faa09939fa0&gt;
+</pre></div>
+</div>
+<img alt="_images/25e075aeca2fad339dc8f1de6eff1b2de24a7d5c5223b6188e2d650c92b562a2.png" src="_images/25e075aeca2fad339dc8f1de6eff1b2de24a7d5c5223b6188e2d650c92b562a2.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -656,6 +745,12 @@ document.write(`
 <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7faa09bb3220&gt;
+</pre></div>
+</div>
+<img alt="_images/e4c0af5172864f72180bc110a92c86969d4976d37327a8fcfd864344cc2e85ea.png" src="_images/e4c0af5172864f72180bc110a92c86969d4976d37327a8fcfd864344cc2e85ea.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -665,6 +760,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7faa0a07ae20&gt;
+</pre></div>
+</div>
+<img alt="_images/f6feff9076557d14916664cfc07e8c4e0568b6ee324a26b27780a95e192c21b0.png" src="_images/f6feff9076557d14916664cfc07e8c4e0568b6ee324a26b27780a95e192c21b0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -672,6 +773,12 @@ document.write(`
 <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;smoker&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7faa09e07340&gt;
+</pre></div>
+</div>
+<img alt="_images/5a7c3c16b0d946db518697d39d1f2dd2a31209841ef6f77a5c6b34a83e032f6f.png" src="_images/5a7c3c16b0d946db518697d39d1f2dd2a31209841ef6f77a5c6b34a83e032f6f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -685,6 +792,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/54056598903e71385d58b508a3bfc4103a97a1cffca9deb505506ea34eaca626.png" src="_images/54056598903e71385d58b508a3bfc4103a97a1cffca9deb505506ea34eaca626.png" />
+</div>
 </div>
 </section>
 <section id="relplot">
@@ -697,13 +807,25 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7faa0a92a700&gt;
+</pre></div>
+</div>
+<img alt="_images/3ad85b2b13b5891eef785c490208b960846bd3df9586000562f987ad391d9aaa.png" src="_images/3ad85b2b13b5891eef785c490208b960846bd3df9586000562f987ad391d9aaa.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### regression plot</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span><span class="s1">&#39;total_bill&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span><span class="s1">&#39;total_bill&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">,</span> <span class="n">lowess</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;total_bill&#39;, ylabel=&#39;tip&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/7a910581db0ba5b7b1ad7b25ac0f2bb83185c1011527e402c7f75e07ae0807f8.png" src="_images/7a910581db0ba5b7b1ad7b25ac0f2bb83185c1011527e402c7f75e07ae0807f8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -713,6 +835,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;smoker&#39;, ylabel=&#39;tip&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/c82461709f983aed033b0ebd55d5687016ae0ddab369abe1bd0b11904a009acc.png" src="_images/c82461709f983aed033b0ebd55d5687016ae0ddab369abe1bd0b11904a009acc.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -720,6 +848,12 @@ document.write(`
 <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">tips</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;smoker&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;smoker&#39;, ylabel=&#39;tip&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/f41032bc33229724104cbcedacf4425b9d6fe71e28f4ad7fb5f08e6e8fcd1ff7.png" src="_images/f41032bc33229724104cbcedacf4425b9d6fe71e28f4ad7fb5f08e6e8fcd1ff7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -729,6 +863,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/a15d02e04117ef4b3093add1806711278165c019453e66a6b8ad59ff32a08350.png" src="_images/a15d02e04117ef4b3093add1806711278165c019453e66a6b8ad59ff32a08350.png" />
+</div>
 </div>
 <ol class="arabic simple">
 <li><p>Create a histogram of flipper length by species.</p></li>
@@ -736,16 +873,151 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
+<span class="n">penguins</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.1</td>
+      <td>18.7</td>
+      <td>181.0</td>
+      <td>3750.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>Female</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">penguins</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;species&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7faa0c1d0880&gt;
+</pre></div>
+</div>
+<img alt="_images/4ff89a5ace22f4b0864e65ec0d3a47f111e31d6167d7bdfd734370268ca4b6ab.png" src="_images/4ff89a5ace22f4b0864e65ec0d3a47f111e31d6167d7bdfd734370268ca4b6ab.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">penguins</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;species&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7faa0c85bb80&gt;
+</pre></div>
+</div>
+<img alt="_images/27d562e83f3999b9ffda77269de3a83446dc73bf28372f03a6ce9420bd8ba218.png" src="_images/27d562e83f3999b9ffda77269de3a83446dc73bf28372f03a6ce9420bd8ba218.png" />
 </div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>Create a scatterplot of bill length vs. flipper length.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">penguins</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;species&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;bill_length_mm&#39;, ylabel=&#39;flipper_length_mm&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/ca83a8feb98ba56fddb41a1bf0882ed4829e37a6ee84cddec7c39f7f52d71b4f.png" src="_images/ca83a8feb98ba56fddb41a1bf0882ed4829e37a6ee84cddec7c39f7f52d71b4f.png" />
+</div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>Create a violin plot of each species mass split by sex.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">penguins</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;body_mass_g&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">split</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;species&#39;, ylabel=&#39;body_mass_g&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/028c678566e1f92b7d033b7cce5ff6004b25dba8fdbf6f3e0f06b69bd00c1347.png" src="_images/028c678566e1f92b7d033b7cce5ff6004b25dba8fdbf6f3e0f06b69bd00c1347.png" />
+</div>
+</div>
 </section>
 <section id="additional-plots">
 <h2>Additional Plots<a class="headerlink" href="#additional-plots" title="Permalink to this heading">#</a></h2>
@@ -767,6 +1039,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7fa9ed579f40&gt;
+</pre></div>
+</div>
+<img alt="_images/3ceb41040dd70189f5c0e1cd01ee9016b2eb82fd138d8083ed89011d10fd9e98.png" src="_images/3ceb41040dd70189f5c0e1cd01ee9016b2eb82fd138d8083ed89011d10fd9e98.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,6 +1055,100 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MedInc</th>
+      <th>HouseAge</th>
+      <th>AveRooms</th>
+      <th>AveBedrms</th>
+      <th>Population</th>
+      <th>AveOccup</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>MedHouseVal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8.3252</td>
+      <td>41.0</td>
+      <td>6.984127</td>
+      <td>1.023810</td>
+      <td>322.0</td>
+      <td>2.555556</td>
+      <td>37.88</td>
+      <td>-122.23</td>
+      <td>4.526</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8.3014</td>
+      <td>21.0</td>
+      <td>6.238137</td>
+      <td>0.971880</td>
+      <td>2401.0</td>
+      <td>2.109842</td>
+      <td>37.86</td>
+      <td>-122.22</td>
+      <td>3.585</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.2574</td>
+      <td>52.0</td>
+      <td>8.288136</td>
+      <td>1.073446</td>
+      <td>496.0</td>
+      <td>2.802260</td>
+      <td>37.85</td>
+      <td>-122.24</td>
+      <td>3.521</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.6431</td>
+      <td>52.0</td>
+      <td>5.817352</td>
+      <td>1.073059</td>
+      <td>558.0</td>
+      <td>2.547945</td>
+      <td>37.85</td>
+      <td>-122.25</td>
+      <td>3.413</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.8462</td>
+      <td>52.0</td>
+      <td>6.281853</td>
+      <td>1.081081</td>
+      <td>565.0</td>
+      <td>2.181467</td>
+      <td>37.85</td>
+      <td>-122.25</td>
+      <td>3.422</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="plotting-correlations">
@@ -785,18 +1157,166 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### correlation in data</span>
-<span class="n">housing</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">housing</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">numeric_only</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MedInc</th>
+      <th>HouseAge</th>
+      <th>AveRooms</th>
+      <th>AveBedrms</th>
+      <th>Population</th>
+      <th>AveOccup</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>MedHouseVal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MedInc</th>
+      <td>1.000000</td>
+      <td>-0.119034</td>
+      <td>0.326895</td>
+      <td>-0.062040</td>
+      <td>0.004834</td>
+      <td>0.018766</td>
+      <td>-0.079809</td>
+      <td>-0.015176</td>
+      <td>0.688075</td>
+    </tr>
+    <tr>
+      <th>HouseAge</th>
+      <td>-0.119034</td>
+      <td>1.000000</td>
+      <td>-0.153277</td>
+      <td>-0.077747</td>
+      <td>-0.296244</td>
+      <td>0.013191</td>
+      <td>0.011173</td>
+      <td>-0.108197</td>
+      <td>0.105623</td>
+    </tr>
+    <tr>
+      <th>AveRooms</th>
+      <td>0.326895</td>
+      <td>-0.153277</td>
+      <td>1.000000</td>
+      <td>0.847621</td>
+      <td>-0.072213</td>
+      <td>-0.004852</td>
+      <td>0.106389</td>
+      <td>-0.027540</td>
+      <td>0.151948</td>
+    </tr>
+    <tr>
+      <th>AveBedrms</th>
+      <td>-0.062040</td>
+      <td>-0.077747</td>
+      <td>0.847621</td>
+      <td>1.000000</td>
+      <td>-0.066197</td>
+      <td>-0.006181</td>
+      <td>0.069721</td>
+      <td>0.013344</td>
+      <td>-0.046701</td>
+    </tr>
+    <tr>
+      <th>Population</th>
+      <td>0.004834</td>
+      <td>-0.296244</td>
+      <td>-0.072213</td>
+      <td>-0.066197</td>
+      <td>1.000000</td>
+      <td>0.069863</td>
+      <td>-0.108785</td>
+      <td>0.099773</td>
+      <td>-0.024650</td>
+    </tr>
+    <tr>
+      <th>AveOccup</th>
+      <td>0.018766</td>
+      <td>0.013191</td>
+      <td>-0.004852</td>
+      <td>-0.006181</td>
+      <td>0.069863</td>
+      <td>1.000000</td>
+      <td>0.002366</td>
+      <td>0.002476</td>
+      <td>-0.023737</td>
+    </tr>
+    <tr>
+      <th>Latitude</th>
+      <td>-0.079809</td>
+      <td>0.011173</td>
+      <td>0.106389</td>
+      <td>0.069721</td>
+      <td>-0.108785</td>
+      <td>0.002366</td>
+      <td>1.000000</td>
+      <td>-0.924664</td>
+      <td>-0.144160</td>
+    </tr>
+    <tr>
+      <th>Longitude</th>
+      <td>-0.015176</td>
+      <td>-0.108197</td>
+      <td>-0.027540</td>
+      <td>0.013344</td>
+      <td>0.099773</td>
+      <td>0.002476</td>
+      <td>-0.924664</td>
+      <td>1.000000</td>
+      <td>-0.045967</td>
+    </tr>
+    <tr>
+      <th>MedHouseVal</th>
+      <td>0.688075</td>
+      <td>0.105623</td>
+      <td>0.151948</td>
+      <td>-0.046701</td>
+      <td>-0.024650</td>
+      <td>-0.023737</td>
+      <td>-0.144160</td>
+      <td>-0.045967</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### heatmap of correlations</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">housing</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">housing</span><span class="o">.</span><span class="n">corr</span><span class="p">()[[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">),</span> <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="_images/93227949ff9d373d36a49fc6bdcaf6c3845aca2d1d94f450a012b9d12dd00320.png" src="_images/93227949ff9d373d36a49fc6bdcaf6c3845aca2d1d94f450a012b9d12dd00320.png" />
 </div>
 </div>
 </section>
@@ -823,16 +1343,154 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>preg</th>
+      <th>plas</th>
+      <th>pres</th>
+      <th>skin</th>
+      <th>insu</th>
+      <th>mass</th>
+      <th>pedi</th>
+      <th>age</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6.0</td>
+      <td>148.0</td>
+      <td>72.0</td>
+      <td>35.0</td>
+      <td>0.0</td>
+      <td>33.6</td>
+      <td>0.627</td>
+      <td>50.0</td>
+      <td>tested_positive</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>85.0</td>
+      <td>66.0</td>
+      <td>29.0</td>
+      <td>0.0</td>
+      <td>26.6</td>
+      <td>0.351</td>
+      <td>31.0</td>
+      <td>tested_negative</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>8.0</td>
+      <td>183.0</td>
+      <td>64.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>23.3</td>
+      <td>0.672</td>
+      <td>32.0</td>
+      <td>tested_positive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>89.0</td>
+      <td>66.0</td>
+      <td>23.0</td>
+      <td>94.0</td>
+      <td>28.1</td>
+      <td>0.167</td>
+      <td>21.0</td>
+      <td>tested_negative</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>137.0</td>
+      <td>40.0</td>
+      <td>35.0</td>
+      <td>168.0</td>
+      <td>43.1</td>
+      <td>2.288</td>
+      <td>33.0</td>
+      <td>tested_positive</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <ol class="arabic simple">
 <li><p>Distribution of ages separated by class.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">diabetes</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;class&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7fa9f0ae6b80&gt;
+</pre></div>
+</div>
+<img alt="_images/9f8361b011f9be566884de31e8e1147809f112a7757f0f9b35b3131a15a6fb98.png" src="_images/9f8361b011f9be566884de31e8e1147809f112a7757f0f9b35b3131a15a6fb98.png" />
+</div>
+</div>
 <ol class="arabic simple" start="2">
 <li><p>Heatmap of features.  Any strong correlations?</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">diabetes</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;BuPu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-58-7c98d612fac1&gt;:2: FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
+  sns.heatmap(diabetes.corr(), annot = True, cmap = &#39;BuPu&#39;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="_images/0c0f1320ff3987c4916e9f134bbaab152641b4d7390bd8a1d12ae07b7bbe45f8.png" src="_images/0c0f1320ff3987c4916e9f134bbaab152641b4d7390bd8a1d12ae07b7bbe45f8.png" />
+</div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p><strong>CHALLENGE</strong>: 2 rows and 4 columns with histograms separated by class column.  Which feature has the most distinct difference between classes?</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">diabetes</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1dcd01240ef8f777bac9685d77600bf0bccd515637a3578aad400eefa791846f.png" src="_images/1dcd01240ef8f777bac9685d77600bf0bccd515637a3578aad400eefa791846f.png" />
+</div>
+</div>
 </section>
 </section>
 <section id="id1">
