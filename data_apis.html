@@ -436,17 +436,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Accessing Data with API’s</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data">The Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-summaries-with-agg">Multiple Summaries with <code class="docutils literal notranslate"><span class="pre">agg</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Accessing Data with API’s</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-input-via-apis">Data Input via APIs</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-data-without-a-library">Accessing Data Without a Library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-vantage">ALPHA VANTAGE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-endpoints">Different Endpoints</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-wrappers">API Wrappers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-an-api">Finding an api</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
 </li>
@@ -494,77 +489,6 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="the-data">
-<h2>The Data<a class="headerlink" href="#the-data" title="Permalink to this heading">#</a></h2>
-<p>The dataset <code class="docutils literal notranslate"><span class="pre">salesdaily.csv</span></code> contains daily pharmaceutical sales data and the columns are described as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">M01AB</span> <span class="o">-</span> <span class="n">Anti</span><span class="o">-</span><span class="n">inflammatory</span> <span class="ow">and</span> <span class="n">antirheumatic</span> <span class="n">products</span><span class="p">,</span> <span class="n">non</span><span class="o">-</span><span class="n">steroids</span><span class="p">,</span> <span class="n">Acetic</span> <span class="n">acid</span> <span class="n">derivatives</span> <span class="ow">and</span> <span class="n">related</span> <span class="n">substances</span>
-<span class="n">M01AE</span> <span class="o">-</span> <span class="n">Anti</span><span class="o">-</span><span class="n">inflammatory</span> <span class="ow">and</span> <span class="n">antirheumatic</span> <span class="n">products</span><span class="p">,</span> <span class="n">non</span><span class="o">-</span><span class="n">steroids</span><span class="p">,</span> <span class="n">Propionic</span> <span class="n">acid</span> <span class="n">derivatives</span>
-<span class="n">N02BA</span> <span class="o">-</span> <span class="n">Other</span> <span class="n">analgesics</span> <span class="ow">and</span> <span class="n">antipyretics</span><span class="p">,</span> <span class="n">Salicylic</span> <span class="n">acid</span> <span class="ow">and</span> <span class="n">derivatives</span>
-<span class="n">N02BE</span><span class="o">/</span><span class="n">B</span> <span class="o">-</span> <span class="n">Other</span> <span class="n">analgesics</span> <span class="ow">and</span> <span class="n">antipyretics</span><span class="p">,</span> <span class="n">Pyrazolones</span> <span class="ow">and</span> <span class="n">Anilides</span>
-<span class="n">N05B</span> <span class="o">-</span> <span class="n">Psycholeptics</span> <span class="n">drugs</span><span class="p">,</span> <span class="n">Anxiolytic</span> <span class="n">drugs</span>
-<span class="n">N05C</span> <span class="o">-</span> <span class="n">Psycholeptics</span> <span class="n">drugs</span><span class="p">,</span> <span class="n">Hypnotics</span> <span class="ow">and</span> <span class="n">sedatives</span> <span class="n">drugs</span>
-<span class="n">R03</span> <span class="o">-</span> <span class="n">Drugs</span> <span class="k">for</span> <span class="n">obstructive</span> <span class="n">airway</span> <span class="n">diseases</span>
-<span class="n">R06</span> <span class="o">-</span> <span class="n">Antihistamines</span> <span class="k">for</span> <span class="n">systemic</span> <span class="n">use</span>
-</pre></div>
-</div>
-<p>Load in the data and be sure to set a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> index.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#read in the data</span>
-<span class="n">sales</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/main/data/salesdaily.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#look at the info</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>EXAMPLE</strong></p>
-<p>How do the daily average sales of <code class="docutils literal notranslate"><span class="pre">M01AB</span></code> compare to those of <code class="docutils literal notranslate"><span class="pre">NO5B</span></code>?  Construct a horizontal bar chart.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#groupby and then plot -- kind = &#39;barh&#39;</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Weekday Name&#39;</span><span class="p">)[[</span><span class="s1">&#39;M01AB&#39;</span><span class="p">,</span> <span class="s1">&#39;N05B&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;M01AB&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;barh&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="multiple-summaries-with-agg">
-<h2>Multiple Summaries with <code class="docutils literal notranslate"><span class="pre">agg</span></code><a class="headerlink" href="#multiple-summaries-with-agg" title="Permalink to this heading">#</a></h2>
-<p>Rather than a single aggregate formula, we can use mutliple aggregate functions with the <code class="docutils literal notranslate"><span class="pre">.agg</span></code> method, and pass the functions or common names as strings.  You may also use a custom function.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#mean and standard deviation</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Weekday Name&#39;</span><span class="p">)[[</span><span class="s1">&#39;M01AB&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#custom functino to fine range in data</span>
-<span class="k">def</span> <span class="nf">lowhi</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#mean, median, range</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Weekday Name&#39;</span><span class="p">)[[</span><span class="s1">&#39;M01AB&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">lowhi</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="data-input-via-apis">
 <h1>Data Input via APIs<a class="headerlink" href="#data-input-via-apis" title="Permalink to this heading">#</a></h1>
@@ -621,7 +545,6 @@ direct access to some database or parts of it without having do download everyth
 </div>
 <section id="accessing-data-without-a-library">
 <h2>Accessing Data Without a Library<a class="headerlink" href="#accessing-data-without-a-library" title="Permalink to this heading">#</a></h2>
-<p>In the <code class="docutils literal notranslate"><span class="pre">pandas_datareader</span></code> we have a library written in Python that interacts with data for us.  Sometimes, this is not possible and you will need to interact with the data in a more general environment.  Let’s try this out by looking up some information about cats.  Here is the documentation <a class="reference external" href="https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t">link</a>.</p>
 <p><img alt="" src="_images/catapi.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -699,7 +622,7 @@ direct access to some database or parts of it without having do download everyth
 </div>
 </div>
 </div>
-<p><strong>Problem</strong>:</p>
+<p><strong>Extra Problem</strong>:</p>
 <p>Head over to the Dog API <a class="reference external" href="https://dog.ceo/dog-api/">here</a>.</p>
 <ol class="arabic simple">
 <li><p>Make a request that returns a list of all dog breeds.</p></li>
@@ -708,7 +631,7 @@ direct access to some database or parts of it without having do download everyth
 </section>
 <section id="alpha-vantage">
 <h2>ALPHA VANTAGE<a class="headerlink" href="#alpha-vantage" title="Permalink to this heading">#</a></h2>
-<p>A more detailed example than that of <code class="docutils literal notranslate"><span class="pre">pandas_datareader</span></code>.  The API for Alpha Vantage provides many Forex and Crypto feeds as well as economic and technical indicators.  To use it, you will need an API key – so head over to <a class="reference external" href="https://www.alphavantage.co/#page-top">here</a> and let’s sign up for one.</p>
+<p>The API for Alpha Vantage provides many Forex and Crypto feeds as well as economic and technical indicators.  To use it, you will need an API key – so head over to <a class="reference external" href="https://www.alphavantage.co/#page-top">here</a> and let’s sign up for one.</p>
 <p><img alt="" src="_images/alpha.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -758,11 +681,6 @@ direct access to some database or parts of it without having do download everyth
 <ul class="simple">
 <li><p><a class="github reference external" href="https://github.com/RomelTorres/alpha_vantage">RomelTorres/alpha_vantage</a></p></li>
 </ul>
-<p>Let’s head over, install the library, and retrieve some intraday returns.</p>
-</section>
-<section id="finding-an-api">
-<h3>Finding an api<a class="headerlink" href="#finding-an-api" title="Permalink to this heading">#</a></h3>
-<p>There are many different options for API’s, and many free examples some which require an API and some that do not.  Head over to the list of free API’s <a class="reference external" href="https://github.com/public-apis/public-apis">here</a> and identify an API of interest.  Make a call to the API and make sense of the results by parsing the resulting <code class="docutils literal notranslate"><span class="pre">.json</span></code>.</p>
 </section>
 <section id="summary">
 <h3>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h3>
@@ -834,17 +752,12 @@ direct access to some database or parts of it without having do download everyth
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Accessing Data with API’s</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data">The Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-summaries-with-agg">Multiple Summaries with <code class="docutils literal notranslate"><span class="pre">agg</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Accessing Data with API’s</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-input-via-apis">Data Input via APIs</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-data-without-a-library">Accessing Data Without a Library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alpha-vantage">ALPHA VANTAGE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-endpoints">Different Endpoints</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-wrappers">API Wrappers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-an-api">Finding an api</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
 </li>
