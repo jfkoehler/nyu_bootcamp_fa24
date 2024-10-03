@@ -16,7 +16,7 @@ parts:
     - file: intro_to_plotting
     - file: plotting_seaborn
     - file: data_apis
-#     - file: html_data
+    - file: html_data
 #     - file: folium_exs-clean
 #     - file: intro_to_git_and_github       
 #   - caption: Introduction to Predictive Modeling
