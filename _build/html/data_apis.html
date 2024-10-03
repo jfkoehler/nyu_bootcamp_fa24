@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'data_apis';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Assignment 1" href="homework/homework_I.html" />
+    <link rel="next" title="Extracting Data From HTML" href="html_data.html" />
     <link rel="prev" title="More plotting with matplotlib and seaborn" href="plotting_seaborn.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,6 +184,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Accessing Data with API’s</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="html_data.html">Extracting Data From HTML</a></li>
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
@@ -202,6 +207,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="numpy-challenge-3.html">Climb the Ladder!</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotting_with_bokeh.html">Plotting with <code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotly.html">BONUS: <code class="docutils literal notranslate"><span class="pre">plotly</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/intro_ipywidgets.html">Using interactive widgets with the notebook</a></li>
 </ul>
 
     </div>
@@ -573,32 +581,44 @@ direct access to some database or parts of it without having do download everyth
 </div>
 </div>
 <p><strong>Quick Example</strong></p>
-<p>Extract five years of 10-year constant maturity yields on U.S. government bonds.</p>
+<p>Yahoo Finance has a python library that will pull data directly from the source and structure it as a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.  See info <a class="reference external" href="https://github.com/ranaroussi/yfinance">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas_datareader</span> <span class="k">as</span> <span class="nn">pdr</span>
-<span class="n">matyld</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="s1">&#39;GS10&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#pip install yfinance</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#look at top 5 rows</span>
-<span class="n">matyld</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#look at info</span>
-<span class="n">matyld</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get tsla data</span>
+<span class="n">tsla</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="s2">&quot;TSLA&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Excercise</strong> Can you find the unemployment rate for the US from FRED. Use the data reader. And create a plot of unemployment from 2005 onward. Challenge, can you create a histogram of unemployment rates?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get historical market data</span>
+<span class="n">hist</span> <span class="o">=</span> <span class="n">tsla</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="s2">&quot;1mo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 <section id="accessing-data-without-a-library">
 <h2>Accessing Data Without a Library<a class="headerlink" href="#accessing-data-without-a-library" title="Permalink to this heading">#</a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">pandas_datareader</span></code> we have a library written in Python that interacts with data for us.  Sometimes, this is not possible and you will need to interact with the data in a more general environment.  Let’s try this out by looking up some information about cats.  Here is the documentation <a class="reference external" href="https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t">link</a>.</p>
@@ -791,11 +811,11 @@ direct access to some database or parts of it without having do download everyth
       </div>
     </a>
     <a class="right-next"
-       href="homework/homework_I.html"
+       href="html_data.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assignment 1</p>
+        <p class="prev-next-title">Extracting Data From HTML</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
