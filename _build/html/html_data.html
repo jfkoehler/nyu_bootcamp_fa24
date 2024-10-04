@@ -195,6 +195,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="homework/homework_I.html">Assignment 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework/homework_II.html">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_III.html">Homework 3: Advanced Pandas and Introductory Plotting</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
 <ul class="nav bd-sidenav">
@@ -544,6 +545,22 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<h1>A Heading</h1>
+<p>A first paragraph</p>
+<p>A second paragraph</p>
+<table>
+  <tr>
+    <th>Album</th>
+    <th>Rating</th>
+  </tr>
+  <tr>
+    <td>Pink Panther</td>
+    <td>10</td>
+  </tr>
+</table>
+</div></div>
 </div>
 </section>
 <section id="making-a-request-of-a-url">
@@ -565,6 +582,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#assign the results as data</span>
 <span class="c1">#read_html</span>
+<span class="n">wnba</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -572,6 +590,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#what kind of object is data?</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">wnba</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
 </pre></div>
 </div>
 </div>
@@ -579,13 +603,157 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#first element?</span>
+<span class="n">wnba</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Team</th>
+      <th>W</th>
+      <th>L</th>
+      <th>W/L%</th>
+      <th>GB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>New York Liberty*</td>
+      <td>32</td>
+      <td>8</td>
+      <td>0.800</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Minnesota Lynx*</td>
+      <td>30</td>
+      <td>10</td>
+      <td>0.750</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Connecticut Sun*</td>
+      <td>28</td>
+      <td>12</td>
+      <td>0.700</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Las Vegas Aces*</td>
+      <td>27</td>
+      <td>13</td>
+      <td>0.675</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Seattle Storm*</td>
+      <td>25</td>
+      <td>15</td>
+      <td>0.625</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Indiana Fever*</td>
+      <td>20</td>
+      <td>20</td>
+      <td>0.500</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Phoenix Mercury*</td>
+      <td>19</td>
+      <td>21</td>
+      <td>0.475</td>
+      <td>13.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Atlanta Dream*</td>
+      <td>15</td>
+      <td>25</td>
+      <td>0.375</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Washington Mystics</td>
+      <td>14</td>
+      <td>26</td>
+      <td>0.350</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Chicago Sky</td>
+      <td>13</td>
+      <td>27</td>
+      <td>0.325</td>
+      <td>19.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Dallas Wings</td>
+      <td>9</td>
+      <td>31</td>
+      <td>0.225</td>
+      <td>23.0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Los Angeles Sparks</td>
+      <td>8</td>
+      <td>32</td>
+      <td>0.200</td>
+      <td>24.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#examine information</span>
+<span class="n">wnba</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 12 entries, 0 to 11
+Data columns (total 5 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Team    12 non-null     object 
+ 1   W       12 non-null     int64  
+ 2   L       12 non-null     int64  
+ 3   W/L%    12 non-null     float64
+ 4   GB      12 non-null     object 
+dtypes: float64(1), int64(2), object(2)
+memory usage: 608.0+ bytes
 </pre></div>
 </div>
 </div>
@@ -593,9 +761,80 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#last dataframe?</span>
+<span class="n">wnba</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>PTS</th>
+      <th>TRB</th>
+      <th>AST</th>
+      <th>GmSc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A'ja Wilson  (LVA)</td>
+      <td>24</td>
+      <td>7</td>
+      <td>4</td>
+      <td>20.5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Sabrina Ionescu  (NYL)</td>
+      <td>24</td>
+      <td>9</td>
+      <td>5</td>
+      <td>19.7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alyssa Thomas  (CON)</td>
+      <td>18</td>
+      <td>10</td>
+      <td>7</td>
+      <td>19.3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DeWanna Bonner  (CON)</td>
+      <td>17</td>
+      <td>6</td>
+      <td>3</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alanna Smith  (MIN)</td>
+      <td>15</td>
+      <td>6</td>
+      <td>2</td>
+      <td>15.7</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p><strong>Example 2</strong></p>
 <p>List of best selling albums from Wikipedia.</p>
@@ -686,6 +925,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a soup object</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">sample_html</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -693,6 +933,15 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># examine the soup</span>
+<span class="n">soup</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;html&gt;&lt;body&gt;&lt;h1&gt;Music Reviews&lt;/h1&gt;
+&lt;p&gt;This album was awful. &lt;strong&gt;Score&lt;/strong&gt;: &lt;i class=&quot;score&quot;&gt;2&lt;/i&gt;&lt;/p&gt;
+&lt;p class=&quot;good&quot;&gt;This album was great. &lt;strong&gt;Score&lt;/strong&gt;: &lt;i class=&quot;score&quot;&gt;8&lt;/i&gt;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
 </pre></div>
 </div>
 </div>
@@ -700,6 +949,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find the &lt;p&gt; tags</span>
+<span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;p&gt;This album was awful. &lt;strong&gt;Score&lt;/strong&gt;: &lt;i class=&quot;score&quot;&gt;2&lt;/i&gt;&lt;/p&gt;
 </pre></div>
 </div>
 </div>
@@ -707,6 +962,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find the i tag</span>
+<span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;i class=&quot;score&quot;&gt;2&lt;/i&gt;
 </pre></div>
 </div>
 </div>
@@ -714,6 +975,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find all the i tags</span>
+<span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;i class=&quot;score&quot;&gt;2&lt;/i&gt;, &lt;i class=&quot;score&quot;&gt;8&lt;/i&gt;]
 </pre></div>
 </div>
 </div>
@@ -721,6 +988,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find all good paragraphs</span>
+<span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;good&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;p class=&quot;good&quot;&gt;This album was great. &lt;strong&gt;Score&lt;/strong&gt;: &lt;i class=&quot;score&quot;&gt;8&lt;/i&gt;&lt;/p&gt;
 </pre></div>
 </div>
 </div>
@@ -741,6 +1014,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#make a request</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -748,6 +1022,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#examine the text</span>
+<span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">1000</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en-US&quot;&gt;&lt;head&gt;&lt;title&gt;New Albums &amp;amp; Music Reviews | Pitchfork&lt;/title&gt;&lt;meta charSet=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;IE=edge&quot; http-equiv=&quot;X-UA-Compatible&quot;/&gt;&lt;meta name=&quot;msapplication-tap-highlight&quot; content=&quot;no&quot;/&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;&lt;meta name=&quot;author&quot; content=&quot;Condé Nast&quot;/&gt;&lt;meta name=&quot;copyright&quot; content=&quot;Copyright (c) Condé Nast 2024&quot;/&gt;&lt;meta name=&quot;description&quot; content=&quot;Daily reviews of every important album in music&quot;/&gt;&lt;meta name=&quot;id&quot; content=&quot;65ce02a52126d093a5f585e1&quot;/&gt;&lt;meta name=&quot;keywords&quot; content=&quot;web&quot;/&gt;&lt;meta name=&quot;news_keywords&quot; content=&quot;web&quot;/&gt;&lt;meta name=&quot;robots&quot; content=&quot;index, follow, max-image-preview:large&quot;/&gt;&lt;meta name=&quot;content-type&quot; content=&quot;bundle&quot;/&gt;&lt;meta name=&quot;parsely-post-id&quot; content=&quot;65ce02a52126d093a5f585e1&quot;/&gt;&lt;meta name=&quot;parsely-metadata&quot; content=&quot;{&amp;quot;description&amp;quot;:&amp;quot;Daily reviews of every important album in music&amp;quot;,&amp;quot;image-16-9&amp;quot;:&amp;quot;https://media.pitchfork.com/photos/5935a027a28a09&#39;
 </pre></div>
 </div>
 </div>
@@ -755,6 +1035,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#turn it into soup!</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -769,6 +1050,19 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#find the img tag</span>
+<span class="n">dunya</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;alt&#39;</span><span class="p">:</span> <span class="s1">&#39;Dunya&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dunya</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;src&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://media.pitchfork.com/photos/668fec739c03086dcec412d6/1:1/w_1600%2Cc_limit/Mustafa-Dunya.jpg&#39;
 </pre></div>
 </div>
 </div>
@@ -776,6 +1070,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#find all img tags</span>
+<span class="n">images</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -783,6 +1078,18 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#explore attributes</span>
+<span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;alt&#39;: &#39;Pitchfork&#39;,
+ &#39;class&#39;: [&#39;ResponsiveImageContainer-eybHBd&#39;,
+  &#39;fptoWY&#39;,
+  &#39;responsive-image__image&#39;],
+ &#39;src&#39;: &#39;/verso/static/pitchfork/assets/logo-inverted.svg&#39;,
+ &#39;srcset&#39;: &#39;&#39;,
+ &#39;sizes&#39;: &#39;100vw&#39;}
 </pre></div>
 </div>
 </div>
@@ -790,6 +1097,110 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#extract source of image url</span>
+<span class="p">[</span><span class="n">img</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;src&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">images</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/verso/static/pitchfork/assets/logo-inverted.svg&#39;,
+ &#39;/verso/static/pitchfork/assets/logo-header.svg&#39;,
+ &#39;https://media.pitchfork.com/photos/66a3cf7aeca3501f5dc9b121/1:1/w_1600%2Cc_limit/Being%2520Dead-%2520EELS.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66fc0c553dcae43f31bfd01c/1:1/w_1600%2Cc_limit/2300%2520-%2520Bully%2520Tape.jpeg&#39;,
+ &#39;https://media.pitchfork.com/photos/66f2da330eece3c05910cb10/1:1/w_1600%2Cc_limit/Raphael%2520Raginski%2520-%2520Plays%2520John%2520Coltrane%2520and%2520Langston%2520Hughes.jpeg&#39;,
+ &#39;https://media.pitchfork.com/photos/668fec739c03086dcec412d6/1:1/w_1600%2Cc_limit/Mustafa-Dunya.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e07055506fec54a6686125/1:1/w_1600%2Cc_limit/Adeline-Hotel-Whodunnit.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ed8ef4a29561bba8d0bd0f/1:1/w_1600%2Cc_limit/Tommy%2520Richman%2520-%2520Coyote.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ed9384d74ab9c23d17f237/1:1/w_1600%2Cc_limit/Merce%2520Lemon%2520-%2520Watch%2520Me%2520Drive%2520Them%2520Dogs%2520Wild.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/6695907214ee05489f0a592f/1:1/w_1600%2Cc_limit/Alan-Sparhawk-White-Roses-My-God.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66f2de67b80b64aad7496cb9/1:1/w_1600%2Cc_limit/Shinichi%2520Atobe%2520-%2520Peace%2520of%2520mind.jpeg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ed9b9194b1bace5b046fb0/1:1/w_1600%2Cc_limit/Silver_Jews_-_The_Natural_Bridge-transformed.jpeg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ed7776ebeaf9cbab4d800f/1:1/w_1600%2Cc_limit/Hopecore.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/6679af9454456585e9dbc087/1:1/w_1600%2Cc_limit/SOPHIE.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66f2d1d7a2d52e3bd3b6bcc4/1:1/w_1600%2Cc_limit/Monaleo%2520-%2520Throwing%2520Bows.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/668c14ffefacdaa8de5824b9/1:1/w_1600%2Cc_limit/The-Voidz-Like-All-Before-You.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ed884649ec49f6714c8018/1:1/w_1600%2Cc_limit/Ulla%2520&amp;%2520Perila%2520-%2520Jazz%2520Plates.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e1f20d68d4d8de4a52fd1d/1:1/w_1600%2Cc_limit/Future-Mixtape-Pluto.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e86464f23f66ab90554188/1:1/w_1600%2Cc_limit/che-Sayso%2520Says.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/668ec1aeb6c41f622a91ae69/1:1/w_1600%2Cc_limit/Katy-Perry-143.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66a27f95d2d4a2270b9cb5d7/1:1/w_1600%2Cc_limit/Tom%2520Verlaine-%2520Warm%2520and%2520Cool.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/666af7bc5d7882749b058940/1:1/w_1600%2Cc_limit/Nubya-Garcia-Odyssey.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ec250f53bc2780ce12046a/1:1/w_1600%2Cc_limit/Isik%2520Kural%2520-%2520Moon%2520in%2520Gemini.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ec27cea85b31e0659f5ccb/1:1/w_1600%2Cc_limit/Johnny%2520Foreigner%2520-%2520How%2520to%2520Be%2520Hopeful.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e87948f23f66ab90554195/1:1/w_1600%2Cc_limit/Garbage%2520-%2520Version%25202.0.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e2039c9cce584bc959aafa/1:1/w_1600%2Cc_limit/Dame-Area.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/665e130c1a9f5a511da29b3d/1:1/w_1600%2Cc_limit/Jamie-xx-In-Waves.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d76772f78476688e2139da/1:1/w_1600%2Cc_limit/Laila-Gap-Year.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e2040b9cce584bc959aafc/1:1/w_1600%2Cc_limit/Estradas.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ec7de26d243f5bdfbec9ec/1:1/w_1600%2Cc_limit/The-War-on-Drugs-Live-Drugs-Again.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66aa7ece3a12b5a1a765e9f5/1:1/w_1600%2Cc_limit/Wendy%2520Eisenberg-%2520Viewfinder.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/6667328fd69e5b51a794a637/1:1/w_1600%2Cc_limit/Nilufer%2520Yanya%2520-%2520My%2520Method%2520Actor.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66436f08f556da1fd706739d/1:1/w_1600%2Cc_limit/Porches-Shirt.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e871d6f23f66ab90554192/1:1/w_1600%2Cc_limit/Callahan%2520&amp;%2520Witshcer%2520-%2520Think%2520Differently.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ab7bbc3ac8c632c50feb19/1:1/w_1600%2Cc_limit/Foxing-2024.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e832700bae50181a2f5715/1:1/w_1600%2Cc_limit/BASIC-This%2520is%2520BASIC.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d9ab99af0da7107ffd402b/1:1/w_1600%2Cc_limit/Hayden-Pedigo-Live-in-Amarillo-Texas.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e200fd920f76a9ad47c09f/1:1/w_1600%2Cc_limit/Julie.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e2026d3edec531b52b09e4/1:1/w_1600%2Cc_limit/Phiik-Lungs-Carrot-Season.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d9aafa568054f0dfb3dd50/1:1/w_1600%2Cc_limit/Chow-Lee.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66e312377fdd09a871ccf75c/1:1/w_1600%2Cc_limit/Basic-Channel-BCD.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d77820e12524877f7deb7b/1:1/w_1600%2Cc_limit/Travis-Scott-Days-Before-Rodeo.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/668c4b3d2b6494be34f5e76f/1:1/w_1600%2Cc_limit/Floating-Points-Cascade.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66aa80271f0846163b1acc2d/1:1/w_1600%2Cc_limit/Allegra%2520Krieger-%2520Art%2520of%2520the%2520Unseen%2520Infinity%2520Machine.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d76ca40149389e6ca7bb1b/1:1/w_1600%2Cc_limit/Migratory.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/665746837cfbcbc000644803/1:1/w_1600%2Cc_limit/Max-Richter-In-a-Landscape.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66db6a17e721049ebffb5689/1:1/w_1600%2Cc_limit/Fat_Dog_WOOF_art.png&#39;,
+ &#39;https://media.pitchfork.com/photos/6696dabe17254c02f526cff9/1:1/w_1600%2Cc_limit/Nala-Sinephro-Endlessness.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d768dce12524877f7deb77/1:1/w_1600%2Cc_limit/Dummy-Free-Energy.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/6669aac2753b6dae8bc68f32/1:1/w_1600%2Cc_limit/Toro-y-Moi-Hole-Erth.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66a92c0c773c5da2e0d5d881/1:1/w_1600%2Cc_limit/Okay%2520Kaya-%2520Oh%2520My%2520God%2520-%2520That%25E2%2580%2599s%2520So%2520Me.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66db63a91ddc3876928762cb/1:1/w_1600%2Cc_limit/GAS_GAS_self-titled_art.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/665e0847ea2d6c6ab24a412a/1:1/w_1600%2Cc_limit/Mercury-Rev-Born-Horses.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d76862bf3587b9878e8a02/1:1/w_1600%2Cc_limit/The-Dare.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d76d06d11a415202939982/1:1/w_1600%2Cc_limit/Molchat-Doma-Belaya-Polosa.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66cf5b812501b9b60e2b1ffd/1:1/w_1600%2Cc_limit/Cold-Gawd.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66db1ccf925c8f190079e12d/1:1/w_1600%2Cc_limit/The%2520Pogues_Rum_Sodomy_and_the_Lash_high_res_art.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d08caf3d7b314e51c074ae/1:1/w_1600%2Cc_limit/Duster-In-Dreams.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/6678bbeb08c7a1384158e8c0/1:1/w_1600%2Cc_limit/MJ%2520Lenderman%2520-%2520Manning%2520Fireworks%2520Album%2520Art.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d9e5b8aa62241a46d71d0f/1:1/w_1600%2Cc_limit/Fcukers_Baggy$$_EP.png&#39;,
+ &#39;https://media.pitchfork.com/photos/66d1c2eafd9e0a487cca0d48/1:1/w_1600%2Cc_limit/Destroy-Lonely.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d070068a7ef80640569e23/1:1/w_1600%2Cc_limit/Doechii.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66cf5bfff3807d38ff64519f/1:1/w_1600%2Cc_limit/Why-Bonnie.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/65e8a8030b535fdbb08147cd/1:1/w_1600%2Cc_limit/Nick-Cave-Wild-God.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66708140dc443478fe78e69f/1:1/w_1600%2Cc_limit/Laurie-Anderson-Amelia.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d7230ff78476688e21398e/1:1/w_1600%2Cc_limit/Peel%2520Dream%2520Magazine%2520-%2520Rose%2520Main%2520Reading%2520Room.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/662fb40945ecfc72f1b01caf/1:1/w_1600%2Cc_limit/jonhopkins_RITUAL_3000x3000.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66cf5a815008c27a59d6ebb8/1:1/w_1600%2Cc_limit/Lia-Kohl-Normal-Sounds.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d0e144cdf1dcd025458e3e/1:1/w_1600%2Cc_limit/1tbsp_megacity1000.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/666094ca71020266169e6400/1:1/w_1600%2Cc_limit/Ween-Chocolate-and-Cheese.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66d08d963d7b314e51c074b0/1:1/w_1600%2Cc_limit/Dorothy_Carter_Troubadour_artwork.png&#39;,
+ &#39;https://media.pitchfork.com/photos/66a00d6327bd862f0b38ccd1/1:1/w_1600%2Cc_limit/Seefeel-Everything-Squared.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66cf585a22a3cca5e27fe0c9/1:1/w_1600%2Cc_limit/Coco-and-Clair-Clair-Girl.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66a29b2b15251dbe80c29be2/1:1/w_1600%2Cc_limit/Paris%2520Paloma-%2520Cacophony.png&#39;,
+ &#39;https://media.pitchfork.com/photos/66732cd8370ad66cfda70cd6/1:1/w_1600%2Cc_limit/The-Softies.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66c490c0539f3919f01513cd/1:1/w_1600%2Cc_limit/Jaeychino-Watch-the-Throne.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66c49e112646d3896f0b8315/1:1/w_1600%2Cc_limit/Ka.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66699e711496d5ecbb675938/1:1/w_1600%2Cc_limit/Spirit-of-the-Beehive-Youll-Have-to-Lose-Something.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66605f2a74fae9996708edd2/1:1/w_1600%2Cc_limit/Illuminati-Hotties-Power.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/661d440bfcf3e483157e6e29/1:1/w_1600%2Cc_limit/Body-Meat-Starchris.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66ccd64436fd3358189ce973/1:1/w_1600%2Cc_limit/Etelin_Patio_User_Manual_artwork.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66c49e1f076eb340c39090c8/1:1/w_1600%2Cc_limit/J-Mamana.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/6662e6122ce1ce711b18e944/1:1/w_1600%2Cc_limit/Sabrina-Carpenter-Short-n-Sweet.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/668ee334d1a4b2217f3f7bd1/1:1/w_1600%2Cc_limit/The-Get-Up-Kids.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/667afd592d8a77096d033bb4/1:1/w_1600%2Cc_limit/Heems-Veena-LP.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66c8ff29c841f10b10b5d408/1:1/w_1600%2Cc_limit/soundbombing-II.png&#39;,
+ &#39;https://media.pitchfork.com/photos/66b147c6bce7f1d9f43d407e/1:1/w_1600%2Cc_limit/Throbbing%2520Gristle-%2520TGCD1.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/668ed2fafefe1050fc3c42d2/1:1/w_1600%2Cc_limit/Magdalena-Bay-Imaginal-Disk.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66bca3a094b449df62a0f729/1:1/w_1600%2Cc_limit/Play-Cash-Cobain.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/6674467756eeca15d8870072/1:1/w_1600%2Cc_limit/Fake%2520Fruit%2520-%2520Mucho%2520Mistrust.jpeg&#39;,
+ &#39;https://media.pitchfork.com/photos/661fd84fb341975f564d5886/1:1/w_1600%2Cc_limit/FontainesDC_Romance_4000x40002.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66994b3db9519fc29d58ac1e/1:1/w_1600%2Cc_limit/Gillian-Welch-David-Rawlings-Woodland.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/6630765760179481fc71a591/1:1/w_1600%2Cc_limit/Charly%2520Bliss%2520-%2520FOREVER%2520_%2520Album%2520Art.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66c4bf799c2fa1203ad17aee/1:1/w_1600%2Cc_limit/Rosie_Lowe_Lover_Other_artwork.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66bfa5c86cc8a418447da691/1:1/w_1600%2Cc_limit/Charley-Crockett-10-Cowboy.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/6674701fd1dae617f0a0d477/1:1/w_1600%2Cc_limit/Post-Malone-F-1-Trillion.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66b144965298828208bc7a28/1:1/w_1600%2Cc_limit/Chuck%2520Johnson-%2520Sun%2520Glories.jpg&#39;,
+ &#39;https://media.pitchfork.com/photos/66a92786ec557b4af1433e1b/1:1/w_1600%2Cc_limit/Delicate%2520Steve-%2520Delicate%2520Steve%2520Sings.png&#39;,
+ &#39;/verso/static/pitchfork/assets/logo-reverse.svg&#39;]
 </pre></div>
 </div>
 </div>
