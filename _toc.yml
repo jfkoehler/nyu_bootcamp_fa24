@@ -17,8 +17,7 @@ parts:
     - file: plotting_seaborn
     - file: data_apis
     - file: html_data
-    - file: discrete_starter
-    - file: continuous_starter
+    - file: intro_probability
 #     - file: folium_exs-clean
 #     - file: intro_to_git_and_github       
 #   - caption: Introduction to Predictive Modeling
