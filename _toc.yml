@@ -18,6 +18,7 @@ parts:
     - file: data_apis
     - file: html_data
     - file: intro_probability
+    - file: hyp_testing
 #     - file: folium_exs-clean
 #     - file: intro_to_git_and_github       
 #   - caption: Introduction to Predictive Modeling
