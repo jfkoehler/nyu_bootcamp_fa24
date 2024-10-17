@@ -64,11 +64,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'hyp_testing';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'significance';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Inference and Hypothesis Testing" href="significance.html" />
-    <link rel="prev" title="Probability Distributions: Discrete and Continuous" href="intro_probability.html" />
+    <link rel="next" title="Assignment 1" href="homework/homework_I.html" />
+    <link rel="prev" title="Inference and Hypothesis Testing" href="hyp_testing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,8 +192,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1"><a class="reference internal" href="intro_probability.html">Probability Distributions: Discrete and Continuous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyp_testing.html">Inference and Hypothesis Testing</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Inference and Hypothesis Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="significance.html">Inference and Hypothesis Testing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
@@ -271,7 +271,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/jfkoehler/nyu_bootcamp_fa24/blob/master/hyp_testing.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/jfkoehler/nyu_bootcamp_fa24/blob/master/significance.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -319,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24/issues/new?title=Issue%20on%20page%20%2Fhyp_testing.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24/issues/new?title=Issue%20on%20page%20%2Fsignificance.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -349,7 +349,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/hyp_testing.ipynb" target="_blank"
+      <li><a href="_sources/significance.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -443,9 +443,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-review">Quiz Review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization">Standardization</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardizer"><code class="docutils literal notranslate"><span class="pre">Standardizer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-normal-distribution-matters">Why the normal distribution matters</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differences-between-groups">Differences between groups</a></li>
 </ul>
 </li>
@@ -454,7 +452,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval-for-difference-in-means">Confidence interval for Difference in Means</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-data">Jobs Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#margin-of-error">Margin of Error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-significance">Testing Significance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-significance">Testing Significance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-testing-and-proportions">A/B Testing and Proportions</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -500,584 +501,53 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="quiz-review">
-<h2>Quiz Review<a class="headerlink" href="#quiz-review" title="Permalink to this heading">#</a></h2>
-<p>Using the <code class="docutils literal notranslate"><span class="pre">titanic</span></code> data, determine which features seem to discriminate well between passengers who survived and those that did not.</p>
+<section id="why-the-normal-distribution-matters">
+<h2>Why the normal distribution matters<a class="headerlink" href="#why-the-normal-distribution-matters" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>survived</th>
-      <th>pclass</th>
-      <th>sex</th>
-      <th>age</th>
-      <th>sibsp</th>
-      <th>parch</th>
-      <th>fare</th>
-      <th>embarked</th>
-      <th>class</th>
-      <th>who</th>
-      <th>adult_male</th>
-      <th>deck</th>
-      <th>embark_town</th>
-      <th>alive</th>
-      <th>alone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>3</td>
-      <td>male</td>
-      <td>22.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>7.2500</td>
-      <td>S</td>
-      <td>Third</td>
-      <td>man</td>
-      <td>True</td>
-      <td>NaN</td>
-      <td>Southampton</td>
-      <td>no</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>1</td>
-      <td>female</td>
-      <td>38.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>71.2833</td>
-      <td>C</td>
-      <td>First</td>
-      <td>woman</td>
-      <td>False</td>
-      <td>C</td>
-      <td>Cherbourg</td>
-      <td>yes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>3</td>
-      <td>female</td>
-      <td>26.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>7.9250</td>
-      <td>S</td>
-      <td>Third</td>
-      <td>woman</td>
-      <td>False</td>
-      <td>NaN</td>
-      <td>Southampton</td>
-      <td>yes</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>1</td>
-      <td>female</td>
-      <td>35.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>53.1000</td>
-      <td>S</td>
-      <td>First</td>
-      <td>woman</td>
-      <td>False</td>
-      <td>C</td>
-      <td>Southampton</td>
-      <td>yes</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>3</td>
-      <td>male</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>8.0500</td>
-      <td>S</td>
-      <td>Third</td>
-      <td>man</td>
-      <td>True</td>
-      <td>NaN</td>
-      <td>Southampton</td>
-      <td>no</td>
-      <td>True</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;pclass&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;survived&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;pclass&#39;, ylabel=&#39;count&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/4824bd5666798113fa1d1d9ddf90b0b251d37e83773c0badfd16f90f22ca983b.png" src="_images/4824bd5666798113fa1d1d9ddf90b0b251d37e83773c0badfd16f90f22ca983b.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;sex&#39;</span><span class="p">)[</span><span class="s1">&#39;survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sex
-female    0.742038
-male      0.188908
-Name: survived, dtype: float64
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseball</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/baseball.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">titanic</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;survived&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;age&#39;, ylabel=&#39;Count&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/9d2d39f402dc17b009054a4de645519eeb0f8b0db2db2075dbfa057ed2b572ad.png" src="_images/9d2d39f402dc17b009054a4de645519eeb0f8b0db2db2075dbfa057ed2b572ad.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">14</span><span class="p">)[</span><span class="s1">&#39;survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>age
-False    0.365854
-True     0.591549
-Name: survived, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="standardization">
-<h2>Standardization<a class="headerlink" href="#standardization" title="Permalink to this heading">#</a></h2>
-<p>Suppose we have two distributions on different domains from which we would like to compare scores.</p>
-<ul class="simple">
-<li><p>An English Class has test scores normally distributed with mean 95 and standard deviation 5.</p></li>
-<li><p>A Mathematics Class has test scores normally distributed with mean 80 and standard deviation 7.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#math class</span>
-<span class="n">math_class</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">7</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseball</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#histogram</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">math_class</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 5.,  7.,  8., 18., 16., 23., 12.,  7.,  3.,  1.]),
- array([ 62.69072123,  66.46219501,  70.23366878,  74.00514256,
-         77.77661634,  81.54809011,  85.31956389,  89.09103766,
-         92.86251144,  96.63398522, 100.40545899]),
- &lt;BarContainer object of 10 artists&gt;)
-</pre></div>
-</div>
-<img alt="_images/09387e76ed0ea9e670752af61ca6c9d4f30c5a2cbd720b865f18f11be796c043.png" src="_images/09387e76ed0ea9e670752af61ca6c9d4f30c5a2cbd720b865f18f11be796c043.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#english scores</span>
-<span class="n">english_class</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="mi">95</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseball</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">baseball</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of player salaries&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#make a dataframe</span>
-<span class="n">tests_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;math&#39;</span><span class="p">:</span> <span class="n">math_class</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="s1">&#39;english&#39;</span><span class="p">:</span> <span class="n">english_class</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">1000</span><span class="p">)})</span>
-<span class="n">tests_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>math</th>
-      <th>english</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>87.047850</td>
-      <td>94.220540</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>93.723303</td>
-      <td>88.906155</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>81.280130</td>
-      <td>97.451730</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>78.016499</td>
-      <td>98.649934</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>82.784914</td>
-      <td>103.433882</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot the histograms together</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">tests_df</span><span class="p">[</span><span class="s1">&#39;math&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">tests_df</span><span class="p">[</span><span class="s1">&#39;english&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([  4.,  21.,  59., 150., 249., 247., 173.,  73.,  20.,   4.]),
- array([ 77.69682772,  81.13047556,  84.56412341,  87.99777125,
-         91.4314191 ,  94.86506694,  98.29871478, 101.73236263,
-        105.16601047, 108.59965832, 112.03330616]),
- &lt;BarContainer object of 10 artists&gt;)
-</pre></div>
-</div>
-<img alt="_images/cbc058f9033bd44067f7b453e53352ecdbfd61dd06c5e790b8bf7259d2494181.png" src="_images/cbc058f9033bd44067f7b453e53352ecdbfd61dd06c5e790b8bf7259d2494181.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#problem: Student A -- 82 in math How many std&#39;s away from the mean is 82???</span>
-<span class="c1">#.        Student B -- 97 in English</span>
-<span class="c1">#Who did better?</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_means</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">baseball</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="n">sample_mean</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">sample_means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample_mean</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">82</span> <span class="o">-</span> <span class="mi">80</span><span class="p">)</span><span class="o">/</span><span class="mi">7</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2857142857142857
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">97</span> <span class="o">-</span> <span class="mi">95</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sample_means</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of sample means&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">tests_df</span> <span class="o">-</span> <span class="n">tests_df</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">tests_df</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>math</th>
-      <th>english</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.047439</td>
-      <td>-0.171651</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.978635</td>
-      <td>-1.201127</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.242867</td>
-      <td>0.454278</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>-0.212396</td>
-      <td>0.686388</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.452778</td>
-      <td>1.613110</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>995</th>
-      <td>0.738558</td>
-      <td>0.630461</td>
-    </tr>
-    <tr>
-      <th>996</th>
-      <td>-0.080349</td>
-      <td>-0.346814</td>
-    </tr>
-    <tr>
-      <th>997</th>
-      <td>0.223827</td>
-      <td>1.183140</td>
-    </tr>
-    <tr>
-      <th>998</th>
-      <td>-0.095123</td>
-      <td>-1.211663</td>
-    </tr>
-    <tr>
-      <th>999</th>
-      <td>0.540756</td>
-      <td>-0.880150</td>
-    </tr>
-  </tbody>
-</table>
-<p>1000 rows × 2 columns</p>
-</div></div></div>
-</div>
-<section id="standardizer">
-<h3><code class="docutils literal notranslate"><span class="pre">Standardizer</span></code><a class="headerlink" href="#standardizer" title="Permalink to this heading">#</a></h3>
-<p>The work of standardizing our data is extremely important for many models.  To get a feel for an important library, your task is to build a <code class="docutils literal notranslate"><span class="pre">Standardizer</span></code> class that has two methods:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="o">.</span><span class="n">transform</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>When the <code class="docutils literal notranslate"><span class="pre">.fit</span></code> method is called, you will learn the mean and standard deviation of the data.  Upon learning these, assign them to the attributes <code class="docutils literal notranslate"><span class="pre">.mean_</span></code> and <code class="docutils literal notranslate"><span class="pre">.scale_</span></code>.  Then, use the <code class="docutils literal notranslate"><span class="pre">.transform</span></code> method to actually transform the data.  Demonstrate its use with the <code class="docutils literal notranslate"><span class="pre">tests_df</span></code>.  Note, you will need to call the <code class="docutils literal notranslate"><span class="pre">.fit</span></code> method prior to the <code class="docutils literal notranslate"><span class="pre">.transform</span></code>.  As a bonus, try adding an error message that warns the user when calling <code class="docutils literal notranslate"><span class="pre">fit</span></code> prior to calling <code class="docutils literal notranslate"><span class="pre">transform</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Standardizer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mean_</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale_</span> <span class="o">=</span> <span class="kc">None</span>
-        
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mean_</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale_</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-    
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean_</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">Standardizer</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tests_df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">tests_df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>math</th>
-      <th>english</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.047439</td>
-      <td>-0.171651</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.978635</td>
-      <td>-1.201127</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.242867</td>
-      <td>0.454278</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>-0.212396</td>
-      <td>0.686388</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.452778</td>
-      <td>1.613110</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>995</th>
-      <td>0.738558</td>
-      <td>0.630461</td>
-    </tr>
-    <tr>
-      <th>996</th>
-      <td>-0.080349</td>
-      <td>-0.346814</td>
-    </tr>
-    <tr>
-      <th>997</th>
-      <td>0.223827</td>
-      <td>1.183140</td>
-    </tr>
-    <tr>
-      <th>998</th>
-      <td>-0.095123</td>
-      <td>-1.211663</td>
-    </tr>
-    <tr>
-      <th>999</th>
-      <td>0.540756</td>
-      <td>-0.880150</td>
-    </tr>
-  </tbody>
-</table>
-<p>1000 rows × 2 columns</p>
-</div></div></div>
-</div>
-</section>
 <section id="differences-between-groups">
 <h3>Differences between groups<a class="headerlink" href="#differences-between-groups" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -1095,76 +565,6 @@ Name: survived, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>p1</th>
-      <th>p2</th>
-      <th>p3</th>
-      <th>p4</th>
-      <th>p5</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5</td>
-      <td>1</td>
-      <td>3</td>
-      <td>5</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>3</td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>3</td>
-      <td>5</td>
-      <td>3</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>3</td>
-      <td>3</td>
-      <td>3</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>4</td>
-      <td>3</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 </section>
@@ -1185,11 +585,6 @@ Name: survived, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0 1.0067340828210365
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1202,25 +597,12 @@ Name: survived, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/5eba109aa04096627407a8ee7d8b9f075b4eb43e97f087dd389ecfd4f4c3e443.png" src="_images/5eba109aa04096627407a8ee7d8b9f075b4eb43e97f087dd389ecfd4f4c3e443.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#examine the first question data</span>
 <span class="n">q1</span> <span class="o">=</span> <span class="n">polls</span><span class="p">[</span><span class="s1">&#39;p1&#39;</span><span class="p">]</span>
 <span class="n">q1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    5
-1    1
-2    2
-3    4
-4    5
-Name: p1, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1231,11 +613,6 @@ Name: p1, dtype: int64
 <span class="c1">#i.e. length - 1</span>
 <span class="n">dof</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dof</span><span class="si">}</span><span class="s1"> degrees of freedom&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>149 degrees of freedom
 </pre></div>
 </div>
 </div>
@@ -1250,22 +627,12 @@ Name: p1, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The t-statistic is 1.976013177679155
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#compute sample standard deviation</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">ddof</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The sample standard deviation is </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The sample standard deviation is 1.1317069525271144
 </pre></div>
 </div>
 </div>
@@ -1278,22 +645,12 @@ Name: p1, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The sample size is 150
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#compute upper limit</span>
 <span class="n">upper</span> <span class="o">=</span> <span class="n">q1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">t_stat</span><span class="o">*</span><span class="n">s</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The upper limit of the confidence interval is </span><span class="si">{</span><span class="n">upper</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The upper limit of the confidence interval is 4.215923838809285
 </pre></div>
 </div>
 </div>
@@ -1306,21 +663,11 @@ Name: p1, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The lower limit of the confidence interval is 3.8507428278573816
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#print it</span>
 <span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.8507428278573816, 4.215923838809285)
 </pre></div>
 </div>
 </div>
@@ -1364,6 +711,7 @@ Name: p1, dtype: int64
 </section>
 <section id="confidence-interval-for-difference-in-means">
 <h2>Confidence interval for Difference in Means<a class="headerlink" href="#confidence-interval-for-difference-in-means" title="Permalink to this heading">#</a></h2>
+<p>In a similar way we can ask questions about the distribution of the difference in means.  Here, we construct a confidence interval for the difference between means of the two polls.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#statsmodels imports</span>
@@ -1387,11 +735,6 @@ Name: p1, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#90% confidence interval -- represents the difference between </span>
 <span class="n">c</span><span class="o">.</span><span class="n">tconfint_diff</span><span class="p">(</span><span class="mf">.05</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.3521083067086064, 0.9012250266247266)
 </pre></div>
 </div>
 </div>
@@ -1422,82 +765,6 @@ Name: p1, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>job_id</th>
-      <th>title</th>
-      <th>agency</th>
-      <th>posting_date</th>
-      <th>salary_from</th>
-      <th>salary_to</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>378085</td>
-      <td>HVAC Service Technic</td>
-      <td>DEPT OF HEALTH/MENTAL HYGIENE</td>
-      <td>2018-12-21</td>
-      <td>385.0</td>
-      <td>385.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>377919</td>
-      <td>Psychologist, Level</td>
-      <td>POLICE DEPARTMENT</td>
-      <td>2018-12-31</td>
-      <td>62458.0</td>
-      <td>81131.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>379321</td>
-      <td>Asset Manager</td>
-      <td>HOUSING PRESERVATION &amp; DVLPMNT</td>
-      <td>2019-01-07</td>
-      <td>52524.0</td>
-      <td>60000.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>378658</td>
-      <td>Public Health Adviso</td>
-      <td>DEPT OF HEALTH/MENTAL HYGIENE</td>
-      <td>2019-01-02</td>
-      <td>37957.0</td>
-      <td>47142.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>321570</td>
-      <td>Deputy Commissioner,</td>
-      <td>DEPT OF ENVIRONMENT PROTECTION</td>
-      <td>2018-01-26</td>
-      <td>209585.0</td>
-      <td>209585.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section id="margin-of-error">
@@ -1619,6 +886,44 @@ Just like before, we will set a tolerance for rejecting the null hypothesis.</p>
 </div>
 </div>
 </div>
+<section id="a-b-testing-and-proportions">
+<h3>A/B Testing and Proportions<a class="headerlink" href="#a-b-testing-and-proportions" title="Permalink to this heading">#</a></h3>
+<p>In a similar way, you can test the difference between proportions in groups.  For example, consider showing two different ads to samples of 100 customers to see if one encouraged more clicks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1">#number of views for each</span>
+<span class="n">ad1</span> <span class="o">=</span> <span class="mi">310</span> <span class="c1">#ad1 click</span>
+<span class="n">ad2</span> <span class="o">=</span> <span class="mi">320</span> <span class="c1">#ad2 clicks</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">310</span><span class="o">/</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">320</span><span class="o">/</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.proportion</span> <span class="kn">import</span> <span class="n">proportions_ztest</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">310</span><span class="p">,</span> <span class="mi">320</span><span class="p">])</span>
+<span class="n">nobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">proportions_ztest</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">nobs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pval</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#so what?</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>PROBLEMS</strong></p>
 <ol class="arabic simple">
 <li><p>Given the <code class="docutils literal notranslate"><span class="pre">mileage</span></code> dataset, test the claim on the cars sticker that the average mpg for city driving is 30 mpg.</p></li>
@@ -1637,6 +942,16 @@ Just like before, we will set a tolerance for rejecting the null hypothesis.</p>
 <li><p>Create a new column that represents the difference in prices from the two garages. Find the mean and standard deviation of the difference.</p></li>
 <li><p>Test the null hypothesis that there is no difference between the estimates at the 0.05 significance level.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mileage_url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/refs/heads/main/data/mileage.csv&#39;</span>
+<span class="n">jocko_url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/refs/heads/main/data/JOCKO.csv&#39;</span>
+<span class="n">wtgain</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/refs/heads/main/data/wtgain.csv&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1671,20 +986,20 @@ Just like before, we will set a tolerance for rejecting the null hypothesis.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro_probability.html"
+       href="hyp_testing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Probability Distributions: Discrete and Continuous</p>
+        <p class="prev-next-title">Inference and Hypothesis Testing</p>
       </div>
     </a>
     <a class="right-next"
-       href="significance.html"
+       href="homework/homework_I.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Inference and Hypothesis Testing</p>
+        <p class="prev-next-title">Assignment 1</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1703,9 +1018,7 @@ Just like before, we will set a tolerance for rejecting the null hypothesis.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quiz-review">Quiz Review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization">Standardization</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardizer"><code class="docutils literal notranslate"><span class="pre">Standardizer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-normal-distribution-matters">Why the normal distribution matters</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differences-between-groups">Differences between groups</a></li>
 </ul>
 </li>
@@ -1714,7 +1027,10 @@ Just like before, we will set a tolerance for rejecting the null hypothesis.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-interval-for-difference-in-means">Confidence interval for Difference in Means</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-data">Jobs Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#margin-of-error">Margin of Error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-significance">Testing Significance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-significance">Testing Significance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-b-testing-and-proportions">A/B Testing and Proportions</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
