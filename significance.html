@@ -505,7 +505,7 @@ document.write(`
 <h2>Why the normal distribution matters<a class="headerlink" href="#why-the-normal-distribution-matters" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseball</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/baseball.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baseball</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/baseball.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -516,6 +516,82 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>team</th>
+      <th>leagueID</th>
+      <th>player</th>
+      <th>salary</th>
+      <th>position</th>
+      <th>gamesplayed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>ANA</td>
+      <td>AL</td>
+      <td>anderga0</td>
+      <td>6200000</td>
+      <td>CF</td>
+      <td>112</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ANA</td>
+      <td>AL</td>
+      <td>colonba0</td>
+      <td>11000000</td>
+      <td>P</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ANA</td>
+      <td>AL</td>
+      <td>davanje0</td>
+      <td>375000</td>
+      <td>CF</td>
+      <td>108</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ANA</td>
+      <td>AL</td>
+      <td>donnebr0</td>
+      <td>375000</td>
+      <td>P</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ANA</td>
+      <td>AL</td>
+      <td>eckstda0</td>
+      <td>2150000</td>
+      <td>SS</td>
+      <td>142</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -525,6 +601,12 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of player salaries&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Distribution of player salaries&#39;)
+</pre></div>
+</div>
+<img alt="_images/0766458afdc7545cbda850d74825bed28bd216ac0bf00be1eb97f4f1ae509649.png" src="_images/0766458afdc7545cbda850d74825bed28bd216ac0bf00be1eb97f4f1ae509649.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -547,6 +629,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Distribution of sample means&#39;)
+</pre></div>
+</div>
+<img alt="_images/9a098c4e88f24afbfc6bc9acefc99ab100f6443667bd9d0b791dfe0c55deea1d.png" src="_images/9a098c4e88f24afbfc6bc9acefc99ab100f6443667bd9d0b791dfe0c55deea1d.png" />
+</div>
 </div>
 <section id="differences-between-groups">
 <h3>Differences between groups<a class="headerlink" href="#differences-between-groups" title="Permalink to this heading">#</a></h3>
@@ -565,6 +653,76 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>p1</th>
+      <th>p2</th>
+      <th>p3</th>
+      <th>p4</th>
+      <th>p5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>3</td>
+      <td>5</td>
+      <td>3</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>4</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -585,6 +743,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0 1.0067340828210365
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -597,12 +760,25 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/5eba109aa04096627407a8ee7d8b9f075b4eb43e97f087dd389ecfd4f4c3e443.png" src="_images/5eba109aa04096627407a8ee7d8b9f075b4eb43e97f087dd389ecfd4f4c3e443.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#examine the first question data</span>
 <span class="n">q1</span> <span class="o">=</span> <span class="n">polls</span><span class="p">[</span><span class="s1">&#39;p1&#39;</span><span class="p">]</span>
 <span class="n">q1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    5
+1    1
+2    2
+3    4
+4    5
+Name: p1, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -613,6 +789,11 @@ document.write(`
 <span class="c1">#i.e. length - 1</span>
 <span class="n">dof</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">dof</span><span class="si">}</span><span class="s1"> degrees of freedom&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>149 degrees of freedom
 </pre></div>
 </div>
 </div>
@@ -627,12 +808,22 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The t-statistic is 1.976013177679155
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#compute sample standard deviation</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">ddof</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The sample standard deviation is </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The sample standard deviation is 1.1317069525271144
 </pre></div>
 </div>
 </div>
@@ -645,12 +836,22 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The sample size is 150
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#compute upper limit</span>
 <span class="n">upper</span> <span class="o">=</span> <span class="n">q1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="n">t_stat</span><span class="o">*</span><span class="n">s</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The upper limit of the confidence interval is </span><span class="si">{</span><span class="n">upper</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The upper limit of the confidence interval is 4.215923838809285
 </pre></div>
 </div>
 </div>
@@ -663,11 +864,21 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The lower limit of the confidence interval is 3.8507428278573816
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#print it</span>
 <span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.8507428278573816, 4.215923838809285)
 </pre></div>
 </div>
 </div>
@@ -683,6 +894,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.8507428278573816, 4.215923838809285)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -692,6 +908,12 @@ document.write(`
 <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">sample_means</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;kde&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7fd16f36d910&gt;
+</pre></div>
+</div>
+<img alt="_images/4506488c7fb007933d5c7c88ff0e63aef5f6c6799aac3b1e4a502b762af05653.png" src="_images/4506488c7fb007933d5c7c88ff0e63aef5f6c6799aac3b1e4a502b762af05653.png" />
 </div>
 </div>
 </section>
@@ -704,6 +926,45 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q2</span> <span class="o">=</span> <span class="n">polls</span><span class="p">[</span><span class="s1">&#39;p2&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Q1: </span><span class="si">{</span><span class="n">q1</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="se">\n</span><span class="s1">Q2: </span><span class="si">{</span><span class="n">q2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1"> .3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Q1:  4.033\nQ2:  3.407&#39;)
+</pre></div>
+</div>
+<img alt="_images/7d7584607e44f7b7ea58780ca30ff988a4d851611c9bfb4713e9efa8182021fc.png" src="_images/7d7584607e44f7b7ea58780ca30ff988a4d851611c9bfb4713e9efa8182021fc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">.95</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">q2</span><span class="p">),</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.2001201028191195, 3.613213230514214)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">.95</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">q1</span><span class="p">),</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">q1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.8507428278573816, 4.215923838809285)
 </pre></div>
 </div>
 </div>
@@ -738,6 +999,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.3521083067086064, 0.9012250266247266)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -765,6 +1031,82 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>job_id</th>
+      <th>title</th>
+      <th>agency</th>
+      <th>posting_date</th>
+      <th>salary_from</th>
+      <th>salary_to</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>378085</td>
+      <td>HVAC Service Technic</td>
+      <td>DEPT OF HEALTH/MENTAL HYGIENE</td>
+      <td>2018-12-21</td>
+      <td>385.0</td>
+      <td>385.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>377919</td>
+      <td>Psychologist, Level</td>
+      <td>POLICE DEPARTMENT</td>
+      <td>2018-12-31</td>
+      <td>62458.0</td>
+      <td>81131.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>379321</td>
+      <td>Asset Manager</td>
+      <td>HOUSING PRESERVATION &amp; DVLPMNT</td>
+      <td>2019-01-07</td>
+      <td>52524.0</td>
+      <td>60000.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>378658</td>
+      <td>Public Health Adviso</td>
+      <td>DEPT OF HEALTH/MENTAL HYGIENE</td>
+      <td>2019-01-02</td>
+      <td>37957.0</td>
+      <td>47142.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>321570</td>
+      <td>Deputy Commissioner,</td>
+      <td>DEPT OF ENVIRONMENT PROTECTION</td>
+      <td>2018-01-26</td>
+      <td>209585.0</td>
+      <td>209585.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="margin-of-error">
@@ -782,6 +1124,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#do the computation</span>
+<span class="p">((</span><span class="mf">1.96</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">jobs</span><span class="p">[</span><span class="s1">&#39;salary_to&#39;</span><span class="p">]))</span><span class="o">/</span><span class="mi">3000</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>561.6613975822079
 </pre></div>
 </div>
 </div>
@@ -789,6 +1137,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#repeat for $500</span>
+<span class="p">((</span><span class="mf">1.96</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">jobs</span><span class="p">[</span><span class="s1">&#39;salary_to&#39;</span><span class="p">]))</span><span class="o">/</span><span class="mi">500</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20219.81031295948
 </pre></div>
 </div>
 </div>
@@ -814,6 +1168,70 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>group</th>
+      <th>g</th>
+      <th>drp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Treat</td>
+      <td>0</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Treat</td>
+      <td>0</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Treat</td>
+      <td>0</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Treat</td>
+      <td>0</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Treat</td>
+      <td>0</td>
+      <td>58</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -821,6 +1239,12 @@ document.write(`
 <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;drp&#39;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">reading</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7fd16fc08fa0&gt;
+</pre></div>
+</div>
+<img alt="_images/92f39c4f07024ce669fd8386c92ec480d427fcf5ad84c8d60412f7314c891dac.png" src="_images/92f39c4f07024ce669fd8386c92ec480d427fcf5ad84c8d60412f7314c891dac.png" />
 </div>
 </div>
 <p>For our hypothesis test, we need two things:</p>
@@ -849,6 +1273,11 @@ Just like before, we will set a tolerance for rejecting the null hypothesis.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#run the test</span>
 <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">treatment</span><span class="p">,</span> <span class="n">control</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=2.2665515995859433, pvalue=0.02862948283224572)
 </pre></div>
 </div>
 </div>
@@ -885,6 +1314,11 @@ Just like before, we will set a tolerance for rejecting the null hypothesis.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01431474141612286
+</pre></div>
+</div>
+</div>
 </div>
 <section id="a-b-testing-and-proportions">
 <h3>A/B Testing and Proportions<a class="headerlink" href="#a-b-testing-and-proportions" title="Permalink to this heading">#</a></h3>
@@ -900,19 +1334,16 @@ Just like before, we will set a tolerance for rejecting the null hypothesis.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">310</span><span class="o">/</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">d2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">320</span><span class="o">/</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.proportion</span> <span class="kn">import</span> <span class="n">proportions_ztest</span>
 <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">310</span><span class="p">,</span> <span class="mi">320</span><span class="p">])</span>
 <span class="n">nobs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
 <span class="n">stat</span><span class="p">,</span> <span class="n">pval</span> <span class="o">=</span> <span class="n">proportions_ztest</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">nobs</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0:0.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pval</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.512
 </pre></div>
 </div>
 </div>
@@ -947,6 +1378,317 @@ Just like before, we will set a tolerance for rejecting the null hypothesis.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mileage_url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/refs/heads/main/data/mileage.csv&#39;</span>
 <span class="n">jocko_url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/refs/heads/main/data/JOCKO.csv&#39;</span>
 <span class="n">wtgain</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa24/refs/heads/main/data/wtgain.csv&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mileage</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">mileage_url</span><span class="p">)</span>
+<span class="n">mileage</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Car</th>
+      <th>Mileage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>28.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>25.7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>25.8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>28.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>28.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">mileage</span><span class="p">[</span><span class="s1">&#39;Mileage&#39;</span><span class="p">],</span> <span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TtestResult(statistic=-4.969260253978114, pvalue=0.0001680988457582639, df=15)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mileage</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Car         8.50000
+Mileage    28.15625
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">wtgain</span><span class="p">)</span>
+<span class="n">weight</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>wtb</th>
+      <th>wta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>55.7</td>
+      <td>61.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>54.9</td>
+      <td>58.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight</span><span class="p">[</span><span class="s1">&#39;change&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span><span class="p">[</span><span class="s1">&#39;wta&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">weight</span><span class="p">[</span><span class="s1">&#39;wtb&#39;</span><span class="p">]</span>
+<span class="n">weight</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>wtb</th>
+      <th>wta</th>
+      <th>change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>55.7</td>
+      <td>61.7</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>54.9</td>
+      <td>58.8</td>
+      <td>3.9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight</span><span class="p">[</span><span class="s1">&#39;change&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">weight</span><span class="p">[</span><span class="s1">&#39;change&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4.73125, 1.7457448267143751)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">.95</span><span class="p">,</span>  <span class="nb">len</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="p">[</span><span class="s1">&#39;change&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">weight</span><span class="p">[</span><span class="s1">&#39;change&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.8010082456092764, 5.661491754390724)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">weight</span><span class="p">[</span><span class="s1">&#39;change&#39;</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TtestResult(statistic=-25.819924716508876, pvalue=7.582374203406457e-14, df=15)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jocko</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">jocko_url</span><span class="p">)</span>
+<span class="n">jocko</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Car</th>
+      <th>Jocko</th>
+      <th>Other</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1410</td>
+      <td>1250</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1550</td>
+      <td>1300</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1250</td>
+      <td>1250</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1300</td>
+      <td>1200</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>900</td>
+      <td>950</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jocko</span><span class="p">[</span><span class="s1">&#39;Jocko&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">jocko</span><span class="p">[</span><span class="s1">&#39;Other&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>114.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">jocko</span><span class="p">[</span><span class="s1">&#39;Jocko&#39;</span><span class="p">],</span> <span class="n">jocko</span><span class="p">[</span><span class="s1">&#39;Other&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=0.32060397670781055, pvalue=0.7522026578824064)
 </pre></div>
 </div>
 </div>
