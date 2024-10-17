@@ -181,12 +181,25 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="intro_to_plotting.html"><code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> intro</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plotting_seaborn.html">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
 
+
+<li class="toctree-l1"><a class="reference internal" href="data_apis.html">Accessing Data with API’s</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="html_data.html">Extracting Data From HTML</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intro_probability.html">Probability Distributions: Discrete and Continuous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyp_testing.html">Inference and Hypothesis Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significance.html">Inference and Hypothesis Testing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="homework/homework_I.html">Assignment 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework/homework_II.html">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_III.html">Homework 3: Advanced Pandas and Introductory Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_IV.html">API’s and Data Visualization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
 <ul class="nav bd-sidenav">
@@ -199,6 +212,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="numpy-challenge-3.html">Climb the Ladder!</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotting_with_bokeh.html">Plotting with <code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotly.html">BONUS: <code class="docutils literal notranslate"><span class="pre">plotly</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/intro_ipywidgets.html">Using interactive widgets with the notebook</a></li>
 </ul>
 
     </div>
@@ -512,7 +528,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/jacobkoehler/Desktop/fall_23/NYU-Bootcamp/new_bootbook&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/jacobkoehler/Desktop/fall_24/bootcamp_24&#39;
 </pre></div>
 </div>
 </div>
@@ -525,31 +541,38 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;intro_to_numpy.ipynb&#39;,
- &#39;homework_I.ipynb&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;continuous_starter.ipynb&#39;,
+ &#39;intro_to_numpy.ipynb&#39;,
+ &#39;exarr.npy&#39;,
+ &#39;subplottin.png&#39;,
+ &#39;bonus&#39;,
  &#39;intro_to_plotting.ipynb&#39;,
- &#39;homework_III.zip&#39;,
- &#39;gdp.xlsx&#39;,
+ &#39;numpy-challenge-3.ipynb&#39;,
  &#39;requirements.txt&#39;,
+ &#39;numpy-challenge-1.ipynb&#39;,
+ &#39;html_data.ipynb&#39;,
  &#39;images&#39;,
- &#39;homework_III.ipynb&#39;,
+ &#39;references.bib&#39;,
+ &#39;intro_probability.ipynb&#39;,
+ &#39;oop.ipynb&#39;,
+ &#39;notebooks.ipynb&#39;,
+ &#39;numpy-challenge-2.ipynb&#39;,
  &#39;dates_intro_to_plotting.ipynb&#39;,
  &#39;python_fundamentals_one.ipynb&#39;,
  &#39;intro_to_pandas.ipynb&#39;,
- &#39;__MACOSX&#39;,
  &#39;_toc.yml&#39;,
  &#39;logo.png&#39;,
+ &#39;homework&#39;,
  &#39;data_apis.ipynb&#39;,
  &#39;_build&#39;,
  &#39;_config.yml&#39;,
- &#39;Pandas_Cheat_Sheet.pdf&#39;,
  &#39;python_fundamentals_two.ipynb&#39;,
  &#39;.ipynb_checkpoints&#39;,
  &#39;syllabus.ipynb&#39;,
  &#39;.git&#39;,
  &#39;plotting_seaborn.ipynb&#39;,
  &#39;data&#39;,
- &#39;gdp.csv&#39;,
+ &#39;hyp_testing.ipynb&#39;,
  &#39;pandas_II.ipynb&#39;]
 </pre></div>
 </div>
@@ -563,20 +586,69 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Ames_Housing_Sales.csv&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;bus.csv&#39;,
+ &#39;bud.csv&#39;,
+ &#39;train.pkl&#39;,
+ &#39;chicago_crimes.csv&#39;,
+ &#39;bikeshare_data.csv&#39;,
+ &#39;doge.jpg&#39;,
+ &#39;polls.csv&#39;,
+ &#39;gt_drone_racing.csv&#39;,
+ &#39;Default.csv&#39;,
+ &#39;mileage.csv&#39;,
+ &#39;Ames_Housing_Sales.csv&#39;,
  &#39;diamonds.csv&#39;,
+ &#39;wtgain.csv&#39;,
+ &#39;elecdemand.csv&#39;,
+ &#39;us-retail-sales.csv&#39;,
  &#39;gapminder_all.csv&#39;,
+ &#39;GPA.xls&#39;,
+ &#39;w.npy&#39;,
+ &#39;v.npy&#39;,
+ &#39;Heart.csv&#39;,
+ &#39;DRP.csv&#39;,
+ &#39;Credit.csv&#39;,
+ &#39;jobs.csv&#39;,
+ &#39;insurance.csv&#39;,
+ &#39;airline-passengers.csv&#39;,
+ &#39;NOISE.csv&#39;,
+ &#39;uberx.csv&#39;,
  &#39;LasVegasTripAdvisorReviews-Dataset.csv&#39;,
  &#39;ufo.csv&#39;,
+ &#39;state_unemployment.csv&#39;,
+ &#39;tips_miss.csv&#39;,
+ &#39;book_sales.csv&#39;,
+ &#39;health_insurance_charges.csv&#39;,
+ &#39;PABMI.xls&#39;,
+ &#39;JOCKO.csv&#39;,
+ &#39;test.pkl&#39;,
+ &#39;airline.csv&#39;,
+ &#39;2017.csv&#39;,
+ &#39;Sample_Workforce_Data_0720.csv&#39;,
+ &#39;poll_means.csv&#39;,
  &#39;salesdaily.csv&#39;,
+ &#39;doge.npy&#39;,
+ &#39;X.npy&#39;,
+ &#39;y.npy&#39;,
  &#39;movie_ratings.tsv&#39;,
  &#39;churn_missing.csv&#39;,
+ &#39;mtcars.csv&#39;,
+ &#39;office_supplies.csv&#39;,
+ &#39;train.csv&#39;,
+ &#39;bikeshare.csv&#39;,
+ &#39;diabetes.csv&#39;,
  &#39;NBA_players_2015.csv&#39;,
+ &#39;df_predictions.pkl&#39;,
+ &#39;facefr.csv&#39;,
  &#39;spotify.csv&#39;,
+ &#39;ads.csv&#39;,
+ &#39;pines.csv&#39;,
  &#39;cars.csv&#39;,
+ &#39;geparts.csv&#39;,
  &#39;cell_phone_churn.csv&#39;,
  &#39;rollingsales_manhattan.csv&#39;,
- &#39;AAPL.csv&#39;]
+ &#39;AAPL.csv&#39;,
+ &#39;heart_cleveland_upload.csv&#39;]
 </pre></div>
 </div>
 </div>
@@ -667,7 +739,7 @@ RangeIndex: 80543 entries, 0 to 80542
 Data columns (total 5 columns):
  #   Column           Non-Null Count  Dtype 
 ---  ------           --------------  ----- 
- 0   City             80492 non-null  object
+ 0   City             80496 non-null  object
  1   Colors Reported  17034 non-null  object
  2   Shape Reported   72141 non-null  object
  3   State            80543 non-null  object
@@ -714,7 +786,7 @@ memory usage: 3.1+ MB
   <tbody>
     <tr>
       <th>count</th>
-      <td>80492</td>
+      <td>80496</td>
       <td>17034</td>
       <td>72141</td>
       <td>80543</td>
@@ -722,7 +794,7 @@ memory usage: 3.1+ MB
     </tr>
     <tr>
       <th>unique</th>
-      <td>13503</td>
+      <td>13504</td>
       <td>31</td>
       <td>27</td>
       <td>52</td>
@@ -784,7 +856,7 @@ memory usage: 3.1+ MB
   <tbody>
     <tr>
       <th>count</th>
-      <td>80492</td>
+      <td>80496</td>
       <td>17034</td>
       <td>72141</td>
       <td>80543</td>
@@ -792,7 +864,7 @@ memory usage: 3.1+ MB
     </tr>
     <tr>
       <th>unique</th>
-      <td>13503</td>
+      <td>13504</td>
       <td>31</td>
       <td>27</td>
       <td>52</td>
@@ -854,7 +926,7 @@ memory usage: 3.1+ MB
   <tbody>
     <tr>
       <th>count</th>
-      <td>80492</td>
+      <td>80496</td>
       <td>17034</td>
       <td>72141</td>
       <td>80543</td>
@@ -862,7 +934,7 @@ memory usage: 3.1+ MB
     </tr>
     <tr>
       <th>unique</th>
-      <td>13503</td>
+      <td>13504</td>
       <td>31</td>
       <td>27</td>
       <td>52</td>
@@ -1034,6 +1106,7 @@ memory usage: 27.7+ KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diamonds_path</span> <span class="o">=</span> <span class="s1">&#39;data/diamonds.csv&#39;</span>
+<span class="n">diamonds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">diamonds_path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1041,15 +1114,271 @@ memory usage: 27.7+ KB
 <ol class="arabic simple" start="2">
 <li><p>How many diamonds are greater than .5 carat in the data?</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diamonds</span><span class="p">[</span><span class="n">diamonds</span><span class="p">[</span><span class="s1">&#39;carat&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">.5</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>35008
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>What is the highest priced diamond in the data?</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diamonds</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>carat</th>
+      <th>cut</th>
+      <th>color</th>
+      <th>clarity</th>
+      <th>depth</th>
+      <th>table</th>
+      <th>price</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>27749</th>
+      <td>2.29</td>
+      <td>Premium</td>
+      <td>I</td>
+      <td>VS2</td>
+      <td>60.8</td>
+      <td>60.0</td>
+      <td>18823</td>
+      <td>8.5</td>
+      <td>8.47</td>
+      <td>5.16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 <ol class="arabic simple" start="4">
 <li><p>Read the data from the <code class="docutils literal notranslate"><span class="pre">caravan.csv</span></code> file in located <a class="reference external" href="https://github.com/dsnair/ISLR/blob/master/data/csv/Caravan.csv">here</a>.  Assign this to a variable <code class="docutils literal notranslate"><span class="pre">caravan</span></code>.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">caravan</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/dsnair/ISLR/refs/heads/master/data/csv/Caravan.csv&#39;</span><span class="p">)</span>
+<span class="n">caravan</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MOSTYPE</th>
+      <th>MAANTHUI</th>
+      <th>MGEMOMV</th>
+      <th>MGEMLEEF</th>
+      <th>MOSHOOFD</th>
+      <th>MGODRK</th>
+      <th>MGODPR</th>
+      <th>MGODOV</th>
+      <th>MGODGE</th>
+      <th>MRELGE</th>
+      <th>...</th>
+      <th>APERSONG</th>
+      <th>AGEZONG</th>
+      <th>AWAOREG</th>
+      <th>ABRAND</th>
+      <th>AZEILPL</th>
+      <th>APLEZIER</th>
+      <th>AFIETS</th>
+      <th>AINBOED</th>
+      <th>ABYSTAND</th>
+      <th>Purchase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>33</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2</td>
+      <td>8</td>
+      <td>0</td>
+      <td>5</td>
+      <td>1</td>
+      <td>3</td>
+      <td>7</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>37</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>8</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>4</td>
+      <td>6</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>37</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>8</td>
+      <td>0</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>3</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>4</td>
+      <td>5</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>40</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+      <td>10</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>4</td>
+      <td>7</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 86 columns</p>
+</div></div></div>
+</div>
 <ol class="arabic simple" start="5">
 <li><p>How many <code class="docutils literal notranslate"><span class="pre">Yes</span></code>’s are in the <code class="docutils literal notranslate"><span class="pre">Purchase</span></code> column of the <code class="docutils literal notranslate"><span class="pre">caravan</span></code> data?  No’s?</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">caravan</span><span class="p">[</span><span class="s1">&#39;Purchase&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No     5474
+Yes     348
+Name: Purchase, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="missing-values">
@@ -1058,6 +1387,23 @@ memory usage: 27.7+ KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># re-examine ufo info</span>
+<span class="n">ufo</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 80543 entries, 0 to 80542
+Data columns (total 5 columns):
+ #   Column           Non-Null Count  Dtype 
+---  ------           --------------  ----- 
+ 0   City             80496 non-null  object
+ 1   Colors Reported  17034 non-null  object
+ 2   Shape Reported   72141 non-null  object
+ 3   State            80543 non-null  object
+ 4   Time             80543 non-null  object
+dtypes: object(5)
+memory usage: 3.1+ MB
 </pre></div>
 </div>
 </div>
@@ -1065,6 +1411,17 @@ memory usage: 27.7+ KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># one-liner to count missing values</span>
+<span class="n">ufo</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>City                  47
+Colors Reported    63509
+Shape Reported      8402
+State                  0
+Time                   0
+dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1072,20 +1429,316 @@ memory usage: 27.7+ KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop missing values</span>
+<span class="n">ufo</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>Colors Reported</th>
+      <th>Shape Reported</th>
+      <th>State</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>Belton</td>
+      <td>RED</td>
+      <td>SPHERE</td>
+      <td>SC</td>
+      <td>6/30/1939 20:00</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Bering Sea</td>
+      <td>RED</td>
+      <td>OTHER</td>
+      <td>AK</td>
+      <td>4/30/1943 23:00</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Portsmouth</td>
+      <td>RED</td>
+      <td>FORMATION</td>
+      <td>VA</td>
+      <td>7/10/1945 1:30</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Blairsden</td>
+      <td>GREEN</td>
+      <td>SPHERE</td>
+      <td>CA</td>
+      <td>6/30/1946 19:00</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>San Jose</td>
+      <td>BLUE</td>
+      <td>CHEVRON</td>
+      <td>CA</td>
+      <td>7/15/1947 21:00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>80524</th>
+      <td>Olympia</td>
+      <td>RED</td>
+      <td>LIGHT</td>
+      <td>WA</td>
+      <td>9/4/2014 21:10</td>
+    </tr>
+    <tr>
+      <th>80525</th>
+      <td>Iowa City</td>
+      <td>BLUE</td>
+      <td>LIGHT</td>
+      <td>IA</td>
+      <td>9/4/2014 21:11</td>
+    </tr>
+    <tr>
+      <th>80528</th>
+      <td>North Royalton</td>
+      <td>RED</td>
+      <td>TRIANGLE</td>
+      <td>OH</td>
+      <td>9/4/2014 21:30</td>
+    </tr>
+    <tr>
+      <th>80536</th>
+      <td>Wyoming</td>
+      <td>RED</td>
+      <td>DISK</td>
+      <td>PA</td>
+      <td>9/4/2014 23:00</td>
+    </tr>
+    <tr>
+      <th>80541</th>
+      <td>Orland park</td>
+      <td>RED</td>
+      <td>LIGHT</td>
+      <td>IL</td>
+      <td>9/5/2014 3:43</td>
+    </tr>
+  </tbody>
+</table>
+<p>15510 rows × 5 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fill missing values</span>
+<span class="n">ufo</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;dunno&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>Colors Reported</th>
+      <th>Shape Reported</th>
+      <th>State</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ithaca</td>
+      <td>dunno</td>
+      <td>TRIANGLE</td>
+      <td>NY</td>
+      <td>6/1/1930 22:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Willingboro</td>
+      <td>dunno</td>
+      <td>OTHER</td>
+      <td>NJ</td>
+      <td>6/30/1930 20:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Holyoke</td>
+      <td>dunno</td>
+      <td>OVAL</td>
+      <td>CO</td>
+      <td>2/15/1931 14:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Abilene</td>
+      <td>dunno</td>
+      <td>DISK</td>
+      <td>KS</td>
+      <td>6/1/1931 13:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>New York Worlds Fair</td>
+      <td>dunno</td>
+      <td>LIGHT</td>
+      <td>NY</td>
+      <td>4/18/1933 19:00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>80538</th>
+      <td>Neligh</td>
+      <td>dunno</td>
+      <td>CIRCLE</td>
+      <td>NE</td>
+      <td>9/4/2014 23:20</td>
+    </tr>
+    <tr>
+      <th>80539</th>
+      <td>Uhrichsville</td>
+      <td>dunno</td>
+      <td>LIGHT</td>
+      <td>OH</td>
+      <td>9/5/2014 1:14</td>
+    </tr>
+    <tr>
+      <th>80540</th>
+      <td>Tucson</td>
+      <td>RED BLUE</td>
+      <td>dunno</td>
+      <td>AZ</td>
+      <td>9/5/2014 2:40</td>
+    </tr>
+    <tr>
+      <th>80541</th>
+      <td>Orland park</td>
+      <td>RED</td>
+      <td>LIGHT</td>
+      <td>IL</td>
+      <td>9/5/2014 3:43</td>
+    </tr>
+    <tr>
+      <th>80542</th>
+      <td>Loughman</td>
+      <td>dunno</td>
+      <td>LIGHT</td>
+      <td>FL</td>
+      <td>9/5/2014 5:30</td>
+    </tr>
+  </tbody>
+</table>
+<p>80543 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># replace missing values with most common value</span>
+<span class="n">ufo</span><span class="p">[</span><span class="s1">&#39;Shape Reported&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LIGHT        16332
+TRIANGLE      7816
+CIRCLE        7725
+FIREBALL      6249
+OTHER         5506
+SPHERE        5231
+DISK          5226
+OVAL          3721
+FORMATION     2405
+CIGAR         1983
+VARIOUS       1957
+FLASH         1329
+RECTANGLE     1295
+CYLINDER      1252
+DIAMOND       1152
+CHEVRON        940
+EGG            733
+TEARDROP       723
+CONE           310
+CROSS          241
+DELTA            7
+ROUND            2
+CRESCENT         2
+DOME             1
+PYRAMID          1
+FLARE            1
+HEXAGON          1
+Name: Shape Reported, dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># replace missing values with most common value</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span><span class="p">[</span><span class="s1">&#39;Shape Reported&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;LIGHT&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        TRIANGLE
+1           OTHER
+2            OVAL
+3            DISK
+4           LIGHT
+           ...   
+80538      CIRCLE
+80539       LIGHT
+80540       LIGHT
+80541       LIGHT
+80542       LIGHT
+Name: Shape Reported, Length: 80543, dtype: object
 </pre></div>
 </div>
 </div>
@@ -1093,21 +1746,117 @@ memory usage: 27.7+ KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># be careful with comparisons!!!</span>
+<span class="n">ufo</span><span class="p">[</span><span class="n">ufo</span><span class="p">[</span><span class="s1">&#39;Shape Reported&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>Colors Reported</th>
+      <th>Shape Reported</th>
+      <th>State</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <section id="problem">
 <h4>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h4>
 <ol class="arabic simple">
 <li><p>Read in the dataset <code class="docutils literal notranslate"><span class="pre">churn_missing.csv</span></code> in the data folder, assign to a variable <code class="docutils literal notranslate"><span class="pre">churn</span></code> below.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/churn_missing.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="2">
 <li><p>Are there any missing values?  What columns are they in and how many are there?</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3333 entries, 0 to 3332
+Data columns (total 20 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   state           3333 non-null   object 
+ 1   account_length  3333 non-null   int64  
+ 2   area_code       3333 non-null   int64  
+ 3   intl_plan       3333 non-null   object 
+ 4   vmail_plan      2933 non-null   object 
+ 5   vmail_message   2933 non-null   float64
+ 6   day_mins        3333 non-null   float64
+ 7   day_calls       3333 non-null   int64  
+ 8   day_charge      3333 non-null   float64
+ 9   eve_mins        3333 non-null   float64
+ 10  eve_calls       3333 non-null   int64  
+ 11  eve_charge      3333 non-null   float64
+ 12  night_mins      3333 non-null   float64
+ 13  night_calls     3333 non-null   int64  
+ 14  night_charge    3333 non-null   float64
+ 15  intl_mins       3333 non-null   float64
+ 16  intl_calls      3333 non-null   int64  
+ 17  intl_charge     3333 non-null   float64
+ 18  custserv_calls  3333 non-null   int64  
+ 19  churn           3333 non-null   bool   
+dtypes: bool(1), float64(9), int64(7), object(3)
+memory usage: 498.1+ KB
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>What do you think we should do about these?  Drop, replace, impute?</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn</span><span class="o">.</span><span class="n">vmail_message</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="c1">#I think we want to keep as much as we can and using the mean to fill things in should be okay</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    2933.000000
+mean        8.022503
+std        13.657855
+min         0.000000
+25%         0.000000
+50%         0.000000
+75%        19.000000
+max        51.000000
+Name: vmail_message, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="groupby">
 <h4><code class="docutils literal notranslate"><span class="pre">groupby</span></code><a class="headerlink" href="#groupby" title="Permalink to this heading">#</a></h4>
@@ -1557,15 +2306,65 @@ Name: C, dtype: float64
 <ol class="arabic simple">
 <li><p>Average tip for smokers vs. non-smokers.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;smoker&#39;</span><span class="p">)[</span><span class="s1">&#39;tip&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>smoker
+Yes    3.008710
+No     2.991854
+Name: tip, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="2">
 <li><p>Average bill by day and time.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">])[</span><span class="s1">&#39;total_bill&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>day   time  
+Thur  Lunch     17.664754
+      Dinner    18.780000
+Fri   Lunch     12.845714
+      Dinner    19.663333
+Sat   Lunch           NaN
+      Dinner    20.441379
+Sun   Lunch           NaN
+      Dinner    21.410000
+Name: total_bill, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>What is another question <code class="docutils literal notranslate"><span class="pre">groupby</span></code> can help us answer here?</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#if size of the party made a difference in tip amount</span>
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="4">
 <li><p>What does the <code class="docutils literal notranslate"><span class="pre">as_index</span></code> argument do?  Demonstrate an example.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#stops the groups from being the index of the result</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="datetime">
@@ -1976,15 +2775,138 @@ memory usage: 192.7 KB
 <ol class="arabic simple">
 <li><p>Return to the ufo data and convert the Time column to a datetime object.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ufo</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">])</span>
+<span class="n">ufo</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 80543 entries, 0 to 80542
+Data columns (total 5 columns):
+ #   Column           Non-Null Count  Dtype         
+---  ------           --------------  -----         
+ 0   City             80496 non-null  object        
+ 1   Colors Reported  17034 non-null  object        
+ 2   Shape Reported   72141 non-null  object        
+ 3   State            80543 non-null  object        
+ 4   Time             80543 non-null  datetime64[ns]
+dtypes: datetime64[ns](1), object(4)
+memory usage: 3.1+ MB
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="2">
 <li><p>Set the Time column as the index column of the data.</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>Sort it</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ufo</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <ol class="arabic simple" start="4">
 <li><p>Create a new dataframe with ufo sightings since January 1, 1999</p></li>
 </ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_thousands</span> <span class="o">=</span> <span class="n">ufo</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;1999&#39;</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_thousands</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>Colors Reported</th>
+      <th>Shape Reported</th>
+      <th>State</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1999-01-01 02:30:00</th>
+      <td>Loma Rica</td>
+      <td>NaN</td>
+      <td>LIGHT</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>1999-01-01 03:00:00</th>
+      <td>Bauxite</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>AR</td>
+    </tr>
+    <tr>
+      <th>1999-01-01 14:00:00</th>
+      <td>Florence</td>
+      <td>NaN</td>
+      <td>CYLINDER</td>
+      <td>SC</td>
+    </tr>
+    <tr>
+      <th>1999-01-01 15:00:00</th>
+      <td>Lake Henshaw</td>
+      <td>NaN</td>
+      <td>CIGAR</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>1999-01-01 17:15:00</th>
+      <td>Wilmington Island</td>
+      <td>NaN</td>
+      <td>LIGHT</td>
+      <td>GA</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </section>
 </section>
 </section>

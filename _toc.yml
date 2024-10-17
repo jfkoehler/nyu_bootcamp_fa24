@@ -19,7 +19,7 @@ parts:
     - file: html_data
     - file: intro_probability
     - file: hyp_testing
-#     - file: folium_exs-clean
+    - file: significance
 #     - file: intro_to_git_and_github       
 #   - caption: Introduction to Predictive Modeling
 #     chapters:
