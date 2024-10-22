@@ -23,7 +23,7 @@ parts:
 #     - file: intro_to_git_and_github       
   - caption: Introduction to Predictive Modeling
     chapters:
-    - file: linear-regression-intro
+    - file: regression_intro
 #     - file: practice_regression
 #     - file: polynomial_models
 #     - file: knn_classification
