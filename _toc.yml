@@ -21,9 +21,9 @@ parts:
     - file: hyp_testing
     - file: significance
 #     - file: intro_to_git_and_github       
-#   - caption: Introduction to Predictive Modeling
-#     chapters:
-#     - file: linear-regression-intro
+  - caption: Introduction to Predictive Modeling
+    chapters:
+    - file: linear-regression-intro
 #     - file: practice_regression
 #     - file: polynomial_models
 #     - file: knn_classification

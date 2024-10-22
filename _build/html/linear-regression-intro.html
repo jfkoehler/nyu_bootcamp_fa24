@@ -1,0 +1,1379 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to Linear Regression &#8212; Stern Data Bootcamp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'linear-regression-intro';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Assignment 1" href="homework/homework_I.html" />
+    <link rel="prev" title="Inference and Hypothesis Testing" href="significance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="syllabus.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Stern Data Bootcamp - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Stern Data Bootcamp - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="syllabus.html">
+                    Data Bootcamp
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_fundamentals_one.html">Python Fundamentals 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_fundamentals_two.html">Python Fundamentals 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oop.html">Functions and Classes</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="intro_to_numpy.html">Intro to numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_pandas.html">Intro to pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_II.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dates_intro_to_plotting.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_plotting.html"><code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting_seaborn.html">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_apis.html">Accessing Data with API’s</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="html_data.html">Extracting Data From HTML</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intro_probability.html">Probability Distributions: Discrete and Continuous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyp_testing.html">Inference and Hypothesis Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significance.html">Inference and Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Predictive Modeling</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Linear Regression</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_I.html">Assignment 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_II.html">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_III.html">Homework 3: Advanced Pandas and Introductory Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_IV.html">API’s and Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-1.html">Climb the Ladder!</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-2.html">Climb the Ladder!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-3.html">Climb the Ladder!</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotting_with_bokeh.html">Plotting with <code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotly.html">BONUS: <code class="docutils literal notranslate"><span class="pre">plotly</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/intro_ipywidgets.html">Using interactive widgets with the notebook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jfkoehler/nyu_bootcamp_fa24/blob/master/linear-regression-intro.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24/issues/new?title=Issue%20on%20page%20%2Flinear-regression-intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/linear-regression-intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Linear Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Linear Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-make-a-model-for-car-prices">Let’s make a model for car prices. 🚙</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-null-baseline-model">The Null (Baseline) model ⭐️</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-could-we-improve-our-model">How could we improve our model?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-add-year-as-a-predictor">Let’s add year as a predictor</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#correlations">Correlations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-the-relationsip-between-year-and-price-look-like">What does the relationsip between year and price  look like?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ols-regression-line">The OLS regression line</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#is-that-a-line-better-fit-the-data-than-our-old-line-that-was-just-the-mean">Is that a line better fit the data than our old line that was just the mean?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lines">Lines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errors">Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ols-regression-modeling">OLS Regression Modeling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-model-is-trying-to-figure-out-the-best-betas"><strong>Our model is trying to figure out the best betas. 😀</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hat-y-is-your-model-s-prediction"><span class="math notranslate nohighlight">\(\hat y\)</span> is your model’s prediction!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-fit-an-ols-regression-model-in-scikit-learn">Let’s fit an OLS regression model in scikit-learn.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-assemble-our-x-and-y-variables">Step 1: Assemble our X and y variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn-estimators-expect-a-two-dimensional-object">Scikit-learn estimators expect a two dimensional object.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-shape-of-y">What’s the shape of y?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-the-target-variable-a-pandas-series-or-1d-numpy-array">Why is the target variable a pandas Series or 1D numpy array?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-import-our-model-class">Step 2: Import our model class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-instantiate-the-model">Step 3: Instantiate the model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-lr">What is <code class="docutils literal notranslate"><span class="pre">lr</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-fit-the-model">Step 4: Fit the model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-we-just-do">What did we just do?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-check-our-model-weights">Step 5: Check our model weights</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#take-a-peek-at-the-model-s-intercept-coefficient">Take a peek at the model’s intercept coefficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-that-mean">What does that mean?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-that-coefficient-mean-beta-1">What does that coefficient mean (<span class="math notranslate nohighlight">\(\beta_1\)</span>)?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-every-one-unit-increase-in-year-the-price-of-the-car-would-be-expected-to-increase-by-1-527">⭐️ For every one unit increase in year, the price of the car would be expected to increase by $1,527 ⭐️</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-make-predictions">Step 6: Make predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-don-t-we-pass-y">Why don’t we pass <code class="docutils literal notranslate"><span class="pre">y</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-type-of-object-is-y-pred">What type of object is y_pred?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-predictions">Plot Predictions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-score-the-predictions">Step 7: Score the predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error-is-a-popular-scoring-metric">Mean squared error is a popular scoring metric.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mse-by-hand">MSE by hand:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-residuals-a-k-a-errors-the-left-over-values">Create residuals (a.k.a. errors). The left-over values.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-mse">Compute the MSE</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-our-model-with-year-model-compare-to-our-null-model">How does our model with year model compare to our null model?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-model-fits-the-data-better">Which model fits the data better?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-made-your-first-linear-regression-model">You made your first Linear Regression Model🎉</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-exercise-with-electricity">Linear Regression Exercise with Electricity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data">The Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-ll-limit-our-focus-to-only-days-in-which-it-was-at-least-15-degrees-celsius-59-f">We’ll limit our focus to only days in which it was at least 15 degrees Celsius (59 F)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-temperature-vs-demand">Plot temperature vs. demand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Step 1: Assemble our X and y variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Step 2: Import our model class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step 3: Instantiate the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Step 4: Fit the model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Step 5: Check our model weights</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpret-beta-1">Interpret <span class="math notranslate nohighlight">\(\beta_1\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Step 6: Make predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-predictions">Plot the predictions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-score-the-predictions-with-mse">Step 7: Score the predictions with MSE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-predictions-for-the-null-model">Create the predictions for the “null model”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-null-mse">The null MSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#does-your-ols-regression-model-better-fit-the-data-than-a-null-model">Does your OLS regression model better fit the data than a null model? ⚠</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dummyregressor">The <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-linear-regression">
+<h1>Introduction to Linear Regression<a class="headerlink" href="#introduction-to-linear-regression" title="Permalink to this heading">#</a></h1>
+<p><strong>Objectives</strong></p>
+<ul class="simple">
+<li><p>Explain what supervised learning is</p></li>
+<li><p>Explain what a regression problem is</p></li>
+<li><p>Explain what a model is</p></li>
+<li><p>Set up a DataFrame for modeling (without TTS)</p></li>
+<li><p>Explain what linear regression is doing at a high level</p></li>
+<li><p>Instantiate, fit, generate predictions from, and evaluate a linear regression model in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p></li>
+<li><p>Interpret the coefficients of a linear regression model</p></li>
+</ul>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
+<section id="let-s-make-a-model-for-car-prices">
+<h3>Let’s make a model for car prices. 🚙<a class="headerlink" href="#let-s-make-a-model-for-car-prices" title="Permalink to this heading">#</a></h3>
+<section id="imports">
+<h4>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data are from <a class="reference external" href="https://www.carvana.com/cars">carvana</a>.</p>
+<p>A DataFrame of prices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cars</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;price&#39;</span><span class="p">:</span>
+    <span class="p">[</span><span class="mi">34990</span><span class="p">,</span> <span class="mi">32590</span><span class="p">,</span> <span class="mi">25990</span><span class="p">,</span> <span class="mi">32590</span><span class="p">,</span> <span class="mi">30990</span><span class="p">,</span> <span class="mi">36990</span><span class="p">,</span> <span class="mi">44990</span><span class="p">,</span> <span class="mi">28990</span><span class="p">,</span> <span class="mi">39990</span><span class="p">,</span> 
+     <span class="mi">30990</span><span class="p">,</span> <span class="mi">31990</span><span class="p">,</span> <span class="mi">28590</span><span class="p">,</span> <span class="mi">15990</span><span class="p">,</span> <span class="mi">21990</span><span class="p">,</span> <span class="mi">35590</span><span class="p">,</span> <span class="mi">27990</span><span class="p">,</span> <span class="mi">21990</span><span class="p">,</span> <span class="mi">24990</span><span class="p">,</span> <span class="mi">21990</span><span class="p">,</span> <span class="mi">20590</span><span class="p">,</span> <span class="mi">22990</span><span class="p">,</span> <span class="mi">19990</span><span class="p">],</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cars</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#histogram of prices</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_cars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="the-null-baseline-model">
+<h2>The Null (Baseline) model ⭐️<a class="headerlink" href="#the-null-baseline-model" title="Permalink to this heading">#</a></h2>
+<p>If we had to guess the price of a new data point - with no other information - what would you pick?</p>
+</section>
+<section id="how-could-we-improve-our-model">
+<h2>How could we improve our model?<a class="headerlink" href="#how-could-we-improve-our-model" title="Permalink to this heading">#</a></h2>
+<section id="let-s-add-year-as-a-predictor">
+<h3>Let’s add year as a predictor<a class="headerlink" href="#let-s-add-year-as-a-predictor" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">=</span><span class="p">[</span>
+    <span class="mi">2019</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> 
+    <span class="mi">2014</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">2018</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cars</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">year</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cars</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#scatterplot </span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="correlations">
+<h4>Correlations<a class="headerlink" href="#correlations" title="Permalink to this heading">#</a></h4>
+<p>The strength of a Linear Relationship between two variables.</p>
+<p><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Correlation_examples2.svg/800px-Correlation_examples2.svg.png" /></p>
+<p>Mathematically this is expressed as:</p>
+<div class="math notranslate nohighlight">
+\[{\displaystyle r_{xy}\quad {\overset {\underset {\mathrm {def} }{}}{=}}\quad {\frac {\sum \limits _{i=1}^{n}(x_{i}-{\bar {x}})(y_{i}-{\bar {y}})}{(n-1)s_{x}s_{y}}}={\frac {\sum \limits _{i=1}^{n}(x_{i}-{\bar {x}})(y_{i}-{\bar {y}})}{\sqrt {\sum \limits _{i=1}^{n}(x_{i}-{\bar {x}})^{2}\sum \limits _{i=1}^{n}(y_{i}-{\bar {y}})^{2}}}},}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#examine the correlation</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-does-the-relationsip-between-year-and-price-look-like">
+<h4>What does the relationsip between year and price  look like?<a class="headerlink" href="#what-does-the-relationsip-between-year-and-price-look-like" title="Permalink to this heading">#</a></h4>
+<p>Newer year the higher the price</p>
+</section>
+<section id="the-ols-regression-line">
+<h4>The OLS regression line<a class="headerlink" href="#the-ols-regression-line" title="Permalink to this heading">#</a></h4>
+<p>Seaborn will plot the best fit line for us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#compare the model to the baseline</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="is-that-a-line-better-fit-the-data-than-our-old-line-that-was-just-the-mean">
+<h4>Is that a line better fit the data than our old line that was just the mean?<a class="headerlink" href="#is-that-a-line-better-fit-the-data-than-our-old-line-that-was-just-the-mean" title="Permalink to this heading">#</a></h4>
+<p>Looks like it. We’ll discuss evaluation metrics in a bit.</p>
+<p>Let’s look at how we make a regression line.</p>
+</section>
+</section>
+</section>
+<section id="lines">
+<h2>Lines<a class="headerlink" href="#lines" title="Permalink to this heading">#</a></h2>
+<p>This was the equation I learned for a line. Look familiar?</p>
+<div class="math notranslate nohighlight">
+\[ \large y = mx + b\]</div>
+<p>In data science it gets changed to</p>
+<div class="math notranslate nohighlight">
+\[ \large  y = \beta_0 + \beta_1 x_1 \]</div>
+<section id="errors">
+<h3>Errors<a class="headerlink" href="#errors" title="Permalink to this heading">#</a></h3>
+<p>Our model isn’t going to be perfect. The things our model doesn’t capture are errors and denoted by <span class="math notranslate nohighlight">\(\epsilon\)</span> (epsilon).</p>
+<div class="math notranslate nohighlight">
+\[ \large y = \beta_0 + \beta_1 x_1 + \epsilon \]</div>
+</section>
+<section id="ols-regression-modeling">
+<h3>OLS Regression Modeling<a class="headerlink" href="#ols-regression-modeling" title="Permalink to this heading">#</a></h3>
+<p>We have <em>x</em> and we have <em>y</em>. That’s our data.</p>
+</section>
+</section>
+<section id="our-model-is-trying-to-figure-out-the-best-betas">
+<h2><strong>Our model is trying to figure out the best betas. 😀</strong><a class="headerlink" href="#our-model-is-trying-to-figure-out-the-best-betas" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[ \large y = \hat \beta_0 + \hat \beta_1 x_1 \]</div>
+<p><span class="math notranslate nohighlight">\(\hat \beta_0\)</span> is the y-intercept that our model learns. The point where the line crosses 0 on the y-axis.</p>
+<p><span class="math notranslate nohighlight">\(\hat \beta_1\)</span> is the coefficient that we multiply by our <span class="math notranslate nohighlight">\(x_1\)</span> variable. It’s the slope. For ever 1 unit it change in <span class="math notranslate nohighlight">\(x_1\)</span>, y increases by the value of <span class="math notranslate nohighlight">\(\beta1\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(y\)</span> is the ground truth of our target variable.</p>
+<div class="math notranslate nohighlight">
+\[ \large \hat y =  \beta_0 +  \beta_1 x_1 \]</div>
+<p>When we have a model that has been fit with the data (the betas have been computed) we can plug in a new <em>x</em> value and solve for <span class="math notranslate nohighlight">\(\hat y\)</span>.</p>
+<section id="hat-y-is-your-model-s-prediction">
+<h3><span class="math notranslate nohighlight">\(\hat y\)</span> is your model’s prediction!<a class="headerlink" href="#hat-y-is-your-model-s-prediction" title="Permalink to this heading">#</a></h3>
+</section>
+<hr class="docutils" />
+<section id="let-s-fit-an-ols-regression-model-in-scikit-learn">
+<h3>Let’s fit an OLS regression model in scikit-learn.<a class="headerlink" href="#let-s-fit-an-ols-regression-model-in-scikit-learn" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="step-1-assemble-our-x-and-y-variables">
+<h3>Step 1: Assemble our X and y variables<a class="headerlink" href="#step-1-assemble-our-x-and-y-variables" title="Permalink to this heading">#</a></h3>
+<p>We need an X matrix that is n-by-p.</p>
+<ul class="simple">
+<li><p>n = rows</p></li>
+<li><p>p = features</p></li>
+</ul>
+<p>A feature just means a predictor column.</p>
+<p>In the simple linear regression case, p = 1. We have one feature. Usually you’ll have more than 1 feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># X = year</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_cars</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">]]</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="scikit-learn-estimators-expect-a-two-dimensional-object">
+<h3>Scikit-learn estimators expect a two dimensional object.<a class="headerlink" href="#scikit-learn-estimators-expect-a-two-dimensional-object" title="Permalink to this heading">#</a></h3>
+<p>Usually we have more than one predictor variable. Not here.</p>
+<p>y is the outcome variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># y = price</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="what-s-the-shape-of-y">
+<h4>What’s the shape of y?<a class="headerlink" href="#what-s-the-shape-of-y" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shape of X</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shape of y</span>
+<span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="why-is-the-target-variable-a-pandas-series-or-1d-numpy-array">
+<h4>Why is the target variable a pandas Series or 1D numpy array?<a class="headerlink" href="#why-is-the-target-variable-a-pandas-series-or-1d-numpy-array" title="Permalink to this heading">#</a></h4>
+<p>Scikit-learn supervised learning estimators are expecting a single output column. Estimators predict one value for each observation, generally.</p>
+</section>
+</section>
+<section id="step-2-import-our-model-class">
+<h3>Step 2: Import our model class<a class="headerlink" href="#step-2-import-our-model-class" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-instantiate-the-model">
+<h3>Step 3: Instantiate the model<a class="headerlink" href="#step-3-instantiate-the-model" title="Permalink to this heading">#</a></h3>
+<section id="what-is-lr">
+<h4>What is <code class="docutils literal notranslate"><span class="pre">lr</span></code>?<a class="headerlink" href="#what-is-lr" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+<section id="step-4-fit-the-model">
+<h3>Step 4: Fit the model<a class="headerlink" href="#step-4-fit-the-model" title="Permalink to this heading">#</a></h3>
+<section id="what-did-we-just-do">
+<h4>What did we just do?<a class="headerlink" href="#what-did-we-just-do" title="Permalink to this heading">#</a></h4>
+<p>Called the fit method on the object. We passed it X and y, in that order.</p>
+<p>The fit method did matrix multiplication to estimate <span class="math notranslate nohighlight">\(\beta_0 \)</span> and <span class="math notranslate nohighlight">\(\beta_1 \)</span>.</p>
+</section>
+</section>
+</section>
+<section id="step-5-check-our-model-weights">
+<h2>Step 5: Check our model weights<a class="headerlink" href="#step-5-check-our-model-weights" title="Permalink to this heading">#</a></h2>
+<section id="take-a-peek-at-the-model-s-intercept-coefficient">
+<h3>Take a peek at the model’s intercept coefficient<a class="headerlink" href="#take-a-peek-at-the-model-s-intercept-coefficient" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#intercept</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-does-that-mean">
+<h3>What does that mean?<a class="headerlink" href="#what-does-that-mean" title="Permalink to this heading">#</a></h3>
+<p>A car from year 0 wouldn’t be worth anything. The model doesn’t understand classic cars. 😉</p>
+</section>
+<section id="what-does-that-coefficient-mean-beta-1">
+<h3>What does that coefficient mean (<span class="math notranslate nohighlight">\(\beta_1\)</span>)?<a class="headerlink" href="#what-does-that-coefficient-mean-beta-1" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#coef</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have the following model of reality:</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = -3,051,883 + 1,527  x\]</div>
+</section>
+<section id="for-every-one-unit-increase-in-year-the-price-of-the-car-would-be-expected-to-increase-by-1-527">
+<h3>⭐️ For every one unit increase in year, the price of the car would be expected to increase by $1,527 ⭐️<a class="headerlink" href="#for-every-one-unit-increase-in-year-the-price-of-the-car-would-be-expected-to-increase-by-1-527" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="step-6-make-predictions">
+<h2>Step 6: Make predictions<a class="headerlink" href="#step-6-make-predictions" title="Permalink to this heading">#</a></h2>
+<p>If we had new data points for year we could pass it to the predict method to generate price predictions.</p>
+<p>We don’t have any new data, so let’s just see what predictions our model would have made. This is the same as saying “Find the x value for a prediction on the plot and go up to our line. That value for y is our prediction.”</p>
+<p>We do this for all the X values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># predictions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="why-don-t-we-pass-y">
+<h3>Why don’t we pass <code class="docutils literal notranslate"><span class="pre">y</span></code>?<a class="headerlink" href="#why-don-t-we-pass-y" title="Permalink to this heading">#</a></h3>
+<p>We are trying to predict y!</p>
+</section>
+<section id="what-type-of-object-is-y-pred">
+<h3>What type of object is y_pred?<a class="headerlink" href="#what-type-of-object-is-y-pred" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># chect yhat</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-predictions">
+<h3>Plot Predictions<a class="headerlink" href="#plot-predictions" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot predictions</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-7-score-the-predictions">
+<h2>Step 7: Score the predictions<a class="headerlink" href="#step-7-score-the-predictions" title="Permalink to this heading">#</a></h2>
+<section id="mean-squared-error-is-a-popular-scoring-metric">
+<h3>Mean squared error is a popular scoring metric.<a class="headerlink" href="#mean-squared-error-is-a-popular-scoring-metric" title="Permalink to this heading">#</a></h3>
+<p>Lower is better. That’s the case whenever “error” is in the metric name.</p>
+<div class="math notranslate nohighlight">
+\[ MSE = \frac{1}{n} \sum (y_i - \hat{y}_i)^2 \]</div>
+<div class="math notranslate nohighlight">
+\[ = \frac{1}{n} \sum e_i^2 \]</div>
+</section>
+<section id="mse-by-hand">
+<h3>MSE by hand:<a class="headerlink" href="#mse-by-hand" title="Permalink to this heading">#</a></h3>
+<section id="create-residuals-a-k-a-errors-the-left-over-values">
+<h4>Create residuals (a.k.a. errors). The left-over values.<a class="headerlink" href="#create-residuals-a-k-a-errors-the-left-over-values" title="Permalink to this heading">#</a></h4>
+<p><em>y</em> is our ground truth. The actual values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the ground truth</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># our model&#39;s predictions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># residuals</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># examine residual histogram</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Square the residuals. Then take the mean.</p>
+</section>
+<section id="compute-the-mse">
+<h4>Compute the MSE<a class="headerlink" href="#compute-the-mse" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># square the residuals aka square the errors</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check our answer with the result of the scikit-learn function that computes MSE for us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mse</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#use mean_squared error</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="how-does-our-model-with-year-model-compare-to-our-null-model">
+<h3>How does our model with year model compare to our null model?<a class="headerlink" href="#how-does-our-model-with-year-model-compare-to-our-null-model" title="Permalink to this heading">#</a></h3>
+<p>Our null model, also known as the baseline model, is just guessing the mean every time.</p>
+<p>There are a bunch of ways to make a 1D array that’s the same length as y, filled with the mean value.</p>
+<p><code class="docutils literal notranslate"><span class="pre">np.full_like</span></code> is a nice one. Check out the function signature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use np.full_like</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mean squared error of baseline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="which-model-fits-the-data-better">
+<h4>Which model fits the data better?<a class="headerlink" href="#which-model-fits-the-data-better" title="Permalink to this heading">#</a></h4>
+<p>Our regression model wins!</p>
+</section>
+</section>
+</section>
+<section id="you-made-your-first-linear-regression-model">
+<h2>You made your first Linear Regression Model🎉<a class="headerlink" href="#you-made-your-first-linear-regression-model" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="linear-regression-exercise-with-electricity">
+<h1>Linear Regression Exercise with Electricity<a class="headerlink" href="#linear-regression-exercise-with-electricity" title="Permalink to this heading">#</a></h1>
+<p>Now you make a Linear Regression Model and Null model for electricity demand data. Ignore that there is potentially some time series component to the data.</p>
+<section id="the-data">
+<h2>The Data<a class="headerlink" href="#the-data" title="Permalink to this heading">#</a></h2>
+<p>Data source: <a class="reference external" href="https://www.rdocumentation.org/packages/fpp2/versions/2.3/topics/elecdemand">here</a></p>
+<p>The data consist of electricity demand for Victoria, Australia every half-hour in 2014. We have three columns:</p>
+<ul class="simple">
+<li><p>Total electricity demand (in gigawatts)</p></li>
+<li><p>Whether or not it is a workday (0/1)</p></li>
+<li><p>Temperature (Celsius)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elec</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/jfkoehler/nyu_bootcamp_fa23/main/data/elecdemand.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elec</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="we-ll-limit-our-focus-to-only-days-in-which-it-was-at-least-15-degrees-celsius-59-f">
+<h3>We’ll limit our focus to only days in which it was at least 15 degrees Celsius (59 F)<a class="headerlink" href="#we-ll-limit-our-focus-to-only-days-in-which-it-was-at-least-15-degrees-celsius-59-f" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#subset to temp &gt; 15</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-temperature-vs-demand">
+<h3>Plot temperature vs. demand<a class="headerlink" href="#plot-temperature-vs-demand" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#scatter</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Step 1: Assemble our X and y variables<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>We need an X matrix that is n-by-p (in this case, p = 1)</p>
+<ul class="simple">
+<li><p>n = rows</p></li>
+<li><p>p = features</p></li>
+</ul>
+<p>X is the predictor variable. We are looking at temperature.</p>
+<p>y is the outcome variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#x and y</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Step 2: Import our model class<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from sklearn.linear_model import LinearRegression  # already imported</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>Step 3: Instantiate the model<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="id4">
+<h3>Step 4: Fit the model<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id5">
+<h2>Step 5: Check our model weights<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<section id="interpret-beta-1">
+<h3>Interpret <span class="math notranslate nohighlight">\(\beta_1\)</span><a class="headerlink" href="#interpret-beta-1" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id6">
+<h2>Step 6: Make predictions<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<section id="plot-the-predictions">
+<h3>Plot the predictions<a class="headerlink" href="#plot-the-predictions" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="step-7-score-the-predictions-with-mse">
+<h2>Step 7: Score the predictions with MSE<a class="headerlink" href="#step-7-score-the-predictions-with-mse" title="Permalink to this heading">#</a></h2>
+<section id="create-the-predictions-for-the-null-model">
+<h3>Create the predictions for the “null model”<a class="headerlink" href="#create-the-predictions-for-the-null-model" title="Permalink to this heading">#</a></h3>
+<section id="the-null-mse">
+<h4>The null MSE<a class="headerlink" href="#the-null-mse" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="does-your-ols-regression-model-better-fit-the-data-than-a-null-model">
+<h4>Does your OLS regression model better fit the data than a null model? ⚠<a class="headerlink" href="#does-your-ols-regression-model-better-fit-the-data-than-a-null-model" title="Permalink to this heading">#</a></h4>
+<p>You’ve seen linear regression with a single predictor variable. That’s called <em>simple linear regression</em>. Next time we will discuss multiple regression with many input variables.</p>
+</section>
+<section id="the-dummyregressor">
+<h4>The <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code><a class="headerlink" href="#the-dummyregressor" title="Permalink to this heading">#</a></h4>
+<p>An easier way to set a baseline.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instantiate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#predict</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#score</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="significance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Inference and Hypothesis Testing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="homework/homework_I.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Assignment 1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction to Linear Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-make-a-model-for-car-prices">Let’s make a model for car prices. 🚙</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-null-baseline-model">The Null (Baseline) model ⭐️</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-could-we-improve-our-model">How could we improve our model?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-add-year-as-a-predictor">Let’s add year as a predictor</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#correlations">Correlations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-the-relationsip-between-year-and-price-look-like">What does the relationsip between year and price  look like?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ols-regression-line">The OLS regression line</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#is-that-a-line-better-fit-the-data-than-our-old-line-that-was-just-the-mean">Is that a line better fit the data than our old line that was just the mean?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lines">Lines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errors">Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ols-regression-modeling">OLS Regression Modeling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-model-is-trying-to-figure-out-the-best-betas"><strong>Our model is trying to figure out the best betas. 😀</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hat-y-is-your-model-s-prediction"><span class="math notranslate nohighlight">\(\hat y\)</span> is your model’s prediction!</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-fit-an-ols-regression-model-in-scikit-learn">Let’s fit an OLS regression model in scikit-learn.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-assemble-our-x-and-y-variables">Step 1: Assemble our X and y variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn-estimators-expect-a-two-dimensional-object">Scikit-learn estimators expect a two dimensional object.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-shape-of-y">What’s the shape of y?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-the-target-variable-a-pandas-series-or-1d-numpy-array">Why is the target variable a pandas Series or 1D numpy array?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-import-our-model-class">Step 2: Import our model class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-instantiate-the-model">Step 3: Instantiate the model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-lr">What is <code class="docutils literal notranslate"><span class="pre">lr</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-fit-the-model">Step 4: Fit the model</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-we-just-do">What did we just do?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-check-our-model-weights">Step 5: Check our model weights</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#take-a-peek-at-the-model-s-intercept-coefficient">Take a peek at the model’s intercept coefficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-that-mean">What does that mean?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-that-coefficient-mean-beta-1">What does that coefficient mean (<span class="math notranslate nohighlight">\(\beta_1\)</span>)?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-every-one-unit-increase-in-year-the-price-of-the-car-would-be-expected-to-increase-by-1-527">⭐️ For every one unit increase in year, the price of the car would be expected to increase by $1,527 ⭐️</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-make-predictions">Step 6: Make predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-don-t-we-pass-y">Why don’t we pass <code class="docutils literal notranslate"><span class="pre">y</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-type-of-object-is-y-pred">What type of object is y_pred?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-predictions">Plot Predictions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-score-the-predictions">Step 7: Score the predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error-is-a-popular-scoring-metric">Mean squared error is a popular scoring metric.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mse-by-hand">MSE by hand:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-residuals-a-k-a-errors-the-left-over-values">Create residuals (a.k.a. errors). The left-over values.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-mse">Compute the MSE</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-our-model-with-year-model-compare-to-our-null-model">How does our model with year model compare to our null model?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-model-fits-the-data-better">Which model fits the data better?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#you-made-your-first-linear-regression-model">You made your first Linear Regression Model🎉</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-exercise-with-electricity">Linear Regression Exercise with Electricity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data">The Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-ll-limit-our-focus-to-only-days-in-which-it-was-at-least-15-degrees-celsius-59-f">We’ll limit our focus to only days in which it was at least 15 degrees Celsius (59 F)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-temperature-vs-demand">Plot temperature vs. demand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Step 1: Assemble our X and y variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Step 2: Import our model class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step 3: Instantiate the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Step 4: Fit the model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Step 5: Check our model weights</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpret-beta-1">Interpret <span class="math notranslate nohighlight">\(\beta_1\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Step 6: Make predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-predictions">Plot the predictions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-score-the-predictions-with-mse">Step 7: Score the predictions with MSE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-predictions-for-the-null-model">Create the predictions for the “null model”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-null-mse">The null MSE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#does-your-ols-regression-model-better-fit-the-data-than-a-null-model">Does your OLS regression model better fit the data than a null model? ⚠</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dummyregressor">The <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lenny
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
