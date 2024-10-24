@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'regression_intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Assignment 1" href="homework/homework_I.html" />
+    <link rel="next" title="Regression Part II" href="practice_regression.html" />
     <link rel="prev" title="Inference and Hypothesis Testing" href="significance.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -198,6 +198,18 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Predictive Modeling</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practice_regression.html">Regression Part II</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="polynomial_models.html">Model Complexity and Evaluation</a></li>
+
+
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
@@ -802,7 +814,7 @@ The MSE for slope  0.200 is  2.667
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">minimize</span><span class="p">(</span><span class="n">mse</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">minimize</span><span class="p">(</span><span class="n">mse</span><span class="p">,</span> <span class="mf">.1</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -870,7 +882,7 @@ The MSE for slope  0.200 is  2.667
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f8b43395430&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f8b45d14250&gt;
 </pre></div>
 </div>
 <img alt="_images/00754c7da4f4dac73ae9344ac0ac5b5566df442875cf522a7404078dccef0124.png" src="_images/00754c7da4f4dac73ae9344ac0ac5b5566df442875cf522a7404078dccef0124.png" />
@@ -965,19 +977,19 @@ The MSE for slope  0.200 is  2.667
         <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">=</span> <span class="kc">None</span>
         
     <span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">betas</span><span class="p">):</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">betas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="c1">#betas that minimize</span>
-        
+        <span class="n">betas</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mse</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">x</span>
         <span class="c1">#set coef_</span>
-        
+        <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span> <span class="o">=</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="c1">#set intercept_</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">=</span> <span class="n">betas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         
-        <span class="k">pass</span>
     
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="o">*</span><span class="n">x</span>
     
     
 </pre></div>
@@ -1012,6 +1024,46 @@ The MSE for slope  0.200 is  2.667
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#make predictions on all data</span>
 <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      2.704636
+1      2.006223
+2      3.126835
+3      3.407250
+4      3.502822
+         ...   
+239    3.969131
+240    3.774836
+241    3.301175
+242    2.791807
+243    2.892630
+Name: total_bill, Length: 244, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10502447914641161
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9202703450693733
 </pre></div>
 </div>
 </div>
@@ -1103,7 +1155,7 @@ The MSE for slope  0.200 is  2.667
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/511707b12e89861130b00b1b85f4e8ad542fa8595dde928e424d75b30dbf4305.png" src="_images/511707b12e89861130b00b1b85f4e8ad542fa8595dde928e424d75b30dbf4305.png" />
+<img alt="_images/6b853a5ef8c3923f791c5a135551cb25f0ee0429735a7d3fa8e86bd4e043b0a1.png" src="_images/6b853a5ef8c3923f791c5a135551cb25f0ee0429735a7d3fa8e86bd4e043b0a1.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1113,8 +1165,95 @@ The MSE for slope  0.200 is  2.667
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">duncan_prestige</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">duncan_prestige</span><span class="o">.</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;education&#39;</span><span class="p">]]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">duncan_prestige</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;prestige&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(45, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !pip install -U scikit-learn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span> <span class="c1">#instantiate -- step 1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LinearRegression</label><div class="sk-toggleable__content"><pre>LinearRegression()</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">predictions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([77.85563665, 68.83567885, 83.26761134, 81.46361978, 77.85563665,
+       76.05164509, 84.16960712, 90.48357758, 78.75763243, 77.85563665,
+       67.03168729, 88.67958602, 87.77759024, 76.05164509, 82.36561556,
+       30.95185608, 40.87380966, 50.79576324, 39.97181388, 74.24765353,
+       65.22769573, 49.89376746, 64.32569995, 45.38378856, 21.02990249,
+       35.46183498, 25.53988139, 29.14786452, 20.12790671, 22.83389405,
+       26.44187717,  6.59797001, 23.73588983, 17.42191937, 13.81393625,
+       18.32391515, 23.73588983, 25.53988139, 15.61792781, 20.12790671,
+       27.34387295, 22.83389405, 18.32391515, 42.67780122, 29.14786452])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.90199578]), 0.2839995438216505)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9019957803501166
 </pre></div>
 </div>
 </div>
@@ -1128,14 +1267,14 @@ The MSE for slope  0.200 is  2.667
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">residplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lowess</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Scatterplot of Residuals&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">betas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">)),</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fill</span> <span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])),</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fill</span> <span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution of residuals&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e5f530deb25e0b8221ef2fbb6e724fdfcf931ab65f3a708eaea20663a0764367.png" src="_images/e5f530deb25e0b8221ef2fbb6e724fdfcf931ab65f3a708eaea20663a0764367.png" />
+<img alt="_images/cfa853287ab06a419ee95d380e0b0209aa412b55ce2d6f4a85fcf25e89f28132.png" src="_images/cfa853287ab06a419ee95d380e0b0209aa412b55ce2d6f4a85fcf25e89f28132.png" />
 </div>
 </div>
 </section>
@@ -1272,8 +1411,87 @@ The MSE for slope  0.200 is  2.667
 </div>
 </div>
 <p><strong>PROBLEM</strong>: Which feature is the strongest predictor of <code class="docutils literal notranslate"><span class="pre">Balance</span></code> in the data?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">credit</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">numeric_only</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span> <span class="n">annot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: &gt;
+</pre></div>
+</div>
+<img alt="_images/a371f7a143809d2fc2cada2fa0bbcec404fd96799ac9a15995ef4d018eccd5bb.png" src="_images/a371f7a143809d2fc2cada2fa0bbcec404fd96799ac9a15995ef4d018eccd5bb.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">credit</span><span class="p">[[</span><span class="s1">&#39;Rating&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">credit</span><span class="p">[</span><span class="s1">&#39;Balance&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>PROBLEM</strong>: Build a <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> model, determine the <strong>Root Mean Squared Error</strong> and interpret the slope and intercept.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">credit_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">credit_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">LinearRegression</label><div class="sk-toggleable__content"><pre>LinearRegression()</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The model is y = </span><span class="si">{</span><span class="n">credit_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">credit_model</span><span class="o">.</span><span class="n">intercept_</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model is y = 2.5662403273433196x + -390.84634178723786
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>PROBLEM</strong>: Examine the residual plot and histogram of residuals.  Do they look as they should?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">residplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">credit</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;Rating&#39;, ylabel=&#39;Balance&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/b4ea9be08447fa5725b71866828957434c022eab83d853638464be06f0406e3a.png" src="_images/b4ea9be08447fa5725b71866828957434c022eab83d853638464be06f0406e3a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">credit_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([  3.,  11.,  31.,  91., 116.,  86.,  41.,   9.,   6.,   6.]),
+ array([-712.2825064 , -558.1506416 , -404.01877679, -249.88691199,
+         -95.75504718,   58.37681762,  212.50868243,  366.64054724,
+         520.77241204,  674.90427685,  829.03614165]),
+ &lt;BarContainer object of 10 artists&gt;)
+</pre></div>
+</div>
+<img alt="_images/53342d16c773d66317995dc71c4f0ed8bb78acb01514bf10b24f0bb26ff528d6.png" src="_images/53342d16c773d66317995dc71c4f0ed8bb78acb01514bf10b24f0bb26ff528d6.png" />
+</div>
+</div>
 <section id="other-models">
 <h4>Other Models<a class="headerlink" href="#other-models" title="Permalink to this heading">#</a></h4>
 <p>If your goal is more around statistical inference and you want information about things like hypothesis tests on coefficients, the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> library is a more classical statistics interface that also contains a variety of regression models.  Below, the <code class="docutils literal notranslate"><span class="pre">OLS</span></code> model is instantiated, fit, and the results summarized with the <code class="docutils literal notranslate"><span class="pre">.summary()</span></code> method.</p>
@@ -1372,11 +1590,11 @@ The MSE for slope  0.200 is  2.667
       </div>
     </a>
     <a class="right-next"
-       href="homework/homework_I.html"
+       href="practice_regression.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assignment 1</p>
+        <p class="prev-next-title">Regression Part II</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
