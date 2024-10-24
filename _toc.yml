@@ -24,8 +24,8 @@ parts:
   - caption: Introduction to Predictive Modeling
     chapters:
     - file: regression_intro
-#     - file: practice_regression
-#     - file: polynomial_models
+    - file: practice_regression
+    - file: polynomial_models
 #     - file: knn_classification
 #     - file: logistic_starter_code
 #     - file: transformers_pipelines_review
