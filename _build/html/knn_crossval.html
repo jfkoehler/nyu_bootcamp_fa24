@@ -472,6 +472,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross Validation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-fold-cross-validation">K-Fold Cross Validation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-predicting-bike-riders">Exercise: Predicting Bike Riders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline"><code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-uses-of-knn">Other Uses of KNN</a></li>
 </ul>
 </li>
@@ -844,6 +845,52 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="pipeline">
+<h2><code class="docutils literal notranslate"><span class="pre">Pipeline</span></code><a class="headerlink" href="#pipeline" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> class allows us to combine all the preprocessing and modeling steps together in a single object.  Once created, the <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> works just like an estimator with a <code class="docutils literal notranslate"><span class="pre">.fit</span></code> and a <code class="docutils literal notranslate"><span class="pre">.predict</span></code> and <code class="docutils literal notranslate"><span class="pre">.score</span></code> method.  To access individual steps in the pipeline use the <code class="docutils literal notranslate"><span class="pre">.named_steps</span></code> attribute of the pipeline.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instantiate pipeline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit on train</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#score on test</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#cross validate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#look at coefficients</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="other-uses-of-knn">
 <h2>Other Uses of KNN<a class="headerlink" href="#other-uses-of-knn" title="Permalink to this heading">#</a></h2>
 <p>Another place the <code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code> can be used is to impute missing data.  Here, we use the nearest datapoints to fill in missing values.  Scikitlearn has a <code class="docutils literal notranslate"><span class="pre">KNNImputer</span></code> that will fill in missing values based on the average of <span class="math notranslate nohighlight">\(n\)</span> neighbors averages.</p>
@@ -979,6 +1026,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross Validation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-fold-cross-validation">K-Fold Cross Validation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-predicting-bike-riders">Exercise: Predicting Bike Riders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline"><code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-uses-of-knn">Other Uses of KNN</a></li>
 </ul>
 </li>
