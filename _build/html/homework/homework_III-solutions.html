@@ -1,0 +1,1764 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 3: Advanced Pandas and Introductory Plotting &#8212; Stern Data Bootcamp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'homework/homework_III-solutions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../syllabus.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Stern Data Bootcamp - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Stern Data Bootcamp - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../syllabus.html">
+                    Data Bootcamp
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python_fundamentals_one.html">Python Fundamentals 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_fundamentals_two.html">Python Fundamentals 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oop.html">Functions and Classes</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../intro_to_numpy.html">Intro to numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_to_pandas.html">Intro to pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pandas_II.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dates_intro_to_plotting.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_to_plotting.html"><code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting_seaborn.html">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../data_apis.html">Accessing Data with API’s</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../html_data.html">Extracting Data From HTML</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../intro_probability.html">Probability Distributions: Discrete and Continuous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hyp_testing.html">Inference and Hypothesis Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../significance.html">Inference and Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Predictive Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../regression_intro.html">Introduction to Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice_regression.html">Regression Part II</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../polynomial_models.html">Model Complexity and Evaluation</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../knn_crossval.html">Cross Validation and K-Nearest Neighbors</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="homework_I.html">Assignment 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework_II.html">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="homework_III.html">Homework 3: Advanced Pandas and Introductory Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework_IV.html">API’s and Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../numpy-challenge-1.html">Climb the Ladder!</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../numpy-challenge-2.html">Climb the Ladder!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../numpy-challenge-3.html">Climb the Ladder!</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../bonus/Bonus_Plotting_with_bokeh.html">Plotting with <code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bonus/Bonus_Plotly.html">BONUS: <code class="docutils literal notranslate"><span class="pre">plotly</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bonus/intro_ipywidgets.html">Using interactive widgets with the notebook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jfkoehler/nyu_bootcamp_fa24/blob/master/homework/homework_III-solutions.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24/issues/new?title=Issue%20on%20page%20%2Fhomework/homework_III-solutions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/homework/homework_III-solutions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Homework 3: Advanced Pandas and Introductory Plotting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-your-own-data">Exploring your own data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#styling-pandas">Styling <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="homework-3-advanced-pandas-and-introductory-plotting">
+<h1>Homework 3: Advanced Pandas and Introductory Plotting<a class="headerlink" href="#homework-3-advanced-pandas-and-introductory-plotting" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 1</strong>: Loading a data file.</p>
+<p>Below, load in the data from the <code class="docutils literal notranslate"><span class="pre">spotify.csv</span></code> file.  Assign it to a variable <code class="docutils literal notranslate"><span class="pre">spotify</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/spotify.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">spotify</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acousticness</th>
+      <th>danceability</th>
+      <th>duration_ms</th>
+      <th>energy</th>
+      <th>instrumentalness</th>
+      <th>key</th>
+      <th>liveness</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+      <th>valence</th>
+      <th>target</th>
+      <th>song_title</th>
+      <th>artist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0102</td>
+      <td>0.833</td>
+      <td>204600</td>
+      <td>0.434</td>
+      <td>0.021900</td>
+      <td>2</td>
+      <td>0.1650</td>
+      <td>-8.795</td>
+      <td>1</td>
+      <td>0.4310</td>
+      <td>150.062</td>
+      <td>4.0</td>
+      <td>0.286</td>
+      <td>1</td>
+      <td>Mask Off</td>
+      <td>Future</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.1990</td>
+      <td>0.743</td>
+      <td>326933</td>
+      <td>0.359</td>
+      <td>0.006110</td>
+      <td>1</td>
+      <td>0.1370</td>
+      <td>-10.401</td>
+      <td>1</td>
+      <td>0.0794</td>
+      <td>160.083</td>
+      <td>4.0</td>
+      <td>0.588</td>
+      <td>1</td>
+      <td>Redbone</td>
+      <td>Childish Gambino</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0344</td>
+      <td>0.838</td>
+      <td>185707</td>
+      <td>0.412</td>
+      <td>0.000234</td>
+      <td>2</td>
+      <td>0.1590</td>
+      <td>-7.148</td>
+      <td>1</td>
+      <td>0.2890</td>
+      <td>75.044</td>
+      <td>4.0</td>
+      <td>0.173</td>
+      <td>1</td>
+      <td>Xanny Family</td>
+      <td>Future</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.6040</td>
+      <td>0.494</td>
+      <td>199413</td>
+      <td>0.338</td>
+      <td>0.510000</td>
+      <td>5</td>
+      <td>0.0922</td>
+      <td>-15.236</td>
+      <td>1</td>
+      <td>0.0261</td>
+      <td>86.468</td>
+      <td>4.0</td>
+      <td>0.230</td>
+      <td>1</td>
+      <td>Master Of None</td>
+      <td>Beach House</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.1800</td>
+      <td>0.678</td>
+      <td>392893</td>
+      <td>0.561</td>
+      <td>0.512000</td>
+      <td>5</td>
+      <td>0.4390</td>
+      <td>-11.648</td>
+      <td>0</td>
+      <td>0.0694</td>
+      <td>174.004</td>
+      <td>4.0</td>
+      <td>0.904</td>
+      <td>1</td>
+      <td>Parallel Lines</td>
+      <td>Junior Boys</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Problem 2</strong>: Who is the most frequently occurring artist in the data?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify</span><span class="p">[</span><span class="s1">&#39;artist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#Drizzy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drake    16
+Name: artist, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 3</strong>: Create a histogram for the <code class="docutils literal notranslate"><span class="pre">tempo</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify</span><span class="p">[</span><span class="s1">&#39;tempo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/faa7a231c2dacd6f94e15f297ab0d0af29901d50e31d931da06295fa2a603930.png" src="../_images/faa7a231c2dacd6f94e15f297ab0d0af29901d50e31d931da06295fa2a603930.png" />
+</div>
+</div>
+<p><strong>Problem 4</strong>: Create a scatterplot of <code class="docutils literal notranslate"><span class="pre">tempo</span></code> vs. <code class="docutils literal notranslate"><span class="pre">danceability</span></code>.  Do these features seem related?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">spotify</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;tempo&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;danceability&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/dfffea0797dd0760d90921ba700f07a41335f62b6e9003e46b3238c88a90987e.png" src="../_images/dfffea0797dd0760d90921ba700f07a41335f62b6e9003e46b3238c88a90987e.png" />
+</div>
+</div>
+<p><strong>Problem 5</strong>: Load in the <code class="docutils literal notranslate"><span class="pre">cell_phone_churn.csv</span></code> data and assign as <code class="docutils literal notranslate"><span class="pre">churn</span></code> below.</p>
+<p>This dataset contains customer information from a telecommunications company about customer churn.  A customer is <em>churned</em> if they leave the provider.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/cell_phone_churn.csv&#39;</span><span class="p">)</span>
+<span class="n">churn</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>account_length</th>
+      <th>area_code</th>
+      <th>intl_plan</th>
+      <th>vmail_plan</th>
+      <th>vmail_message</th>
+      <th>day_mins</th>
+      <th>day_calls</th>
+      <th>day_charge</th>
+      <th>eve_mins</th>
+      <th>eve_calls</th>
+      <th>eve_charge</th>
+      <th>night_mins</th>
+      <th>night_calls</th>
+      <th>night_charge</th>
+      <th>intl_mins</th>
+      <th>intl_calls</th>
+      <th>intl_charge</th>
+      <th>custserv_calls</th>
+      <th>churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>KS</td>
+      <td>128</td>
+      <td>415</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>25</td>
+      <td>265.1</td>
+      <td>110</td>
+      <td>45.07</td>
+      <td>197.4</td>
+      <td>99</td>
+      <td>16.78</td>
+      <td>244.7</td>
+      <td>91</td>
+      <td>11.01</td>
+      <td>10.0</td>
+      <td>3</td>
+      <td>2.70</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>OH</td>
+      <td>107</td>
+      <td>415</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>26</td>
+      <td>161.6</td>
+      <td>123</td>
+      <td>27.47</td>
+      <td>195.5</td>
+      <td>103</td>
+      <td>16.62</td>
+      <td>254.4</td>
+      <td>103</td>
+      <td>11.45</td>
+      <td>13.7</td>
+      <td>3</td>
+      <td>3.70</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NJ</td>
+      <td>137</td>
+      <td>415</td>
+      <td>no</td>
+      <td>no</td>
+      <td>0</td>
+      <td>243.4</td>
+      <td>114</td>
+      <td>41.38</td>
+      <td>121.2</td>
+      <td>110</td>
+      <td>10.30</td>
+      <td>162.6</td>
+      <td>104</td>
+      <td>7.32</td>
+      <td>12.2</td>
+      <td>5</td>
+      <td>3.29</td>
+      <td>0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>OH</td>
+      <td>84</td>
+      <td>408</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>0</td>
+      <td>299.4</td>
+      <td>71</td>
+      <td>50.90</td>
+      <td>61.9</td>
+      <td>88</td>
+      <td>5.26</td>
+      <td>196.9</td>
+      <td>89</td>
+      <td>8.86</td>
+      <td>6.6</td>
+      <td>7</td>
+      <td>1.78</td>
+      <td>2</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>OK</td>
+      <td>75</td>
+      <td>415</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>0</td>
+      <td>166.7</td>
+      <td>113</td>
+      <td>28.34</td>
+      <td>148.3</td>
+      <td>122</td>
+      <td>12.61</td>
+      <td>186.9</td>
+      <td>121</td>
+      <td>8.41</td>
+      <td>10.1</td>
+      <td>3</td>
+      <td>2.73</td>
+      <td>3</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Problem 6</strong>: What percentage of customers were churned?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn</span><span class="p">[</span><span class="s1">&#39;churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># 14.5%</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False    0.855086
+True     0.144914
+Name: churn, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 7</strong>: How do customers who has a voicemail plan and those who did not compare in terms of percent churned?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">churn</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;vmail_plan&#39;</span><span class="p">)[</span><span class="s1">&#39;churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># those without a plan seem to have 16% churn vs 8.6%</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vmail_plan
+no     0.167151
+yes    0.086768
+Name: churn, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 8</strong>: Draw a barplot to represent the number of customers by the number of customer service calls these customers made.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">churn</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;custserv_calls&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;custserv_calls&#39;, ylabel=&#39;count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/0d06318142d082ec20a4e1162fca34b0ec490365e3e892c8ca8281218ebf88d3.png" src="../_images/0d06318142d082ec20a4e1162fca34b0ec490365e3e892c8ca8281218ebf88d3.png" />
+</div>
+</div>
+<p><strong>Problem 9</strong>: Draw boxplots for international minutes by customers who were churned and those that were not.  Are there any differences between these groups?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">churn</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;churn&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;intl_mins&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;churn&#39;, ylabel=&#39;intl_mins&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/c850acb1439f8516248d027ddc8174f807be861f8b101662ff9777896b2cecab.png" src="../_images/c850acb1439f8516248d027ddc8174f807be861f8b101662ff9777896b2cecab.png" />
+</div>
+</div>
+<p><strong>Income by College Major</strong></p>
+<p>Below, a dataset from Nate Silver’s 538 blog is shown on college majors and income. <a class="reference external" href="https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/">link</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url1</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/fivethirtyeight/data/master/&#39;</span>
+<span class="n">url2</span> <span class="o">=</span> <span class="s1">&#39;college-majors/recent-grads.csv&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">url1</span> <span class="o">+</span> <span class="n">url2</span>
+<span class="n">df538</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">df538</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rank</th>
+      <th>Major_code</th>
+      <th>Major</th>
+      <th>Total</th>
+      <th>Men</th>
+      <th>Women</th>
+      <th>Major_category</th>
+      <th>ShareWomen</th>
+      <th>Sample_size</th>
+      <th>Employed</th>
+      <th>...</th>
+      <th>Part_time</th>
+      <th>Full_time_year_round</th>
+      <th>Unemployed</th>
+      <th>Unemployment_rate</th>
+      <th>Median</th>
+      <th>P25th</th>
+      <th>P75th</th>
+      <th>College_jobs</th>
+      <th>Non_college_jobs</th>
+      <th>Low_wage_jobs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2419</td>
+      <td>PETROLEUM ENGINEERING</td>
+      <td>2339.0</td>
+      <td>2057.0</td>
+      <td>282.0</td>
+      <td>Engineering</td>
+      <td>0.120564</td>
+      <td>36</td>
+      <td>1976</td>
+      <td>...</td>
+      <td>270</td>
+      <td>1207</td>
+      <td>37</td>
+      <td>0.018381</td>
+      <td>110000</td>
+      <td>95000</td>
+      <td>125000</td>
+      <td>1534</td>
+      <td>364</td>
+      <td>193</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2416</td>
+      <td>MINING AND MINERAL ENGINEERING</td>
+      <td>756.0</td>
+      <td>679.0</td>
+      <td>77.0</td>
+      <td>Engineering</td>
+      <td>0.101852</td>
+      <td>7</td>
+      <td>640</td>
+      <td>...</td>
+      <td>170</td>
+      <td>388</td>
+      <td>85</td>
+      <td>0.117241</td>
+      <td>75000</td>
+      <td>55000</td>
+      <td>90000</td>
+      <td>350</td>
+      <td>257</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p><strong>Problem 10</strong>: Assign the columns of the data as a list below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="n">df538</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">cols</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Rank&#39;, &#39;Major_code&#39;, &#39;Major&#39;, &#39;Total&#39;, &#39;Men&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 11</strong>: Set the index of <code class="docutils literal notranslate"><span class="pre">df538</span></code> as <code class="docutils literal notranslate"><span class="pre">Major</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df538</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Major&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rank</th>
+      <th>Major_code</th>
+      <th>Total</th>
+      <th>Men</th>
+      <th>Women</th>
+      <th>Major_category</th>
+      <th>ShareWomen</th>
+      <th>Sample_size</th>
+      <th>Employed</th>
+      <th>Full_time</th>
+      <th>Part_time</th>
+      <th>Full_time_year_round</th>
+      <th>Unemployed</th>
+      <th>Unemployment_rate</th>
+      <th>Median</th>
+      <th>P25th</th>
+      <th>P75th</th>
+      <th>College_jobs</th>
+      <th>Non_college_jobs</th>
+      <th>Low_wage_jobs</th>
+    </tr>
+    <tr>
+      <th>Major</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PETROLEUM ENGINEERING</th>
+      <td>1</td>
+      <td>2419</td>
+      <td>2339.0</td>
+      <td>2057.0</td>
+      <td>282.0</td>
+      <td>Engineering</td>
+      <td>0.120564</td>
+      <td>36</td>
+      <td>1976</td>
+      <td>1849</td>
+      <td>270</td>
+      <td>1207</td>
+      <td>37</td>
+      <td>0.018381</td>
+      <td>110000</td>
+      <td>95000</td>
+      <td>125000</td>
+      <td>1534</td>
+      <td>364</td>
+      <td>193</td>
+    </tr>
+    <tr>
+      <th>MINING AND MINERAL ENGINEERING</th>
+      <td>2</td>
+      <td>2416</td>
+      <td>756.0</td>
+      <td>679.0</td>
+      <td>77.0</td>
+      <td>Engineering</td>
+      <td>0.101852</td>
+      <td>7</td>
+      <td>640</td>
+      <td>556</td>
+      <td>170</td>
+      <td>388</td>
+      <td>85</td>
+      <td>0.117241</td>
+      <td>75000</td>
+      <td>55000</td>
+      <td>90000</td>
+      <td>350</td>
+      <td>257</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>METALLURGICAL ENGINEERING</th>
+      <td>3</td>
+      <td>2415</td>
+      <td>856.0</td>
+      <td>725.0</td>
+      <td>131.0</td>
+      <td>Engineering</td>
+      <td>0.153037</td>
+      <td>3</td>
+      <td>648</td>
+      <td>558</td>
+      <td>133</td>
+      <td>340</td>
+      <td>16</td>
+      <td>0.024096</td>
+      <td>73000</td>
+      <td>50000</td>
+      <td>105000</td>
+      <td>456</td>
+      <td>176</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>NAVAL ARCHITECTURE AND MARINE ENGINEERING</th>
+      <td>4</td>
+      <td>2417</td>
+      <td>1258.0</td>
+      <td>1123.0</td>
+      <td>135.0</td>
+      <td>Engineering</td>
+      <td>0.107313</td>
+      <td>16</td>
+      <td>758</td>
+      <td>1069</td>
+      <td>150</td>
+      <td>692</td>
+      <td>40</td>
+      <td>0.050125</td>
+      <td>70000</td>
+      <td>43000</td>
+      <td>80000</td>
+      <td>529</td>
+      <td>102</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>CHEMICAL ENGINEERING</th>
+      <td>5</td>
+      <td>2405</td>
+      <td>32260.0</td>
+      <td>21239.0</td>
+      <td>11021.0</td>
+      <td>Engineering</td>
+      <td>0.341631</td>
+      <td>289</td>
+      <td>25694</td>
+      <td>23170</td>
+      <td>5180</td>
+      <td>16697</td>
+      <td>1672</td>
+      <td>0.061098</td>
+      <td>65000</td>
+      <td>50000</td>
+      <td>75000</td>
+      <td>18314</td>
+      <td>4440</td>
+      <td>972</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>ZOOLOGY</th>
+      <td>169</td>
+      <td>3609</td>
+      <td>8409.0</td>
+      <td>3050.0</td>
+      <td>5359.0</td>
+      <td>Biology &amp; Life Science</td>
+      <td>0.637293</td>
+      <td>47</td>
+      <td>6259</td>
+      <td>5043</td>
+      <td>2190</td>
+      <td>3602</td>
+      <td>304</td>
+      <td>0.046320</td>
+      <td>26000</td>
+      <td>20000</td>
+      <td>39000</td>
+      <td>2771</td>
+      <td>2947</td>
+      <td>743</td>
+    </tr>
+    <tr>
+      <th>EDUCATIONAL PSYCHOLOGY</th>
+      <td>170</td>
+      <td>5201</td>
+      <td>2854.0</td>
+      <td>522.0</td>
+      <td>2332.0</td>
+      <td>Psychology &amp; Social Work</td>
+      <td>0.817099</td>
+      <td>7</td>
+      <td>2125</td>
+      <td>1848</td>
+      <td>572</td>
+      <td>1211</td>
+      <td>148</td>
+      <td>0.065112</td>
+      <td>25000</td>
+      <td>24000</td>
+      <td>34000</td>
+      <td>1488</td>
+      <td>615</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>CLINICAL PSYCHOLOGY</th>
+      <td>171</td>
+      <td>5202</td>
+      <td>2838.0</td>
+      <td>568.0</td>
+      <td>2270.0</td>
+      <td>Psychology &amp; Social Work</td>
+      <td>0.799859</td>
+      <td>13</td>
+      <td>2101</td>
+      <td>1724</td>
+      <td>648</td>
+      <td>1293</td>
+      <td>368</td>
+      <td>0.149048</td>
+      <td>25000</td>
+      <td>25000</td>
+      <td>40000</td>
+      <td>986</td>
+      <td>870</td>
+      <td>622</td>
+    </tr>
+    <tr>
+      <th>COUNSELING PSYCHOLOGY</th>
+      <td>172</td>
+      <td>5203</td>
+      <td>4626.0</td>
+      <td>931.0</td>
+      <td>3695.0</td>
+      <td>Psychology &amp; Social Work</td>
+      <td>0.798746</td>
+      <td>21</td>
+      <td>3777</td>
+      <td>3154</td>
+      <td>965</td>
+      <td>2738</td>
+      <td>214</td>
+      <td>0.053621</td>
+      <td>23400</td>
+      <td>19200</td>
+      <td>26000</td>
+      <td>2403</td>
+      <td>1245</td>
+      <td>308</td>
+    </tr>
+    <tr>
+      <th>LIBRARY SCIENCE</th>
+      <td>173</td>
+      <td>3501</td>
+      <td>1098.0</td>
+      <td>134.0</td>
+      <td>964.0</td>
+      <td>Education</td>
+      <td>0.877960</td>
+      <td>2</td>
+      <td>742</td>
+      <td>593</td>
+      <td>237</td>
+      <td>410</td>
+      <td>87</td>
+      <td>0.104946</td>
+      <td>22000</td>
+      <td>20000</td>
+      <td>22000</td>
+      <td>288</td>
+      <td>338</td>
+      <td>192</td>
+    </tr>
+  </tbody>
+</table>
+<p>173 rows × 20 columns</p>
+</div></div></div>
+</div>
+<p><strong>Problem 12</strong>: Create a horizontal bar chart of the median salary by major.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df538</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Major&#39;</span><span class="p">)[</span><span class="s1">&#39;Median&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;barh&#39;</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: ylabel=&#39;Major&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/05b33aabfea4f39a41369c8b465713a14d58506e611c60e54d3f2746e6d10804.png" src="../_images/05b33aabfea4f39a41369c8b465713a14d58506e611c60e54d3f2746e6d10804.png" />
+</div>
+</div>
+<p><strong>Problem 13</strong>: Load in the <code class="docutils literal notranslate"><span class="pre">gapminder.csv</span></code> file and assign as <code class="docutils literal notranslate"><span class="pre">gapminder_df</span></code> below.  This data comes from the Gapminder organization and contains information on countries GDP and Life Expectancy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gapminder_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/gapminder_all.csv&#39;</span><span class="p">)</span>
+<span class="n">gapminder_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continent</th>
+      <th>country</th>
+      <th>gdpPercap_1952</th>
+      <th>gdpPercap_1957</th>
+      <th>gdpPercap_1962</th>
+      <th>gdpPercap_1967</th>
+      <th>gdpPercap_1972</th>
+      <th>gdpPercap_1977</th>
+      <th>gdpPercap_1982</th>
+      <th>gdpPercap_1987</th>
+      <th>...</th>
+      <th>pop_1962</th>
+      <th>pop_1967</th>
+      <th>pop_1972</th>
+      <th>pop_1977</th>
+      <th>pop_1982</th>
+      <th>pop_1987</th>
+      <th>pop_1992</th>
+      <th>pop_1997</th>
+      <th>pop_2002</th>
+      <th>pop_2007</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>2449.008185</td>
+      <td>3013.976023</td>
+      <td>2550.816880</td>
+      <td>3246.991771</td>
+      <td>4182.663766</td>
+      <td>4910.416756</td>
+      <td>5745.160213</td>
+      <td>5681.358539</td>
+      <td>...</td>
+      <td>11000948.0</td>
+      <td>12760499.0</td>
+      <td>14760787.0</td>
+      <td>17152804.0</td>
+      <td>20033753.0</td>
+      <td>23254956.0</td>
+      <td>26298373.0</td>
+      <td>29072015.0</td>
+      <td>31287142</td>
+      <td>33333216</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa</td>
+      <td>Angola</td>
+      <td>3520.610273</td>
+      <td>3827.940465</td>
+      <td>4269.276742</td>
+      <td>5522.776375</td>
+      <td>5473.288005</td>
+      <td>3008.647355</td>
+      <td>2756.953672</td>
+      <td>2430.208311</td>
+      <td>...</td>
+      <td>4826015.0</td>
+      <td>5247469.0</td>
+      <td>5894858.0</td>
+      <td>6162675.0</td>
+      <td>7016384.0</td>
+      <td>7874230.0</td>
+      <td>8735988.0</td>
+      <td>9875024.0</td>
+      <td>10866106</td>
+      <td>12420476</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Africa</td>
+      <td>Benin</td>
+      <td>1062.752200</td>
+      <td>959.601080</td>
+      <td>949.499064</td>
+      <td>1035.831411</td>
+      <td>1085.796879</td>
+      <td>1029.161251</td>
+      <td>1277.897616</td>
+      <td>1225.856010</td>
+      <td>...</td>
+      <td>2151895.0</td>
+      <td>2427334.0</td>
+      <td>2761407.0</td>
+      <td>3168267.0</td>
+      <td>3641603.0</td>
+      <td>4243788.0</td>
+      <td>4981671.0</td>
+      <td>6066080.0</td>
+      <td>7026113</td>
+      <td>8078314</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa</td>
+      <td>Botswana</td>
+      <td>851.241141</td>
+      <td>918.232535</td>
+      <td>983.653976</td>
+      <td>1214.709294</td>
+      <td>2263.611114</td>
+      <td>3214.857818</td>
+      <td>4551.142150</td>
+      <td>6205.883850</td>
+      <td>...</td>
+      <td>512764.0</td>
+      <td>553541.0</td>
+      <td>619351.0</td>
+      <td>781472.0</td>
+      <td>970347.0</td>
+      <td>1151184.0</td>
+      <td>1342614.0</td>
+      <td>1536536.0</td>
+      <td>1630347</td>
+      <td>1639131</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Africa</td>
+      <td>Burkina Faso</td>
+      <td>543.255241</td>
+      <td>617.183465</td>
+      <td>722.512021</td>
+      <td>794.826560</td>
+      <td>854.735976</td>
+      <td>743.387037</td>
+      <td>807.198586</td>
+      <td>912.063142</td>
+      <td>...</td>
+      <td>4919632.0</td>
+      <td>5127935.0</td>
+      <td>5433886.0</td>
+      <td>5889574.0</td>
+      <td>6634596.0</td>
+      <td>7586551.0</td>
+      <td>8878303.0</td>
+      <td>10352843.0</td>
+      <td>12251209</td>
+      <td>14326203</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 38 columns</p>
+</div></div></div>
+</div>
+<p><strong>Problem 14</strong>: What is the average GDP for each continent?</p>
+<p><strong>Problem 15</strong>: Create a scatter plot for GDP vs. Life Expectancy for the data from 2002.  Include a title and x and y labels.</p>
+<section id="exploring-your-own-data">
+<h2>Exploring your own data<a class="headerlink" href="#exploring-your-own-data" title="Permalink to this heading">#</a></h2>
+<p>Now, head over to the website <code class="docutils literal notranslate"><span class="pre">kaggle.com</span></code> and locate a dataset of interest to you from the <a class="reference external" href="https://www.kaggle.com/datasets?fileType=csv">datasets</a>.  Download a dataset and load it in to your notebook below. Be careful that you don’t select a dataset that is too large (&gt;10 GB), and don’t spend too much time trying to find the perfect dataset.</p>
+<p>The goal here is to use our techniques from <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> to explore the data.  Once you have the data loaded, you are to use summaries and plots to explore the data.  Create three plots of your data that contain important insights.  Be sure to label your axes and add appropriate titles to these plots.</p>
+</section>
+<section id="styling-pandas">
+<h2>Styling <code class="docutils literal notranslate"><span class="pre">pandas</span></code><a class="headerlink" href="#styling-pandas" title="Permalink to this heading">#</a></h2>
+<p>Chris Moffit has a nice blog about practical uses of Python in a business setting.  In one article, he discusses many more approaches to formatting and styling of DataFrame’s. Head over to the article <a class="reference external" href="https://pbpython.com/styling-pandas.html">here</a> and read it completely.  Use his tips on adding <code class="docutils literal notranslate"><span class="pre">sparklines</span></code> to install the <code class="docutils literal notranslate"><span class="pre">sparklines</span></code> library and demonstrate its use on the titanic dataset from <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> below.</p>
+<p>Also, select one other tip for styling that you enjoy.  Create a markdown cell and write a brief summary of the technique, followed by a demonstration using the <code class="docutils literal notranslate"><span class="pre">titanic</span></code> DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/anaconda3/lib/python3.8/site-packages/scipy/__init__.py:146: UserWarning: A NumPy version &gt;=1.16.5 and &lt;1.23.0 is required for this version of SciPy (detected version 1.23.3
+  warnings.warn(f&quot;A NumPy version &gt;={np_minversion} and &lt;{np_maxversion}&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
+<span class="n">titanic</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+      <th>embarked</th>
+      <th>class</th>
+      <th>who</th>
+      <th>adult_male</th>
+      <th>deck</th>
+      <th>embark_town</th>
+      <th>alive</th>
+      <th>alone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.2500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>71.2833</td>
+      <td>C</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Cherbourg</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./homework"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-your-own-data">Exploring your own data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#styling-pandas">Styling <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lenny
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

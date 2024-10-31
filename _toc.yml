@@ -26,6 +26,7 @@ parts:
     - file: regression_intro
     - file: practice_regression
     - file: polynomial_models
+    - file: knn_crossval
 #     - file: knn_classification
 #     - file: logistic_starter_code
 #     - file: transformers_pipelines_review

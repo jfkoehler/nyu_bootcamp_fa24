@@ -1,0 +1,1235 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Assignment 1 &#8212; Stern Data Bootcamp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'homework/homework_I-solns';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../syllabus.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Stern Data Bootcamp - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Stern Data Bootcamp - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../syllabus.html">
+                    Data Bootcamp
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python_fundamentals_one.html">Python Fundamentals 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_fundamentals_two.html">Python Fundamentals 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oop.html">Functions and Classes</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../intro_to_numpy.html">Intro to numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_to_pandas.html">Intro to pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pandas_II.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dates_intro_to_plotting.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro_to_plotting.html"><code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting_seaborn.html">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../data_apis.html">Accessing Data with API’s</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../html_data.html">Extracting Data From HTML</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../intro_probability.html">Probability Distributions: Discrete and Continuous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hyp_testing.html">Inference and Hypothesis Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../significance.html">Inference and Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Predictive Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../regression_intro.html">Introduction to Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice_regression.html">Regression Part II</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../polynomial_models.html">Model Complexity and Evaluation</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../knn_crossval.html">Cross Validation and K-Nearest Neighbors</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="homework_I.html">Assignment 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework_II.html">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="homework_III.html">Homework 3: Advanced Pandas and Introductory Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework_IV.html">API’s and Data Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../numpy-challenge-1.html">Climb the Ladder!</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../numpy-challenge-2.html">Climb the Ladder!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../numpy-challenge-3.html">Climb the Ladder!</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../bonus/Bonus_Plotting_with_bokeh.html">Plotting with <code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bonus/Bonus_Plotly.html">BONUS: <code class="docutils literal notranslate"><span class="pre">plotly</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bonus/intro_ipywidgets.html">Using interactive widgets with the notebook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jfkoehler/nyu_bootcamp_fa24/blob/master/homework/homework_I-solns.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24/issues/new?title=Issue%20on%20page%20%2Fhomework/homework_I-solns.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/homework/homework_I-solns.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Assignment 1</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Assignment 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#number-and-operation">Number and Operation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#strings-and-their-methods">Strings and their methods</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#further-problems">Further Problems</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="assignment-1">
+<h1>Assignment 1<a class="headerlink" href="#assignment-1" title="Permalink to this heading">#</a></h1>
+<p><strong>Topics</strong></p>
+<ul class="simple">
+<li><p>Numbers and operations</p></li>
+<li><p>Strings</p></li>
+<li><p>Lists</p></li>
+<li><p>Dictionaries</p></li>
+<li><p>Loops</p></li>
+<li><p>Functions</p></li>
+</ul>
+<p>For each of the problems below use either a code or markdown cell to answer.</p>
+</section>
+<section id="number-and-operation">
+<h1>Number and Operation<a class="headerlink" href="#number-and-operation" title="Permalink to this heading">#</a></h1>
+<p>In the problems below, compute the appropriate numerical operations and assign your solution to the given variable.</p>
+<p><strong>Problem 1</strong>: Sum the first 10 integers.  Assign your solution to <code class="docutils literal notranslate"><span class="pre">ans1</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### addition</span>
+<span class="n">ans1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="n">ans1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ans1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 2</strong>: Multiply 1, 2, 3, 4, and 5.  Assign your solution to <code class="docutils literal notranslate"><span class="pre">ans2</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### multiplicatin</span>
+<span class="n">ans2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="mi">3</span><span class="o">*</span><span class="mi">4</span><span class="o">*</span><span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ans2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 3</strong>: Divide 9 by 3.  Assign your solution to <code class="docutils literal notranslate"><span class="pre">ans3</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### division</span>
+<span class="n">ans3</span> <span class="o">=</span> <span class="mi">9</span><span class="o">/</span><span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ans3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 4</strong>: What is the remainder when 7 is divided by 3?  Use the <code class="docutils literal notranslate"><span class="pre">%</span></code> operator to determine this.  Assign your solution to <code class="docutils literal notranslate"><span class="pre">ans4</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### modulus</span>
+<span class="n">ans4</span> <span class="o">=</span> <span class="mi">7</span><span class="o">%</span><span class="k">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ans4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 5</strong>: What is the integer of the quotient when 12 is divided by 5?  Use the <code class="docutils literal notranslate"><span class="pre">//</span></code> operator to determine this.  Assign your solution to <code class="docutils literal notranslate"><span class="pre">ans5</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### floor</span>
+<span class="n">ans5</span> <span class="o">=</span> <span class="mi">12</span><span class="o">//</span><span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ans5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="strings-and-their-methods">
+<h1>Strings and their methods<a class="headerlink" href="#strings-and-their-methods" title="Permalink to this heading">#</a></h1>
+<p><strong>Problem 6</strong>: Create a string named <code class="docutils literal notranslate"><span class="pre">firstname</span></code> below with your first name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### define a string</span>
+<span class="n">firstname</span> <span class="o">=</span> <span class="s1">&#39;Lenny&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firstname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lenny
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 7</strong>:   Use the <code class="docutils literal notranslate"><span class="pre">.upper()</span></code> method to uppercase the string <code class="docutils literal notranslate"><span class="pre">firstname</span></code>. Assign your solution to <code class="docutils literal notranslate"><span class="pre">ans7</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### upper</span>
+<span class="n">ans7</span> <span class="o">=</span> <span class="n">firstname</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ans7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LENNY
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 8</strong>: Below, the lyrics from the song Black Site by the American hardcore-punk band Ammo <a class="reference external" href="https://www.discogs.com/artist/6688148-Ammo-15">discography</a>.  Use the split method to split the lyrics and assign them to a variable <code class="docutils literal notranslate"><span class="pre">tokens</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### split</span>
+<span class="n">lyrics</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">Enhanced interrogation</span>
+<span class="s1">Secret strangulation</span>
+<span class="s1">Thirst for information</span>
+<span class="s1">Human ruination</span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">lyrics</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">tokens</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Enhanced&#39;,
+ &#39;interrogation&#39;,
+ &#39;Secret&#39;,
+ &#39;strangulation&#39;,
+ &#39;Thirst&#39;,
+ &#39;for&#39;,
+ &#39;information&#39;,
+ &#39;Human&#39;,
+ &#39;ruination&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 9</strong>: Use the list <code class="docutils literal notranslate"><span class="pre">tokens</span></code> to extract every other word from the lyrics and combine these to be a new string using the <code class="docutils literal notranslate"><span class="pre">.join()</span></code> function.  Assign your answer as <code class="docutils literal notranslate"><span class="pre">new_lyrics</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### slice</span>
+<span class="n">new_lyrics</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tokens</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_lyrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Enhanced Secret Thirst information ruination
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lists">
+<h1>Lists<a class="headerlink" href="#lists" title="Permalink to this heading">#</a></h1>
+<p>The questions below focus on the use of <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">list</a> objects. Also, they will introduce you to Ann Peebles song <em>Trouble, Heartaches, and Sadness</em> from the <a class="reference external" href="https://www.discogs.com/master/137000-Ann-Peebles-Straight-From-The-Heart">album</a>, whose lyrics are assigned to <code class="docutils literal notranslate"><span class="pre">trouble_heartaches_and_sadness</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### create</span>
+<span class="n">trouble_heartaches_and_sadness</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">Whoa</span>
+<span class="s1">Old man trouble</span>
+<span class="s1">Stop knockin&#39; at my door</span>
+<span class="s1">You used to be a good friend of mine</span>
+<span class="s1">But you can&#39;t hang around me no more</span>
+
+<span class="s1">Heartache</span>
+<span class="s1">(heartache)</span>
+<span class="s1">Stop knockin&#39; at my window</span>
+<span class="s1">I don&#39;t wanna hear what you have to say</span>
+<span class="s1">You can go join Mister Trouble</span>
+<span class="s1">And be on your merry way</span>
+
+
+<span class="s1">&#39;Cause I&#39;ve found the love</span>
+<span class="s1">I needed all the time</span>
+<span class="s1">I&#39;ve found the love</span>
+<span class="s1">Help me ease my troubled mind</span>
+
+<span class="s1">Dark clouds</span>
+<span class="s1">Hanging over my head</span>
+<span class="s1">Aw, but this time</span>
+<span class="s1">Sure won&#39;t rain on me</span>
+<span class="s1">He&#39;s my sunshine</span>
+<span class="s1">And the love he gives</span>
+<span class="s1">Gonna set me free</span>
+<span class="s1">Yeah</span>
+
+<span class="s1">Mmm</span>
+<span class="s1">Sadness</span>
+<span class="s1">I have no more use for you</span>
+<span class="s1">I know you can easily</span>
+<span class="s1">Find you another friend</span>
+<span class="s1">Cos I&#39;ve found someone</span>
+<span class="s1">To take away my trouble</span>
+<span class="s1">Bring my sadness to an end</span>
+
+<span class="s1">I&#39;ve found the love</span>
+<span class="s1">I needed all the time</span>
+<span class="s1">I&#39;ve found the love</span>
+<span class="s1">Help me ease my troubled mind</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 10</strong>: Create a list of tokens from the lyrics and assign to the variable <code class="docutils literal notranslate"><span class="pre">peebles_lyrics</span></code> below.  Extract the last word of the lyrics and assign to <code class="docutils literal notranslate"><span class="pre">last_word</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### index</span>
+<span class="n">peebles_lyrics</span> <span class="o">=</span> <span class="n">trouble_heartaches_and_sadness</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">last_word</span> <span class="o">=</span> <span class="n">peebles_lyrics</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">peebles_lyrics</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">last_word</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Whoa&#39;, &#39;Old&#39;, &#39;man&#39;, &#39;trouble&#39;, &#39;Stop&#39;, &quot;knockin&#39;&quot;, &#39;at&#39;, &#39;my&#39;, &#39;door&#39;, &#39;You&#39;]
+mind
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 11</strong>: Use the list <code class="docutils literal notranslate"><span class="pre">peebles_lyrics</span></code> to determine the number of characters in the lyrics. Assign your results to <code class="docutils literal notranslate"><span class="pre">num_words</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### length</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">peebles_lyrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>154
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 12</strong>: There is a kind of collection that we didn’t discuss in class – that of a <code class="docutils literal notranslate"><span class="pre">set</span></code>.  Read the documentation <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#sets">here</a>, and create a set of words from <code class="docutils literal notranslate"><span class="pre">peebles_lyrics</span></code>.  Assign the length of this set to <code class="docutils literal notranslate"><span class="pre">num_unique_words</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### set</span>
+<span class="n">num_unique_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">peebles_lyrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 13</strong>: One way to understand the notion of lexical diversity is as the percent of unique words in a text.  What is the lexical diversity of <em>Trouble, Heartaches, and Sadness</em>?  Assign your answer as <code class="docutils literal notranslate"><span class="pre">lexical_diversity</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### lexical diversity</span>
+<span class="n">lexical_diversity</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_unique_words</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">peebles_lyrics</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lexical_diversity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6103896103896104
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 14</strong>:  Perhaps you want to compare a different song and its lexical diversity.  For this, you are to create a function <code class="docutils literal notranslate"><span class="pre">lex_div</span></code> that takes in a string, and return the lexical diversity of that string.  Use the pseudocode to assist you in the function body.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### function</span>
+<span class="k">def</span> <span class="nf">lex_div</span><span class="p">(</span><span class="n">lyrics_string</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function takes in a string</span>
+<span class="sd">    and returns the percent of unique words in </span>
+<span class="sd">    the string.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1">### create a list of lyrics</span>
+    <span class="n">lyr</span> <span class="o">=</span> <span class="n">lyrics_string</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="c1">### create a set of lyrics</span>
+    <span class="n">unique</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">lyr</span><span class="p">)</span>
+    <span class="c1">### return the quotient of appropriate lengths</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">lyr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 15</strong>: Use your function to compare the lexical diversity of <em>Troubles, Heartaches, and Sadness</em> to that of the <span class="xref myst">Drake</span> single <em>Hotline Bling</em>, assigned to the variable <code class="docutils literal notranslate"><span class="pre">hotline_bling</span></code> below.  Use the <code class="docutils literal notranslate"><span class="pre">lex_div</span></code> function to determine the lexical diversity and decide if <em>Drake</em> or <em>Anne Peebles</em> song had a higher lexical diversity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hotline_bling</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">You used to call me on my</span>
+<span class="s1">You used to, you used to</span>
+<span class="s1">Yeah</span>
+
+<span class="s1">You used to call me on my cell phone</span>
+<span class="s1">Late-night when you need my love</span>
+<span class="s1">Call me on my cell phone</span>
+<span class="s1">Late-night when you need my love</span>
+<span class="s1">And I know when that hotline bling</span>
+<span class="s1">That can only mean one thing</span>
+<span class="s1">I know when that hotline bling</span>
+<span class="s1">That can only mean one thing</span>
+
+
+<span class="s1">Ever since I left the city, you</span>
+<span class="s1">Got a reputation for yourself now</span>
+<span class="s1">Everybody knows and I feel left out</span>
+<span class="s1">Girl, you got me down, you got me stressed out</span>
+<span class="s1">&#39;Cause ever since I left the city, you</span>
+<span class="s1">Started wearing less and goin&#39; out more</span>
+<span class="s1">Glasses of champagne out on the dance floor</span>
+<span class="s1">Hangin&#39; with some girls I never seen before</span>
+
+
+<span class="s1">You used to call me on my cell phone</span>
+<span class="s1">Late-night when you need my love</span>
+<span class="s1">Call me on my cell phone</span>
+<span class="s1">Late-night when you need my love</span>
+<span class="s1">I know when that hotline bling</span>
+<span class="s1">That can only mean one thing</span>
+<span class="s1">I know when that hotline bling</span>
+<span class="s1">That can only mean one thing</span>
+
+
+<span class="s1">Ever since I left the city, you, you, you</span>
+<span class="s1">You and me, we just don&#39;t get along</span>
+<span class="s1">You make me feel like I did you wrong</span>
+<span class="s1">Going places where you don&#39;t belong</span>
+<span class="s1">Ever since I left the city, you</span>
+<span class="s1">You got exactly what you asked for</span>
+<span class="s1">Running out of pages in your passport</span>
+<span class="s1">Hangin&#39; with some girls I&#39;ve never seen before</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lex_div</span><span class="p">(</span><span class="n">hotline_bling</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lex_div</span><span class="p">(</span><span class="n">trouble_heartaches_and_sadness</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.38493723849372385
+0.6103896103896104
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 16</strong>: Do you think this is a fair comparison?  Why or why not?  How might we improve this?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#maybe, maybe because one song is longer than the other it makes more time for diversity</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dictionaries">
+<h1>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this heading">#</a></h1>
+<p><strong>Problem 17</strong>: Create a dictionary with keys <code class="docutils literal notranslate"><span class="pre">heartache</span></code> and <code class="docutils literal notranslate"><span class="pre">hotline</span></code> with values as the string representation of the lyrics from the respective songs above.  Assign your solution to <code class="docutils literal notranslate"><span class="pre">lyrics_dict</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### create lyrics dictionary</span>
+<span class="n">lyrics_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;heartache&#39;</span><span class="p">:</span> <span class="n">trouble_heartaches_and_sadness</span><span class="p">,</span>
+              <span class="s1">&#39;hotline&#39;</span><span class="p">:</span> <span class="n">hotline_bling</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lyrics_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;heartache&#39;, &#39;hotline&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 18</strong>: Add a third entry to the dictionary using the <span class="xref myst">Band of Horses</span> song <em>The Funeral</em> assigned to the string <code class="docutils literal notranslate"><span class="pre">the_funeral</span></code> below.  Use the key <code class="docutils literal notranslate"><span class="pre">funeral</span></code> to add these to <code class="docutils literal notranslate"><span class="pre">lyrics_dict</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">the_funeral</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">I&#39;m coming up only to hold you under</span>
+<span class="s1">And coming up only to show you&#39;re wrong</span>
+<span class="s1">And to know you is hard, we wonder</span>
+<span class="s1">To know you all wrong, we were</span>
+
+<span class="s1">Ooh, ooh</span>
+<span class="s1">Ooh, ooh</span>
+
+<span class="s1">Really too late to call, so we wait for</span>
+<span class="s1">Morning to wake you is all we got</span>
+<span class="s1">But to know me as hardly golden</span>
+<span class="s1">Is to know me all wrong, they were</span>
+
+<span class="s1">At every occasion, I&#39;ll be ready for the funeral</span>
+<span class="s1">At every occasion once more, it&#39;s called the funeral</span>
+<span class="s1">At every occasion, oh, I&#39;m ready for the funeral</span>
+<span class="s1">At every occasion of one billion day funeral</span>
+
+<span class="s1">I&#39;m coming up only to you show you down for</span>
+<span class="s1">And coming up only to you show you&#39;re wrong</span>
+<span class="s1">To the outside, the dead leaves lay on the lawn</span>
+<span class="s1">&#39;Fore they died, and had trees to hang there upon</span>
+
+<span class="s1">Ooh, ooh</span>
+<span class="s1">Ooh, ooh</span>
+
+<span class="s1">At every occasion, I&#39;ll be ready for the funeral</span>
+<span class="s1">At every occasion once more, it&#39;s called the funeral</span>
+<span class="s1">At every occasion, oh, I&#39;m ready for the funeral</span>
+<span class="s1">At every occasion of one billion day funeral</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lyrics_dict</span><span class="p">[</span><span class="s1">&#39;funeral&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">the_funeral</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 19</strong>: Loop over the <code class="docutils literal notranslate"><span class="pre">lyrics_dict</span></code> and print the lexical diversity of each of the three songs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### looping over dictionary</span>
+<span class="k">for</span> <span class="n">song</span> <span class="ow">in</span> <span class="n">lyrics_dict</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lex_div</span><span class="p">(</span><span class="n">lyrics_dict</span><span class="p">[</span><span class="n">song</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6103896103896104
+0.38493723849372385
+0.40555555555555556
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 20</strong>: Write a function <code class="docutils literal notranslate"><span class="pre">lexical_div_from_dict</span></code> that takes in a dictionary with keys that represent the song name and values that are the lyrics of the song – like <code class="docutils literal notranslate"><span class="pre">lyrics_dict</span></code> – and returns a dictionary of song names and their respective lexical diversity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### lexical function for dictionaries</span>
+<span class="k">def</span> <span class="nf">lexical_div_from_dict</span><span class="p">(</span><span class="n">lyrics_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    The function accepts a dictionary of lyrics </span>
+<span class="sd">    --</span>
+<span class="sd">    (keys song name and values string of lyrics)</span>
+<span class="sd">    --</span>
+<span class="sd">    and returns a dictionary with the songs lexical diversity.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">song</span> <span class="ow">in</span> <span class="n">lyrics_dict</span><span class="p">:</span>
+        <span class="n">ans</span><span class="p">[</span><span class="n">song</span><span class="p">]</span> <span class="o">=</span> <span class="n">lex_div</span><span class="p">(</span><span class="n">lyrics_dict</span><span class="p">[</span><span class="n">song</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lexical_div_from_dict</span><span class="p">(</span><span class="n">lyrics_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;heartache&#39;: 0.6103896103896104,
+ &#39;hotline&#39;: 0.38493723849372385,
+ &#39;funeral&#39;: 0.40555555555555556}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="loops">
+<h1>Loops<a class="headerlink" href="#loops" title="Permalink to this heading">#</a></h1>
+<p><strong>Problem 21</strong>: Below, two lists are given to represent albums and reviews from the magazine <em>Pitchfork</em>.  Loop over each of these and print:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">album</span> <span class="p">{</span><span class="n">album_name</span><span class="p">}</span> <span class="n">by</span> <span class="p">{</span><span class="n">artist</span><span class="p">}</span> <span class="n">received</span> <span class="n">a</span> <span class="n">score</span> <span class="n">of</span> <span class="p">{</span><span class="n">review_score</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Be sure to use an f-string for this.</p>
+<p><strong>Hint</strong>: You should use the <code class="docutils literal notranslate"><span class="pre">zip</span></code> function for this.  Checkout the documentation <a class="reference external" href="https://docs.python.org/3/library/functions.html#zip">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">albums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;God Did&#39;</span><span class="p">,</span> <span class="s1">&#39;Black Vladimir&#39;</span><span class="p">,</span> <span class="s1">&#39;Pulse of the Early Brain&#39;</span><span class="p">,</span> <span class="s1">&#39;11:11&#39;</span><span class="p">]</span>
+<span class="n">artists</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DJ Khaled&#39;</span><span class="p">,</span> <span class="s1">&#39;Meyhem Lauren/Daringer&#39;</span><span class="p">,</span> <span class="s1">&#39;Stereolab&#39;</span><span class="p">,</span> <span class="s1">&#39;Regina Spektor&#39;</span><span class="p">]</span>
+<span class="n">ratings</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">,</span> <span class="mf">7.7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### loop over lists and print</span>
+<span class="k">for</span> <span class="n">album</span><span class="p">,</span> <span class="n">artist</span><span class="p">,</span> <span class="n">rating</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">albums</span><span class="p">,</span> <span class="n">artists</span><span class="p">,</span> <span class="n">ratings</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The album </span><span class="si">{</span><span class="n">album</span><span class="si">}</span><span class="s1"> by </span><span class="si">{</span><span class="n">artist</span><span class="si">}</span><span class="s1"> received a score of </span><span class="si">{</span><span class="n">rating</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The album God Did by DJ Khaled received a score of 4.0.
+The album Black Vladimir by Meyhem Lauren/Daringer received a score of 7.1.
+The album Pulse of the Early Brain by Stereolab received a score of 6.6.
+The album 11:11 by Regina Spektor received a score of 7.7.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h1>
+<p>The problems below review functions.</p>
+<p><strong>Problem 22</strong>: Write a function that takes in a number n and returns the sum of the numbers 1 through n.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">adder</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>210
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 23</strong>: Write a function that takes a number (a person’s height) and returns “Tall enough” if they are at least 5 feet (60 inches) or “Too short” if they are below 5 feet.</p>
+<ul class="simple">
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">is_tall(72)</span> <span class="pre">=&gt;</span> <span class="pre">&quot;Tall</span> <span class="pre">enough&quot;</span></code></p></li>
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">is_tall(52)</span> <span class="pre">=&gt;</span> <span class="pre">&quot;Too</span> <span class="pre">short&quot;</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_tall</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">height</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Tall Enough&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;Too short&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_tall</span><span class="p">(</span><span class="mi">72</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Tall Enough&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_tall</span><span class="p">(</span><span class="mi">52</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Too short&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 24</strong>: Write a function that takes in a numeric grade (0 to 100) and returns the letter grade (no pluses or minuses). In a traditional rubric, that would be as follows:</p>
+<ul class="simple">
+<li><p>90 or above = A</p></li>
+<li><p>80 - 89 = B</p></li>
+<li><p>70 - 79 = C</p></li>
+<li><p>60 - 69 = D</p></li>
+<li><p>59 or below = F</p></li>
+</ul>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">letter_grade(85)</span> <span class="pre">=&gt;</span> <span class="pre">&quot;B&quot;</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">letter_grade</span><span class="p">(</span><span class="n">grade</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">grade</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;A&quot;</span>
+    <span class="k">elif</span> <span class="n">grade</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;B&quot;</span>
+    <span class="k">elif</span> <span class="n">grade</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;C&quot;</span>
+    <span class="k">elif</span> <span class="n">grade</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;D&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;F&quot;</span>
+    
+<span class="n">letter_grade</span><span class="p">(</span><span class="mi">85</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;B&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Problem 25</strong>: Write a function that takes in a string and returns that string with its vowels removed.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">disemvowel(&quot;Python</span> <span class="pre">is</span> <span class="pre">my</span> <span class="pre">favorite</span> <span class="pre">language&quot;)</span> <span class="pre">=&gt;</span> <span class="pre">&quot;Pythn</span> <span class="pre">s</span> <span class="pre">my</span> <span class="pre">fvrt</span> <span class="pre">lngg&quot;</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">disemvowel</span><span class="p">(</span><span class="n">sent</span><span class="p">):</span>
+    <span class="n">new_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">vowels</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">sent</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">letter</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">vowels</span><span class="p">:</span>
+            <span class="n">new_string</span> <span class="o">+=</span> <span class="n">letter</span>
+    <span class="k">return</span> <span class="n">new_string</span>
+
+<span class="n">disemvowel</span><span class="p">(</span><span class="s2">&quot;Python is my favorite language&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Pythn s my fvrt lngg&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="further-problems">
+<h1>Further Problems<a class="headerlink" href="#further-problems" title="Permalink to this heading">#</a></h1>
+<p>One great resource for practice are sites like <a class="reference external" href="https://www.codewars.com/">code wars</a>.  They have problems organized by difficulty in <em>Kata</em>’s.  Head over to code wars and get set up to practice.  Explore some different problems and locate two that you understand and are able to solve.  State the problems and their solutions below.</p>
+<p><strong>Problem 26</strong>:  Code Wars Problem I</p>
+<p><strong>Problem 27</strong>: Code Wars Problem II</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./homework"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Assignment 1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#number-and-operation">Number and Operation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#strings-and-their-methods">Strings and their methods</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">Lists</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">Dictionaries</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">Loops</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#further-problems">Further Problems</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lenny
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
