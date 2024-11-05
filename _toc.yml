@@ -28,7 +28,7 @@ parts:
     - file: polynomial_models
     - file: knn_crossval
 #     - file: knn_classification
-#     - file: logistic_starter_code
+    - file: logistic_starter_code
 #     - file: transformers_pipelines_review
 #     - file: cross_val_and_grid_searching
 #     - file: intro_decision_tree        
