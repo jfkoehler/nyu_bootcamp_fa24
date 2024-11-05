@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Classification II: Logistic Regression &#8212; Stern Data Bootcamp</title>
+    <title>Classification I: Logistic Regression &#8212; Stern Data Bootcamp</title>
   
   
   
@@ -214,7 +214,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Classification II: Logistic Regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Classification I: Logistic Regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
@@ -454,7 +454,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Classification II: Logistic Regression</h1>
+    <h1>Classification I: Logistic Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -472,12 +472,14 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-sigmoid-aka-logistic-function">The Sigmoid aka Logistic Function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-should-seem-familiar">Usage should seem familiar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-classifier">Evaluating the Classifier</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-to-our-earlier-work">Similarities to our earlier work</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-was-the-line">Where was the line?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-categorical-features">Using Categorical Features</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-multiple-features">Using Multiple Features</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-similar-to-our-multicollinearity-in-regression-we-will-call-it-confounding">This is similar to our multicollinearity in regression; we will call it confounding</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scikitlearn-and-its-pipeline">Using <code class="docutils literal notranslate"><span class="pre">scikitlearn</span></code> and its <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-to-knn-and-grid-searching">Compare to KNN and Grid Searching</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-results">Comparing Results</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice">Practice</a></li>
@@ -494,8 +496,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="classification-ii-logistic-regression">
-<h1>Classification II: Logistic Regression<a class="headerlink" href="#classification-ii-logistic-regression" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="classification-i-logistic-regression">
+<h1>Classification I: Logistic Regression<a class="headerlink" href="#classification-i-logistic-regression" title="Permalink to this heading">#</a></h1>
 <p><strong>OBJECTIVES</strong>:</p>
 <ul class="simple">
 <li><p>Differentiate between <em>Regression</em> and <em>Classification</em> problem settings</p></li>
@@ -579,14 +581,9 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#boxplots for balance and income by default</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">default</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;balance&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">default</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;income&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">default</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;balance&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">default</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -614,8 +611,8 @@ document.write(`
 <h3>PROBLEM<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Build a <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> model with balance as the predictor.</p></li>
-<li><p>Interpret the <span class="math notranslate nohighlight">\(r^2\)</span> score and <span class="math notranslate nohighlight">\(rmse\)</span> for your regressor.</p></li>
-<li><p>Predict the default for balances: <code class="docutils literal notranslate"><span class="pre">[500,</span> <span class="pre">1000,</span> <span class="pre">1500,</span> <span class="pre">2000,</span> <span class="pre">2500]</span></code>.  Do these make sense?</p></li>
+<li><p>Interpret the <span class="math notranslate nohighlight">\(r^2\)</span> score and <span class="math notranslate nohighlight">\(rmse\)</span> (<code class="docutils literal notranslate"><span class="pre">root_mean_squared_error</span></code>) for your regressor.</p></li>
+<li><p>Predict the default for balances: <code class="docutils literal notranslate"><span class="pre">[200,</span> <span class="pre">1000,</span> <span class="pre">1500,</span> <span class="pre">2000,</span> <span class="pre">2500,</span> <span class="pre">3500]</span></code>.  Do these make sense?</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -704,6 +701,31 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#examine train and test scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evaluating-the-classifier">
+<h2>Evaluating the Classifier<a class="headerlink" href="#evaluating-the-classifier" title="Permalink to this heading">#</a></h2>
+<p>In <code class="docutils literal notranslate"><span class="pre">scikitlearn</span></code> the primary default evalution metric is <strong>accuracy</strong> or percent correct.  We still need to compare this to our baseline – typically predicting the most frequently occurring class.  Further, you can investigate the mistakes made with each class by looking at the <strong>Confusion Matrix</strong>.  A quick visualization of this is had using the <code class="docutils literal notranslate"><span class="pre">ConfusionMatrixDisplay</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#baseline -- most frequently occurring class</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from estimator</span>
 </pre></div>
 </div>
 </div>
@@ -907,7 +929,7 @@ document.write(`
 <section id="this-is-similar-to-our-multicollinearity-in-regression-we-will-call-it-confounding">
 <h2>This is similar to our multicollinearity in regression; we will call it confounding<a class="headerlink" href="#this-is-similar-to-our-multicollinearity-in-regression-we-will-call-it-confounding" title="Permalink to this heading">#</a></h2>
 <center>
-<img src = 'images/default_confound.png'/>
+<img src = 'https://github.com/jfkoehler/nyu_bootcamp_fa24/blob/main/images/default_confound.png?raw=true' />
 </center><section id="using-scikitlearn-and-its-pipeline">
 <h3>Using <code class="docutils literal notranslate"><span class="pre">scikitlearn</span></code> and its <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code><a class="headerlink" href="#using-scikitlearn-and-its-pipeline" title="Permalink to this heading">#</a></h3>
 <p>From the original data, to build a model involved:</p>
@@ -922,6 +944,14 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span> 
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_transformer</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">default</span><span class="p">[[</span><span class="s1">&#39;student&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;balance&#39;</span><span class="p">]],</span> <span class="n">default</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">],</span>
+                                                   <span class="n">random_state</span> <span class="o">=</span> <span class="mi">22</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -962,15 +992,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pipeline</span>
-<span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="n">transformer</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">clf</span><span class="p">)])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">default</span><span class="p">[[</span><span class="s1">&#39;student&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;balance&#39;</span><span class="p">]],</span> <span class="n">default</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">],</span>
-                                                   <span class="n">random_state</span> <span class="o">=</span> <span class="mi">22</span><span class="p">)</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="n">transformer</span><span class="p">),</span> 
+                 <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">clf</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
@@ -995,6 +1018,197 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Problem<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Below, a dataset on bank customer churn is loaded and displayed.  Your objective is to predict <code class="docutils literal notranslate"><span class="pre">Exited</span></code> or not.  Use <code class="docutils literal notranslate"><span class="pre">CreditScore</span></code>, <code class="docutils literal notranslate"><span class="pre">Gender</span></code>, <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Tenure</span></code>, and <code class="docutils literal notranslate"><span class="pre">Balance</span></code> as predictors.  Examine the confusion matrix display.  Was your classifier better at predicting exits or non-exits?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bank_churn</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="n">data_id</span> <span class="o">=</span> <span class="mi">43390</span><span class="p">)</span><span class="o">.</span><span class="n">frame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bank_churn</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>RowNumber</th>
+      <th>CustomerId</th>
+      <th>Surname</th>
+      <th>CreditScore</th>
+      <th>Geography</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Tenure</th>
+      <th>Balance</th>
+      <th>NumOfProducts</th>
+      <th>HasCrCard</th>
+      <th>IsActiveMember</th>
+      <th>EstimatedSalary</th>
+      <th>Exited</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>15634602.0</td>
+      <td>Hargrave</td>
+      <td>619.0</td>
+      <td>France</td>
+      <td>Female</td>
+      <td>42.0</td>
+      <td>2.0</td>
+      <td>0.00</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>101348.88</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>15647311.0</td>
+      <td>Hill</td>
+      <td>608.0</td>
+      <td>Spain</td>
+      <td>Female</td>
+      <td>41.0</td>
+      <td>1.0</td>
+      <td>83807.86</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>112542.58</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.0</td>
+      <td>15619304.0</td>
+      <td>Onio</td>
+      <td>502.0</td>
+      <td>France</td>
+      <td>Female</td>
+      <td>42.0</td>
+      <td>8.0</td>
+      <td>159660.80</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>113931.57</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.0</td>
+      <td>15701354.0</td>
+      <td>Boni</td>
+      <td>699.0</td>
+      <td>France</td>
+      <td>Female</td>
+      <td>39.0</td>
+      <td>1.0</td>
+      <td>0.00</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>93826.63</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>15737888.0</td>
+      <td>Mitchell</td>
+      <td>850.0</td>
+      <td>Spain</td>
+      <td>Female</td>
+      <td>43.0</td>
+      <td>2.0</td>
+      <td>125510.82</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>79084.10</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create train/test split -- random_state = 42</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#encode gender and standard scale other features</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#set up pipeline to encode/scale and then build logistic regression model</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit the model on training data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#score on test and train</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#confusion matrix with test data</span>
 </pre></div>
 </div>
 </div>
@@ -1244,12 +1458,14 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-sigmoid-aka-logistic-function">The Sigmoid aka Logistic Function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-should-seem-familiar">Usage should seem familiar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-classifier">Evaluating the Classifier</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-to-our-earlier-work">Similarities to our earlier work</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-was-the-line">Where was the line?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-categorical-features">Using Categorical Features</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-multiple-features">Using Multiple Features</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-similar-to-our-multicollinearity-in-regression-we-will-call-it-confounding">This is similar to our multicollinearity in regression; we will call it confounding</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scikitlearn-and-its-pipeline">Using <code class="docutils literal notranslate"><span class="pre">scikitlearn</span></code> and its <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Problem</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-to-knn-and-grid-searching">Compare to KNN and Grid Searching</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-results">Comparing Results</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice">Practice</a></li>
