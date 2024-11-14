@@ -32,7 +32,8 @@ parts:
     - file: classifier_evaluation_b
 #     - file: transformers_pipelines_review
 #     - file: cross_val_and_grid_searching
-    - file: intro_decision_tree        
+    - file: intro_decision_tree  
+    - file: forests
 #   - caption: Advanced Models
 #     chapters:
 #     - file: advanced_models
