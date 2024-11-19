@@ -38,7 +38,9 @@ parts:
 #     chapters:
 #     - file: advanced_models
 #     - file: nlp-starter
-#     - file: time_series_I
+  - caption: Time Series Models
+    chapters:
+    - file: time_series_I
 #     - file: arima_models
 #     - file: intro_ann
 #     - file: cnn_intro_pytorch_clean
@@ -49,6 +51,7 @@ parts:
     - file: homework/homework_II
     - file: homework/homework_III
     - file: homework/homework_IV
+    - file: homework/regression_hw
     
   - caption: Extra Problems
     chapters: 
