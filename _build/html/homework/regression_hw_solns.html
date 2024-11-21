@@ -242,6 +242,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../forecasting_I.html">Forecasting with <code class="docutils literal notranslate"><span class="pre">sktime</span></code></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
@@ -776,13 +777,13 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.,  0.,  0., ...,  9., 34., 49.],
-       [ 0.,  1.,  0., ..., 11., 15., 32.],
-       [ 0.,  1.,  1., ..., 18.,  3., 27.],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.,  0.,  1., ..., 12., 14., 32.],
+       [ 1.,  1.,  0., ..., 11., 18., 35.],
+       [ 0.,  1.,  0., ..., 13.,  8., 27.],
        ...,
-       [ 1.,  0.,  0., ..., 16., 28., 50.],
-       [ 0.,  1.,  1., ..., 13., 32., 51.],
-       [ 0.,  0.,  1., ..., 11., 33., 50.]])
+       [ 0.,  0.,  1., ..., 14., 32., 52.],
+       [ 1.,  0.,  1., ..., 16.,  2., 24.],
+       [ 0.,  1.,  0., ..., 12., 19., 37.]])
 </pre></div>
 </div>
 </div>
@@ -819,7 +820,7 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.15671899157370806
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.18309550724261178
 </pre></div>
 </div>
 </div>
@@ -831,7 +832,7 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.24349954466077064
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.16477003540274918
 </pre></div>
 </div>
 </div>
@@ -843,7 +844,7 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.048218217864196
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.063315032947671
 </pre></div>
 </div>
 </div>
@@ -855,7 +856,7 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2667567022873041
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2785655066847971
 </pre></div>
 </div>
 </div>
@@ -867,7 +868,7 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31009178573040974
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.27607071944037787
 </pre></div>
 </div>
 </div>
@@ -912,79 +913,79 @@ memory usage: 17.3 KB
   <tbody>
     <tr>
       <th>onehotencoder__UNION_not_member</th>
-      <td>-0.235479</td>
-    </tr>
-    <tr>
-      <th>onehotencoder__OCCUPATION_Sales</th>
-      <td>-0.184630</td>
+      <td>-0.197940</td>
     </tr>
     <tr>
       <th>onehotencoder__OCCUPATION_Service</th>
-      <td>-0.165246</td>
-    </tr>
-    <tr>
-      <th>onehotencoder__SOUTH_yes</th>
-      <td>-0.083820</td>
+      <td>-0.157127</td>
     </tr>
     <tr>
       <th>onehotencoder__SECTOR_Other</th>
-      <td>-0.082700</td>
+      <td>-0.105116</td>
     </tr>
     <tr>
-      <th>onehotencoder__MARR_Unmarried</th>
-      <td>-0.072691</td>
+      <th>onehotencoder__OCCUPATION_Sales</th>
+      <td>-0.094698</td>
+    </tr>
+    <tr>
+      <th>onehotencoder__SOUTH_yes</th>
+      <td>-0.075580</td>
     </tr>
     <tr>
       <th>remainder__AGE</th>
-      <td>-0.070803</td>
-    </tr>
-    <tr>
-      <th>onehotencoder__RACE_Hispanic</th>
-      <td>-0.060286</td>
+      <td>-0.064934</td>
     </tr>
     <tr>
       <th>onehotencoder__OCCUPATION_Other</th>
-      <td>-0.045584</td>
+      <td>-0.062482</td>
     </tr>
     <tr>
-      <th>onehotencoder__RACE_Other</th>
-      <td>-0.005337</td>
+      <th>onehotencoder__MARR_Unmarried</th>
+      <td>-0.060643</td>
+    </tr>
+    <tr>
+      <th>onehotencoder__RACE_Hispanic</th>
+      <td>-0.048283</td>
     </tr>
     <tr>
       <th>onehotencoder__OCCUPATION_Clerical</th>
-      <td>0.016228</td>
+      <td>-0.010488</td>
     </tr>
     <tr>
-      <th>onehotencoder__SECTOR_Construction</th>
-      <td>0.027037</td>
+      <th>onehotencoder__RACE_Other</th>
+      <td>0.002120</td>
     </tr>
     <tr>
       <th>onehotencoder__SECTOR_Manufacturing</th>
-      <td>0.055663</td>
+      <td>0.035014</td>
     </tr>
     <tr>
       <th>onehotencoder__RACE_White</th>
-      <td>0.065623</td>
+      <td>0.046162</td>
+    </tr>
+    <tr>
+      <th>onehotencoder__SECTOR_Construction</th>
+      <td>0.070102</td>
     </tr>
     <tr>
       <th>remainder__EXPERIENCE</th>
-      <td>0.081765</td>
+      <td>0.074475</td>
     </tr>
     <tr>
       <th>onehotencoder__OCCUPATION_Professional</th>
-      <td>0.137930</td>
+      <td>0.129879</td>
     </tr>
     <tr>
       <th>remainder__EDUCATION</th>
-      <td>0.145847</td>
-    </tr>
-    <tr>
-      <th>onehotencoder__SEX_male</th>
-      <td>0.233278</td>
+      <td>0.136220</td>
     </tr>
     <tr>
       <th>onehotencoder__OCCUPATION_Management</th>
-      <td>0.241302</td>
+      <td>0.194918</td>
+    </tr>
+    <tr>
+      <th>onehotencoder__SEX_male</th>
+      <td>0.198618</td>
     </tr>
   </tbody>
 </table>
@@ -1041,7 +1042,7 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.144967255595062
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.17435777343198822
 </pre></div>
 </div>
 </div>
@@ -1053,7 +1054,7 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2589751575010871
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.17022018788534107
 </pre></div>
 </div>
 </div>
@@ -1118,13 +1119,13 @@ memory usage: 17.3 KB
       <th>SOUTH_yes</th>
       <th>SEX_male</th>
       <th>UNION_not_member</th>
-      <th>RACE_Hispanic</th>
-      <th>RACE_White</th>
+      <th>OCCUPATION_Clerical</th>
       <th>OCCUPATION_Management</th>
       <th>OCCUPATION_Professional</th>
       <th>OCCUPATION_Service</th>
       <th>MARR_Unmarried</th>
       <th>EDUCATION</th>
+      <th>EXPERIENCE</th>
       <th>AGE</th>
       <th>EDUCATION^2</th>
       <th>EDUCATION EXPERIENCE</th>
@@ -1134,62 +1135,61 @@ memory usage: 17.3 KB
   </thead>
   <tbody>
     <tr>
-      <th>524</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>9.0</td>
-      <td>49.0</td>
-      <td>81.0</td>
-      <td>306.0</td>
-      <td>441.0</td>
-      <td>2401.0</td>
-    </tr>
-    <tr>
-      <th>142</th>
-      <td>0.0</td>
-      <td>1.0</td>
+      <th>237</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>11.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>12.0</td>
+      <td>14.0</td>
       <td>32.0</td>
-      <td>121.0</td>
-      <td>165.0</td>
-      <td>352.0</td>
+      <td>144.0</td>
+      <td>168.0</td>
+      <td>384.0</td>
       <td>1024.0</td>
     </tr>
     <tr>
-      <th>442</th>
-      <td>0.0</td>
+      <th>423</th>
       <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>11.0</td>
       <td>18.0</td>
+      <td>35.0</td>
+      <td>121.0</td>
+      <td>198.0</td>
+      <td>385.0</td>
+      <td>1225.0</td>
+    </tr>
+    <tr>
+      <th>84</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>13.0</td>
+      <td>8.0</td>
       <td>27.0</td>
-      <td>324.0</td>
-      <td>54.0</td>
-      <td>486.0</td>
+      <td>169.0</td>
+      <td>104.0</td>
+      <td>351.0</td>
       <td>729.0</td>
     </tr>
     <tr>
-      <th>150</th>
-      <td>1.0</td>
+      <th>5</th>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1198,30 +1198,31 @@ memory usage: 17.3 KB
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>6.0</td>
-      <td>45.0</td>
-      <td>36.0</td>
-      <td>198.0</td>
-      <td>270.0</td>
-      <td>2025.0</td>
+      <td>13.0</td>
+      <td>9.0</td>
+      <td>28.0</td>
+      <td>169.0</td>
+      <td>117.0</td>
+      <td>364.0</td>
+      <td>784.0</td>
     </tr>
     <tr>
-      <th>448</th>
+      <th>306</th>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>13.0</td>
       <td>16.0</td>
-      <td>36.0</td>
-      <td>256.0</td>
-      <td>224.0</td>
-      <td>576.0</td>
-      <td>1296.0</td>
+      <td>35.0</td>
+      <td>169.0</td>
+      <td>208.0</td>
+      <td>455.0</td>
+      <td>1225.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1242,94 +1243,94 @@ memory usage: 17.3 KB
       <td>...</td>
     </tr>
     <tr>
-      <th>355</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
+      <th>468</th>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>9.0</td>
-      <td>63.0</td>
-      <td>81.0</td>
-      <td>432.0</td>
-      <td>567.0</td>
-      <td>3969.0</td>
+      <td>18.0</td>
+      <td>33.0</td>
+      <td>57.0</td>
+      <td>324.0</td>
+      <td>594.0</td>
+      <td>1026.0</td>
+      <td>3249.0</td>
     </tr>
     <tr>
-      <th>344</th>
+      <th>400</th>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>10.0</td>
+      <td>25.0</td>
+      <td>41.0</td>
+      <td>100.0</td>
+      <td>250.0</td>
+      <td>410.0</td>
+      <td>1681.0</td>
+    </tr>
+    <tr>
+      <th>324</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>14.0</td>
-      <td>39.0</td>
+      <td>32.0</td>
+      <td>52.0</td>
       <td>196.0</td>
-      <td>266.0</td>
-      <td>546.0</td>
-      <td>1521.0</td>
-    </tr>
-    <tr>
-      <th>492</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>16.0</td>
-      <td>50.0</td>
-      <td>256.0</td>
       <td>448.0</td>
-      <td>800.0</td>
-      <td>2500.0</td>
+      <td>728.0</td>
+      <td>2704.0</td>
     </tr>
     <tr>
-      <th>161</th>
-      <td>0.0</td>
-      <td>1.0</td>
+      <th>274</th>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>13.0</td>
-      <td>51.0</td>
-      <td>169.0</td>
-      <td>416.0</td>
-      <td>663.0</td>
-      <td>2601.0</td>
+      <td>16.0</td>
+      <td>2.0</td>
+      <td>24.0</td>
+      <td>256.0</td>
+      <td>32.0</td>
+      <td>384.0</td>
+      <td>576.0</td>
     </tr>
     <tr>
-      <th>227</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
+      <th>11</th>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>11.0</td>
-      <td>50.0</td>
-      <td>121.0</td>
-      <td>363.0</td>
-      <td>550.0</td>
-      <td>2500.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>12.0</td>
+      <td>19.0</td>
+      <td>37.0</td>
+      <td>144.0</td>
+      <td>228.0</td>
+      <td>444.0</td>
+      <td>1369.0</td>
     </tr>
   </tbody>
 </table>
@@ -1343,11 +1344,11 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;SOUTH_yes&#39;, &#39;SEX_male&#39;, &#39;UNION_not_member&#39;, &#39;RACE_Hispanic&#39;,
-       &#39;RACE_White&#39;, &#39;OCCUPATION_Management&#39;, &#39;OCCUPATION_Professional&#39;,
-       &#39;OCCUPATION_Service&#39;, &#39;MARR_Unmarried&#39;, &#39;EDUCATION&#39;, &#39;AGE&#39;,
-       &#39;EDUCATION^2&#39;, &#39;EDUCATION EXPERIENCE&#39;, &#39;EDUCATION AGE&#39;, &#39;AGE^2&#39;],
-      dtype=object)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;SOUTH_yes&#39;, &#39;SEX_male&#39;, &#39;UNION_not_member&#39;, &#39;OCCUPATION_Clerical&#39;,
+       &#39;OCCUPATION_Management&#39;, &#39;OCCUPATION_Professional&#39;,
+       &#39;OCCUPATION_Service&#39;, &#39;MARR_Unmarried&#39;, &#39;EDUCATION&#39;, &#39;EXPERIENCE&#39;,
+       &#39;AGE&#39;, &#39;EDUCATION^2&#39;, &#39;EDUCATION EXPERIENCE&#39;, &#39;EDUCATION AGE&#39;,
+       &#39;AGE^2&#39;], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -1379,7 +1380,7 @@ memory usage: 17.3 KB
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 19 artists&gt;
 </pre></div>
 </div>
-<img alt="../_images/ff98ffbc81c13c6c303f0ec0b605852c1e52fe24493c7c5951fb3a8f0954841b.png" src="../_images/ff98ffbc81c13c6c303f0ec0b605852c1e52fe24493c7c5951fb3a8f0954841b.png" />
+<img alt="../_images/0ac22f3a2fdd98ff417a55e7aaecfe9bb7d04085c8483849866fe199731105e6.png" src="../_images/0ac22f3a2fdd98ff417a55e7aaecfe9bb7d04085c8483849866fe199731105e6.png" />
 </div>
 </div>
 <p><strong>PROBLEM 11: Revisiting Interpretation</strong></p>
@@ -1400,7 +1401,7 @@ memory usage: 17.3 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dfce17f5d97d57a488a8f858e7e2b96a0abaab13ca20b6c3fe54f6e23c1d9a0f.png" src="../_images/dfce17f5d97d57a488a8f858e7e2b96a0abaab13ca20b6c3fe54f6e23c1d9a0f.png" />
+<img alt="../_images/afd3c568aacb960b4f8e8bbcfe0ec6054738926d87e70b5c1b77db9e2fbd9658.png" src="../_images/afd3c568aacb960b4f8e8bbcfe0ec6054738926d87e70b5c1b77db9e2fbd9658.png" />
 </div>
 </div>
 </section>

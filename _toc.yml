@@ -41,6 +41,7 @@ parts:
   - caption: Time Series Models
     chapters:
     - file: time_series_I
+    - file: forecasting_I
 #     - file: arima_models
 #     - file: intro_ann
 #     - file: cnn_intro_pytorch_clean
