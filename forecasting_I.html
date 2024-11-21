@@ -687,7 +687,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ohe</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ohe</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">handle_unknown</span> <span class="o">=</span> <span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 <span class="n">transformer</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">((</span><span class="n">ohe</span><span class="p">,</span> <span class="n">cat_cols</span><span class="p">),</span> <span class="n">remainder</span> <span class="o">=</span> <span class="s1">&#39;passthrough&#39;</span><span class="p">,</span>
                                      <span class="n">verbose_feature_names_out</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -731,579 +731,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Management&#39;] in column 4 during transform
-
-  warnings.warn(
-/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Professional&#39;] in column 4 during transform
-
-  warnings.warn(
-/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Management&#39;] in column 4 during transform
-
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Professional&#39;] in column 4 during transform
-
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Management&#39;] in column 4 during transform
-
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Professional&#39;] in column 4 during transform
-
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Management&#39;] in column 4 during transform
-
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Professional&#39;] in column 4 during transform
-
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Management&#39;] in column 4 during transform
-
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Professional&#39;] in column 4 during transform
-
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Management&#39;] in column 4 during transform
-
-  warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py:982: UserWarning: Scoring failed. The score on this train-test partition for these parameters will be set to nan. Details: 
-Traceback (most recent call last):
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_validation.py&quot;, line 971, in _score
-    scores = scorer(estimator, X_test, y_test, **score_params)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/metrics/_scorer.py&quot;, line 455, in __call__
-    return estimator.score(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1000, in score
-    Xt = transform.transform(Xt)
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 1076, in transform
-    Xs = self._call_func_on_transformers(
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py&quot;, line 885, in _call_func_on_transformers
-    return Parallel(n_jobs=self.n_jobs)(jobs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 74, in __call__
-    return super().__call__(iterable_with_config)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1863, in __call__
-    return output if self.return_generator else list(output)
-                                                ^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/joblib/parallel.py&quot;, line 1792, in _get_sequential_output
-    res = func(*args, **kwargs)
-          ^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/parallel.py&quot;, line 136, in __call__
-    return self.function(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/pipeline.py&quot;, line 1290, in _transform_one
-    res = transformer.transform(X, **params.transform)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py&quot;, line 316, in wrapped
-    data_to_wrap = f(self, X, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 1024, in transform
-    X_int, X_mask = self._transform(
-                    ^^^^^^^^^^^^^^^^
-  File &quot;/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/preprocessing/_encoders.py&quot;, line 214, in _transform
-    raise ValueError(msg)
-ValueError: Found unknown categories [&#39;Professional&#39;] in column 4 during transform
-
-  warnings.warn(
-/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/model_selection/_search.py:1103: UserWarning: One or more of the test scores are non-finite: [nan nan nan nan nan nan]
-  warnings.warn(
-/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py:1623: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/compose/_column_transformer.py:1623: FutureWarning: 
 The format of the columns of the &#39;remainder&#39; transformer in ColumnTransformer.transformers_ will change in version 1.7 to match the format of the other transformers.
 At the moment the remainder columns are stored as indices (of type int). With the same ColumnTransformer configuration, in the future they will be stored as column names (of type str).
 To use the new behavior now and suppress this warning, use ColumnTransformer(force_int_remainder_cols=False).
@@ -1718,7 +1146,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(estimator=Pipeline(steps=[(&#x27;transformer&#x27;,
                                         ColumnTransformer(remainder=&#x27;passthrough&#x27;,
                                                           transformers=[(&#x27;onehotencoder&#x27;,
-                                                                         OneHotEncoder(sparse_output=False),
+                                                                         OneHotEncoder(handle_unknown=&#x27;ignore&#x27;,
+                                                                                       sparse_output=False),
                                                                          [&#x27;SOUTH&#x27;,
                                                                           &#x27;SEX&#x27;,
                                                                           &#x27;UNION&#x27;,
@@ -1733,7 +1162,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                                     PolynomialFeatures(interaction_only=True)]})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;GridSearchCV<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>GridSearchCV(estimator=Pipeline(steps=[(&#x27;transformer&#x27;,
                                         ColumnTransformer(remainder=&#x27;passthrough&#x27;,
                                                           transformers=[(&#x27;onehotencoder&#x27;,
-                                                                         OneHotEncoder(sparse_output=False),
+                                                                         OneHotEncoder(handle_unknown=&#x27;ignore&#x27;,
+                                                                                       sparse_output=False),
                                                                          [&#x27;SOUTH&#x27;,
                                                                           &#x27;SEX&#x27;,
                                                                           &#x27;UNION&#x27;,
@@ -1748,17 +1178,19 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                                     PolynomialFeatures(interaction_only=True)]})</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">best_estimator_: Pipeline</label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#x27;transformer&#x27;,
                  ColumnTransformer(remainder=&#x27;passthrough&#x27;,
                                    transformers=[(&#x27;onehotencoder&#x27;,
-                                                  OneHotEncoder(sparse_output=False),
+                                                  OneHotEncoder(handle_unknown=&#x27;ignore&#x27;,
+                                                                sparse_output=False),
                                                   [&#x27;SOUTH&#x27;, &#x27;SEX&#x27;, &#x27;UNION&#x27;,
                                                    &#x27;RACE&#x27;, &#x27;OCCUPATION&#x27;,
                                                    &#x27;SECTOR&#x27;, &#x27;MARR&#x27;])],
                                    verbose_feature_names_out=False)),
-                (&#x27;model&#x27;, RandomForestRegressor(n_estimators=10))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;transformer: ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for transformer: ColumnTransformer</span></a></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder=&#x27;passthrough&#x27;,
+                (&#x27;model&#x27;, RandomForestRegressor())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;transformer: ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for transformer: ColumnTransformer</span></a></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder=&#x27;passthrough&#x27;,
                   transformers=[(&#x27;onehotencoder&#x27;,
-                                 OneHotEncoder(sparse_output=False),
+                                 OneHotEncoder(handle_unknown=&#x27;ignore&#x27;,
+                                               sparse_output=False),
                                  [&#x27;SOUTH&#x27;, &#x27;SEX&#x27;, &#x27;UNION&#x27;, &#x27;RACE&#x27;, &#x27;OCCUPATION&#x27;,
                                   &#x27;SECTOR&#x27;, &#x27;MARR&#x27;])],
-                  verbose_feature_names_out=False)</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>[&#x27;SOUTH&#x27;, &#x27;SEX&#x27;, &#x27;UNION&#x27;, &#x27;RACE&#x27;, &#x27;OCCUPATION&#x27;, &#x27;SECTOR&#x27;, &#x27;MARR&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[&#x27;EDUCATION&#x27;, &#x27;EXPERIENCE&#x27;, &#x27;AGE&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;RandomForestRegressor<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.ensemble.RandomForestRegressor.html">?<span>Documentation for RandomForestRegressor</span></a></label><div class="sk-toggleable__content fitted"><pre>RandomForestRegressor(n_estimators=10)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div></div>
+                  verbose_feature_names_out=False)</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>[&#x27;SOUTH&#x27;, &#x27;SEX&#x27;, &#x27;UNION&#x27;, &#x27;RACE&#x27;, &#x27;OCCUPATION&#x27;, &#x27;SECTOR&#x27;, &#x27;MARR&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[&#x27;EDUCATION&#x27;, &#x27;EXPERIENCE&#x27;, &#x27;AGE&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;RandomForestRegressor<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.ensemble.RandomForestRegressor.html">?<span>Documentation for RandomForestRegressor</span></a></label><div class="sk-toggleable__content fitted"><pre>RandomForestRegressor()</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1767,7 +1199,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model__n_estimators&#39;: 10, &#39;transformer__remainder&#39;: &#39;passthrough&#39;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model__n_estimators&#39;: 100, &#39;transformer__remainder&#39;: &#39;passthrough&#39;}
 </pre></div>
 </div>
 </div>
@@ -1779,11 +1211,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7977354661360073
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8653542803613267
 </pre></div>
 </div>
 </div>
 </div>
+<p><strong>Feature Importances</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">RandomForestRegressor</span></code> has <code class="docutils literal notranslate"><span class="pre">.feature_importances_</span></code> determined by the use of a feature in splitting.  Below these are displayed as a DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">steps</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">named_steps</span>
@@ -1791,8 +1225,6 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 </div>
-<p><strong>Feature Importances</strong></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">RandomForestRegressor</span></code> has <code class="docutils literal notranslate"><span class="pre">.feature_importances_</span></code> determined by the use of a feature in splitting.  Below these are displayed as a DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">steps</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span> 
@@ -2025,7 +1457,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span> <span class="o">=</span> <span class="n">ExponentialSmoothing</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instantiate</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -2080,9 +1513,12 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <img alt="_images/5908caaf3557c2412bc2862345640cfa111dc157a593dfb6dc5e4e39782560ac.png" src="_images/5908caaf3557c2412bc2862345640cfa111dc157a593dfb6dc5e4e39782560ac.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p>Need trend, seasonality, and seasonal periods</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hw</span> <span class="o">=</span> <span class="n">ExponentialSmoothing</span><span class="p">(</span><span class="n">trend</span> <span class="o">=</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="n">seasonal</span><span class="o">=</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="n">sp</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hw</span> <span class="o">=</span> <span class="n">ExponentialSmoothing</span><span class="p">()</span>
 <span class="n">hw</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 <span class="n">hw_preds</span> <span class="o">=</span> <span class="n">hw</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
 <span class="n">plot_series</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">hw_preds</span><span class="p">,</span> 
@@ -2631,6 +2067,8 @@ Freq: M, Name: Number of airline passengers, dtype: float64
 <img alt="_images/a2ebf41f7565d62b1f9a3326bb6faa4e72e5a43f79287e73d43c1f0c02e59ebb.png" src="_images/a2ebf41f7565d62b1f9a3326bb6faa4e72e5a43f79287e73d43c1f0c02e59ebb.png" />
 </div>
 </div>
+<p><strong>Problem</strong></p>
+<p>Return to the shampoo sales data and use an <code class="docutils literal notranslate"><span class="pre">AutoARIMA</span></code> model to fit the data.  This model will automatically learn the parameters for <span class="math notranslate nohighlight">\(p, q, d\)</span>.</p>
 </section>
 </section>
 
