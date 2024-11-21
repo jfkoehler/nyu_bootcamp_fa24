@@ -18,22 +18,66 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-pd.DataFrame(steps['model'].feature_importances_, 
-             index = steps['transformer'].get_feature_names_out(),
-            columns = ['feature importance'])\
-            .sort_values(by = 'feature importance', 
-            ascending = False)
+plot_series(lynx);
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[16], line 1[0m
-[0;32m----> 1[0m [43mpd[49m[38;5;241m.[39mDataFrame(steps[[38;5;124m'[39m[38;5;124mmodel[39m[38;5;124m'[39m][38;5;241m.[39mfeature_importances_, 
-[1;32m      2[0m              index [38;5;241m=[39m steps[[38;5;124m'[39m[38;5;124mtransformer[39m[38;5;124m'[39m][38;5;241m.[39mget_feature_names_out(),
-[1;32m      3[0m             columns [38;5;241m=[39m [[38;5;124m'[39m[38;5;124mfeature importance[39m[38;5;124m'[39m])\
-[1;32m      4[0m             [38;5;241m.[39msort_values(by [38;5;241m=[39m [38;5;124m'[39m[38;5;124mfeature importance[39m[38;5;124m'[39m, 
-[1;32m      5[0m             ascending [38;5;241m=[39m [38;5;28;01mFalse[39;00m)
+[0;31mImportError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[21], line 1[0m
+[0;32m----> 1[0m [43mplot_series[49m[43m([49m[43mlynx[49m[43m)[49m;
 
-[0;31mNameError[0m: name 'pd' is not defined
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sktime/utils/plotting.py:90[0m, in [0;36mplot_series[0;34m(labels, markers, colors, title, x_label, y_label, ax, pred_interval, *series)[0m
+[1;32m     87[0m     check_y(y)
+[1;32m     89[0m l_series [38;5;241m=[39m [38;5;28mlist[39m(series)
+[0;32m---> 90[0m l_series [38;5;241m=[39m [[43mconvert_to[49m[43m([49m[43my[49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mpd.Series[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mSeries[39;49m[38;5;124;43m"[39;49m[43m)[49m [38;5;28;01mfor[39;00m y [38;5;129;01min[39;00m l_series]
+[1;32m     91[0m [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;28mlen[39m(l_series)):
+[1;32m     92[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m([38;5;28mlist[39m(series)[i], pd[38;5;241m.[39mDataFrame):
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sktime/datatypes/_convert.py:265[0m, in [0;36mconvert_to[0;34m(obj, to_type, as_scitype, store, store_behaviour, return_to_mtype)[0m
+[1;32m    262[0m     as_scitype [38;5;241m=[39m mtype_to_scitype(to_type)
+[1;32m    264[0m [38;5;66;03m# now further narrow down as_scitype by inference from the obj[39;00m
+[0;32m--> 265[0m from_type [38;5;241m=[39m [43minfer_mtype[49m[43m([49m[43mobj[49m[38;5;241;43m=[39;49m[43mobj[49m[43m,[49m[43m [49m[43mas_scitype[49m[38;5;241;43m=[39;49m[43mas_scitype[49m[43m)[49m
+[1;32m    266[0m as_scitype [38;5;241m=[39m mtype_to_scitype(from_type)
+[1;32m    268[0m converted_obj [38;5;241m=[39m convert(
+[1;32m    269[0m     obj[38;5;241m=[39mobj,
+[1;32m    270[0m     from_type[38;5;241m=[39mfrom_type,
+[0;32m   (...)[0m
+[1;32m    275[0m     return_to_mtype[38;5;241m=[39mreturn_to_mtype,
+[1;32m    276[0m )
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sktime/datatypes/_check.py:359[0m, in [0;36mmtype[0;34m(obj, as_scitype, exclude_mtypes)[0m
+[1;32m    357[0m     as_scitype [38;5;241m=[39m _coerce_list_of_str(as_scitype, var_name[38;5;241m=[39m[38;5;124m"[39m[38;5;124mas_scitype[39m[38;5;124m"[39m)
+[1;32m    358[0m     [38;5;28;01mfor[39;00m scitype [38;5;129;01min[39;00m as_scitype:
+[0;32m--> 359[0m         [43m_check_scitype_valid[49m[43m([49m[43mscitype[49m[43m)[49m
+[1;32m    361[0m check_dict [38;5;241m=[39m get_check_dict()
+[1;32m    362[0m m_plus_scitypes [38;5;241m=[39m [
+[1;32m    363[0m     (x[[38;5;241m0[39m], x[[38;5;241m1[39m]) [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m check_dict[38;5;241m.[39mkeys() [38;5;28;01mif[39;00m x[[38;5;241m0[39m] [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m exclude_mtypes
+[1;32m    364[0m ]
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sktime/datatypes/_check.py:92[0m, in [0;36m_check_scitype_valid[0;34m(scitype)[0m
+[1;32m     90[0m [38;5;28;01mdef[39;00m [38;5;21m_check_scitype_valid[39m(scitype: [38;5;28mstr[39m [38;5;241m=[39m [38;5;28;01mNone[39;00m):
+[1;32m     91[0m [38;5;250m    [39m[38;5;124;03m"""Check validity of scitype."""[39;00m
+[0;32m---> 92[0m     check_dict [38;5;241m=[39m [43mget_check_dict[49m[43m([49m[43m)[49m
+[1;32m     93[0m     valid_scitypes [38;5;241m=[39m [38;5;28mlist[39m({x[[38;5;241m1[39m] [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m check_dict[38;5;241m.[39mkeys()})
+[1;32m     95[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(scitype, [38;5;28mstr[39m):
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sktime/datatypes/_check.py:52[0m, in [0;36mget_check_dict[0;34m(soft_deps)[0m
+[1;32m     47[0m [38;5;28;01mif[39;00m soft_deps [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m [[38;5;124m"[39m[38;5;124mpresent[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mall[39m[38;5;124m"[39m]:
+[1;32m     48[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m     49[0m         [38;5;124m"[39m[38;5;124mError in get_check_dict, soft_deps argument must be [39m[38;5;124m'[39m[38;5;124mpresent[39m[38;5;124m'[39m[38;5;124m or [39m[38;5;124m'[39m[38;5;124mall[39m[38;5;124m'[39m[38;5;124m, [39m[38;5;124m"[39m
+[1;32m     50[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mfound [39m[38;5;132;01m{[39;00msoft_deps[38;5;132;01m}[39;00m[38;5;124m"[39m
+[1;32m     51[0m     )
+[0;32m---> 52[0m check_dict [38;5;241m=[39m [43mgenerate_check_dict[49m[43m([49m[43msoft_deps[49m[38;5;241;43m=[39;49m[43msoft_deps[49m[43m)[49m
+[1;32m     53[0m [38;5;28;01mreturn[39;00m check_dict[38;5;241m.[39mcopy()
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sktime/datatypes/_check.py:59[0m, in [0;36mgenerate_check_dict[0;34m(soft_deps)[0m
+[1;32m     56[0m [38;5;129m@lru_cache[39m(maxsize[38;5;241m=[39m[38;5;241m1[39m)
+[1;32m     57[0m [38;5;28;01mdef[39;00m [38;5;21mgenerate_check_dict[39m(soft_deps[38;5;241m=[39m[38;5;124m"[39m[38;5;124mpresent[39m[38;5;124m"[39m):
+[1;32m     58[0m [38;5;250m    [39m[38;5;124;03m"""Generate check_dict using lookup."""[39;00m
+[0;32m---> 59[0m     [38;5;28;01mfrom[39;00m [38;5;21;01mskbase[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdependencies[39;00m [38;5;28;01mimport[39;00m _check_estimator_deps
+[1;32m     61[0m     [38;5;28;01mfrom[39;00m [38;5;21;01msktime[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mretrieval[39;00m [38;5;28;01mimport[39;00m _all_classes
+[1;32m     63[0m     classes [38;5;241m=[39m _all_classes([38;5;124m"[39m[38;5;124msktime.datatypes[39m[38;5;124m"[39m)
+
+[0;31mImportError[0m: cannot import name '_check_estimator_deps' from 'skbase.utils.dependencies' (/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/skbase/utils/dependencies/__init__.py)
 
