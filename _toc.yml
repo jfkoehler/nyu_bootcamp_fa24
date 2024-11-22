@@ -53,6 +53,7 @@ parts:
     - file: homework/homework_III
     - file: homework/homework_IV
     - file: homework/regression_hw
+    - file: homework/time_series_hw
     
   - caption: Extra Problems
     chapters: 
