@@ -45,6 +45,9 @@ parts:
 #     - file: arima_models
 #     - file: intro_ann
 #     - file: cnn_intro_pytorch_clean
+  - caption: Intro to Artificial Neural Networks
+    chapters:
+    - file: intro_to_ann
 
   - caption: Homework
     chapters:
