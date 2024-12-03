@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'forecasting_I';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Assignment 1" href="homework/homework_I.html" />
+    <link rel="next" title="Intro ANN" href="intro_to_ann.html" />
     <link rel="prev" title="Time Series and Forecasting Intro" href="time_series_I.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -247,6 +247,15 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Forecasting with <code class="docutils literal notranslate"><span class="pre">sktime</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro to Artificial Neural Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro_to_ann.html">Intro ANN</a></li>
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
@@ -1179,7 +1188,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                          &#x27;model__n_estimators&#x27;: [10, 100],
                          &#x27;transformer__remainder&#x27;: [&#x27;passthrough&#x27;,
                                                     PolynomialFeatures(interaction_only=True)]})</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">best_estimator_: Pipeline</label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#x27;transformer&#x27;,
-                 ColumnTransformer(remainder=PolynomialFeatures(interaction_only=True),
+                 ColumnTransformer(remainder=&#x27;passthrough&#x27;,
                                    transformers=[(&#x27;onehotencoder&#x27;,
                                                   OneHotEncoder(handle_unknown=&#x27;ignore&#x27;,
                                                                 sparse_output=False),
@@ -1187,13 +1196,13 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                                    &#x27;RACE&#x27;, &#x27;OCCUPATION&#x27;,
                                                    &#x27;SECTOR&#x27;, &#x27;MARR&#x27;])],
                                    verbose_feature_names_out=False)),
-                (&#x27;model&#x27;, RandomForestRegressor(max_depth=3, n_estimators=10))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;transformer: ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for transformer: ColumnTransformer</span></a></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder=PolynomialFeatures(interaction_only=True),
+                (&#x27;model&#x27;, RandomForestRegressor(max_depth=3, n_estimators=10))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;transformer: ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for transformer: ColumnTransformer</span></a></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(remainder=&#x27;passthrough&#x27;,
                   transformers=[(&#x27;onehotencoder&#x27;,
                                  OneHotEncoder(handle_unknown=&#x27;ignore&#x27;,
                                                sparse_output=False),
                                  [&#x27;SOUTH&#x27;, &#x27;SEX&#x27;, &#x27;UNION&#x27;, &#x27;RACE&#x27;, &#x27;OCCUPATION&#x27;,
                                   &#x27;SECTOR&#x27;, &#x27;MARR&#x27;])],
-                  verbose_feature_names_out=False)</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>[&#x27;SOUTH&#x27;, &#x27;SEX&#x27;, &#x27;UNION&#x27;, &#x27;RACE&#x27;, &#x27;OCCUPATION&#x27;, &#x27;SECTOR&#x27;, &#x27;MARR&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[&#x27;EDUCATION&#x27;, &#x27;EXPERIENCE&#x27;, &#x27;AGE&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;PolynomialFeatures<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.PolynomialFeatures.html">?<span>Documentation for PolynomialFeatures</span></a></label><div class="sk-toggleable__content fitted"><pre>PolynomialFeatures(interaction_only=True)</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;RandomForestRegressor<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.ensemble.RandomForestRegressor.html">?<span>Documentation for RandomForestRegressor</span></a></label><div class="sk-toggleable__content fitted"><pre>RandomForestRegressor(max_depth=3, n_estimators=10)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div></div>
+                  verbose_feature_names_out=False)</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">onehotencoder</label><div class="sk-toggleable__content fitted"><pre>[&#x27;SOUTH&#x27;, &#x27;SEX&#x27;, &#x27;UNION&#x27;, &#x27;RACE&#x27;, &#x27;OCCUPATION&#x27;, &#x27;SECTOR&#x27;, &#x27;MARR&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">remainder</label><div class="sk-toggleable__content fitted"><pre>[&#x27;EDUCATION&#x27;, &#x27;EXPERIENCE&#x27;, &#x27;AGE&#x27;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">passthrough</label><div class="sk-toggleable__content fitted"><pre>passthrough</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;RandomForestRegressor<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.ensemble.RandomForestRegressor.html">?<span>Documentation for RandomForestRegressor</span></a></label><div class="sk-toggleable__content fitted"><pre>RandomForestRegressor(max_depth=3, n_estimators=10)</pre></div> </div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1204,7 +1213,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model__max_depth&#39;: 3,
  &#39;model__n_estimators&#39;: 10,
- &#39;transformer__remainder&#39;: PolynomialFeatures(interaction_only=True)}
+ &#39;transformer__remainder&#39;: &#39;passthrough&#39;}
 </pre></div>
 </div>
 </div>
@@ -1216,7 +1225,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3696322816745866
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.38913228679664846
 </pre></div>
 </div>
 </div>
@@ -1267,82 +1276,74 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   <tbody>
     <tr>
       <th>EDUCATION</th>
-      <td>0.437090</td>
-    </tr>
-    <tr>
-      <th>EDUCATION AGE</th>
-      <td>0.170072</td>
-    </tr>
-    <tr>
-      <th>EDUCATION EXPERIENCE</th>
-      <td>0.071783</td>
-    </tr>
-    <tr>
-      <th>UNION_not_member</th>
-      <td>0.051606</td>
-    </tr>
-    <tr>
-      <th>SEX_male</th>
-      <td>0.049749</td>
-    </tr>
-    <tr>
-      <th>OCCUPATION_Service</th>
-      <td>0.044131</td>
-    </tr>
-    <tr>
-      <th>OCCUPATION_Management</th>
-      <td>0.042462</td>
-    </tr>
-    <tr>
-      <th>SEX_female</th>
-      <td>0.040601</td>
-    </tr>
-    <tr>
-      <th>EXPERIENCE AGE</th>
-      <td>0.024461</td>
-    </tr>
-    <tr>
-      <th>SOUTH_no</th>
-      <td>0.022328</td>
-    </tr>
-    <tr>
-      <th>OCCUPATION_Clerical</th>
-      <td>0.012373</td>
+      <td>0.342572</td>
     </tr>
     <tr>
       <th>AGE</th>
-      <td>0.011903</td>
+      <td>0.182168</td>
     </tr>
     <tr>
-      <th>RACE_White</th>
-      <td>0.005454</td>
-    </tr>
-    <tr>
-      <th>UNION_member</th>
-      <td>0.005119</td>
+      <th>OCCUPATION_Management</th>
+      <td>0.090434</td>
     </tr>
     <tr>
       <th>EXPERIENCE</th>
-      <td>0.004870</td>
+      <td>0.083535</td>
+    </tr>
+    <tr>
+      <th>UNION_member</th>
+      <td>0.071556</td>
+    </tr>
+    <tr>
+      <th>OCCUPATION_Professional</th>
+      <td>0.067443</td>
+    </tr>
+    <tr>
+      <th>SEX_male</th>
+      <td>0.046405</td>
+    </tr>
+    <tr>
+      <th>OCCUPATION_Service</th>
+      <td>0.035763</td>
+    </tr>
+    <tr>
+      <th>UNION_not_member</th>
+      <td>0.028049</td>
     </tr>
     <tr>
       <th>SECTOR_Manufacturing</th>
-      <td>0.004582</td>
+      <td>0.027035</td>
     </tr>
     <tr>
-      <th>SECTOR_Construction</th>
-      <td>0.001415</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>RACE_Hispanic</th>
-      <td>0.000000</td>
+      <th>SOUTH_no</th>
+      <td>0.016813</td>
     </tr>
     <tr>
       <th>RACE_Other</th>
+      <td>0.005194</td>
+    </tr>
+    <tr>
+      <th>OCCUPATION_Clerical</th>
+      <td>0.003034</td>
+    </tr>
+    <tr>
+      <th>SOUTH_yes</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>OCCUPATION_Sales</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>RACE_White</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>SECTOR_Construction</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>SECTOR_Other</th>
       <td>0.000000</td>
     </tr>
     <tr>
@@ -1354,23 +1355,15 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
       <td>0.000000</td>
     </tr>
     <tr>
+      <th>RACE_Hispanic</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>SEX_female</th>
+      <td>0.000000</td>
+    </tr>
+    <tr>
       <th>OCCUPATION_Other</th>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>SECTOR_Other</th>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>SOUTH_yes</th>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>OCCUPATION_Professional</th>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>OCCUPATION_Sales</th>
       <td>0.000000</td>
     </tr>
   </tbody>
@@ -3074,11 +3067,11 @@ Freq: M, Name: Number of airline passengers, dtype: float64
       </div>
     </a>
     <a class="right-next"
-       href="homework/homework_I.html"
+       href="intro_to_ann.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assignment 1</p>
+        <p class="prev-next-title">Intro ANN</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
