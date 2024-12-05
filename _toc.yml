@@ -48,7 +48,7 @@ parts:
   - caption: Intro to Artificial Neural Networks
     chapters:
     - file: intro_to_ann
-    - file: rnn_text
+    - file: v2_rnn_text
 
   - caption: Homework
     chapters:
