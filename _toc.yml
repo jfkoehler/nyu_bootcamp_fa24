@@ -50,6 +50,10 @@ parts:
     - file: intro_to_ann
     - file: v2_rnn_text
 
+  - caption: Deploying Models
+    chapters:
+    - file: streamlit
+
   - caption: Homework
     chapters:
     - file: homework/homework_I
