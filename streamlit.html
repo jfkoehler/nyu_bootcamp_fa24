@@ -513,10 +513,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization-and-pickle">Serialization and <code class="docutils literal notranslate"><span class="pre">pickle</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-regression-model">Example: Regression Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-the-model-to-streamlit">Moving the model to Streamlit</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-check-in">Final Check-in</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-the-model-to-streamlit">Moving the model to Streamlit</a></li>
 </ul>
 </li>
 </ul>
@@ -601,231 +598,17 @@ document.write(`
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_transformer</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">houses</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="n">data_id</span> <span class="o">=</span> <span class="mi">43926</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">houses</span><span class="o">.</span><span class="n">frame</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>MS_SubClass</th>
-      <th>MS_Zoning</th>
-      <th>Lot_Frontage</th>
-      <th>Lot_Area</th>
-      <th>Street</th>
-      <th>Alley</th>
-      <th>Lot_Shape</th>
-      <th>Land_Contour</th>
-      <th>Utilities</th>
-      <th>Lot_Config</th>
-      <th>...</th>
-      <th>Fence</th>
-      <th>Misc_Feature</th>
-      <th>Misc_Val</th>
-      <th>Mo_Sold</th>
-      <th>Year_Sold</th>
-      <th>Sale_Type</th>
-      <th>Sale_Condition</th>
-      <th>Sale_Price</th>
-      <th>Longitude</th>
-      <th>Latitude</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>One_Story_1946_and_Newer_All_Styles</td>
-      <td>Residential_Low_Density</td>
-      <td>141</td>
-      <td>31770</td>
-      <td>Pave</td>
-      <td>No_Alley_Access</td>
-      <td>Slightly_Irregular</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Corner</td>
-      <td>...</td>
-      <td>No_Fence</td>
-      <td>None</td>
-      <td>0</td>
-      <td>5</td>
-      <td>2010</td>
-      <td>WD</td>
-      <td>Normal</td>
-      <td>215000</td>
-      <td>-93.619754</td>
-      <td>42.054035</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>One_Story_1946_and_Newer_All_Styles</td>
-      <td>Residential_High_Density</td>
-      <td>80</td>
-      <td>11622</td>
-      <td>Pave</td>
-      <td>No_Alley_Access</td>
-      <td>Regular</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>Minimum_Privacy</td>
-      <td>None</td>
-      <td>0</td>
-      <td>6</td>
-      <td>2010</td>
-      <td>WD</td>
-      <td>Normal</td>
-      <td>105000</td>
-      <td>-93.619756</td>
-      <td>42.053014</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>One_Story_1946_and_Newer_All_Styles</td>
-      <td>Residential_Low_Density</td>
-      <td>81</td>
-      <td>14267</td>
-      <td>Pave</td>
-      <td>No_Alley_Access</td>
-      <td>Slightly_Irregular</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Corner</td>
-      <td>...</td>
-      <td>No_Fence</td>
-      <td>Gar2</td>
-      <td>12500</td>
-      <td>6</td>
-      <td>2010</td>
-      <td>WD</td>
-      <td>Normal</td>
-      <td>172000</td>
-      <td>-93.619387</td>
-      <td>42.052659</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>One_Story_1946_and_Newer_All_Styles</td>
-      <td>Residential_Low_Density</td>
-      <td>93</td>
-      <td>11160</td>
-      <td>Pave</td>
-      <td>No_Alley_Access</td>
-      <td>Regular</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Corner</td>
-      <td>...</td>
-      <td>No_Fence</td>
-      <td>None</td>
-      <td>0</td>
-      <td>4</td>
-      <td>2010</td>
-      <td>WD</td>
-      <td>Normal</td>
-      <td>244000</td>
-      <td>-93.617320</td>
-      <td>42.051245</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Two_Story_1946_and_Newer</td>
-      <td>Residential_Low_Density</td>
-      <td>74</td>
-      <td>13830</td>
-      <td>Pave</td>
-      <td>No_Alley_Access</td>
-      <td>Slightly_Irregular</td>
-      <td>Lvl</td>
-      <td>AllPub</td>
-      <td>Inside</td>
-      <td>...</td>
-      <td>Minimum_Privacy</td>
-      <td>None</td>
-      <td>0</td>
-      <td>3</td>
-      <td>2010</td>
-      <td>WD</td>
-      <td>Normal</td>
-      <td>189900</td>
-      <td>-93.638933</td>
-      <td>42.060899</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 81 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Gr_Liv_Area&#39;</span><span class="p">,</span> <span class="s1">&#39;Overall_Qual&#39;</span><span class="p">,</span> <span class="s1">&#39;Sale_Condition&#39;</span><span class="p">,</span> <span class="s1">&#39;Lot_Area&#39;</span><span class="p">]]</span>
+<span class="n">houses</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="n">data_id</span> <span class="o">=</span> <span class="mi">43926</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">houses</span><span class="o">.</span><span class="n">frame</span>
+<span class="c1"># data.head()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Gr_Liv_Area&#39;</span><span class="p">,</span> <span class="s1">&#39;Overall_Qual&#39;</span><span class="p">,</span> <span class="s1">&#39;Sale_Condition&#39;</span><span class="p">,</span> <span class="s1">&#39;Lot_Area&#39;</span><span class="p">]]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Sale_Price&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformer</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span>
                                       <span class="n">remainder</span> <span class="o">=</span> <span class="s1">&#39;passthrough&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;transformer&#39;</span><span class="p">,</span> <span class="n">transformer</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">model</span><span class="p">)])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;transformer&#39;</span><span class="p">,</span> <span class="n">transformer</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">model</span><span class="p">)])</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1359,10 +1142,54 @@ Categories (6, object): [&#39;Abnorml&#39;, &#39;AdjLand&#39;, &#39;Alloca&#39;,
 <section id="moving-the-model-to-streamlit">
 <h3>Moving the model to Streamlit<a class="headerlink" href="#moving-the-model-to-streamlit" title="Permalink to this heading">#</a></h3>
 <p>Now we will create a basic application using the Streamlit library <a class="reference external" href="https://docs.streamlit.io/">docs</a>. To do so, we will first create a virtual environment for the project.  Over to VSCode.</p>
-<section id="final-check-in">
-<h4>Final Check-in<a class="headerlink" href="#final-check-in" title="Permalink to this heading">#</a></h4>
-<p>Please update me on your final progress using this form <a class="reference external" href="https://docs.google.com/forms/d/e/1FAIpQLSePBQjBvET71WJznwhzqYXJw9XtuqN2z6cw-PszN5sgENTD1w/viewform?usp=sharing">here</a>.</p>
-</section>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span> 
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1">### regression model</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_transformer</span>
+
+<span class="n">houses</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="n">data_id</span> <span class="o">=</span> <span class="mi">43926</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">houses</span><span class="o">.</span><span class="n">frame</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Gr_Liv_Area&#39;</span><span class="p">,</span> <span class="s1">&#39;Overall_Qual&#39;</span><span class="p">,</span> <span class="s1">&#39;Sale_Condition&#39;</span><span class="p">,</span> <span class="s1">&#39;Lot_Area&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Sale_Price&#39;</span><span class="p">]</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">((</span><span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span>
+                                      <span class="n">remainder</span> <span class="o">=</span> <span class="s1">&#39;passthrough&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;transformer&#39;</span><span class="p">,</span> <span class="n">transformer</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">model</span><span class="p">)])</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+
+
+
+
+
+<span class="n">st</span><span class="o">.</span><span class="n">header</span><span class="p">(</span><span class="s1">&#39;Regression App&#39;</span><span class="p">)</span>
+
+<span class="n">gr_area</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">number_input</span><span class="p">(</span><span class="s1">&#39;What is the above ground living area:&#39;</span><span class="p">)</span>
+<span class="n">lot_area</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">slider</span><span class="p">(</span><span class="s1">&#39;What is the total lot area:&#39;</span><span class="p">)</span>
+<span class="n">over_qual</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s1">&#39;What was the quality?&#39;</span><span class="p">,</span> 
+                         <span class="p">(</span><span class="s1">&#39;Above_Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Good&#39;</span><span class="p">,</span> <span class="s1">&#39;Very_Good&#39;</span><span class="p">,</span> <span class="s1">&#39;Excellent&#39;</span><span class="p">,</span> <span class="s1">&#39;Below_Average&#39;</span><span class="p">,</span> <span class="s1">&#39;Fair&#39;</span><span class="p">,</span> <span class="s1">&#39;Poor&#39;</span><span class="p">,</span> <span class="s1">&#39;Very_Excellent&#39;</span><span class="p">,</span> <span class="s1">&#39;Very_Poor&#39;</span><span class="p">))</span>
+<span class="n">sale_cond</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s2">&quot;Condition at sale?&quot;</span><span class="p">,</span>
+                         <span class="p">(</span><span class="s1">&#39;Normal&#39;</span><span class="p">,</span> <span class="s1">&#39;Partial&#39;</span><span class="p">,</span> <span class="s1">&#39;Family&#39;</span><span class="p">,</span> <span class="s1">&#39;Abnorml&#39;</span><span class="p">,</span> <span class="s1">&#39;Alloca&#39;</span><span class="p">,</span> <span class="s1">&#39;AdjLand&#39;</span><span class="p">))</span>
+<span class="c1">#bring in our model</span>
+<span class="c1"># with open(&#39;lr_model.pkl&#39;, &#39;rb&#39;) as f:</span>
+<span class="c1">#     model = pickle.load(f)</span>
+    
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Gr_Liv_Area&#39;</span><span class="p">:</span> <span class="n">gr_area</span><span class="p">,</span>
+                  <span class="s1">&#39;Overall_Qual&#39;</span><span class="p">:</span> <span class="n">over_qual</span><span class="p">,</span>
+                  <span class="s1">&#39;Sale_Condition&#39;</span><span class="p">:</span> <span class="n">sale_cond</span><span class="p">,</span>
+                  <span class="s1">&#39;Lot_Area&#39;</span><span class="p">:</span> <span class="n">lot_area</span><span class="p">},</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+    
+
+</pre></div>
+</div>
 </section>
 </section>
 </section>
@@ -1432,10 +1259,7 @@ Categories (6, object): [&#39;Abnorml&#39;, &#39;AdjLand&#39;, &#39;Alloca&#39;,
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization-and-pickle">Serialization and <code class="docutils literal notranslate"><span class="pre">pickle</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-regression-model">Example: Regression Model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-the-model-to-streamlit">Moving the model to Streamlit</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-check-in">Final Check-in</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-the-model-to-streamlit">Moving the model to Streamlit</a></li>
 </ul>
 </li>
 </ul>
