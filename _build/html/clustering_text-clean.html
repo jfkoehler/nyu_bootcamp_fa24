@@ -1,0 +1,2057 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Clustering with Text &#8212; Stern Data Bootcamp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'clustering_text-clean';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="syllabus.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Stern Data Bootcamp - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Stern Data Bootcamp - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="syllabus.html">
+                    Data Bootcamp
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_fundamentals_one.html">Python Fundamentals 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_fundamentals_two.html">Python Fundamentals 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oop.html">Functions and Classes</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="intro_to_numpy.html">Intro to numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_pandas.html">Intro to pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_II.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dates_intro_to_plotting.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_plotting.html"><code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting_seaborn.html">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_apis.html">Accessing Data with API’s</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="html_data.html">Extracting Data From HTML</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intro_probability.html">Probability Distributions: Discrete and Continuous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyp_testing.html">Inference and Hypothesis Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significance.html">Inference and Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Predictive Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="regression_intro.html">Introduction to Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practice_regression.html">Regression Part II</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="polynomial_models.html">Model Complexity and Evaluation</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="knn_crossval.html">Cross Validation and K-Nearest Neighbors</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="logistic_starter_code.html">Classification I: Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classifier_evaluation_b.html">Evaluating Classification Models</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intro_decision_tree.html">Introduction to Decision Trees</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="forests.html">Random Forests</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time Series Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="time_series_I.html">Time Series and Forecasting Intro</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="forecasting_I.html">Forecasting with <code class="docutils literal notranslate"><span class="pre">sktime</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro to Artificial Neural Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro_to_ann.html">Intro ANN</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="v2_rnn_text.html">Text Classification and Recurrent Neural Networks</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deploying Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="unsupervised_learning.html">Clustering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_I.html">Assignment 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_II.html">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_III.html">Homework 3: Advanced Pandas and Introductory Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_IV.html">API’s and Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/regression_hw.html">A Regression Model for Wages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/time_series_hw.html">Grid Searching and Time Series Forecasting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-1.html">Climb the Ladder!</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-2.html">Climb the Ladder!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-3.html">Climb the Ladder!</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotting_with_bokeh.html">Plotting with <code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotly.html">BONUS: <code class="docutils literal notranslate"><span class="pre">plotly</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/intro_ipywidgets.html">Using interactive widgets with the notebook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jfkoehler/nyu_bootcamp_fa24/blob/master/clustering_text-clean.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24/issues/new?title=Issue%20on%20page%20%2Fclustering_text-clean.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/clustering_text-clean.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clustering with Text</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-what-constitutes-similarity">Problem: What Constitutes Similarity?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-pipeline">Using a Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nltk-cluster-module">The NLTK Cluster Module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-it-faster">Make it faster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agglomerative-clustering">Agglomerative Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-models">Topic Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-semantic-analysis">Latent Semantic Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-negative-matrix-factorization">Non-Negative Matrix Factorization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-topic-models">Visualizing Topic Models</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="clustering-with-text">
+<h1>Clustering with Text<a class="headerlink" href="#clustering-with-text" title="Permalink to this heading">#</a></h1>
+<p><strong>OBJECTIVES</strong>:</p>
+<ul class="simple">
+<li><p>Use clustering on text data to surface similar texts.</p></li>
+<li><p>Use different distance metrics to determine clusters.</p></li>
+<li><p>Understand partitive clustering on text</p></li>
+<li><p>Augment <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> clustering algorithms to fit in pipeline</p></li>
+</ul>
+<section id="problem-what-constitutes-similarity">
+<h2>Problem: What Constitutes Similarity?<a class="headerlink" href="#problem-what-constitutes-similarity" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#custom class for pipeline</span>
+<span class="k">class</span> <span class="nc">KMCluster</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    <span class="c1">#what happens when instantiated -- </span>
+    <span class="c1">#when instantianted we will create a KMeans object with 4 centers</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">4</span><span class="p">):</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span>  <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">22</span><span class="p">)</span>
+    <span class="c1">#placeholder for sklearn consistency </span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    <span class="c1">#where the action happens and we cluster our documents</span>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMCluster</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#use newsgroups data</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">news</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rec.sport.baseball&#39;</span><span class="p">,</span> <span class="s1">&#39;rec.sport.hockey&#39;</span><span class="p">,</span> <span class="s1">&#39;rec.motorcycles&#39;</span><span class="p">,</span> <span class="s1">&#39;rec.autos&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#X = ...</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">news</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instantiate</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMCluster</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit it</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMCluster()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label  sk-toggleable__label-arrow ">&nbsp;KMCluster<span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>KMCluster()</pre></div> </div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get labels with .transform()</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">#get labels with .transform()</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py:316,</span> in <span class="ni">_wrap_method_output.&lt;locals&gt;.wrapped</span><span class="nt">(self, X, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span> <span class="k">def</span> <span class="nf">wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">316</span>     <span class="n">data_to_wrap</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_to_wrap</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span>         <span class="c1"># only wrap the first output for cross decomposition</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="n">return_tuple</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>             <span class="n">_wrap_data_with_container</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">data_to_wrap</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>             <span class="o">*</span><span class="n">data_to_wrap</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="p">)</span>
+
+<span class="nn">Cell In[2], line 13,</span> in <span class="ni">KMCluster.transform</span><span class="nt">(self, documents)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">13</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/cluster/_kmeans.py:1070,</span> in <span class="ni">_BaseKMeans.fit_predict</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1047</span> <span class="k">def</span> <span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1048</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Compute cluster centers and predict cluster index for each sample.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span><span class="sd">     Convenience method; equivalent to calling fit(X) followed by</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1068</span><span class="sd">         Index of the cluster each sample belongs to.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1069</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1070</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span><span class="o">.</span><span class="n">labels_</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/base.py:1473,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1466</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1468</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1469</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1470</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">   </span><span class="mi">1471</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1472</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1473</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/cluster/_kmeans.py:1464,</span> in <span class="ni">KMeans.fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1436</span> <span class="nd">@_fit_context</span><span class="p">(</span><span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1437</span> <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1438</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Compute k-means clustering.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1439</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1440</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1462</span><span class="sd">         Fitted estimator.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1463</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1464</span>     <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1465</span>         <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1466</span>         <span class="n">accept_sparse</span><span class="o">=</span><span class="s2">&quot;csr&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1467</span>         <span class="n">dtype</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1468</span>         <span class="n">order</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1469</span>         <span class="n">copy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">copy_x</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1470</span>         <span class="n">accept_large_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1471</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1473</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_params_vs_input</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1475</span>     <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/base.py:633,</span> in <span class="ni">BaseEstimator._validate_data</span><span class="nt">(self, X, y, reset, validate_separately, cast_to_ndarray, **check_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span>         <span class="n">out</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="k">elif</span> <span class="ow">not</span> <span class="n">no_val_X</span> <span class="ow">and</span> <span class="n">no_val_y</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">633</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">check_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span> <span class="k">elif</span> <span class="n">no_val_X</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_val_y</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">635</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">_check_y</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">check_params</span><span class="p">)</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/validation.py:1012,</span> in <span class="ni">check_array</span><span class="nt">(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_writeable, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator, input_name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1010</span>         <span class="n">array</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1011</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1012</span>         <span class="n">array</span> <span class="o">=</span> <span class="n">_asarray_with_order</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">xp</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="k">except</span> <span class="n">ComplexWarning</span> <span class="k">as</span> <span class="n">complex_warning</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>         <span class="s2">&quot;Complex data not supported</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1016</span>     <span class="p">)</span> <span class="kn">from</span> <span class="nn">complex_warning</span>
+
+<span class="nn">File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_array_api.py:745,</span> in <span class="ni">_asarray_with_order</span><span class="nt">(array, dtype, order, copy, xp, device)</span>
+<span class="g g-Whitespace">    </span><span class="mi">743</span>     <span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">744</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">745</span>     <span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">747</span> <span class="c1"># At this point array is a NumPy ndarray. We convert it to an array</span>
+<span class="g g-Whitespace">    </span><span class="mi">748</span> <span class="c1"># container that is consistent with the input&#39;s namespace.</span>
+<span class="g g-Whitespace">    </span><span class="mi">749</span> <span class="k">return</span> <span class="n">xp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: could not convert string to float: &#39;From: swdwan@napier.uwaterloo.ca (Donald Wan)\nSubject: $ 80 SVX OIL CHANGE\n \nOrganization: University of Waterloo\nLines: 17\n\n\n\n\n\n My friend brought a subaru SVX recently.  I had drove it for couples times and I\nthink its a great car, esp on snow.  However when she took it to a local Subaru\ndealer for a oil change, the bill came out to be about 80 dollars.  The dealer\ntold us it is because to change the oil filter on a SVX it is necessary to\ndisassemble a metal cover under the engine and that took an hour of labour.\nAt first, we think we are being ripped off so she phone to a dealer in Toronto\nbut found out the they are charging roughly the same price.  So is there any\nSVX owner out there that has the same problem ?  And if the oil change story is\ntrue, then the engineer of Subaru looks pretty stubid to me. By the way, the car\nlooks great.\n\nSWD Wan.\n\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From: swdwan@napier.uwaterloo.ca (Donald Wan)
+Subject: $ 80 SVX OIL CHANGE
+ 
+Organization: University of Waterloo
+Lines: 17
+
+
+
+
+
+ My friend brought a subaru SVX recently.  I had drove it for couples times and I
+think its a great car, esp on snow.  However when she took it to a local Subaru
+dealer for a oil change, the bill came out to be about 80 dollars.  The dealer
+told us it is because to change the oil filter on a SVX it is necessary to
+disassemble a metal cover under the engine and that took an hour of labour.
+At first, we think we are being ripped off so she phone to a dealer in Toronto
+but found out the they are charging roughly the same price.  So is there any
+SVX owner out there that has the same problem ?  And if the oil change story is
+true, then the engineer of Subaru looks pretty stubid to me. By the way, the car
+looks great.
+
+SWD Wan.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-a-pipeline">
+<h2>Using a Pipeline<a class="headerlink" href="#using-a-pipeline" title="Permalink to this heading">#</a></h2>
+<p>Now, we get our <code class="docutils literal notranslate"><span class="pre">KMClusters</span></code> in a pipeline that vectorizes the texts and passes through the clusterer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#bring in pipeline and vectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfVectorizer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#make the pipeline</span>
+<span class="n">kmeans_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">max_features</span> <span class="o">=</span> <span class="mi">500</span><span class="p">),</span>
+                            <span class="n">StandardScaler</span><span class="p">(</span><span class="n">with_mean</span> <span class="o">=</span> <span class="kc">False</span><span class="p">),</span> <span class="n">KMCluster</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit the pipe</span>
+<span class="n">kmeans_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;countvectorizer&#39;,
+                 CountVectorizer(max_features=500, stop_words=&#39;english&#39;)),
+                (&#39;standardscaler&#39;, StandardScaler(with_mean=False)),
+                (&#39;kmcluster&#39;, KMCluster())])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get the labels</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans_pipe</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#look at the class representation</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 4 artists&gt;
+</pre></div>
+</div>
+<img alt="_images/2f2a18a528a5d2b0fd2594b592980071cd8a477cfd8c697d501aad077f97d40a.png" src="_images/2f2a18a528a5d2b0fd2594b592980071cd8a477cfd8c697d501aad077f97d40a.png" />
+</div>
+</div>
+</section>
+<section id="the-nltk-cluster-module">
+<h2>The NLTK Cluster Module<a class="headerlink" href="#the-nltk-cluster-module" title="Permalink to this heading">#</a></h2>
+<p><em>Advantages</em>: Here we can make use of the <code class="docutils literal notranslate"><span class="pre">cosine_distance</span></code> which can be more effective for clustering texts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import the clusterer and distance metric</span>
+<span class="kn">from</span> <span class="nn">nltk.cluster</span> <span class="kn">import</span> <span class="n">KMeansClusterer</span><span class="p">,</span> <span class="n">cosine_distance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#write our new clustom nltk class</span>
+<span class="k">class</span> <span class="nc">NLTKClusterer</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">distance</span> <span class="o">=</span> <span class="n">cosine_distance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">KMeansClusterer</span><span class="p">(</span><span class="n">num_means</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="n">distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span>
+                                    <span class="n">avoid_empty_clusters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">documents</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">assign_clusters</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#new pipe</span>
+<span class="n">nltk_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">),</span> 
+                          <span class="n">NLTKClusterer</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit it</span>
+<span class="n">nltk_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;countvectorizer&#39;,
+                 CountVectorizer(max_features=500, stop_words=&#39;english&#39;)),
+                (&#39;nltkclusterer&#39;, NLTKClusterer())])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#extract labels</span>
+<span class="n">nltk_labels</span> <span class="o">=</span> <span class="n">nltk_pipe</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot the results</span>
+<span class="n">cluster</span><span class="p">,</span> <span class="n">nltk_counts</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">nltk_labels</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">nltk_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BarContainer object of 4 artists&gt;
+</pre></div>
+</div>
+<img alt="_images/ece16df0f86a3a348d9d9e1ec1963f7ac093d9a451282bc4c62d7b3828558265.png" src="_images/ece16df0f86a3a348d9d9e1ec1963f7ac093d9a451282bc4c62d7b3828558265.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#there is a subject line</span>
+<span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Subject: $ 80 SVX OIL CHANGE&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#make a news dataframe</span>
+<span class="n">newsdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newsdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>From: swdwan@napier.uwaterloo.ca (Donald Wan)\...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>From: etxonss@ufsa.ericsson.se (Staffan Axelss...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>From: larry@boris.webo.dg.com (Larry Rogers)\n...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>From: sepinwal@mail.sas.upenn.edu (Alan Sepinw...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From: napoli@strobe.ATC.Olivetti.Com (Gaetano ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add column label</span>
+<span class="n">newsdf</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add label column</span>
+<span class="n">newsdf</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nltk_labels</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#make a function to grab subjects</span>
+<span class="n">newsdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+      <th>labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>From: swdwan@napier.uwaterloo.ca (Donald Wan)\...</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>From: etxonss@ufsa.ericsson.se (Staffan Axelss...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>From: larry@boris.webo.dg.com (Larry Rogers)\n...</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>From: sepinwal@mail.sas.upenn.edu (Alan Sepinw...</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>From: napoli@strobe.ATC.Olivetti.Com (Gaetano ...</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#extract subjects as new column</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#group by the labels</span>
+<span class="n">newsdf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;labels&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;From: swdwan@napier.uwaterloo.ca (Donald Wan)\nSubject: $ 80 SVX OIL CHANGE\n \nOrganization: University of Waterloo\nLines: 17\n\n\n\n\n\n My friend brought a subaru SVX recently.  I had drove it for couples times and I\nthink its a great car, esp on snow.  However when she took it to a local Subaru\ndealer for a oil change, the bill came out to be about 80 dollars.  The dealer\ntold us it is because to change the oil filter on a SVX it is necessary to\ndisassemble a metal cover under the engine and that took an hour of labour.\nAt first, we think we are being ripped off so she phone to a dealer in Toronto\nbut found out the they are charging roughly the same price.  So is there any\nSVX owner out there that has the same problem ?  And if the oil change story is\ntrue, then the engineer of Subaru looks pretty stubid to me. By the way, the car\nlooks great.\n\nSWD Wan.\n\n&#39;,
+        2],
+       [&#39;From: etxonss@ufsa.ericsson.se (Staffan Axelsson)\nSubject: NHL Swedes: Stats, April 5\nOrganization: Ericsson Telecom, Stockholm, Sweden\nLines: 141\nNntp-Posting-Host: uipc104.ericsson.se\n\n\n Scoring stats for the Swedish NHL players, April 5:\n ===================================================\n\n Mats Sundin watch:\n\n   Most points during a season:\n \n    131  Kent Nilsson, Calgary Flames       1980-81  (49+82)\n    110  Mats Naslund, Montreal Canadiens   1985-86  (43+67)\n  * 109  Mats Sundin, Quebec Nordiques      1992-93  (43+66)\n    106  Hakan Loob, Calgary Flames         1987-88  (50+56)\n    104  Kent Nilsson, Calgary Flames       1982-83  (46+58)\n     99  Kent Nilsson, Calgary Flames       1984-85  (37+62)\n\n   Most goals during a season:\n\n     50  Hakan Loob, Calgary Flames         1987-88\n     49  Kent Nilsson, Calgary Flames       1980-81\n     46  Kent Nilsson, Calgary Flames       1982-83\n     45  Tomas Sandstrom, LA Kings          1990-91\n     43  Mats Naslund, Montreal Canadiens   1985-86\n  *  43  Mats Sundin, Quebec Nordiques      1992-93\n\n   Most assists during a season:\n\n     82  Kent Nilsson, Calgary Flames       1980-81\n     67  Mats Naslund, Montreal Canadiens   1985-86\n     66  Borje Salming, Toronto Maple Leafs 1976-77\n  *  66  Mats Sundin, Quebec Nordiques      1992-93\n     62  Kent Nilsson, Calgary Flames       1984-85\n     61  Borje Salming, Toronto Maple Leafs 1977-78\n     61  Thomas Steen, Winnipeg Jets        1988-89\n\n Ulf Samuelsson watch:\n\n   Most penalty minutes during a season:\n\n  *  243  Ulf Samuelsson, Pittsburgh Penguins   1992-93   (through 3/25)\n     211  Ulf Samuelsson, Pittsburgh Penguins   1990-91\n     206  Ulf Samuelsson, Pittsburgh Penguins   1991-92\n     184  Kjell Samuelsson, Philadelphia Flyers 1988-89\n     181  Ulf Samuelsson, Hartford Whalers      1988-89\n     174  Ulf Samuelsson, Hartford Whalers      1985-86\n     170  Borje Salming, Toronto Maple Leafs    1980-81\n \n-------------------------------------------------------------------------------\n\nRL Rk Name             Team J# Ps Ht   Wt  Born      G  A  Pts  PL  Comment\n-- -- ---------------- ---- -- -- ---  --- --------  -- -- ---  --  -------\n    1 Mats Sundin       QUE 13 C  6-2  189  2/13/71  43 66 109   7  \n    2 Ulf Dahlen        MIN 22 RW 6-2  195  1/12/67  33 38  71   5    \n    3 Thomas Steen      WIN 25 C  5-10 195  6/ 8/60  21 43  64   5\n    4 Johan Garpenlov   SJS 10 LW 5-11 185  3/21/68  21 40  61   5 \n    5 Fredrik Olausson  WIN  4 D  6-2  200 10/ 5/66  13 38  51   4\n    6 Tomas Sandstrom   LAK  7 LW 6-2  207  9/ 4/64  22 24  46   2\n    7 Per-Erik Eklund   PHI  9 LW 5-10 175  3/22/63   8 34  42      Injured\n    8 Calle Johansson   WAS  6 D  5-11 205  2/14/67   6 35  41   1\n    9 Nicklas Lidstrom  DET  5 D  6-2  180  4/28/70   7 33  40   2 \n   10 Tommy Sjodin      MIN 33 D  5-11 190  8/13/65   7 29  36     \n   11 Ulf Samuelsson    PIT  5 D  6-1  195  3/26/64   2 24  26   1 \n   12 Mikael Andersson  TBL 34 LW 5-11 185  5/10/66  13 11  24   1 \n   13 Michael Nylander  HFD 36 LW 5-11 176 10/ 3/72   5 16  21   2 \n   14 Roger Johansson   CGY 34 D  6-1  185  4/ 7/67   4 15  19   1\n   15 Jan Erixon        NYR 20 LW 6-0  196  7/ 8/62   5 10  15      \n   16 Peter Andersson   NYR 25 D  6-0  187  8/29/65   4  7  11   1 \n   17 Kjell Samuelsson  PIT 28 D  6-6  235 10/18/58   3  6   9   2 \n   18 Tommy Albelin     NJD  6 D  6-1  190  5/21/64   1  5   6      \n   19 Per Djoos         NYR 44 D  5-11 176  5/11/68   1  1   2      Binghampton?\n   20 Niclas Andersson  QUE 46 LW 5-8  169  5/20/71   0  1   1      Halifax\n   21 Thomas Forslund   CGY 27 LW 6-0  185 11/24/68   0  1   1      Salt Lake\n   22 Patrik Carnback   MON 20 LW 6-0  189  2/ 1/68   0  0   0      Injured\n   23 Patrik Kjellberg  MON 27 LW 6-2  196  6/17/69   0  0   0      Fredericton\n\n-------------------------------------------------------------------------------\nRL=Rank Last week, Rk=Rank, J#=Jersey Number, Ps=Position, Born (mm/dd/yy)\nG=Goals, A=Assists, Pts=Points, PL=Points scored since Last posted list\n===============================================================================\n\n Goalie stats:\n\n Name             Team J# Ps Ht   Wt  Born     \n ---------------- ---- -- -- ---  --- --------\n Tommy Soderstrom  PHI 30 G  5-9  163  7/17/69\n\n                                       / - - - - -  T  O  T  A  L  - - - - - \\\n\n mm/dd   vs   res  r  w/l/t  sh - sv   GP   MP  GA  GAA    SOG   SV  SV%   SO A\n -----  ---- ----  -  -----  --   --   --   --  --  ---    ---  ---  ---   -- --\n 12/17   PIT  4-5  L  0-1-0  27 - 22    1   62   5  4.84    27   22  0.815\n 12/19   CHI  3-1  W  1-1-0  28 - 27    2  122   6  2.95    55   49  0.891\n 12/20  @TBL  1-4  L  1-2-0  31 - 27    3  182  10  3.30    86   76  0.884\n 12/23   PIT  0-4  L  1-3-0  26 - 22    4  242  14  3.47   112   98  0.875\n 12/26  @WAS  5-5  T  1-3-1  41 - 36    5  307  19  3.71   153  134  0.876\n 12/29  @LAK 10-2  W  2-3-1  43 - 41    6  367  21  3.43   196  175  0.893\n 12/30  @SJS  6-2  W  3-3-1  35 - 33    7  427  23  3.23   231  208  0.900\n  1/ 2  @CGY  3-7  L  3-4-1  32 - 26    8  486  29  3.58   263  234  0.890\n  1/ 3  @EDM  2-2  T  3-4-2  33 - 31    9  551  31  3.38   296  265  0.895\n  1/ 7   WAS  8-2  W  4-4-2  33 - 31   10  611  33  3.24   329  296  0.900\n  1/ 9   NYR  4-3  W  5-4-2  26 - 23   11  671  36  3.22   355  319  0.899\n  1/10   EDM  4-0  W  6-4-2  29 - 29   12  731  36  2.95   384  348  0.906  1\n  1/14   CGY  4-4  T  6-4-3  27 - 23   13  796  40  3.02   411  371  0.903\n  1/16  @BOS  5-4  W  7-4-3  37 - 33   14  856  44  3.08   448  404  0.902\n  1/17   DET  4-7  L  7-5-3  36 - 29   15  916  51  3.34   484  433  0.895\n  1/21   BOS  4-5  L  7-6-3  32 - 27   16  976  56  3.44   516  460  0.891\n  1/23  @NYI  4-8  L  7-7-3  31 - 23   17 1036  64  3.71   547  483  0.883    1\n  1/24   HFD  5-4  W  8-7-3  25 - 21   18 1098  68  3.72   572  504  0.881\n  1/30  @PIT  2-4  L  8-8-3  35 - 32   19 1157  71  3.68   607  536  0.883\n  2/ 3  @NYR  2-2  T  8-8-4  38 - 36   20 1222  73  3.58   645  572  0.887\n  2/ 9   OTT  8-1  W  9-8-4  28 - 27   21 1282  74  3.46   673  599  0.890\n  2/11   MTL  0-0  T  9-8-5  23 - 23   22 1347  74  3.30   696  622  0.894  2\n  2/13  @NJD  4-6  L  9-9-5  32 - 26   23 1407  80  3.41   728  648  0.890\n  2/14   NJD  2-5  L  9-10-5 26 - 21   24 1467  85  3.48   754  669  0.887\n  2/16  @CGY  4-4  T  9-10-6 29 - 29   25 1512  85  3.37   783  698  0.891\n  2/18  @VAN  3-2  W 10-10-6 30 - 28   26 1572  87  3.32   813  726  0.893\n  2/20  @MIN  2-5  L 10-11-6 33 - 28   27 1632  92  3.38   846  754  0.891\n  2/22   DET  5-5  - 10-11-6 15 - 12   28 1653  95  3.45   861  766  0.890\n  3/ 2   PIT  5-4  W 11-11-6 22 - 21   29 1689  96  3.41   883  787  0.891\n  3/ 5  @WAS  3-0  W 12-11-6 36 - 36   30 1749  96  3.29   919  823  0.896  3\n  3/ 7  @NJD  4-7  L 12-12-6 41 - 35   31 1808 102  3.38   960  858  0.894\n  3/ 9  @NYI  2-4  L 12-13-6 24 - 21   32 1867 105  3.37   984  879  0.893\n  3/11   WAS  6-4  W 13-13-6 28 - 24   33 1927 109  3.39  1012  903  0.892\n  3/16   MIN  4-3  W 14-13-6 34 - 31   34 1987 112  3.38  1046  934  0.893\n  3/20  @PIT  3-9  L 14-14-6 27 - 20   35 2027 119  3.52  1073  954  0.889\n  3/21   NJD  2-3  L 14-15-6 27 - 24   36 2086 122  3.51  1100  978  0.889\n  3/24  @NYR  5-4  W 15-15-6 45 - 41   37 2146 126  3.52  1145 1019  0.890    2\n  3/27  @QUE  3-8  L 15-16-6 25 - 19   38 2186 132  3.62  1170 1038  0.887\n  4/ 1   LAK  1-3  L 15-17-6 26 - 23   39 2246 135  3.61  1196 1061  0.887\n  4/ 4   TOR  4-0  W 16-17-6 26 - 26   40 2306 135  3.51  1222 1087  0.890  4\n \n-------------------------------------------------------------------------------\nres=result, sh=shots, sv=saves\nGP=Games Played, MP=Minutes Played, GA=Goals Against, GAA=Goals Against Average\nSOG=Shots On Goal, SV=SaVes, SV%=SaVing Percentage, SO=ShutOuts, A=Assists\n-------------------------------------------------------------------------------\n\nStaffan\n--\n ((\\\\  //| Staffan Axelsson            \n  \\\\  //|| etxonss@ufsa.ericsson.se    \n\\\\_))//-|| r.s.h. contact for Swedish hockey  \n&#39;,
+        1],
+       [&#39;From: larry@boris.webo.dg.com (Larry Rogers)\nSubject: Re: Saturn 91-92 Manual Transmission Problem\nIn-Reply-To: cimjfg@sn370.utica.ge.com\&#39;s message of Tue, 13 Apr 1993 20:50:21 GMT\nOrganization: Data General, Westboro, Mass.\nLines: 34\n\n\nI had exactly the same problem with a 1981 Horizon.  Third gear would\njust disengage.  Engine would rev up.  Kind of disconcerting.\n\nI sold that car quite a few years back but the memory of that tranny\nsticks with me.  It also had a clutch chatter in first that the dealer\ncould not fix.  If the lemon law had been in place then, that car\nwould have been covered.\n\nI have had several Jap cars since then (figuring the Horizon was my\ncontribution to the American Auto Companies), and have never seen any\nbad behavior with the exception of a Toyota Tercel with a bit of\nclutch chatter that they did fix on the first try.\n\nAnyway, from that day forward, I have sworn that I would never\npurchase another American car with a standard.  American manufacturers\ndon\&#39;t have a clue on how to manufacture five speed transmissions and\nhave been doing the automatics much longer and on many more cars.\nHowever, I hate automatics, so I am still buying Jap cars.\n\nNot sure this is any help, but other cars do this too.\n\nCheers, Larry\n--\n    @@               Larry Rogers               *\n   @@@               larry_rogers@dg.com        *   Big Brother\n   @@@ &amp;&amp;&amp;           larry@boris.webo.dg.com    *   is Watching\n    @@ &amp;&amp;            Data General  508-870-8441 * \n\nThe opinions contained herein are my own, and do not reflect the\nopinions of Data General or anyone else, but they should.\n\n&quot;Sometimes we are the windshield, sometimes we are the bug&quot;\n   Dire Straits\n&#39;,
+        2],
+       [&#39;From: sepinwal@mail.sas.upenn.edu (Alan Sepinwall)\nSubject: Re: When Is Melido Due Back?\nDistribution: na\nOrganization: University of Pennsylvania, School of Arts and Sciences\nLines: 16\nNntp-Posting-Host: mail.sas.upenn.edu\n\n\nMelido came off the DL today and will start tonight against the Rangers.\n(Now, if only he can go the distance so that the bullpen doesn\&#39;t have to\ncome in.....)\n\n--I\&#39;m outta here like Vladimir!\n-Alan Sepinwall\n\n===========================================================================\n| &quot;What\&#39;s this?  This is ice.  This is what happens to water when it gets |\n|  too cold.  This?  This is Kent.  This is what happens to people when   |\n|  they get too sexually frustrated.&quot;                                     |\n|               -Val Kilmer, &quot;Real Genius&quot;                                |\n===========================================================================\n\n\n&#39;,
+        3],
+       [&quot;Organization: University of Illinois at Chicago, academic Computer Center\nFrom: &lt;U49839@uicvm.uic.edu&gt;\nSubject: Re: White Sox Update\n &lt;1993Apr11.213102.4954@midway.uchicago.edu&gt;\nLines: 9\n\ni think lamont is tryin sax out in left because he is messing with his\nmind.  he is trying to stir loose the mental block that he has had.\nsax was supposed to play in left last night (4-14) but we were rained\nout.  it&#39;s not like we need to add any more outfielders to our team.\n\nit&#39;s mental\n\njimmy\ngo sox, cubs suck!  (that&#39;s the white sox, dontcha know?)\n&quot;,
+        3],
+       [&#39;From: randolin@polisci.umn.edu (Robert Andolina)\nSubject: minnesota scene\nNntp-Posting-Host: psci7.polisci.umn.edu\nOrganization: Department of Political Science, University of Minnesota\nLines: 39\n\n  To those who are wondering what is happening in Minnesota:\n\n  From what I have seen in the local news (TV and newspaper), various people \nin the area are trying to get a new hockey team.  A columnist for the St. \nPaul &quot;Pioneer Press&quot; wrote an article giving the &quot;inside scoop&quot; on the \nissue.  There are three local sites competing for a team and three possible \ncandiates to move to the Twin Cities.  First the sites: Target Center, Civic \nCenter (St. Paul), and yes, even the Met Center.  The columnist was pretty \nconfident that Minnesota will get a team, and that the Target Center will \nultimately win out.  He argued, however, that the competition from the other \ntwo sites will delay the process considerably.  Without the \ninter-site competition, the columnist (sorry, I can\&#39;t remember his name) \nbelieves that Minnesota would have a team by the 1994-95 season.  Also, \nbecause of the situation with the Timberwolves, things will be delayed \nuntil (unless) the city of Minneapolis takes over the Target Center.  \nHowever, they are unlikely to do so until the Met Center is destroyed, \nbecause the city will lose money if there is competition from the Met for \nconventions and short-term events (even with hockey at Target).  To add to \nthis mess, a STUDY (6 to 12 months) is going to be conducted on the future \nviability of the Met Center, which obviously delays the process even \nfurther.  I hope that the study is cancelled, which will have the effect of \nknocking the Met Center out of the running and perhaps encouraging \nMinneapolis to take over the Target Center sooner. The city would be\nbe even more encourged if the wrecking ball is taken to the Met, \nwhich may happen.\n\tRegarding possible candidates, the three teams are \nHartford, Tampa Bay, and New Jersey.  I would prefer the Devils (Minnesota &quot;\nIce Demons?&quot;) although the Lightning may have potential.  Although it hasn\&#39;t \nbeen announced yet, it looks like 6 neutral site games will be played at the \nTarget Center next year.  Apparently the Devils are interested in playing in \nas many of those six games as possible, and I wouldn\&#39;t be surprised to see \nHartford and Tampa show up there either.\tSo, Minnesota may end up \ngetting another team, but it may take a few years.\n\n\t\n\tGo Sabres!\n\t\n\tRobert Andolina (former Buffalonian living in Minneapolis)\n\trandolin@polisci.umn.edu\n&#39;,
+        0],
+       [&#39;From: maynard@ramsey.cs.laurentian.ca (Roger Maynard)\nSubject: Re: Bay area media (Wings-Leafs coverage)\nOrganization: Dept. of Computer Science, Laurentian University, Sudbury, ON\nLines: 25\n\nIn &lt;DREIER.93Apr19195132@durban.berkeley.edu&gt; dreier@durban.berkeley.edu (Roland Dreier) writes:\n\n&gt;The San Francisco Bay area media is reporting tonight that the Detroit\n&gt;Red Wings beat the Toronto Maple Leafs 6-3.  Can someone who is not\n&gt;part of the media conspiracy against the Leafs tell me how the game\n&gt;really went (I am expecting a 4-0 win for the Leafs, shutout for\n&gt;Potvin, hat trick for Andreychuk and a goal and 3 assists for\n&gt;Gilmour).  If the Leafs really lost, how many penalties did whichever\n&gt;biased ref was at the game have to call against the Leafs to let the\n&gt;Red Wings win?\n\nAh yes.  California.  Did the San Francisco Bay area media report that\nJoe Montana is rumoured to be the leading candidate to replace fired\nSan Jose Sharks coach George Kingston?  Apparently Montana is not only\ncoveted for his winning attitude, but as a playing coach he will be\nexpected to quarterback the powerplay.\n\nGood thing those walls are so soft, eh Rollie?\n\n\n-- \n\ncordially, as always,                      maynard@ramsey.cs.laurentian.ca \n                                           &quot;So many morons...\nrm                                                   ...and so little time.&quot; \n&#39;,
+        0],
+       [&quot;From: bks2@cbnewsi.cb.att.com (bryan.k.strouse)\nSubject: NHL RESULTS FOR GAMES PLAYED 4-05-93\nOrganization: AT&amp;T\nKeywords: monday night&#39;s boxscore\nLines: 55\n\n\n\nNHL RESULTS FOR GAMES PLAYED 4/05/93.\n\n--------------------------------------------------------------------------------\n                                  STANDINGS\n      PATRICK              ADAMS              NORRIS              SMYTHE\n TM    W  L  T  PT   TM    W  L  T  PT   TM    W  L  T  PT   TM    W  L  T  PT\n \nxPIT  53 21  6 112  yMON  47 27  6 100  yDET  44 28  9  97  yVAN  42 28  9  93\n WAS  40 31  7  87  yBOS  46 26  7  99  yCHI  43 25 11  97  yCAL  40 29 10  90\n NJ   38 35  6  82  yQUE  44 25 10  98  yTOR  42 26 11  95  yLA   37 33  9  83\n NYI  37 34  6  80  yBUF  38 31 10  86   STL  35 34 10  80  yWIN  37 35  7  81\n NYR  34 33 11  79   HAR  24 49  5  53   MIN  34 35 10  78   EDM  26 45  8  60\n PHL  30 37 11  71   OTT   9 66  4  22   TB   22 51  5  49   SJ   10 68  2  22\n\nx - Clinched Division Title\ny - Clinched Playoff Berth\n\n--------------------------------------------------------------------------------\n\nHartford Whalers   (24-49-5)   1   1   3   -   5\nNew York Rangers  (34-33-11)   1   2   1   -   4\n\n1st period: HAR, Cunneyworth 5 - (Janssens, Greig) 12:21\n\t    NYR, Graves 34 - (Turcotte, Zubov) 18:39\n\n2nd period: NYR, Kovalev 19 - (Turcotte, Graves) 2:12\n\t    HAR, Sanderson 44 - (Cassels) (pp) 4:54\n\t    NYR, Amonte 30 - (Andersson, Vanbiesbrouck) (pp) 19:13\n\n3rd period: NYR, M.Messier 25 - (Amonte, Andersson) 2:26\n\t    HAR, Sanderson 45 - (Cassels) (sh) 5:23\n\t    HAR, Nylanders 6 - (Ladouceur) 8:35\n\t    HAR, Verbeek 36 - (Zalapski) 17:43\n\nPowerplay Opportunities-Whalers 1 of 4\n\t\t\tRangers 1 of 4\n\nShots on Goal-\tWhalers   7   8   8  -  23\n\t\tRangers   9  10  12  -  31\n\nHartford Whalers--Gosselin (4-7-1) (31 shots - 27 saves)\nNew York Rangers--Vanbiesbrouck (20-18-7) (23 shots - 18 saves)\n\nATT-17,806\n\n--------------------------------------------------------------------------------\n\n\n\\|||||/\n-SPIKE-\n\n\n\n&quot;,
+        1]], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#examine the first two results from each group</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="make-it-faster">
+<h2>Make it faster<a class="headerlink" href="#make-it-faster" title="Permalink to this heading">#</a></h2>
+<p>Write a new custom class to utilize <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s minibatch implementation and compare its training time to that of the earlier KMeans and NLTK implementation.</p>
+</section>
+<section id="agglomerative-clustering">
+<h2>Agglomerative Clustering<a class="headerlink" href="#agglomerative-clustering" title="Permalink to this heading">#</a></h2>
+<center>
+<img src = https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Orange-data-mining-hierarchical-clustering.png/440px-Orange-data-mining-hierarchical-clustering.png />
+</center><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#imports</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">AgglomerativeClustering</span>
+<span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="kn">import</span> <span class="n">dendrogram</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#custom class</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">AgglomerativeClustering</span>
+<span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="kn">import</span> <span class="n">dendrogram</span>
+
+<span class="k">class</span> <span class="nc">HierarchicalClusterer</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">AgglomerativeClustering</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">):</span>
+        <span class="n">clusters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">documents</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">labels_</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">children_</span>
+        
+        <span class="k">return</span> <span class="n">clusters</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#pipeline</span>
+<span class="n">h_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span> <span class="o">=</span> <span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">max_features</span> <span class="o">=</span> <span class="mi">50</span><span class="p">),</span> 
+                      <span class="n">HierarchicalClusterer</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit it</span>
+<span class="n">h_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;countvectorizer&#39;,
+                 CountVectorizer(max_features=50, stop_words=&#39;english&#39;)),
+                (&#39;hierarchicalclusterer&#39;, HierarchicalClusterer())])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#labels</span>
+<span class="n">h_labels</span> <span class="o">=</span> <span class="n">h_pipe</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#grab clusterer from pipe</span>
+<span class="n">agg_clusterer</span> <span class="o">=</span> <span class="n">h_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;hierarchicalclusterer&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#function to plot dendrogram</span>
+<span class="k">def</span> <span class="nf">plot_dend</span><span class="p">(</span><span class="n">children</span><span class="p">):</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">children</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="n">link_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">children</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">position</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">dendrogram</span><span class="p">(</span><span class="n">link_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#pass the children to the plot</span>
+<span class="n">plot_dend</span><span class="p">(</span><span class="n">agg_clusterer</span><span class="o">.</span><span class="n">children_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/979d32769c1023c6493f8bd92d4a4d2a14b992d0998b5e8797c8bb40e0182543.png" src="_images/979d32769c1023c6493f8bd92d4a4d2a14b992d0998b5e8797c8bb40e0182543.png" />
+</div>
+</div>
+</section>
+<section id="topic-models">
+<h2>Topic Models<a class="headerlink" href="#topic-models" title="Permalink to this heading">#</a></h2>
+<center>
+    <h5>Latent Dirichlet Allocation</h5>
+ <img src = https://upload.wikimedia.org/wikipedia/commons/4/4d/Smoothed_LDA.png />
+</center><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">LatentDirichletAllocation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#custom class</span>
+<span class="k">class</span> <span class="nc">LDATopics</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ntopics</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ntopics</span> <span class="o">=</span> <span class="n">ntopics</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">max_features</span> <span class="o">=</span> <span class="mi">100</span><span class="p">),</span>
+                                  <span class="n">LatentDirichletAllocation</span><span class="p">(</span><span class="n">n_components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ntopics</span><span class="p">))</span>
+        
+    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+    
+    <span class="k">def</span> <span class="nf">get_topics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">15</span><span class="p">):</span>
+        <span class="n">vectorizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;countvectorizer&#39;</span><span class="p">]</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;latentdirichletallocation&#39;</span><span class="p">]</span>
+        
+        <span class="n">words</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+        <span class="n">topics</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">topic</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">components_</span><span class="p">):</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">topic</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[:</span><span class="o">-</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">features</span><span class="p">]</span>
+            <span class="n">topics</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">tokens</span>
+            
+        <span class="k">return</span> <span class="n">topics</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit_transform method</span>
+<span class="n">topic_model</span> <span class="o">=</span> <span class="n">LDATopics</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get_topics method</span>
+<span class="n">topic_model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;countvectorizer&#39;,
+                 CountVectorizer(max_features=100, stop_words=&#39;english&#39;)),
+                (&#39;latentdirichletallocation&#39;, LatentDirichletAllocation())])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instantiate</span>
+<span class="n">topic_model</span><span class="o">.</span><span class="n">get_topics</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: [&#39;car&#39;,
+  &#39;cars&#39;,
+  &#39;edu&#39;,
+  &#39;don&#39;,
+  &#39;like&#39;,
+  &#39;writes&#39;,
+  &#39;article&#39;,
+  &#39;just&#39;,
+  &#39;subject&#39;,
+  &#39;lines&#39;,
+  &#39;people&#39;,
+  &#39;organization&#39;,
+  &#39;good&#39;],
+ 1: [&#39;games&#39;,
+  &#39;vs&#39;,
+  &#39;team&#39;,
+  &#39;season&#39;,
+  &#39;00&#39;,
+  &#39;play&#39;,
+  &#39;game&#39;,
+  &#39;new&#39;,
+  &#39;hockey&#39;,
+  &#39;division&#39;,
+  &#39;league&#39;,
+  &#39;power&#39;,
+  &#39;toronto&#39;],
+ 2: [&#39;ca&#39;,
+  &#39;hockey&#39;,
+  &#39;team&#39;,
+  &#39;nhl&#39;,
+  &#39;players&#39;,
+  &#39;subject&#39;,
+  &#39;lines&#39;,
+  &#39;writes&#39;,
+  &#39;organization&#39;,
+  &#39;university&#39;,
+  &#39;play&#39;,
+  &#39;player&#39;,
+  &#39;teams&#39;],
+ 3: [&#39;com&#39;,
+  &#39;article&#39;,
+  &#39;writes&#39;,
+  &#39;subject&#39;,
+  &#39;organization&#39;,
+  &#39;lines&#39;,
+  &#39;posting&#39;,
+  &#39;host&#39;,
+  &#39;nntp&#39;,
+  &#39;like&#39;,
+  &#39;reply&#39;,
+  &#39;distribution&#39;,
+  &#39;just&#39;],
+ 4: [&#39;year&#39;,
+  &#39;right&#39;,
+  &#39;left&#39;,
+  &#39;got&#39;,
+  &#39;good&#39;,
+  &#39;time&#39;,
+  &#39;just&#39;,
+  &#39;years&#39;,
+  &#39;didn&#39;,
+  &#39;going&#39;,
+  &#39;did&#39;,
+  &#39;second&#39;,
+  &#39;way&#39;],
+ 5: [&#39;edu&#39;,
+  &#39;subject&#39;,
+  &#39;organization&#39;,
+  &#39;lines&#39;,
+  &#39;host&#39;,
+  &#39;nntp&#39;,
+  &#39;posting&#39;,
+  &#39;university&#39;,
+  &#39;article&#39;,
+  &#39;writes&#39;,
+  &#39;cc&#39;,
+  &#39;cs&#39;,
+  &#39;state&#39;],
+ 6: [&#39;game&#39;,
+  &#39;don&#39;,
+  &#39;think&#39;,
+  &#39;edu&#39;,
+  &#39;good&#39;,
+  &#39;team&#39;,
+  &#39;players&#39;,
+  &#39;baseball&#39;,
+  &#39;better&#39;,
+  &#39;year&#39;,
+  &#39;win&#39;,
+  &#39;like&#39;,
+  &#39;time&#39;],
+ 7: [&#39;10&#39;,
+  &#39;25&#39;,
+  &#39;55&#39;,
+  &#39;11&#39;,
+  &#39;12&#39;,
+  &#39;16&#39;,
+  &#39;15&#39;,
+  &#39;14&#39;,
+  &#39;18&#39;,
+  &#39;20&#39;,
+  &#39;13&#39;,
+  &#39;30&#39;,
+  &#39;17&#39;],
+ 8: [&#39;list&#39;,
+  &#39;mail&#39;,
+  &#39;subject&#39;,
+  &#39;lines&#39;,
+  &#39;organization&#39;,
+  &#39;distribution&#39;,
+  &#39;usa&#39;,
+  &#39;com&#39;,
+  &#39;world&#39;,
+  &#39;let&#39;,
+  &#39;10&#39;,
+  &#39;want&#39;,
+  &#39;reply&#39;],
+ 9: [&#39;bike&#39;,
+  &#39;dod&#39;,
+  &#39;edu&#39;,
+  &#39;ca&#39;,
+  &#39;subject&#39;,
+  &#39;organization&#39;,
+  &#39;lines&#39;,
+  &#39;like&#39;,
+  &#39;just&#39;,
+  &#39;don&#39;,
+  &#39;know&#39;,
+  &#39;writes&#39;,
+  &#39;article&#39;]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get topics</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="latent-semantic-analysis">
+<h2>Latent Semantic Analysis<a class="headerlink" href="#latent-semantic-analysis" title="Permalink to this heading">#</a></h2>
+<p>Visualization <a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/transcoded/7/70/Topic_model_scheme.webm/Topic_model_scheme.webm.480p.vp9.webm#t=00:00:01,00:00:17.600">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add to class above</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="non-negative-matrix-factorization">
+<h2>Non-Negative Matrix Factorization<a class="headerlink" href="#non-negative-matrix-factorization" title="Permalink to this heading">#</a></h2>
+<p><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/NMF.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add to class above</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-topic-models">
+<h2>Visualizing Topic Models<a class="headerlink" href="#visualizing-topic-models" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install pyldavis</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create vectors</span>
+<span class="n">tf_vect</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">dtm</span> <span class="o">=</span> <span class="n">tf_vect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit topic model</span>
+<span class="n">lda</span> <span class="o">=</span> <span class="n">LatentDirichletAllocation</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">lda</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dtm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LatentDirichletAllocation(n_components=4, random_state=22)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#prepare with pyLDAvis</span>
+<span class="kn">import</span> <span class="nn">pyLDAvis</span>
+<span class="kn">import</span> <span class="nn">pyLDAvis.sklearn</span>
+<span class="n">pyLDAvis</span><span class="o">.</span><span class="n">enable_notebook</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyLDAvis</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">lda</span><span class="p">,</span> <span class="n">dtm</span><span class="p">,</span> <span class="n">tf_vect</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jacobkoehler/opt/anaconda3/envs/for_ds/lib/python3.8/site-packages/ipykernel/ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div>
+</div>
+<div class="output text_html">
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
+
+
+<div id="ldavis_el198931403073380591042233420595"></div>
+<script type="text/javascript">
+
+var ldavis_el198931403073380591042233420595_data = {"mdsDat": {"x": [0.01422612029883484, -0.05435505145229966, -0.1014691900540343, 0.14159812120749923], "y": [-0.1170502152512179, 0.01533671260973303, 0.04897261819167766, 0.05274088444980719], "topics": [1, 2, 3, 4], "cluster": [1, 1, 1, 1], "Freq": [40.564429834534806, 25.010625090058923, 17.785730835273053, 16.63921424013324]}, "tinfo": {"Term": ["hockey", "car", "edu", "team", "nhl", "game", "bike", "ca", "thanks", "cmu", "players", "mail", "andrew", "00", "cc", "canada", "cars", "east", "teams", "roger", "player", "play", "university", "baseball", "washington", "toronto", "season", "win", "runs", "pittsburgh", "car", "bike", "cars", "engine", "ride", "bmw", "org", "speed", "dod", "hp", "work", "drive", "problem", "use", "road", "nj", "thing", "com", "used", "read", "things", "ve", "hard", "want", "looking", "old", "need", "left", "high", "getting", "make", "like", "just", "don", "writes", "article", "right", "people", "good", "really", "edu", "organization", "subject", "lines", "know", "posting", "new", "nntp", "host", "ca", "usa", "think", "time", "east", "runs", "sun", "vs", "fans", "game", "leafs", "series", "win", "hit", "baseball", "fan", "boston", "run", "dave", "season", "games", "la", "cs", "year", "night", "detroit", "david", "second", "mark", "believe", "home", "won", "red", "guy", "team", "best", "edu", "writes", "good", "think", "article", "don", "players", "com", "did", "subject", "organization", "lines", "university", "just", "like", "hockey", "nhl", "cmu", "roger", "gm", "canada", "cup", "points", "pittsburgh", "teams", "player", "andrew", "toronto", "players", "team", "play", "ca", "league", "bob", "season", "leafs", "detroit", "game", "great", "fans", "win", "best", "24", "better", "actually", "people", "think", "games", "year", "university", "edu", "writes", "like", "don", "subject", "organization", "lines", "article", "00", "pts", "washington", "mail", "13", "thanks", "st", "rec", "11", "list", "chicago", "1993", "cc", "55", "period", "john", "35", "12", "34", "10", "san", "15", "38", "26", "18", "27", "14", "state", "93", "16", "edu", "reply", "university", "nntp", "host", "posting", "distribution", "mike", "subject", "lines", "organization", "new", "usa", "com", "article"], "Freq": [61.0, 101.0, 324.0, 89.0, 43.0, 89.0, 76.0, 138.0, 57.0, 36.0, 64.0, 51.0, 45.0, 27.0, 62.0, 40.0, 52.0, 32.0, 38.0, 33.0, 39.0, 55.0, 120.0, 60.0, 33.0, 43.0, 55.0, 49.0, 35.0, 32.0, 101.13966953092228, 75.42783701087419, 51.872462458035834, 37.12559994493837, 31.84536915307043, 33.545196888517545, 41.53891082435094, 27.699626281749087, 54.67908349755185, 44.44859876098733, 31.258134075341403, 26.425076736831326, 27.547981445226355, 30.872028638254644, 28.41468205164054, 22.541726828317504, 30.77432010421421, 163.43224263763287, 27.691122054820635, 23.86685298030792, 19.355008450277303, 39.58990522435182, 18.897803913143644, 28.11386317237534, 23.278304670752558, 19.599173708568053, 27.64934093783745, 25.040695443035037, 16.2644231768754, 20.61840166078692, 31.537767522490654, 58.05142238008453, 57.83687092872262, 54.49483396870028, 70.65695124911096, 70.97914250613027, 35.508082294755674, 35.50712658417497, 46.48691638363224, 33.95656144805353, 100.1852319924623, 57.98779288487297, 58.09034947552614, 57.29880629783763, 39.98046329035885, 44.2602081721522, 39.26599959825488, 42.34313055643256, 42.30568837863628, 44.84466739945234, 35.355432033606085, 36.938315931378376, 36.08603022585362, 31.973021929465936, 31.728058328809436, 35.26732706543792, 23.391967316961665, 19.76925143379594, 61.5695667755364, 17.911862633584573, 18.382896515747305, 33.474471940487874, 25.506192626630426, 40.42146251849348, 22.219853057969154, 14.587499030084066, 17.21911314593377, 21.044628792653572, 33.85136883988455, 34.135315132202514, 9.628888395354972, 43.36048289064189, 47.58083331237252, 15.536509492333144, 13.978395067928883, 23.636712197630054, 16.13538213443408, 16.637078539115425, 15.147657310555852, 17.275916356336626, 16.745057409043397, 13.900333555112395, 13.551014564904811, 35.76051632612154, 19.754737229820762, 83.15644943784012, 33.86217160845438, 26.613408172875175, 26.13199718659128, 31.97057210111884, 26.954772066887575, 21.82912193280335, 33.82232058414855, 19.974852005665273, 26.390993745371798, 25.834070443861794, 25.73890377246078, 24.76376321675308, 23.40607186445037, 22.268708613441387, 59.842576801013465, 41.49667291679397, 32.4139872102154, 25.789694037248577, 18.569305109764258, 28.53317570666155, 24.117593752496465, 15.764828713315511, 22.573487548048693, 26.320113853784097, 25.530617562644125, 29.744259797628345, 26.34249960308422, 36.818470876637534, 50.69576292101445, 30.089943909252483, 64.61894914308031, 16.954923920543724, 10.15397636555674, 17.143805620701073, 7.814283167377503, 8.068615642304703, 25.790993451824452, 12.77902153540261, 7.955493715119244, 13.742952894258467, 13.661877503856111, 7.073887345296759, 14.361126646074226, 7.9666581308083995, 15.533856112256949, 21.40708735896314, 14.273179686991487, 19.829670891692306, 23.105533540711647, 35.10227485984813, 21.396414915186575, 18.164574747451056, 17.53904528034264, 19.561544578617895, 19.08641148383735, 18.930487274999383, 17.47519759962323, 26.538484683891284, 14.702909361398406, 22.97554255580775, 33.37574767439073, 21.168215409693808, 34.43202875715417, 15.083768324648581, 16.58945955097548, 22.08603242670769, 21.370650565443857, 16.75254308978754, 19.23972770039863, 33.718720113141984, 5.85779627093583, 9.575037524954809, 27.329543714274628, 8.446289055407144, 22.002797301152864, 6.458378622099125, 26.105042345354164, 12.983108174954573, 18.677025957059328, 4.7671602313059696, 9.372944886717432, 15.566868939500852, 8.570604619524682, 16.553567438187482, 23.75678179453811, 12.379733183514475, 13.994796611279094, 106.07511044979131, 23.03446652607693, 40.161954277585515, 35.515016717624945, 35.424118025752215, 36.08150453251297, 26.97117308511294, 19.105452289092423, 37.0293819331517, 36.29293419107439, 35.83665229579744, 21.75424955954601, 18.772164477246115, 21.758916762373985, 18.265005380903368], "Total": [61.0, 101.0, 324.0, 89.0, 43.0, 89.0, 76.0, 138.0, 57.0, 36.0, 64.0, 51.0, 45.0, 27.0, 62.0, 40.0, 52.0, 32.0, 38.0, 33.0, 39.0, 55.0, 120.0, 60.0, 33.0, 43.0, 55.0, 49.0, 35.0, 32.0, 101.93324255652882, 76.22096675513858, 52.658851234060926, 37.912658136719216, 32.6351323703351, 34.993955677560955, 43.54892183893846, 29.456263059906718, 58.81848467491624, 50.35500444050443, 35.69188710009153, 31.025191752632406, 32.554783562428, 37.35824222581023, 34.48682570562994, 28.16835839988772, 41.56260074563465, 227.87148545992883, 38.831775523857544, 34.312747286478896, 28.573717165050986, 58.6507919380077, 28.06921214501304, 43.12320893103237, 36.314224097254, 30.597220326986868, 44.003060357965225, 40.06326693330604, 26.116910941464948, 34.20448272278508, 52.83854483761037, 103.30372798261693, 103.21405501754508, 100.1387041451471, 136.09661990934836, 138.6899175877757, 60.69730699713129, 60.980974026992264, 89.5226501223359, 58.949614858028895, 324.5190667399419, 138.74492710836955, 141.07226973266754, 138.26113153637218, 82.15478280872723, 110.81113785772021, 85.70375558110163, 107.37944256386442, 107.47130699607226, 138.37745204845126, 65.03496795734384, 87.04495184094954, 77.2853638391403, 32.96268705661074, 35.70094253040903, 42.49691160280926, 31.15573459277742, 28.753209895272985, 89.84758714301833, 26.47526170874808, 27.24770397962572, 49.96215359902542, 38.0934721335382, 60.828885736672234, 34.41290490562255, 23.605210558850214, 27.97561231917435, 34.33187952586344, 55.25550710428119, 56.67139102500835, 17.015642642459436, 80.47892511117008, 88.61210608795263, 30.10832453532587, 27.45214147821093, 46.974307295031196, 32.3543327146727, 34.950182143413876, 32.01983211346776, 38.56251493911612, 39.54278223887938, 33.42074396785084, 32.83605172974277, 89.65877279896348, 50.51537041835561, 324.5190667399419, 136.09661990934836, 89.5226501223359, 87.04495184094954, 138.6899175877757, 100.1387041451471, 64.23340749311143, 227.87148545992883, 58.81556157869604, 141.07226973266754, 138.74492710836955, 138.26113153637218, 120.69640400383943, 103.21405501754508, 103.30372798261693, 61.290582386518444, 43.7698049787613, 36.24210330528151, 33.38042893011341, 24.664571143411052, 40.441074200878944, 34.49315504998487, 22.6228055324368, 32.56306117467085, 38.85315853126904, 39.2799150790296, 45.85103786023038, 43.11557172935808, 64.23340749311143, 89.65877279896348, 55.997027836042136, 138.37745204845126, 37.920504427065026, 32.654059421901444, 55.25550710428119, 26.47526170874808, 27.45214147821093, 89.84758714301833, 45.93817057633319, 28.753209895272985, 49.96215359902542, 50.51537041835561, 26.993115476887006, 55.30158003794924, 31.197256518474145, 60.980974026992264, 87.04495184094954, 56.67139102500835, 88.61210608795263, 120.69640400383943, 324.5190667399419, 136.09661990934836, 103.30372798261693, 100.1387041451471, 141.07226973266754, 138.74492710836955, 138.26113153637218, 138.6899175877757, 27.642985169863046, 15.45920132375204, 33.33321514614188, 51.956795745080775, 35.32036306580845, 57.54256035360524, 25.904848971049663, 29.034359834780012, 39.018750104092504, 38.186642664485305, 30.050870625071752, 35.132049231365535, 62.72778403040981, 11.028172115549754, 18.48266136884727, 53.05254577168379, 17.354076881647273, 46.38973052705974, 13.843081148447546, 56.635326363583786, 28.657877448421573, 42.15290288627016, 10.928863530974706, 21.536006398399145, 37.10057635064818, 20.503036513202435, 39.60490645066429, 58.308414154441664, 31.731025550025024, 35.98482036361191, 324.5190667399419, 63.48164005815114, 120.69640400383943, 107.37944256386442, 107.47130699607226, 110.81113785772021, 77.74089724584798, 54.80462218346416, 141.07226973266754, 138.26113153637218, 138.74492710836955, 85.70375558110163, 65.03496795734384, 227.87148545992883, 138.6899175877757], "Category": ["Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4", "Topic4"], "logprob": [30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, -3.6551, -3.9484, -4.3228, -4.6573, -4.8107, -4.7587, -4.545, -4.9502, -4.2701, -4.4773, -4.8293, -4.9973, -4.9557, -4.8417, -4.9247, -5.1562, -4.8449, -3.1752, -4.9505, -5.0991, -5.3086, -4.593, -5.3325, -4.9353, -5.1241, -5.2961, -4.952, -5.0511, -5.4826, -5.2454, -4.8204, -4.2103, -4.214, -4.2735, -4.0137, -4.0092, -4.7018, -4.7019, -4.4324, -4.7465, -3.6646, -4.2114, -4.2096, -4.2233, -4.5832, -4.4815, -4.6012, -4.5258, -4.5267, -4.4684, -4.7061, -4.6623, -4.6857, -4.3231, -4.3308, -4.225, -4.6356, -4.8039, -3.6678, -4.9025, -4.8766, -4.2772, -4.5491, -4.0886, -4.687, -5.1078, -4.942, -4.7413, -4.266, -4.2577, -5.5232, -4.0184, -3.9256, -5.0448, -5.1505, -4.6252, -5.007, -4.9764, -5.0701, -4.9387, -4.9699, -5.1561, -5.1815, -4.2112, -4.8046, -3.3673, -4.2657, -4.5066, -4.5248, -4.3232, -4.4938, -4.7047, -4.2669, -4.7935, -4.515, -4.5363, -4.54, -4.5786, -4.635, -4.6848, -3.3554, -3.7215, -3.9685, -4.1971, -4.5256, -4.096, -4.2641, -4.6893, -4.3303, -4.1768, -4.2072, -4.0545, -4.1759, -3.8411, -3.5212, -4.0429, -3.2786, -4.6165, -5.1292, -4.6055, -5.3911, -5.3591, -4.1971, -4.8993, -5.3732, -4.8266, -4.8325, -5.4907, -4.7826, -5.3718, -4.7041, -4.3834, -4.7887, -4.4599, -4.307, -3.8888, -4.3839, -4.5476, -4.5827, -4.4735, -4.4981, -4.5063, -4.5863, -4.1019, -4.6924, -4.246, -3.8726, -4.328, -3.8415, -4.6668, -4.5717, -4.2855, -4.3184, -4.5619, -4.4235, -3.8624, -5.6127, -5.1213, -4.0725, -5.2467, -4.2893, -5.5151, -4.1183, -4.8168, -4.4532, -5.8187, -5.1426, -4.6353, -5.2321, -4.5739, -4.2126, -4.8644, -4.7418, -2.7163, -4.2435, -3.6875, -3.8105, -3.8131, -3.7947, -4.0857, -4.4305, -3.7687, -3.7888, -3.8015, -4.3006, -4.4481, -4.3004, -4.4755], "loglift": [30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, 0.8945, 0.8918, 0.8872, 0.8813, 0.8778, 0.86, 0.855, 0.8408, 0.8293, 0.7775, 0.7696, 0.7418, 0.7353, 0.7116, 0.7086, 0.6794, 0.6018, 0.5699, 0.5642, 0.5393, 0.5127, 0.5093, 0.5067, 0.4745, 0.4576, 0.4569, 0.4376, 0.4323, 0.4287, 0.3961, 0.3862, 0.3259, 0.3231, 0.2938, 0.2468, 0.2324, 0.3661, 0.3615, 0.247, 0.3507, -0.273, 0.0299, 0.015, 0.0214, 0.1821, -0.0155, 0.1217, -0.0283, -0.03, -0.2245, 0.2928, 0.0451, 0.1407, 1.3554, 1.2679, 1.1994, 1.0993, 1.0112, 1.0079, 0.9951, 0.9923, 0.9854, 0.9847, 0.9772, 0.9484, 0.9046, 0.9006, 0.8964, 0.8959, 0.8789, 0.8165, 0.7674, 0.764, 0.7243, 0.7109, 0.6991, 0.6901, 0.6436, 0.6374, 0.5829, 0.5266, 0.5086, 0.5008, 0.4667, 0.447, 0.0242, -0.0052, 0.1728, 0.1826, -0.0816, 0.0735, 0.3066, -0.5218, 0.3059, -0.2904, -0.2951, -0.2953, -0.198, -0.0979, -0.1486, 1.7029, 1.6734, 1.6151, 1.4688, 1.4429, 1.378, 1.369, 1.3656, 1.3604, 1.3373, 1.2959, 1.294, 1.2341, 1.1702, 1.1566, 1.1057, 0.9653, 0.9218, 0.5587, 0.5564, 0.5065, 0.5023, 0.4787, 0.4473, 0.4419, 0.436, 0.4191, 0.3876, 0.3785, 0.3617, 0.3592, 0.3241, 0.3479, 0.2297, 0.0736, -0.4973, -0.1234, -0.0114, -0.0154, -0.2489, -0.2569, -0.2616, -0.3447, 1.7526, 1.7432, 1.4213, 1.3508, 1.2814, 1.2799, 1.2526, 1.2337, 1.2243, 1.2129, 1.2091, 1.1913, 1.1727, 1.1607, 1.1357, 1.1301, 1.0733, 1.0475, 1.031, 1.0189, 1.0016, 0.9794, 0.9638, 0.9615, 0.9249, 0.9212, 0.9211, 0.8955, 0.8522, 0.849, 0.6752, 0.7796, 0.693, 0.687, 0.6836, 0.6714, 0.7348, 0.7396, 0.4558, 0.4559, 0.4397, 0.4223, 0.5509, -0.5554, -0.2338]}, "token.table": {"Topic": [4, 1, 2, 3, 4, 1, 2, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 4, 1, 2, 3, 4, 1, 2, 3, 1, 3, 1, 2, 3, 4, 2, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 1, 4, 1, 2, 3, 4, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 1, 1, 2, 3, 4, 1, 2, 4, 1, 3, 1, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 1, 2, 3, 1, 2, 3, 4, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 4, 1, 2, 3, 4, 1, 2, 4, 2, 1, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 4, 1, 2, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 1, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 2, 3, 4, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 3, 4, 1, 2, 3, 1, 2, 4, 1, 2, 3, 4, 1, 2, 3, 1, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 2, 3, 4, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 1, 2, 3, 4, 1, 2, 4, 2, 3, 1, 2, 3, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4], "Freq": [0.9767396623081055, 0.317822835246764, 0.158911417623382, 0.052970472541127335, 0.45907742868977025, 0.30754444896330424, 0.12814352040137678, 0.5638314897660578, 0.28023443663715464, 0.17245196100747975, 0.06466948537780491, 0.47424289277056936, 0.22649823800209817, 0.08493683925078681, 0.05662455950052454, 0.5945578747555077, 0.3534915558363901, 0.12624698422728217, 0.10099758738182574, 0.42923974637275936, 0.28467790302310547, 0.16606211009681152, 0.11861579292629394, 0.450740013119917, 0.3056844494108764, 0.1389474770049438, 0.16673697240593258, 0.3890529356138427, 0.2695375916936474, 0.2156300733549179, 0.10781503667745895, 0.4312601467098358, 0.17078423067457338, 0.17078423067457338, 0.08539211533728669, 0.5408167304694824, 0.25932538265150556, 0.14818593294371746, 0.25932538265150556, 0.3334183491233643, 0.2321693218094358, 0.18573545744754866, 0.18573545744754866, 0.4179047792569845, 0.2926395802951648, 0.1463197901475824, 0.1463197901475824, 0.43895937044274724, 0.28895301249090677, 0.14447650624545338, 0.07223825312272669, 0.4334295187363602, 0.1728700420344822, 0.2304933893793096, 0.0576233473448274, 0.4609867787586192, 0.1830016446203741, 0.1830016446203741, 0.1830016446203741, 0.4575041115509353, 0.3627074331166802, 0.5440611496750203, 0.2836340724572926, 0.12605958775879672, 0.18908938163819505, 0.3781787632763901, 0.44875740889938803, 0.28848690572103514, 0.2564328050853646, 0.3489561141183644, 0.6542927139719333, 0.511933392382793, 0.23073054304576585, 0.1225756009930631, 0.12978593046324327, 0.657582323193617, 0.1972746969580851, 0.1315164646387234, 0.3123064469720918, 0.4684596704581377, 0.1873838681832551, 0.3365312351312139, 0.3959191001543693, 0.2771433701080585, 0.3797359855828587, 0.34357065362258643, 0.2531573237219058, 0.9839812218721791, 0.9715963611910755, 0.028576363564443395, 0.21436844680036998, 0.3062406382862428, 0.3062406382862428, 0.1837443829717457, 0.6354529209813002, 0.04236352806542002, 0.33890822452336017, 0.32519748943089205, 0.13007899577235682, 0.46972970695573296, 0.0794927196386625, 0.22254601733117155, 0.02472733525901906, 0.7170927225115528, 0.02472733525901906, 0.9908445710827724, 0.9874883097784942, 0.30289608175523924, 0.06376759615899774, 0.0956513942384966, 0.5420245673514807, 0.06655381219908416, 0.36604596709496284, 0.5657074036922153, 0.08277665274362855, 0.8829509625987045, 0.7153154756112016, 0.14920690902319542, 0.03949594650613997, 0.0965456470150088, 0.2733634919901099, 0.5343013707079421, 0.17395858581188814, 0.012425613272277723, 0.17394755542962811, 0.6957902217185125, 0.11596503695308541, 0.3495293635456214, 0.6116763862048374, 0.02912744696213512, 0.1915940972471135, 0.5109175926589693, 0.08515293210982822, 0.23417056330202762, 0.509978429592167, 0.2914162454812383, 0.18213515342577394, 0.4250575753926901, 0.3400460603141521, 0.20402763618849126, 0.03400460603141521, 0.4373502391216084, 0.1800853925794858, 0.038589726981318385, 0.3473075428318655, 0.9350801929695977, 0.06800583221597073, 0.5392520350745614, 0.2696260175372807, 0.17975067835818717, 0.009986148797677065, 0.8380286641675299, 0.03223187169875115, 0.09669561509625345, 0.9707946425921709, 0.3081483039026994, 0.2557630922392405, 0.10785190636594479, 0.32663720213686137, 0.9759273503475272, 0.6392950569077223, 0.23247092978462627, 0.11623546489231314, 0.6955745140401869, 0.27822980561607474, 0.03477872570200934, 0.6900574848082357, 0.28937894524216334, 0.022259918864781795, 0.599949981552354, 0.24703822769802813, 0.14116470154173036, 0.6139546143760565, 0.2338874721432596, 0.1169437360716298, 0.0584718680358149, 0.16217593959944318, 0.040543984899860795, 0.770335713097355, 0.5138364418070662, 0.3015996506258867, 0.16755536145882594, 0.02234071486117679, 0.4353677943436382, 0.2612206766061829, 0.28298906632336485, 0.02176838971718191, 0.42636063906912575, 0.42636063906912575, 0.12181732544832165, 0.030454331362080412, 0.6768982293425597, 0.1425048903879073, 0.17813111298488415, 0.6126298793858248, 0.19144683730807027, 0.1531574698464562, 0.03828936746161405, 0.31501460297274864, 0.6825316397742888, 0.01631572031235848, 0.9789432187415089, 0.3371149423351891, 0.4408426168998627, 0.10372767456467358, 0.12965959320584197, 0.39080198402662925, 0.15818175543934995, 0.12096251886538524, 0.32566832002219104, 0.8737959710039742, 0.07943599736399765, 0.03971799868199882, 0.18849236835939717, 0.13194465785157802, 0.16964313152345745, 0.5089293945703723, 0.5619389722663327, 0.22283786831251123, 0.13564044158152858, 0.07750882376087348, 0.48688583467049024, 0.24344291733524512, 0.14606575040114705, 0.12172145866762256, 0.05876945238052204, 0.5876945238052204, 0.17630835714156612, 0.17630835714156612, 0.6798799648523345, 0.3021688732677042, 0.037771109158463025, 0.3955643582972499, 0.44830627273688317, 0.1318547860990833, 0.6240130152545448, 0.32448676793236325, 0.04992104122036358, 0.5614511802493686, 0.21296424078424325, 0.17424346973256266, 0.04840096381460074, 0.41226336980328476, 0.18804995815588427, 0.1374211232677616, 0.26037686513891667, 0.28805884027689926, 0.05237433459579987, 0.0785615018936998, 0.5499305132558986, 0.6333606340700864, 0.1101496754904498, 0.08261225661783735, 0.1652245132356747, 0.2502078854859103, 0.09623380210996549, 0.0192467604219931, 0.6351430939257722, 0.6056184949518607, 0.22710693560694775, 0.13247904577071953, 0.037851155934491294, 0.37195800430040854, 0.4864066210082265, 0.028612154176954504, 0.11444861670781802, 0.2554529060182834, 0.2736995421624465, 0.1277264530091417, 0.3466860867390989, 0.6363193780664297, 0.13635415244280635, 0.1136284603690053, 0.1136284603690053, 0.45505590432491866, 0.12834910121984885, 0.16335340155253492, 0.2566982024396977, 0.9367188183702141, 0.04569360089610801, 0.26570724620075287, 0.5314144924015057, 0.19928043465056466, 0.8165190059528524, 0.10650247903732857, 0.07100165269155238, 0.3911363199247408, 0.15831708187429985, 0.1210660037862293, 0.33525970279263495, 0.6536541485227637, 0.2614616594091055, 0.09804812227841456, 0.9644326019214207, 0.022962680998129065, 0.022962680998129065, 0.4180333018928895, 0.18739423877957118, 0.13694194372353277, 0.25946894600248316, 0.5903480646941646, 0.14758701617354114, 0.26237691764185095, 0.016398557352615684, 0.10820952459644269, 0.2705238114911067, 0.10820952459644269, 0.5410476229822134, 0.06141928700351115, 0.7063218005403783, 0.2456771480140446, 0.0357161813276224, 0.3214456319486016, 0.535742719914336, 0.08929045331905601, 0.3309579456535109, 0.6619158913070218, 0.025458303511808528, 0.3425009019233386, 0.5760242441437967, 0.07784111407348604, 0.13260954728619184, 0.17681272971492243, 0.7072509188596897, 0.3970719988138315, 0.15341418135988943, 0.1173167269222684, 0.32487708993858944, 0.8600886547534984, 0.06143490391096417, 0.06143490391096417, 0.9702959218826843, 0.6994485110627477, 0.11657475184379128, 0.05828737592189564, 0.11657475184379128, 0.576763734281959, 0.23749094941021842, 0.15267275319228327, 0.033927278487174056, 0.3788614614751448, 0.03444195104319498, 0.5855131677343147, 0.3291368980469577, 0.41890150660521897, 0.08976460855826121, 0.17952921711652242, 0.3780620661031325, 0.12602068870104416, 0.12602068870104416, 0.36230948001550195, 0.9805383853471841, 0.5931070385330514, 0.21417754169249079, 0.13180156411845587, 0.06590078205922793, 0.8119042395783335, 0.05799315996988096, 0.08698973995482144, 0.20970371634994497, 0.7788995178712242, 0.3217087761053739, 0.607672132643484, 0.07149083913452753, 0.896334878910923, 0.028010464965966344, 0.08403139489789903, 0.24426093707039523, 0.24426093707039523, 0.06978883916297006, 0.4536274545593054, 0.6153232823623056, 0.3076616411811528, 0.07239097439556537, 0.24726209223817486, 0.4945241844763497, 0.1545388076488593, 0.12363104611908743, 0.1101010199700947, 0.6606061198205682, 0.1101010199700947, 0.1101010199700947, 0.9505618531126966, 0.03394863761116774, 0.11580843429555189, 0.11580843429555189, 0.19301405715925316, 0.5790421714777595, 0.4459047699553914, 0.10290110075893648, 0.0343003669196455, 0.4116044030357459, 0.4111367890366421, 0.18430269853366713, 0.14177130656435932, 0.26227691714406476, 0.02353112172824095, 0.8235892604884333, 0.07059336518472285, 0.07059336518472285, 0.4015223371473158, 0.5688233109586973, 0.03346019476227632, 0.30885519874381373, 0.6691862639449297, 0.025737933228651144, 0.3475688234429932, 0.03475688234429932, 0.01737844117214966, 0.5908669998530884, 0.7458628537160528, 0.19248073644285232, 0.07218027616606962, 0.664946737249826, 0.13998878678943705, 0.13998878678943705, 0.03499719669735926, 0.4250677290006113, 0.29869624200042955, 0.24125465700034696, 0.034464951000049565, 0.46580617870842195, 0.2587812103935678, 0.19408590779517582, 0.09057342363774872, 0.27832171808657724, 0.603030389187584, 0.09277390602885908, 0.2734132824615906, 0.20713127459211406, 0.19056077262474494, 0.3314100393473825, 0.5381720188277228, 0.15376343395077796, 0.015376343395077796, 0.2921505245064781, 0.8298034959091994, 0.10707141882699348, 0.05353570941349674, 0.7210589683903922, 0.15451263608365545, 0.1287605300697129, 0.6820027262765508, 0.22165088603987904, 0.10230040894148262, 0.01705006815691377, 0.06419363966669699, 0.7382268561670153, 0.06419363966669699, 0.12838727933339397, 0.6493023291652725, 0.11594684449379866, 0.11594684449379866, 0.09275747559503893, 0.2400008509507956, 0.0600002127376989, 0.03000010636884945, 0.6900024464835374, 0.6604999509197239, 0.2802121003901859, 0.06004545008361127, 0.3034687829376184, 0.4299141091616261, 0.12644532622400767, 0.1517343914688092, 0.8685447175450833, 0.0840527146011371, 0.028017571533712367, 0.5216881951020671, 0.24982251596437016, 0.15430214221328745, 0.07347721057775593, 0.19184737560719434, 0.5416867075967841, 0.22570279483199335, 0.04514055896639867], "Term": ["00", "10", "10", "10", "10", "11", "11", "11", "12", "12", "12", "12", "13", "13", "13", "13", "14", "14", "14", "14", "15", "15", "15", "15", "16", "16", "16", "16", "18", "18", "18", "18", "1993", "1993", "1993", "1993", "24", "24", "24", "24", "26", "26", "26", "26", "27", "27", "27", "27", "34", "34", "34", "34", "35", "35", "35", "35", "38", "38", "38", "38", "55", "55", "93", "93", "93", "93", "actually", "actually", "actually", "andrew", "andrew", "article", "article", "article", "article", "baseball", "baseball", "baseball", "believe", "believe", "believe", "best", "best", "best", "better", "better", "better", "bike", "bmw", "bmw", "bob", "bob", "bob", "bob", "boston", "boston", "boston", "ca", "ca", "ca", "ca", "canada", "canada", "canada", "canada", "car", "cars", "cc", "cc", "cc", "cc", "chicago", "chicago", "chicago", "cmu", "cmu", "com", "com", "com", "com", "cs", "cs", "cs", "cs", "cup", "cup", "cup", "dave", "dave", "dave", "david", "david", "david", "david", "detroit", "detroit", "detroit", "did", "did", "did", "did", "distribution", "distribution", "distribution", "distribution", "dod", "dod", "don", "don", "don", "don", "drive", "drive", "drive", "east", "edu", "edu", "edu", "edu", "engine", "fan", "fan", "fan", "fans", "fans", "fans", "game", "game", "game", "games", "games", "games", "getting", "getting", "getting", "getting", "gm", "gm", "gm", "good", "good", "good", "good", "great", "great", "great", "great", "guy", "guy", "guy", "guy", "hard", "hard", "hard", "high", "high", "high", "high", "hit", "hit", "hockey", "hockey", "home", "home", "home", "home", "host", "host", "host", "host", "hp", "hp", "hp", "john", "john", "john", "john", "just", "just", "just", "just", "know", "know", "know", "know", "la", "la", "la", "la", "leafs", "leafs", "leafs", "league", "league", "league", "left", "left", "left", "like", "like", "like", "like", "lines", "lines", "lines", "lines", "list", "list", "list", "list", "looking", "looking", "looking", "looking", "mail", "mail", "mail", "mail", "make", "make", "make", "make", "mark", "mark", "mark", "mark", "mike", "mike", "mike", "mike", "need", "need", "need", "need", "new", "new", "new", "new", "nhl", "nhl", "night", "night", "night", "nj", "nj", "nj", "nntp", "nntp", "nntp", "nntp", "old", "old", "old", "org", "org", "org", "organization", "organization", "organization", "organization", "people", "people", "people", "people", "period", "period", "period", "period", "pittsburgh", "pittsburgh", "pittsburgh", "play", "play", "play", "play", "player", "player", "player", "players", "players", "players", "points", "points", "points", "posting", "posting", "posting", "posting", "problem", "problem", "problem", "pts", "read", "read", "read", "read", "really", "really", "really", "really", "rec", "rec", "rec", "red", "red", "red", "red", "reply", "reply", "reply", "reply", "ride", "right", "right", "right", "right", "road", "road", "road", "roger", "roger", "run", "run", "run", "runs", "runs", "runs", "san", "san", "san", "san", "season", "season", "season", "second", "second", "second", "second", "series", "series", "series", "series", "speed", "speed", "st", "st", "st", "st", "state", "state", "state", "state", "subject", "subject", "subject", "subject", "sun", "sun", "sun", "sun", "team", "team", "team", "teams", "teams", "teams", "thanks", "thanks", "thanks", "thanks", "thing", "thing", "thing", "things", "things", "things", "things", "think", "think", "think", "think", "time", "time", "time", "time", "toronto", "toronto", "toronto", "university", "university", "university", "university", "usa", "usa", "usa", "usa", "use", "use", "use", "used", "used", "used", "ve", "ve", "ve", "ve", "vs", "vs", "vs", "vs", "want", "want", "want", "want", "washington", "washington", "washington", "washington", "win", "win", "win", "won", "won", "won", "won", "work", "work", "work", "writes", "writes", "writes", "writes", "year", "year", "year", "year"]}, "R": 30, "lambda.step": 0.01, "plot.opts": {"xlab": "PC1", "ylab": "PC2"}, "topic.order": [1, 3, 4, 2]};
+
+function LDAvis_load_lib(url, callback){
+  var s = document.createElement('script');
+  s.src = url;
+  s.async = true;
+  s.onreadystatechange = s.onload = callback;
+  s.onerror = function(){console.warn("failed to load library " + url);};
+  document.getElementsByTagName("head")[0].appendChild(s);
+}
+
+if(typeof(LDAvis) !== "undefined"){
+   // already loaded: just create the visualization
+   !function(LDAvis){
+       new LDAvis("#" + "ldavis_el198931403073380591042233420595", ldavis_el198931403073380591042233420595_data);
+   }(LDAvis);
+}else if(typeof define === "function" && define.amd){
+   // require.js is available: use it to load d3/LDAvis
+   require.config({paths: {d3: "https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min"}});
+   require(["d3"], function(d3){
+      window.d3 = d3;
+      LDAvis_load_lib("https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.js", function(){
+        new LDAvis("#" + "ldavis_el198931403073380591042233420595", ldavis_el198931403073380591042233420595_data);
+      });
+    });
+}else{
+    // require.js not available: dynamically load d3 & LDAvis
+    LDAvis_load_lib("https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js", function(){
+         LDAvis_load_lib("https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.js", function(){
+                 new LDAvis("#" + "ldavis_el198931403073380591042233420595", ldavis_el198931403073380591042233420595_data);
+            })
+         });
+}
+</script></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-what-constitutes-similarity">Problem: What Constitutes Similarity?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-pipeline">Using a Pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nltk-cluster-module">The NLTK Cluster Module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-it-faster">Make it faster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agglomerative-clustering">Agglomerative Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-models">Topic Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latent-semantic-analysis">Latent Semantic Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-negative-matrix-factorization">Non-Negative Matrix Factorization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-topic-models">Visualizing Topic Models</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lenny
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

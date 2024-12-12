@@ -1,0 +1,111 @@
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 664, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#get labels with .transform()
+kmeans.transform(X)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[9], line 2[0m
+[1;32m      1[0m [38;5;66;03m#get labels with .transform()[39;00m
+[0;32m----> 2[0m [43mkmeans[49m[38;5;241;43m.[39;49m[43mtransform[49m[43m([49m[43mX[49m[43m)[49m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_set_output.py:316[0m, in [0;36m_wrap_method_output.<locals>.wrapped[0;34m(self, X, *args, **kwargs)[0m
+[1;32m    314[0m [38;5;129m@wraps[39m(f)
+[1;32m    315[0m [38;5;28;01mdef[39;00m [38;5;21mwrapped[39m([38;5;28mself[39m, X, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m--> 316[0m     data_to_wrap [38;5;241m=[39m [43mf[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mX[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    317[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(data_to_wrap, [38;5;28mtuple[39m):
+[1;32m    318[0m         [38;5;66;03m# only wrap the first output for cross decomposition[39;00m
+[1;32m    319[0m         return_tuple [38;5;241m=[39m (
+[1;32m    320[0m             _wrap_data_with_container(method, data_to_wrap[[38;5;241m0[39m], X, [38;5;28mself[39m),
+[1;32m    321[0m             [38;5;241m*[39mdata_to_wrap[[38;5;241m1[39m:],
+[1;32m    322[0m         )
+
+Cell [0;32mIn[2], line 13[0m, in [0;36mKMCluster.transform[0;34m(self, documents)[0m
+[1;32m     12[0m [38;5;28;01mdef[39;00m [38;5;21mtransform[39m([38;5;28mself[39m, documents):
+[0;32m---> 13[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mmodel[49m[38;5;241;43m.[39;49m[43mfit_predict[49m[43m([49m[43mdocuments[49m[43m)[49m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/cluster/_kmeans.py:1070[0m, in [0;36m_BaseKMeans.fit_predict[0;34m(self, X, y, sample_weight)[0m
+[1;32m   1047[0m [38;5;28;01mdef[39;00m [38;5;21mfit_predict[39m([38;5;28mself[39m, X, y[38;5;241m=[39m[38;5;28;01mNone[39;00m, sample_weight[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[1;32m   1048[0m [38;5;250m    [39m[38;5;124;03m"""Compute cluster centers and predict cluster index for each sample.[39;00m
+[1;32m   1049[0m 
+[1;32m   1050[0m [38;5;124;03m    Convenience method; equivalent to calling fit(X) followed by[39;00m
+[0;32m   (...)[0m
+[1;32m   1068[0m [38;5;124;03m        Index of the cluster each sample belongs to.[39;00m
+[1;32m   1069[0m [38;5;124;03m    """[39;00m
+[0;32m-> 1070[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfit[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43msample_weight[49m[38;5;241;43m=[39;49m[43msample_weight[49m[43m)[49m[38;5;241m.[39mlabels_
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/base.py:1473[0m, in [0;36m_fit_context.<locals>.decorator.<locals>.wrapper[0;34m(estimator, *args, **kwargs)[0m
+[1;32m   1466[0m     estimator[38;5;241m.[39m_validate_params()
+[1;32m   1468[0m [38;5;28;01mwith[39;00m config_context(
+[1;32m   1469[0m     skip_parameter_validation[38;5;241m=[39m(
+[1;32m   1470[0m         prefer_skip_nested_validation [38;5;129;01mor[39;00m global_skip_validation
+[1;32m   1471[0m     )
+[1;32m   1472[0m ):
+[0;32m-> 1473[0m     [38;5;28;01mreturn[39;00m [43mfit_method[49m[43m([49m[43mestimator[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/cluster/_kmeans.py:1464[0m, in [0;36mKMeans.fit[0;34m(self, X, y, sample_weight)[0m
+[1;32m   1436[0m [38;5;129m@_fit_context[39m(prefer_skip_nested_validation[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[1;32m   1437[0m [38;5;28;01mdef[39;00m [38;5;21mfit[39m([38;5;28mself[39m, X, y[38;5;241m=[39m[38;5;28;01mNone[39;00m, sample_weight[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[1;32m   1438[0m [38;5;250m    [39m[38;5;124;03m"""Compute k-means clustering.[39;00m
+[1;32m   1439[0m 
+[1;32m   1440[0m [38;5;124;03m    Parameters[39;00m
+[0;32m   (...)[0m
+[1;32m   1462[0m [38;5;124;03m        Fitted estimator.[39;00m
+[1;32m   1463[0m [38;5;124;03m    """[39;00m
+[0;32m-> 1464[0m     X [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_validate_data[49m[43m([49m
+[1;32m   1465[0m [43m        [49m[43mX[49m[43m,[49m
+[1;32m   1466[0m [43m        [49m[43maccept_sparse[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mcsr[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m   1467[0m [43m        [49m[43mdtype[49m[38;5;241;43m=[39;49m[43m[[49m[43mnp[49m[38;5;241;43m.[39;49m[43mfloat64[49m[43m,[49m[43m [49m[43mnp[49m[38;5;241;43m.[39;49m[43mfloat32[49m[43m][49m[43m,[49m
+[1;32m   1468[0m [43m        [49m[43morder[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mC[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m   1469[0m [43m        [49m[43mcopy[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcopy_x[49m[43m,[49m
+[1;32m   1470[0m [43m        [49m[43maccept_large_sparse[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m,[49m
+[1;32m   1471[0m [43m    [49m[43m)[49m
+[1;32m   1473[0m     [38;5;28mself[39m[38;5;241m.[39m_check_params_vs_input(X)
+[1;32m   1475[0m     random_state [38;5;241m=[39m check_random_state([38;5;28mself[39m[38;5;241m.[39mrandom_state)
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/base.py:633[0m, in [0;36mBaseEstimator._validate_data[0;34m(self, X, y, reset, validate_separately, cast_to_ndarray, **check_params)[0m
+[1;32m    631[0m         out [38;5;241m=[39m X, y
+[1;32m    632[0m [38;5;28;01melif[39;00m [38;5;129;01mnot[39;00m no_val_X [38;5;129;01mand[39;00m no_val_y:
+[0;32m--> 633[0m     out [38;5;241m=[39m [43mcheck_array[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43minput_name[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mX[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mcheck_params[49m[43m)[49m
+[1;32m    634[0m [38;5;28;01melif[39;00m no_val_X [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m no_val_y:
+[1;32m    635[0m     out [38;5;241m=[39m _check_y(y, [38;5;241m*[39m[38;5;241m*[39mcheck_params)
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/validation.py:1012[0m, in [0;36mcheck_array[0;34m(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_writeable, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator, input_name)[0m
+[1;32m   1010[0m         array [38;5;241m=[39m xp[38;5;241m.[39mastype(array, dtype, copy[38;5;241m=[39m[38;5;28;01mFalse[39;00m)
+[1;32m   1011[0m     [38;5;28;01melse[39;00m:
+[0;32m-> 1012[0m         array [38;5;241m=[39m [43m_asarray_with_order[49m[43m([49m[43marray[49m[43m,[49m[43m [49m[43morder[49m[38;5;241;43m=[39;49m[43morder[49m[43m,[49m[43m [49m[43mdtype[49m[38;5;241;43m=[39;49m[43mdtype[49m[43m,[49m[43m [49m[43mxp[49m[38;5;241;43m=[39;49m[43mxp[49m[43m)[49m
+[1;32m   1013[0m [38;5;28;01mexcept[39;00m ComplexWarning [38;5;28;01mas[39;00m complex_warning:
+[1;32m   1014[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[1;32m   1015[0m         [38;5;124m"[39m[38;5;124mComplex data not supported[39m[38;5;130;01m\n[39;00m[38;5;132;01m{}[39;00m[38;5;130;01m\n[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(array)
+[1;32m   1016[0m     ) [38;5;28;01mfrom[39;00m [38;5;21;01mcomplex_warning[39;00m
+
+File [0;32m/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/sklearn/utils/_array_api.py:745[0m, in [0;36m_asarray_with_order[0;34m(array, dtype, order, copy, xp, device)[0m
+[1;32m    743[0m     array [38;5;241m=[39m numpy[38;5;241m.[39marray(array, order[38;5;241m=[39morder, dtype[38;5;241m=[39mdtype)
+[1;32m    744[0m [38;5;28;01melse[39;00m:
+[0;32m--> 745[0m     array [38;5;241m=[39m [43mnumpy[49m[38;5;241;43m.[39;49m[43masarray[49m[43m([49m[43marray[49m[43m,[49m[43m [49m[43morder[49m[38;5;241;43m=[39;49m[43morder[49m[43m,[49m[43m [49m[43mdtype[49m[38;5;241;43m=[39;49m[43mdtype[49m[43m)[49m
+[1;32m    747[0m [38;5;66;03m# At this point array is a NumPy ndarray. We convert it to an array[39;00m
+[1;32m    748[0m [38;5;66;03m# container that is consistent with the input's namespace.[39;00m
+[1;32m    749[0m [38;5;28;01mreturn[39;00m xp[38;5;241m.[39masarray(array)
+
+[0;31mValueError[0m: could not convert string to float: 'From: swdwan@napier.uwaterloo.ca (Donald Wan)\nSubject: $ 80 SVX OIL CHANGE\n \nOrganization: University of Waterloo\nLines: 17\n\n\n\n\n\n My friend brought a subaru SVX recently.  I had drove it for couples times and I\nthink its a great car, esp on snow.  However when she took it to a local Subaru\ndealer for a oil change, the bill came out to be about 80 dollars.  The dealer\ntold us it is because to change the oil filter on a SVX it is necessary to\ndisassemble a metal cover under the engine and that took an hour of labour.\nAt first, we think we are being ripped off so she phone to a dealer in Toronto\nbut found out the they are charging roughly the same price.  So is there any\nSVX owner out there that has the same problem ?  And if the oil change story is\ntrue, then the engineer of Subaru looks pretty stubid to me. By the way, the car\nlooks great.\n\nSWD Wan.\n\n'
+

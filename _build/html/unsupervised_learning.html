@@ -1,0 +1,1775 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Clustering &#8212; Stern Data Bootcamp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'unsupervised_learning';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Assignment 1" href="homework/homework_I.html" />
+    <link rel="prev" title="Streamlit" href="streamlit.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="syllabus.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Stern Data Bootcamp - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Stern Data Bootcamp - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="syllabus.html">
+                    Data Bootcamp
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_fundamentals_one.html">Python Fundamentals 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_fundamentals_two.html">Python Fundamentals 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oop.html">Functions and Classes</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="intro_to_numpy.html">Intro to numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_pandas.html">Intro to pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_II.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dates_intro_to_plotting.html">Reading Files and Split Apply Combine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_plotting.html"><code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting_seaborn.html">More plotting with <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_apis.html">Accessing Data with API’s</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="html_data.html">Extracting Data From HTML</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intro_probability.html">Probability Distributions: Discrete and Continuous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyp_testing.html">Inference and Hypothesis Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="significance.html">Inference and Hypothesis Testing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to Predictive Modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="regression_intro.html">Introduction to Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practice_regression.html">Regression Part II</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="polynomial_models.html">Model Complexity and Evaluation</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="knn_crossval.html">Cross Validation and K-Nearest Neighbors</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="logistic_starter_code.html">Classification I: Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classifier_evaluation_b.html">Evaluating Classification Models</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intro_decision_tree.html">Introduction to Decision Trees</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="forests.html">Random Forests</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time Series Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="time_series_I.html">Time Series and Forecasting Intro</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="forecasting_I.html">Forecasting with <code class="docutils literal notranslate"><span class="pre">sktime</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro to Artificial Neural Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro_to_ann.html">Intro ANN</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="v2_rnn_text.html">Text Classification and Recurrent Neural Networks</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deploying Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised Learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clustering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_I.html">Assignment 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_II.html">Homework 2: Introduction to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_III.html">Homework 3: Advanced Pandas and Introductory Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/homework_IV.html">API’s and Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/regression_hw.html">A Regression Model for Wages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/time_series_hw.html">Grid Searching and Time Series Forecasting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-1.html">Climb the Ladder!</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-2.html">Climb the Ladder!</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="numpy-challenge-3.html">Climb the Ladder!</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotting_with_bokeh.html">Plotting with <code class="docutils literal notranslate"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/Bonus_Plotly.html">BONUS: <code class="docutils literal notranslate"><span class="pre">plotly</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonus/intro_ipywidgets.html">Using interactive widgets with the notebook</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jfkoehler/nyu_bootcamp_fa24/blob/master/unsupervised_learning.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jfkoehler/nyu_bootcamp_fa24/issues/new?title=Issue%20on%20page%20%2Funsupervised_learning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/unsupervised_learning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clustering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-clustering-problem">Basic Clustering Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-clusters">Evaluating Clusters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-markov-models">Hidden Markov Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hmmlearn">HMMLearn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-at-speech-files">Looking at Speech Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-features-from-audio-mel-frequency-cepstral-coefficient">Generating Features from Audio: Mel Frequency Cepstral Coefficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">Making Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="clustering">
+<h1>Clustering<a class="headerlink" href="#clustering" title="Permalink to this heading">#</a></h1>
+<p><img alt="" src="https://scikit-learn.org/1.5/_images/sphx_glr_plot_cluster_comparison_001.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="basic-clustering-problem">
+<h2>Basic Clustering Problem<a class="headerlink" href="#basic-clustering-problem" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Do you notice any groups?&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9f7f4a0d409052c5f389d36d50196b3622a27a8b64b1cf82f635df519002bf92.png" src="_images/9f7f4a0d409052c5f389d36d50196b3622a27a8b64b1cf82f635df519002bf92.png" />
+</div>
+</div>
+<p>There are many clustering algorithms in sklearn – let us use the KMeans and DBSCAN approach to cluster this data.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.naftaliharris.com/blog/visualizing-k-means-clustering/">KMeans</a></p></li>
+<li><p><a class="reference external" href="https://www.naftaliharris.com/blog/visualizing-dbscan-clustering/">DBSCAN</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span><span class="p">,</span> <span class="n">DBSCAN</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Setup a pipeline to fit the KMeans clustering model, fit it to the data and plot the resulting clusters.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html#sklearn.cluster.KMeans">KMeans docs</a></p></li>
+</ul>
+<section id="evaluating-clusters">
+<h3>Evaluating Clusters<a class="headerlink" href="#evaluating-clusters" title="Permalink to this heading">#</a></h3>
+<p><strong>Inertia</strong></p>
+<p>Sum of squared differences between each point in a cluster and that cluster’s centroid.</p>
+<p>How dense is each cluster?</p>
+<p>low inertia = dense cluster
+ranges from 0 to very high values
+$<span class="math notranslate nohighlight">\( \sum_{j=0}^{n} (x_j - \mu_i)^2 \)</span><span class="math notranslate nohighlight">\(
+where \)</span>\mu_i$ is a cluster centroid</p>
+<p><code class="docutils literal notranslate"><span class="pre">.inertia_</span></code> is an attribute of a fitted sklearn’s kmeans object</p>
+<p><strong>Silhouette Score</strong></p>
+<p>Tells you how much closer data points are to their own clusters than to the nearest neighbor cluster.</p>
+<p>How far apart are the clusters?</p>
+<p>ranges from -1 to 1
+high silhouette score means the clusters are well separated
+$<span class="math notranslate nohighlight">\(s_i = \frac{b_i - a_i}{max\{a_i, b_i\}}\)</span>$
+Where:</p>
+<p><span class="math notranslate nohighlight">\(a_i\)</span> = Cohesion: Mean distance of points within a cluster from each other.</p>
+<p><span class="math notranslate nohighlight">\(b_i\)</span> = Separation: Mean distance from point <span class="math notranslate nohighlight">\(x_i\)</span> to all points in the next nearest cluster.
+Use scikit-learn: <code class="docutils literal notranslate"><span class="pre">metrics.silhouette_score(X_scaled,</span> <span class="pre">labels)</span></code>.</p>
+<p>Higher silhouette score is better!¶</p>
+</section>
+<section id="hidden-markov-models">
+<h3>Hidden Markov Models<a class="headerlink" href="#hidden-markov-models" title="Permalink to this heading">#</a></h3>
+<center>
+ <img src = https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/HiddenMarkovModel.svg/600px-HiddenMarkovModel.svg.png />
+</center><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Audio</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">btcn</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Ticker</span><span class="p">(</span><span class="s1">&#39;BTC-USD&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">btcn</span> <span class="o">=</span> <span class="n">btcn</span><span class="o">.</span><span class="n">history</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">btcn</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+      <th>Dividends</th>
+      <th>Stock Splits</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-11-12 00:00:00+00:00</th>
+      <td>88705.562500</td>
+      <td>89956.882812</td>
+      <td>85155.109375</td>
+      <td>87955.812500</td>
+      <td>133673285375</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-13 00:00:00+00:00</th>
+      <td>87929.968750</td>
+      <td>93434.351562</td>
+      <td>86256.929688</td>
+      <td>90584.164062</td>
+      <td>123559027869</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-14 00:00:00+00:00</th>
+      <td>90574.882812</td>
+      <td>91765.218750</td>
+      <td>86682.812500</td>
+      <td>87250.429688</td>
+      <td>87616705248</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-15 00:00:00+00:00</th>
+      <td>87284.179688</td>
+      <td>91868.742188</td>
+      <td>87124.898438</td>
+      <td>91066.007812</td>
+      <td>78243109518</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-16 00:00:00+00:00</th>
+      <td>91064.367188</td>
+      <td>91763.945312</td>
+      <td>90094.226562</td>
+      <td>90558.476562</td>
+      <td>44333192814</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot it</span>
+<span class="n">btcn</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/9203602276ed1ba5bfa55b77cb464e9b2b006f5d80598549d44ca31be2420f96.png" src="_images/9203602276ed1ba5bfa55b77cb464e9b2b006f5d80598549d44ca31be2420f96.png" />
+</div>
+</div>
+</section>
+<section id="hmmlearn">
+<h3>HMMLearn<a class="headerlink" href="#hmmlearn" title="Permalink to this heading">#</a></h3>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">hmmlearn</span></code> library to implement our hidden markov model.  Here, we use the <code class="docutils literal notranslate"><span class="pre">GaussianHMM</span></code> class.  Depending on the nature of your data you may be interested in a different probability distribution.</p>
+<ul class="simple">
+<li><p><strong>HMM Learn</strong>: <a class="reference external" href="https://hmmlearn.readthedocs.io/en/latest/tutorial.html">here</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install hmmlearn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hmmlearn</span> <span class="kn">import</span> <span class="n">hmm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#instantiate </span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">GaussianHMM</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fit</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">btcn</span><span class="p">[</span><span class="s1">&#39;2021&#39;</span><span class="p">:][[</span><span class="s1">&#39;Close&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Close</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-11-12 00:00:00+00:00</th>
+      <td>87955.812500</td>
+    </tr>
+    <tr>
+      <th>2024-11-13 00:00:00+00:00</th>
+      <td>90584.164062</td>
+    </tr>
+    <tr>
+      <th>2024-11-14 00:00:00+00:00</th>
+      <td>87250.429688</td>
+    </tr>
+    <tr>
+      <th>2024-11-15 00:00:00+00:00</th>
+      <td>91066.007812</td>
+    </tr>
+    <tr>
+      <th>2024-11-16 00:00:00+00:00</th>
+      <td>90558.476562</td>
+    </tr>
+    <tr>
+      <th>2024-11-17 00:00:00+00:00</th>
+      <td>89845.851562</td>
+    </tr>
+    <tr>
+      <th>2024-11-18 00:00:00+00:00</th>
+      <td>90542.640625</td>
+    </tr>
+    <tr>
+      <th>2024-11-19 00:00:00+00:00</th>
+      <td>92343.789062</td>
+    </tr>
+    <tr>
+      <th>2024-11-20 00:00:00+00:00</th>
+      <td>94339.492188</td>
+    </tr>
+    <tr>
+      <th>2024-11-21 00:00:00+00:00</th>
+      <td>98504.726562</td>
+    </tr>
+    <tr>
+      <th>2024-11-22 00:00:00+00:00</th>
+      <td>98997.664062</td>
+    </tr>
+    <tr>
+      <th>2024-11-23 00:00:00+00:00</th>
+      <td>97777.281250</td>
+    </tr>
+    <tr>
+      <th>2024-11-24 00:00:00+00:00</th>
+      <td>98013.820312</td>
+    </tr>
+    <tr>
+      <th>2024-11-25 00:00:00+00:00</th>
+      <td>93102.296875</td>
+    </tr>
+    <tr>
+      <th>2024-11-26 00:00:00+00:00</th>
+      <td>91985.320312</td>
+    </tr>
+    <tr>
+      <th>2024-11-27 00:00:00+00:00</th>
+      <td>95962.531250</td>
+    </tr>
+    <tr>
+      <th>2024-11-28 00:00:00+00:00</th>
+      <td>95652.468750</td>
+    </tr>
+    <tr>
+      <th>2024-11-29 00:00:00+00:00</th>
+      <td>97461.523438</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 00:00:00+00:00</th>
+      <td>96449.054688</td>
+    </tr>
+    <tr>
+      <th>2024-12-01 00:00:00+00:00</th>
+      <td>97279.789062</td>
+    </tr>
+    <tr>
+      <th>2024-12-02 00:00:00+00:00</th>
+      <td>95865.304688</td>
+    </tr>
+    <tr>
+      <th>2024-12-03 00:00:00+00:00</th>
+      <td>96002.164062</td>
+    </tr>
+    <tr>
+      <th>2024-12-04 00:00:00+00:00</th>
+      <td>98768.531250</td>
+    </tr>
+    <tr>
+      <th>2024-12-05 00:00:00+00:00</th>
+      <td>96593.570312</td>
+    </tr>
+    <tr>
+      <th>2024-12-06 00:00:00+00:00</th>
+      <td>99920.710938</td>
+    </tr>
+    <tr>
+      <th>2024-12-07 00:00:00+00:00</th>
+      <td>99923.335938</td>
+    </tr>
+    <tr>
+      <th>2024-12-08 00:00:00+00:00</th>
+      <td>101236.015625</td>
+    </tr>
+    <tr>
+      <th>2024-12-09 00:00:00+00:00</th>
+      <td>97432.718750</td>
+    </tr>
+    <tr>
+      <th>2024-12-10 00:00:00+00:00</th>
+      <td>96675.429688</td>
+    </tr>
+    <tr>
+      <th>2024-12-11 00:00:00+00:00</th>
+      <td>101173.031250</td>
+    </tr>
+    <tr>
+      <th>2024-12-12 00:00:00+00:00</th>
+      <td>101396.296875</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GaussianHMM(n_components=3)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;GaussianHMM<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>GaussianHMM(n_components=3)</pre></div> </div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#predict</span>
+<span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0,
+       2, 0, 2, 0, 2, 0, 2, 0, 2])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#look at our predictions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x13196e9c0&gt;]
+</pre></div>
+</div>
+<img alt="_images/860788bdfc04a668068cc33db4dca137b9f9b2565169ceeb572d4bb342450ad6.png" src="_images/860788bdfc04a668068cc33db4dca137b9f9b2565169ceeb572d4bb342450ad6.png" />
+</div>
+</div>
+</section>
+<section id="looking-at-speech-files">
+<h3>Looking at Speech Files<a class="headerlink" href="#looking-at-speech-files" title="Permalink to this heading">#</a></h3>
+<p>For a deeper dive into HMM’s for speech recognition please see Rabner’s article A tutorial on hidden Markov models and selected applications in speech recognition <a class="reference external" href="https://web.ece.ucsb.edu/Faculty/Rabiner/ece259/Reprints/tutorial%20on%20hmm%20and%20applications.pdf">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">wavfile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>sounds/apple
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>apple01.wav apple04.wav apple07.wav apple10.wav apple13.wav
+apple02.wav apple05.wav apple08.wav apple11.wav apple14.wav
+apple03.wav apple06.wav apple09.wav apple12.wav apple15.wav
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#read in the data and structure</span>
+<span class="n">rate</span><span class="p">,</span> <span class="n">apple</span> <span class="o">=</span> <span class="n">wavfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;sounds/apple/apple01.wav&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot the sound</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">apple</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x131a9e180&gt;]
+</pre></div>
+</div>
+<img alt="_images/3e786bd9bd75151c69faf82165993f018cd3182be22683bee07b13eedf9e7187.png" src="_images/3e786bd9bd75151c69faf82165993f018cd3182be22683bee07b13eedf9e7187.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#look at another sample</span>
+<span class="n">rate</span><span class="p">,</span> <span class="n">kiwi</span> <span class="o">=</span> <span class="n">wavfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;sounds/kiwi/kiwi01.wav&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#kiwi&#39;s perhaps</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kiwi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x131b5ab10&gt;]
+</pre></div>
+</div>
+<img alt="_images/734da065102c9074cb87e876cd5f1477938fb86c22be1fdf0c6404a22ef92bb1.png" src="_images/734da065102c9074cb87e876cd5f1477938fb86c22be1fdf0c6404a22ef92bb1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Audio</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#take a listen to an apple</span>
+<span class="n">Audio</span><span class="p">(</span><span class="s1">&#39;sounds/banana/banana02.wav&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+                <audio  controls="controls" >
+                    <source src="data:audio/x-wav;base64,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" type="audio/x-wav" />
+                    Your browser does not support the audio element.
+                </audio>
+              </div></div>
+</div>
+</section>
+<section id="generating-features-from-audio-mel-frequency-cepstral-coefficient">
+<h3>Generating Features from Audio: Mel Frequency Cepstral Coefficient<a class="headerlink" href="#generating-features-from-audio-mel-frequency-cepstral-coefficient" title="Permalink to this heading">#</a></h3>
+<p>Big idea here is to extract the important elements that allow us to identify speech.  For more info on the MFCC, see <a class="reference external" href="http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/">here</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>python_speech_features
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: python_speech_features in /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages (0.6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">python_speech_features</span> <span class="k">as</span> <span class="nn">features</span>
+
+<span class="c1">#extract the mfcc features</span>
+<span class="n">mfcc_features</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">mfcc</span><span class="p">(</span><span class="n">kiwi</span><span class="p">)</span>
+
+<span class="c1">#plot them</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mfcc_features</span><span class="p">);</span>
+
+<span class="c1">#determine our x and y</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">mfcc</span><span class="p">(</span><span class="n">kiwi</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kiwi&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/28478a0a2ff24e4a2b6de4e026431b0538d2e295e36396adf258e0192774beff.png" src="_images/28478a0a2ff24e4a2b6de4e026431b0538d2e295e36396adf258e0192774beff.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#make a custom markov class to return scores</span>
+<span class="k">class</span> <span class="nc">MakeMarkov</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_components</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">=</span> <span class="n">n_components</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">hmm</span><span class="o">.</span><span class="n">GaussianHMM</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_model</span>
+    
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span>
+        
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kiwi_model</span> <span class="o">=</span> <span class="n">MakeMarkov</span><span class="p">()</span>
+<span class="n">kiwi_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">kiwi_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-731.8623250842647
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hmm_models</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;sounds&#39;</span><span class="p">):</span>
+    <span class="n">sounds</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sounds/</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sound_files</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;sounds/</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">sound</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">sound</span> <span class="ow">in</span> <span class="n">sounds</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">sound</span> <span class="ow">in</span> <span class="n">sound_files</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">rate</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">wavfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">sound</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">mfcc</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">mmodel</span> <span class="o">=</span> <span class="n">MakeMarkov</span><span class="p">()</span>
+        <span class="n">mmodel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">hmm_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mmodel</span><span class="p">)</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model is not converging.  Current: -747.3672269421642 is not greater than -747.3672268616228. Delta is -8.054132649704115e-08
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model is not converging.  Current: -767.2134107023999 is not greater than -767.2134106283881. Delta is -7.401172297250014e-08
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model is not converging.  Current: -737.257806389045 is not greater than -737.2578063691759. Delta is -1.9869048628606834e-08
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model is not converging.  Current: -1530.590252835315 is not greater than -1530.590252515925. Delta is -3.1938998290570453e-07
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#write a loop that bops over the files and prints the label based on</span>
+<span class="c1">#highest score</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="making-predictions">
+<h3>Making Predictions<a class="headerlink" href="#making-predictions" title="Permalink to this heading">#</a></h3>
+<p>Now that we have our models, given a new sound we want to score these based on what we’ve learned and select the most likely example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">in_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sounds/pineapple/pineapple15.wav&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;sounds/orange/orange15.wav&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;sounds/apple/apple15.wav&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;sounds/kiwi/kiwi15.wav&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="further-reading">
+<h3>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Textbook</strong>: Marsland’s <em>Machine Learning: An Algorithmic Perspective</em> has a great overview of HMM’s.</p></li>
+<li><p><strong>Time Series Examples</strong>: Checkout Aileen Nielsen’s tutorial from <a class="reference external" href="https://www.youtube.com/watch?v=v5ijNXvlC5A">SciPy 2019</a> and her book <em>Practical Time Series Analysis</em></p></li>
+<li><p><strong>Speech Recognition</strong>: Rabiner’s <span class="xref myst"><em>A tutorial on hidden Markov models and selected applications in speech recognition</em></span></p></li>
+<li><p><strong>HMM;s and Dynamic Programming</strong>: Avik Das’ PyData Talk <a class="reference external" href="https://www.youtube.com/watch?v=MADX-L75ub8"><em>Dynamic Programming for Machine Learning: Hidden Markov Models</em></a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="streamlit.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Streamlit</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="homework/homework_I.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Assignment 1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-clustering-problem">Basic Clustering Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-clusters">Evaluating Clusters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-markov-models">Hidden Markov Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hmmlearn">HMMLearn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-at-speech-files">Looking at Speech Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-features-from-audio-mel-frequency-cepstral-coefficient">Generating Features from Audio: Mel Frequency Cepstral Coefficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">Making Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lenny
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

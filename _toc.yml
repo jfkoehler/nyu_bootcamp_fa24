@@ -54,6 +54,10 @@ parts:
     chapters:
     - file: streamlit
 
+  - caption: Unsupervised Learning
+    chapters:
+    - file: unsupervised_learning
+
   - caption: Homework
     chapters:
     - file: homework/homework_I
