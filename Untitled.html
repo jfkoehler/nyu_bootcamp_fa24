@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Introduction to Linear Regression &#8212; Stern Data Bootcamp</title>
+    <title>&lt;no title&gt; &#8212; Stern Data Bootcamp</title>
   
   
   
@@ -210,6 +210,58 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="logistic_starter_code.html">Classification I: Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classifier_evaluation_b.html">Evaluating Classification Models</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intro_decision_tree.html">Introduction to Decision Trees</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="forests.html">Random Forests</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time Series Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="time_series_I.html">Time Series and Forecasting Intro</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="forecasting_I.html">Forecasting with <code class="docutils literal notranslate"><span class="pre">sktime</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro to Artificial Neural Networks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro_to_ann.html">Intro ANN</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="v2_rnn_text.html">Text Classification and Recurrent Neural Networks</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deploying Models</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="streamlit.html">Streamlit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unsupervised Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="unsupervised_learning.html">Clustering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework</span></p>
 <ul class="nav bd-sidenav">
@@ -218,6 +270,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="homework/homework_III.html">Homework 3: Advanced Pandas and Introductory Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework/homework_IV.html">API’s and Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/regression_hw.html">A Regression Model for Wages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework/time_series_hw.html">Grid Searching and Time Series Forecasting</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra Problems</span></p>
 <ul class="nav bd-sidenav">
@@ -436,7 +490,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -447,11 +503,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to Linear Regression</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -461,15 +525,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-linear-regression">
-<h1>Introduction to Linear Regression<a class="headerlink" href="#introduction-to-linear-regression" title="Permalink to this heading">#</a></h1>
-<p><strong>OBJECTIVES</strong></p>
-<ul class="simple">
-<li><p>Identify criteria for lines of best fit</p></li>
-<li></li>
-</ul>
-</section>
-
+  
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -506,6 +562,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
